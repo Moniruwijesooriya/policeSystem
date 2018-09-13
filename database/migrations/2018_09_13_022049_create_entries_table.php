@@ -14,8 +14,18 @@ class CreateEntriesTable extends Migration
     public function up()
     {
         Schema::create('entries', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->increments('entryID');
+            $table->string('complaintCategory');
+            $table->string('complainantID');
+            $table->string('complaint');
+            $table->date('date');
+            $table->date('district');
+            $table->date('nearestPoliceStation');
+            $table->date('progress');
+            $table->date('crimeOffenceType');
+            $table->date('suspects');
+            $table->date('convict');
+            $table->timestamp('created_at')->nullable();
         });
     }
 
