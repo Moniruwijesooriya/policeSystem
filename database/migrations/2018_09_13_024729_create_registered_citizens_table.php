@@ -14,7 +14,14 @@ class CreateRegisteredCitizensTable extends Migration
     public function up()
     {
         Schema::create('registered_citizens', function (Blueprint $table) {
-            $table->increments('id');
+            $table->string('name');
+            $table->string('nic');
+            $table->date('dob');
+            $table->text('address');
+            $table->integer('mobileNumber');
+            $table->integer('landLineNumber');
+            $table->string('civilStatus');
+            $table->string('profession');
             $table->timestamps();
         });
     }

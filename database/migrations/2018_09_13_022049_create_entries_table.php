@@ -18,14 +18,13 @@ class CreateEntriesTable extends Migration
             $table->string('complaintCategory');
             $table->string('complainantID');
             $table->string('complaint');
-            $table->date('date');
-            $table->date('district');
-            $table->date('nearestPoliceStation');
-            $table->date('progress');
-            $table->date('crimeOffenceType');
-            $table->date('suspects');
-            $table->date('convict');
-            $table->timestamp('created_at')->nullable();
+            $table->string('district');
+            $table->string('nearestPoliceStation');
+            $table->string('progress')->nullable();
+            $table->string('crimeOffenceType')->nullable();
+            $table->string('suspects')->nullable();
+            $table->string('convict')->nullable();
+            $table->timestamps();
         });
     }
 

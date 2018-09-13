@@ -174,11 +174,9 @@
         <div class="w3-col m2">
             <div class="w3-card w3-round w3-white w3-center">
                 <div class="w3-container">
-                    <p>Upcoming Events:</p>
-                    <img src="/w3images/forest.jpg" alt="Forest" style="width:100%;">
-                    <p><strong>Holiday</strong></p>
-                    <p>Friday 15:00</p>
-                    <p><button class="w3-button w3-block w3-theme-l4">Info</button></p>
+                    <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#submitCrimeEntry">
+                            Submit Your Crime Entry
+                        </button></p>
                 </div>
             </div>
             <br>
@@ -217,6 +215,106 @@
 
     <!-- End Page Container -->
 </div>
+    {{--Submit crime entry form--}}
+    <div class="modal fade" id="submitCrimeEntry" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="submitCrimeEntryTitle">Submit Crime Entry</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{{route("submitEntry")}}">
+
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">District</label>
+                            <select class="form-control" name="district" id="exampleFormControlSelect1">
+                                <option>Ampara</option>
+                                <option>Anuradhapura</option>
+                                <option>Badulla</option>
+                                <option>Batticaloa</option>
+                                <option>Colombo</option>
+                                <option>Galle</option>
+                                <option>Gampaha</option>
+                                <option>Hambanthota</option>
+                                <option>Jaffna</option>
+                                <option>Kaluthara</option>
+                                <option>Kandy</option>
+                                <option>Kegalle</option>
+                                <option>Kilinochchi</option>
+                                <option>Kurunegala</option>
+                                <option>Mannar</option>
+                                <option>Matale</option>
+                                <option>Matara</option>
+                                <option>Monaragala</option>
+                                <option>Mullaitivu</option>
+                                <option>Nuwara Eliya</option>
+                                <option>Polonnaruwa</option>
+                                <option>Puttalam</option>
+                                <option>Rathnapura</option>
+                                <option>Trincomalee</option>
+                                <option>Vavuniya</option>
+
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Nearest Police Station</label>
+                            <select class="form-control" name ="policeStation" id="exampleFormControlSelect1">
+                                <option>Ampara</option>
+                                <option>Anuradhapura</option>
+                                <option>Badulla</option>
+                                <option>Batticaloa</option>
+                                <option>Colombo</option>
+                                <option>Galle</option>
+                                <option>Gampaha</option>
+                                <option>Hambanthota</option>
+                                <option>Jaffna</option>
+                                <option>Kaluthara</option>
+                                <option>Kandy</option>
+                                <option>Kegalle</option>
+                                <option>Kilinochchi</option>
+                                <option>Kurunegala</option>
+                                <option>Mannar</option>
+                                <option>Matale</option>
+                                <option>Matara</option>
+                                <option>Monaragala</option>
+                                <option>Mullaitivu</option>
+                                <option>Nuwara Eliya</option>
+                                <option>Polonnaruwa</option>
+                                <option>Puttalam</option>
+                                <option>Rathnapura</option>
+                                <option>Trincomalee</option>
+                                <option>Vavuniya</option>
+
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Complaint Category</label>
+                            <select class="form-control" name="complaintCategory" id="exampleFormControlSelect1">
+                                <option>Robbery</option>
+                                <option>Assault</option>
+
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Complaint</label>
+                            <textarea class="form-control" name="complaintText" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-primary" name="submit" value="Save changes">
+                        </div>
+                        <input type="hidden" name="_token" value="{{Session::token()}}">
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
 <br>
 
 <!-- Footer -->

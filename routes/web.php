@@ -19,3 +19,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/colombo', [
+    'uses'=>'PostsController@colomboPost',
+    'as'=>'colomboPost'
+]);
+
+Route::post('/submitCrimeEntry',[
+    'uses'=>'EntryController@submitEntry',
+    'as'=>'submitEntry'
+]);
