@@ -16,11 +16,11 @@ class CreateRegisteredCitizensTable extends Migration
         Schema::create('registered_citizens', function (Blueprint $table) {
             $table->string('name');
             $table->string('nic');
-            $table->date('dob');
+            $table->date('dob')->nullable();
             $table->text('address');
             $table->integer('mobileNumber');
             $table->integer('landLineNumber');
-            $table->string('civilStatus');
+            $table->string('civilStatus')->nullable();
             $table->string('profession');
             $table->timestamps();
         });

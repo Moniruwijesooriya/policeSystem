@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\RegisteredCitizen;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -68,5 +69,20 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function registerCitizen(Request $request){
+        $regCitizen=new RegisteredCitizen();
+        $regCitizen->name=$request->name;
+        $regCitizen->nic=$request-> nic;
+        $regCitizen->address=$request->homeAddress;
+        $regCitizen->mobileNumber=$request->policeStation;
+        $regCitizen->landLineNumber=$request->policeStation;
+
+        $crimeEntry->save();
+        return redirect()->back();
+
+
+
     }
 }
