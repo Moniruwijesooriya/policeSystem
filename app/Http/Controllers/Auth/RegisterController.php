@@ -53,6 +53,8 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'role' => 'required|string|max:50',
+
         ]);
     }
 
@@ -64,22 +66,31 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'mobileNumber'=>$data['mobNumber'],
+            'address'=>$data['homeAddress'],
+            'nic'=>$data['nic'],
+            'landLineNumber'=>$data['nic'],
+            'profession'=>$data['profession'],
+            'role'=>$data['role'],
+            'policeOffice'=>$data['policeOffice'],
         ]);
     }
 
-    public function registerCitizen(Request $request){
+    public function registerPoliceOfficer(Request $request){
         $regCitizen=new RegisteredCitizen();
         $regCitizen->name=$request->name;
         $regCitizen->nic=$request-> nic;
         $regCitizen->address=$request->homeAddress;
-        $regCitizen->mobileNumber=$request->policeStation;
-        $regCitizen->landLineNumber=$request->policeStation;
+        $regCitizen->mobileNumber=$request->mobNumber;
+        $regCitizen->landLineNumber=$request->landNumber;
+        $regCitizen->profession=$request->profession;
 
-        $crimeEntry->save();
+        $regCitizen->save();
         return redirect()->back();
 
 

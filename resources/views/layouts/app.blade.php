@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Crime Reporting System') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -26,7 +26,7 @@
                 {{--<a class="navbar-brand" href="{{ url('/') }}">--}}
                     {{--{{ config('app.name', 'Laravel') }}--}}
                 {{--</a>--}}
-                <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Logo</a>
+                <a href="{{ url('/home') }}" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Home</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -61,9 +61,8 @@
                                 <div class="w3-dropdown-hover w3-hide-small">
                                     <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>
                                     <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
-                                        <a href="#" class="w3-bar-item w3-button">One new friend request</a>
-                                        <a href="#" class="w3-bar-item w3-button">John Doe posted on your wall</a>
-                                        <a href="#" class="w3-bar-item w3-button">Jane likes your post</a>
+                                        <a href="#" class="w3-bar-item w3-button">Citizen registration request</a>
+
                                     </div>
                                 </div>
                                 <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">

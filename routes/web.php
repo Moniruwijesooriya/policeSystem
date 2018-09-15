@@ -19,6 +19,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin', 'AdminController@index')->name('admin');
 
 Route::get('/colombo', [
     'uses'=>'PostsController@colomboPost',
@@ -29,3 +30,11 @@ Route::post('/submitCrimeEntry',[
     'uses'=>'EntryController@submitEntry',
     'as'=>'submitEntry'
 ]);
+
+Route::post('/registerPoliceOfficer',[
+    'uses'=>'RegisterController@registerPoliceOfficer',
+    'as'=>'submitEntry'
+]);
+
+Route::get('/admin','AdminController@index');
+

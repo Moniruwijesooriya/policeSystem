@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
@@ -25,6 +25,7 @@
                             </div>
                         </div>
 
+
                         <div class="form-group row">
                             <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('NIC') }}</label>
 
@@ -38,7 +39,6 @@
                                 @endif
                             </div>
                         </div>
-
                         <div class="form-group row">
                             <label for="homeAddress" class="col-md-4 col-form-label text-md-right">{{ __('Residence Address') }}</label>
 
@@ -95,6 +95,20 @@
                             </div>
                         </div>
 
+                        {{--<div class="form-group row">--}}
+                            {{--<label for="profileImage" class="col-md-4 col-form-label text-md-right">{{ __('Profile Image') }}</label>--}}
+
+                            {{--<div class="col-md-6">--}}
+                                {{--<input class="form-group mb-2" id="profileImage" type="file" name="profileImage" value="{{ old('profileImage') }}" required>--}}
+
+                                {{--@if ($errors->has('profileImage'))--}}
+                                    {{--<span class="invalid-feedback" role="alert">--}}
+                                        {{--<strong>{{ $errors->first('profileImage') }}</strong>--}}
+                                    {{--</span>--}}
+                                {{--@endif--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+
 
 
                         <div class="form-group row">
@@ -130,6 +144,20 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="role" type="text" class="form-control{{ $errors->has('role') ? ' is-invalid' : '' }}" name="role" value="{{ old('role') }}" required autofocus>
+
+                                @if ($errors->has('role'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('role') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
