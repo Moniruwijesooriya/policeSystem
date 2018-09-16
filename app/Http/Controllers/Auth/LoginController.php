@@ -38,8 +38,13 @@ class LoginController extends Controller
             return redirect('/IGP');
 
         }
+        else if(Auth::User()->isCitizen()){
+            return redirect('/RegisteredCitizen');
+
+        }
         else{
-            return redirect(('/home'));
+            Auth::logout();
+            return view('lanka');
         }
     }
 

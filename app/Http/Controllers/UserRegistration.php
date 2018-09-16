@@ -19,17 +19,14 @@ class UserRegistration extends Controller
         $citizen->landLineNumber=$request->landNumber;
         $citizen->profession=$request->profession;
         $citizen->email=$request->email;
-        $citizen->role=$request->role;
-        $citizen->remember_token=$request->tokenID;
-        $policeOfficer->password=Hash::make($request->password);
+        $citizen->role="citizen";
+        $citizen->remember_token=str_random(60);
+        $citizen->password=Hash::make($request->password);
+        $citizen->verified="n";
 
-        $policeOfficer->save();
-        return redirect()->back();
-
-
+        $citizen->save();
+        return redirect(('/'));
 
     }
 }
 
-            'role'=>$data['role'],
-            'verified'=>'no'

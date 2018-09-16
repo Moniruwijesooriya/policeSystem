@@ -1,3 +1,6 @@
+<?php
+use Illuminate\Support\Facades\DB;
+?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -59,9 +62,26 @@
                                 <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
                                 <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
                                 <div class="w3-dropdown-hover w3-hide-small">
-                                    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>
-                                    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
-                                        <a href="#" class="w3-bar-item w3-button">Citizen registration request</a>
+                                    @if(Auth::User()->role=='admin')
+                                    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">{{db::table('citizen_registration_notifs')->where('verified',"n")->count()}}</span></button>
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Dropdown button
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                                            <?php
+                                            $notification=db::table('citizen_registration_notifs')->where('verified',"n")->get();
+                                            ?>
+                                            @foreach($notification as $notifi)
+                                                    <?php
+                                                    $userDetails=db::table('citizen_registration_notifs')->where('verified',"n")->get();
+                                                    ?>
+                                                    <a href="#" class="w3-bar-item w3-button">{{$notifi->nic}} requested a login</a>
+
+
+                                                @endforeach
+                                            @endif
 
                                     </div>
                                 </div>

@@ -41,4 +41,11 @@ class User extends Authenticatable
         }
         return false;
     }
+
+    public function isCitizen(){
+        if($this->role=='citizen' AND $this->verified=='y'){
+            return true;
+        }
+        return false;
+    }
 }

@@ -31,11 +31,9 @@
                 <div class="w3-card w3-round w3-white">
                     <div class="w3-container">
                         <h4 class="w3-center">My Profile</h4>
-                        <p class="w3-center"><img src="/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+                        <p class="w3-center"><img src='{{asset('/img/admin.png')}}' class="w3-circle" style="height:106px;width:106px" alt="Admin Image"></p>
                         <hr>
-                        <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
-                        <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> London, UK</p>
-                        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> April 1, 1988</p>
+                        <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>System Admin</p>
                     </div>
                 </div>
                 <br>
@@ -79,15 +77,6 @@
                 </div>
                 <br>
 
-
-                <!-- Alert Box -->
-                <div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
-        <span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">
-          <i class="fa fa-remove"></i>
-        </span>
-                    <p><strong>Hey!</strong></p>
-                    <p>People are looking at your profile. Find out who.</p>
-                </div>
 
                 <!-- End Left Column -->
             </div>
@@ -133,16 +122,9 @@
 
                 <div class="w3-card w3-round w3-white w3-center">
                     <div class="w3-container">
-                        <p>Friend Request</p>
-                        <img src="/w3images/avatar6.png" alt="Avatar" style="width:50%"><br>
-                        <span>Jane Doe</span>
+
                         <div class="w3-row w3-opacity">
-                            <div class="w3-half">
-                                <button class="w3-button w3-block w3-green w3-section" title="Accept"><i class="fa fa-check"></i></button>
-                            </div>
-                            <div class="w3-half">
-                                <button class="w3-button w3-block w3-red w3-section" title="Decline"><i class="fa fa-remove"></i></button>
-                            </div>
+
                         </div>
                     </div>
                 </div>

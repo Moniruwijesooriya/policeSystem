@@ -34,13 +34,20 @@ Route::post('/submitCrimeEntry',[
 Route::post('/registerPoliceOfficer',[
     'uses'=>'AdminController@registerPoliceOfficer',
     'as'=>'registerPoliceOfficer'
-]);
+])->middleware('auth');
 
 Route::post('/registerPoliceOffice',[
     'uses'=>'AdminController@registerPoliceOffice',
     'as'=>'registerPoliceOffice'
 ])->middleware('auth');
 
+Route::post('/registerCitizen',[
+    'uses'=>'CitizenController@registerCitizen',
+    'as'=>'registerCitizen'
+]);
+
 Route::get('/admin','AdminController@index');
 Route::get('/IGP','IGPController@index');
+Route::get('/RegisteredCitizen','CitizenLoginController@index');
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 

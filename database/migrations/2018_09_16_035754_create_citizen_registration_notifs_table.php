@@ -15,7 +15,9 @@ class CreateCitizenRegistrationNotifsTable extends Migration
     {
         Schema::create('citizen_registration_notifs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('user');
+            $table->string('systemRole');
+            $table->string('nic');
+            $table->string('verified');
             $table->timestamps();
         });
     }
