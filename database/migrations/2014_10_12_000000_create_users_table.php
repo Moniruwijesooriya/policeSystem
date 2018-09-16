@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('civilStatus')->nullable();
             $table->string('profession');
             $table->string('policeOffice')->nullable();
+            $table->string('verified');
             $table->rememberToken();
             $table->timestamps();
         });

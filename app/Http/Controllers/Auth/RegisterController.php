@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use http\Env\Request;
 
 class RegisterController extends Controller
 {
@@ -77,23 +78,9 @@ class RegisterController extends Controller
             'landLineNumber'=>$data['nic'],
             'profession'=>$data['profession'],
             'role'=>$data['role'],
-            'policeOffice'=>$data['policeOffice'],
+            'verified'=>'no'
         ]);
     }
 
-    public function registerPoliceOfficer(Request $request){
-        $regCitizen=new RegisteredCitizen();
-        $regCitizen->name=$request->name;
-        $regCitizen->nic=$request-> nic;
-        $regCitizen->address=$request->homeAddress;
-        $regCitizen->mobileNumber=$request->mobNumber;
-        $regCitizen->landLineNumber=$request->landNumber;
-        $regCitizen->profession=$request->profession;
 
-        $regCitizen->save();
-        return redirect()->back();
-
-
-
-    }
 }

@@ -79,26 +79,6 @@
                 </div>
                 <br>
 
-                <!-- Interests -->
-                <div class="w3-card w3-round w3-white w3-hide-small">
-                    <div class="w3-container">
-                        <p>Interests</p>
-                        <p>
-                            <span class="w3-tag w3-small w3-theme-d5">News</span>
-                            <span class="w3-tag w3-small w3-theme-d4">W3Schools</span>
-                            <span class="w3-tag w3-small w3-theme-d3">Labels</span>
-                            <span class="w3-tag w3-small w3-theme-d2">Games</span>
-                            <span class="w3-tag w3-small w3-theme-d1">Friends</span>
-                            <span class="w3-tag w3-small w3-theme">Games</span>
-                            <span class="w3-tag w3-small w3-theme-l1">Friends</span>
-                            <span class="w3-tag w3-small w3-theme-l2">Food</span>
-                            <span class="w3-tag w3-small w3-theme-l3">Design</span>
-                            <span class="w3-tag w3-small w3-theme-l4">Art</span>
-                            <span class="w3-tag w3-small w3-theme-l5">Photos</span>
-                        </p>
-                    </div>
-                </div>
-                <br>
 
                 <!-- Alert Box -->
                 <div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
@@ -121,6 +101,18 @@
                             <div class="w3-container">
                                 <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOfficer">
                                         Register Police Officer
+                                    </button></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card w3-round w3-white w3-center">
+                            <div class="w3-container">
+                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOffice">
+                                        Register Police Office
                                     </button></p>
                             </div>
                         </div>
@@ -184,8 +176,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('registerPoliceOfficer') }}" enctype="multipart/form-data">
                         @csrf
+
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
@@ -260,7 +253,7 @@
                         <div class="form-group row">
 
 
-                                <label for="profession" class="col-md-4 col-form-label text-md-right">{{ __('System Role') }}</label>
+                            <label for="profession" class="col-md-4 col-form-label text-md-right">{{ __('System Role') }}</label>
                             <div class="col-md-7">
                                 <select class="form-control" name="role" id="exampleFormControlSelect1">
                                     <option>Branch Officer Incharge</option>
@@ -268,32 +261,32 @@
                                     <option>Division Officer Incharge</option>
                                     <option>Inspector General of Police</option>
                                 </select>
-                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="rank" class="col-md-4 col-form-label text-md-right">{{ __('Officer Rank') }}</label>
                             <div class="col-md-7">
-                            <select class="form-control" name="profession" id="exampleFormControlSelect1">
-                                <option>Inspector General of Police</option>
-                                <option>Senior Deputy Inspector General of Police</option>
-                                <option>Deputy Inspector General of Police</option>
-                                <option>Senior Superintendent of Police</option>
-                                <option>Senior Superintendent of Police</option>
-                            </select>
+                                <select class="form-control" name="profession" id="exampleFormControlSelect1">
+                                    <option>Inspector General of Police</option>
+                                    <option>Senior Deputy Inspector General of Police</option>
+                                    <option>Deputy Inspector General of Police</option>
+                                    <option>Senior Superintendent of Police</option>
+                                    <option>Senior Superintendent of Police</option>
+                                </select>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="policeOffice" class="col-md-4 col-form-label text-md-right">{{ __('Police Office') }}</label>
                             <div class="col-md-7">
-                            <select class="form-control" name="policeoffice" id="exampleFormControlSelect1">
-                                <option>Ampara</option>
-                                <option>Anuradhapura</option>
-                                <option>Badulla</option>
-                                <option>Batticaloa</option>
+                                <select class="form-control" name="policeOffice" id="exampleFormControlSelect1">
+                                    <option>Ampara</option>
+                                    <option>Anuradhapura</option>
+                                    <option>Badulla</option>
+                                    <option>Batticaloa</option>
 
-                            </select>
+                                </select>
                             </div>
                         </div>
 
@@ -352,6 +345,105 @@
                         </div>
 
 
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Register') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    {{--Register police office form--}}
+    <div class="modal fade" id="registerPoliceOffice" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div  class="modal-dialog modal-dialog-centered" role="document">
+            <div  class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerPoliceOfficer">Register Police Office</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ route('registerPoliceOffice') }}">
+                        @csrf
+
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">District</label>
+                            <select class="form-control" name="district" id="exampleFormControlSelect1">
+                                <option>Ampara</option>
+                                <option>Anuradhapura</option>
+                                <option>Badulla</option>
+                                <option>Batticaloa</option>
+                                <option>Colombo</option>
+                                <option>Galle</option>
+                                <option>Gampaha</option>
+                                <option>Hambanthota</option>
+                                <option>Jaffna</option>
+                                <option>Kaluthara</option>
+                                <option>Kandy</option>
+                                <option>Kegalle</option>
+                                <option>Kilinochchi</option>
+                                <option>Kurunegala</option>
+                                <option>Mannar</option>
+                                <option>Matale</option>
+                                <option>Matara</option>
+                                <option>Monaragala</option>
+                                <option>Mullaitivu</option>
+                                <option>Nuwara Eliya</option>
+                                <option>Polonnaruwa</option>
+                                <option>Puttalam</option>
+                                <option>Rathnapura</option>
+                                <option>Trincomalee</option>
+                                <option>Vavuniya</option>
+
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Office Area</label>
+                            <select class="form-control" name ="policeOfficeArea" id="exampleFormControlSelect1">
+                                <option>Ampara</option>
+                                <option>Anuradhapura</option>
+                                <option>Badulla</option>
+                                <option>Batticaloa</option>
+                                <option>Colombo</option>
+                                <option>Galle</option>
+
+
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Office Type</label>
+                            <select class="form-control" name ="policeOfficeType" id="exampleFormControlSelect1">
+                                <option>Police Station</option>
+                                <option>Inspector General of Police Office</option>
+                                <option>Branch Office</option>
+                                <option>Division Office</option>
+
+                            </select>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="landNumber" class="col-md-4 col-form-label text-md-right">{{ __('Landline Number') }}</label>
+
+                            <div class="col-md-7">
+                                <input id="landNumber" type="text" class="form-control{{ $errors->has('landNumber') ? ' is-invalid' : '' }}" name="landNumber" value="{{ old('landNumber') }}" required autofocus>
+
+                                @if ($errors->has('landNumber'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('landNumber') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

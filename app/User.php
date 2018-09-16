@@ -34,4 +34,11 @@ class User extends Authenticatable
         }
         return false;
     }
+
+    public function isIGP(){
+        if($this->role=='Inspector General of Police'){
+            return true;
+        }
+        return false;
+    }
 }

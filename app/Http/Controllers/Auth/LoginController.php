@@ -34,6 +34,10 @@ class LoginController extends Controller
             return redirect('/admin');
 
         }
+        else if(Auth::User()->isIGP()){
+            return redirect('/IGP');
+
+        }
         else{
             return redirect(('/home'));
         }

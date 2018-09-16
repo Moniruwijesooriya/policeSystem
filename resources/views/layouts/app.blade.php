@@ -26,7 +26,7 @@
                 {{--<a class="navbar-brand" href="{{ url('/') }}">--}}
                     {{--{{ config('app.name', 'Laravel') }}--}}
                 {{--</a>--}}
-                <a href="{{ url('/home') }}" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Home</a>
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -66,7 +66,6 @@
                                     </div>
                                 </div>
                                 <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
-                                    <img src="/w3images/avatar2.png" class="w3-circle" style="height:23px;width:23px" alt="Avatar">
                                 </a>
                             </li>
                             <li class="nav-item dropdown">

@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
-class MustBeAdmin
+class MustBeIGP
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class MustBeAdmin
     {
         if(!$request->user()){return redirect('/');} //if not loged in system redirects to the home page
 
-        if($request->user()->isAdmin()){
+        if($request->user()->isIGP()){
             return $next($request);
         }
         return redirect(('/'));

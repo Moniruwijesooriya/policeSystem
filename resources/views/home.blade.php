@@ -31,11 +31,10 @@
                 <div class="w3-card w3-round w3-white">
                     <div class="w3-container">
                         <h4 class="w3-center">My Profile</h4>
-                        <p class="w3-center"><img src="/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+                        <p class="w3-center"><img src='{{assert('/img/IGP.jpg')}}' class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
                         <hr>
                         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>{{Auth::User()->profession}}</p>
                         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>{{Auth::User()->address}}</p>
-                        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>{{Auth::User()->mobileNumber}}</p>
                     </div>
                 </div>
                 <br>
@@ -227,6 +226,7 @@
                 </div>
                 <div class="modal-body">
                     <form method="post" action="{{route("submitEntry")}}">
+                        @csrf
 
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">District</label>

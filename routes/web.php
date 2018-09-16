@@ -24,17 +24,23 @@ Route::get('/admin', 'AdminController@index')->name('admin');
 Route::get('/colombo', [
     'uses'=>'PostsController@colomboPost',
     'as'=>'colomboPost'
-]);
+])->middleware('Auth');
 
 Route::post('/submitCrimeEntry',[
     'uses'=>'EntryController@submitEntry',
     'as'=>'submitEntry'
-]);
+])->middleware('auth');
 
 Route::post('/registerPoliceOfficer',[
-    'uses'=>'RegisterController@registerPoliceOfficer',
-    'as'=>'submitEntry'
+    'uses'=>'AdminController@registerPoliceOfficer',
+    'as'=>'registerPoliceOfficer'
 ]);
 
+Route::post('/registerPoliceOffice',[
+    'uses'=>'AdminController@registerPoliceOffice',
+    'as'=>'registerPoliceOffice'
+])->middleware('auth');
+
 Route::get('/admin','AdminController@index');
+Route::get('/IGP','IGPController@index');
 
