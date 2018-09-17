@@ -65,7 +65,7 @@ use Illuminate\Support\Facades\DB;
                                     @if(Auth::User()->role=='admin')
                                     {{--<button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">{{db::table('citizen_registration_notifs')->where('verified',"n")->count()}}</span></button>--}}
                                         <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">{{db::table('citizen_registration_notifs')->where('verified',"n")->count()}}</span>
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">{{db::table('users')->where('verified',"n")->where('role',"citizen")->count()}}</span>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
@@ -74,7 +74,7 @@ use Illuminate\Support\Facades\DB;
                                             ?>
                                             @foreach($notification as $notifi)
                                                     <?php
-                                                    $userDetails=db::table('citizen_registration_notifs')->where('verified',"n")->where('role',"citizen")->get();
+                                                    $userDetails=db::table('citizen_registration_notifs')->where('verified',"n")->get();
                                                     ?>
                                                     {{--<a href="" class="w3-bar-item w3-button">{{$notifi->nic}} requested a login</a>--}}
 
