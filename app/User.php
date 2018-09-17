@@ -48,4 +48,23 @@ class User extends Authenticatable
         }
         return false;
     }
+
+    public function isOIC(){
+        if($this->role=='Officer Incharge of Police Station'){
+            return true;
+        }
+        return false;
+    }
+    public function isBOIC(){
+        if($this->role=='Branch Officer Incharge'){
+            return true;
+        }
+        return false;
+    }
+    public function isDOIG(){
+        if($this->role=='Division Officer Incharge'){
+            return true;
+        }
+        return false;
+    }
 }

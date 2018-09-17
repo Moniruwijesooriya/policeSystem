@@ -42,6 +42,18 @@ class LoginController extends Controller
             return redirect('/RegisteredCitizen');
 
         }
+        else if(Auth::User()->isOIC()){
+            return redirect('/OIC');
+
+        }
+        else if(Auth::User()->isBOIC()){
+            return redirect('/BOIC');
+
+        }
+        else if(Auth::User()->isDOIG()){
+            return redirect('/DOIG');
+
+        }
         else{
             Auth::logout();
             return view('lanka');

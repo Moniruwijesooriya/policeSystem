@@ -49,5 +49,8 @@ Route::post('/registerCitizen',[
 Route::get('/admin','AdminController@index');
 Route::get('/IGP','IGPController@index');
 Route::get('/RegisteredCitizen','CitizenLoginController@index');
+Route::get('/OIC','OICController@index');
+Route::get('/BOIC','BOICController@index');
+Route::get('/DOIG','DOIGController@index');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
