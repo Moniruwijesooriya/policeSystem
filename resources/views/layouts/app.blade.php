@@ -70,11 +70,11 @@ use Illuminate\Support\Facades\DB;
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
                                             <?php
-                                            $notification=db::table('citizen_registration_notifs')->where('verified',"n")->get();
+                                            $notification=db::table('users')->where('verified',"n")->where('role',"citizen")->get();
                                             ?>
                                             @foreach($notification as $notifi)
                                                     <?php
-                                                    $userDetails=db::table('citizen_registration_notifs')->where('verified',"n")->get();
+                                                    $userDetails=db::table('citizen_registration_notifs')->where('verified',"n")->where('role',"citizen")->get();
                                                     ?>
                                                     {{--<a href="" class="w3-bar-item w3-button">{{$notifi->nic}} requested a login</a>--}}
 
