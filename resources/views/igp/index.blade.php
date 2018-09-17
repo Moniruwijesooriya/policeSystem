@@ -42,51 +42,44 @@
                 <!-- Accordion -->
                 <div class="w3-card w3-round">
                     <div class="w3-white">
-                        <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Groups</button>
+                        <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Investigation</button>
                         <div id="Demo1" class="w3-hide w3-container">
-                            <p>Some text..</p>
+                            {{--<p>Some text..</p>--}}
                         </div>
-                        <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Events</button>
+                        <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Invetigation Branches</button>
                         <div id="Demo2" class="w3-hide w3-container">
-                            <p>Some other text..</p>
+                            {{--<p>Some other text..</p>--}}
                         </div>
-                        <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> My Photos</button>
-                        <div id="Demo3" class="w3-hide w3-container">
-                            <div class="w3-row-padding">
-                                <br>
-                                <div class="w3-half">
-                                    <img src="/w3images/lights.jpg" style="width:100%" class="w3-margin-bottom">
-                                </div>
-                                <div class="w3-half">
-                                    <img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
-                                </div>
-                                <div class="w3-half">
-                                    <img src="/w3images/mountains.jpg" style="width:100%" class="w3-margin-bottom">
-                                </div>
-                                <div class="w3-half">
-                                    <img src="/w3images/forest.jpg" style="width:100%" class="w3-margin-bottom">
-                                </div>
-                                <div class="w3-half">
-                                    <img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
-                                </div>
-                                <div class="w3-half">
-                                    <img src="/w3images/snow.jpg" style="width:100%" class="w3-margin-bottom">
-                                </div>
-                            </div>
-                        </div>
+                        <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i>D Type Crime Enquries</button>
+                        {{--<div id="Demo3" class="w3-hide w3-container">--}}
+                            {{--<div class="w3-row-padding">--}}
+                                {{--<br>--}}
+                                {{--<div class="w3-half">--}}
+                                    {{--<img src="/w3images/lights.jpg" style="width:100%" class="w3-margin-bottom">--}}
+                                {{--</div>--}}
+                                {{--<div class="w3-half">--}}
+                                    {{--<img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">--}}
+                                {{--</div>--}}
+                                {{--<div class="w3-half">--}}
+                                    {{--<img src="/w3images/mountains.jpg" style="width:100%" class="w3-margin-bottom">--}}
+                                {{--</div>--}}
+                                {{--<div class="w3-half">--}}
+                                    {{--<img src="/w3images/forest.jpg" style="width:100%" class="w3-margin-bottom">--}}
+                                {{--</div>--}}
+                                {{--<div class="w3-half">--}}
+                                    {{--<img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">--}}
+                                {{--</div>--}}
+                                {{--<div class="w3-half">--}}
+                                    {{--<img src="/w3images/snow.jpg" style="width:100%" class="w3-margin-bottom">--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
                     </div>
                 </div>
                 <br>
 
 
-                <!-- Alert Box -->
-                <div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
-        <span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">
-          <i class="fa fa-remove"></i>
-        </span>
-                    <p><strong>Hey!</strong></p>
-                    <p>People are looking at your profile. Find out who.</p>
-                </div>
+
 
                 <!-- End Left Column -->
             </div>
@@ -125,31 +118,17 @@
             <div class="w3-col m2">
                 <br>
 
-                <div class="w3-card w3-round w3-white w3-center">
-                    <div class="w3-container">
-                        <p>Friend Request</p>
-                        <img src="/w3images/avatar6.png" alt="Avatar" style="width:50%"><br>
-                        <span>Jane Doe</span>
-                        <div class="w3-row w3-opacity">
-                            <div class="w3-half">
-                                <button class="w3-button w3-block w3-green w3-section" title="Accept"><i class="fa fa-check"></i></button>
-                            </div>
-                            <div class="w3-half">
-                                <button class="w3-button w3-block w3-red w3-section" title="Decline"><i class="fa fa-remove"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
                 <br>
 
-                <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
-                    <p>ADS</p>
-                </div>
+                {{--<div class="w3-card w3-round w3-white w3-padding-16 w3-center">--}}
+                    {{--<p>ADS</p>--}}
+                {{--</div>--}}
                 <br>
 
-                <div class="w3-card w3-round w3-white w3-padding-32 w3-center">
-                    <p><i class="fa fa-bug w3-xxlarge"></i></p>
-                </div>
+                {{--<div class="w3-card w3-round w3-white w3-padding-32 w3-center">--}}
+                    {{--<p><i class="fa fa-bug w3-xxlarge"></i></p>--}}
+                {{--</div>--}}
 
                 <!-- End Right Column -->
             </div>
