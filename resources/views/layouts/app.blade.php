@@ -72,18 +72,20 @@ use Illuminate\Support\Facades\DB;
                                             <?php
                                             $notification=db::table('citizen_registration_notifs')->where('verified',"n")->get();
                                             ?>
-                                            {{--@foreach($notification as $notifi)--}}
-
+                                            @foreach($notification as $notifi)
+                                                    <?php
+                                                    $userDetails=db::table('citizen_registration_notifs')->where('verified',"n")->get();
+                                                    ?>
                                                     {{--<a href="" class="w3-bar-item w3-button">{{$notifi->nic}} requested a login</a>--}}
 
                                                     <!-- Button trigger modal -->
                                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#citizen">
-                                                            View New Login Requests
+                                                            {{$notifi->nic}} requested a login
                                                         </button>
 
 
 
-                                                {{--@endforeach--}}
+                                                @endforeach
                                             @endif
 
                                     </div>
@@ -120,44 +122,23 @@ use Illuminate\Support\Facades\DB;
             </div>
 
             <!-- Modal -->
-            <div class="modal fade"  id="citizen" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialogmodal-800"   role="document">
+            <div class="modal fade" id="citizen" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">New Requests</h5>
+                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <?php
-                            $userDetails=db::table('users')->where('verified',"n")->where('role',"citizen")->get();
-                            ?>
-                        @foreach($userDetails as $notifi)
-                                    <div class="table">
-                                        <table class="table table-striped">
-                                            <thead>
-                                            <tr>
-                                                <th>NIC</th>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Address</th>
+                        <?php
+                        $notification=db::table('citizen_registration_notifs')->where('verified',"n")->get();
+                        ?>
+                        @foreach($notification as $notifi)
 
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                    <tr>
 
-                                        <td>{{$notifi->nic}} </td>
-                                        <td>{{$notifi->name}} </td>
-                                        <td>{{$notifi->email}} </td>
-                                        <td>{{$notifi->address}} </td>
-                                        <td><button type="button" class="btn btn-primary">Verify</button></td>
-                                        <td><button type="button" class="btn btn-primary">Reject</button></td>
 
-                                    </tr>
-                                    </tbody>
-                                </table>
                             @endforeach
                         </div>
                         <div class="modal-footer">
