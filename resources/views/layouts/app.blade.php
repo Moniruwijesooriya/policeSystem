@@ -63,24 +63,27 @@ use Illuminate\Support\Facades\DB;
                                 <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
                                 <div class="w3-dropdown-hover w3-hide-small">
                                     @if(Auth::User()->role=='admin')
-                                    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">{{db::table('citizen_registration_notifs')->where('verified',"n")->count()}}</span></button>
+                                    {{--<button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">{{db::table('citizen_registration_notifs')->where('verified',"n")->count()}}</span></button>--}}
                                         <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Dropdown button
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">{{db::table('citizen_registration_notifs')->where('verified',"n")->count()}}</span>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
                                             <?php
                                             $notification=db::table('citizen_registration_notifs')->where('verified',"n")->get();
                                             ?>
-                                            @foreach($notification as $notifi)
-                                                    <?php
-                                                    $userDetails=db::table('citizen_registration_notifs')->where('verified',"n")->get();
-                                                    ?>
-                                                    <a href="#" class="w3-bar-item w3-button">{{$notifi->nic}} requested a login</a>
+                                            {{--@foreach($notification as $notifi)--}}
+
+                                                    {{--<a href="" class="w3-bar-item w3-button">{{$notifi->nic}} requested a login</a>--}}
+
+                                                    <!-- Button trigger modal -->
+                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#citizen">
+                                                            View New Login Requests
+                                                        </button>
 
 
-                                                @endforeach
+
+                                                {{--@endforeach--}}
                                             @endif
 
                                     </div>
@@ -113,6 +116,55 @@ use Illuminate\Support\Facades\DB;
 
                         @endguest
                     </ul>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade"  id="citizen" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialogmodal-800"   role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">New Requests</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <?php
+                            $userDetails=db::table('users')->where('verified',"n")->where('role',"citizen")->get();
+                            ?>
+                        @foreach($userDetails as $notifi)
+                                    <div class="table">
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>NIC</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Address</th>
+
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                    <tr>
+
+                                        <td>{{$notifi->nic}} </td>
+                                        <td>{{$notifi->name}} </td>
+                                        <td>{{$notifi->email}} </td>
+                                        <td>{{$notifi->address}} </td>
+                                        <td><button type="button" class="btn btn-primary">Verify</button></td>
+                                        <td><button type="button" class="btn btn-primary">Reject</button></td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            @endforeach
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
