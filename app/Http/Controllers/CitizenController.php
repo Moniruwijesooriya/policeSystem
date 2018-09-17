@@ -38,16 +38,16 @@ class CitizenController extends Controller
         return redirect(('/'));
     }
 
-    public function registerSystemNotification(Request $request)
-    {
-        $citizen = new CitizenRegistrationNotif();
-        $citizen->nic = $request->nic;
-        $citizen->role = "citizen";
-        $citizen->verified = "n";
-
-        $citizen->save();
-        return redirect(('/'));
-    }
+//    public function registerSystemNotification(Request $request)
+//    {
+//        $citizen = new CitizenRegistrationNotif();
+//        $citizen->nic = $request->nic;
+//        $citizen->role = "citizen";
+//        $citizen->verified = "n";
+//
+//        $citizen->save();
+//        return redirect(('/'));
+//    }
 
     public function getCitizenRegistrationNotification()
     {
