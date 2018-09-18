@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\CitizenRegistrationNotif;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class CitizenController extends Controller
@@ -38,20 +39,22 @@ class CitizenController extends Controller
         return redirect(('/'));
     }
 
-//    public function registerSystemNotification(Request $request)
-//    {
-//        $citizen = new CitizenRegistrationNotif();
-//        $citizen->nic = $request->nic;
-//        $citizen->role = "citizen";
-//        $citizen->verified = "n";
-//
-//        $citizen->save();
-//        return redirect(('/'));
-//    }
 
     public function getCitizenRegistrationNotification()
     {
-        db::table('citizen_registration_notifs')->where('verified',"n")->get();
+        db::table('citizen_registration_notifs')->where('verified',"n")->where('role',"citizen")->get();
 
+    }
+    public function ViewRequest(Request $request){
+        $citizenDetails = db::table('users')->where('nic',$request->nic)->First();
+        return view('admin/reviewRequest',compact('citizenDetails'));
+    }
+
+    public function AcceptCitizenRequest(Request $request){
+
+        DB::table('users')
+            ->where('nic',$request->nic)
+            ->update(['verified'=>"y"]);
+        return redirect('/admin');
     }
 }

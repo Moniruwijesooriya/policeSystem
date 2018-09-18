@@ -54,6 +54,20 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="profession" class="col-md-4 col-form-label text-md-right">{{ __('Profession') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="profession" type="text" class="form-control{{ $errors->has('profession') ? ' is-invalid' : '' }}" name="profession" value="{{ old('profession') }}" required autofocus>
+
+                                @if ($errors->has('profession'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('profession') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="mobNumber" class="col-md-4 col-form-label text-md-right">{{ __('Mobile Number') }}</label>
 
                             <div class="col-md-6">
@@ -76,20 +90,6 @@
                                 @if ($errors->has('landNumber'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('landNumber') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="profession" class="col-md-4 col-form-label text-md-right">{{ __('Profession') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="profession" type="text" class="form-control{{ $errors->has('profession') ? ' is-invalid' : '' }}" name="profession" value="{{ old('profession') }}" required autofocus>
-
-                                @if ($errors->has('profession'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('profession') }}</strong>
                                     </span>
                                 @endif
                             </div>

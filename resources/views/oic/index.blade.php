@@ -1,4 +1,8 @@
 @extends('layouts.app')
+<?php
+use Illuminate\Support\Facades\DB;
+?>
+
 
 @section('content')
     <meta charset="UTF-8">
@@ -7,8 +11,23 @@
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
         html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+
     </style>
     <!-- Navbar -->
 
@@ -141,7 +160,7 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal fade" style="width:1250px" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -149,37 +168,36 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
+                    <?php
+                    $entryList=db::table('entries')->get();
+                    ?>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body ">
+                    {{--<div style="overflow-x:auto;">--}}
+                    {{--<input class="form-control" id="myInput" type="text" placeholder="Search..">--}}
                     <table class="table table-bordered">
                         <thead>
                         <tr>
                             <th scope="col">Entry ID</th>
+                            <th scope="col">Date and Time</th>
                             <th scope="col">Complaint Category</th>
-                            <th scope="col">Complainant ID</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">Complainant NIC</th>
+                            <th scope="col"></th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="entryTable">
+                        @foreach($entryList as $entry)
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                            <th scope="row">{{$entry->entryID}}</th>
+                            <td>{{$entry->created_at}}</td>
+                            <td>{{$entry->complaintCategory}}</td>
+                            <td>{{$entry->complainantID}}</td>
+                            <td><button>View</button></td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2">Larry the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
+                            @endforeach
                         </tbody>
                     </table>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -225,5 +243,15 @@
         }
     </script>
 
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#entryTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
 
 @endsection

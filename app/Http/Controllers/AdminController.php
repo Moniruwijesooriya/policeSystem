@@ -49,9 +49,8 @@ class AdminController extends Controller
         $policeOffice->save();
         return redirect()->back();
 
-
-
     }
+
 
 
 }

@@ -20,10 +20,11 @@ class CreateEntriesTable extends Migration
             $table->string('complaint');
             $table->string('district');
             $table->string('nearestPoliceStation');
+            $table->string('oicNotification');
             $table->string('progress')->nullable();
-            $table->string('crimeOffenceType')->nullable();
+            $table->string('branch')->nullable();
             $table->string('suspects')->nullable();
-            $table->string('convict')->nullable();
+            $table->string('convicts')->nullable();
             $table->timestamps();
         });
     }

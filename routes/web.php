@@ -46,6 +46,27 @@ Route::post('/registerCitizen',[
     'as'=>'registerCitizen'
 ]);
 
+Route::post('/viewEntry',[
+    'uses'=>'EntryController@viewEntry',
+    'as'=>'viewEntry'
+]);
+
+Route::post('/acceptEntry',[
+    'uses'=>'EntryController@acceptEntry',
+    'as'=>'acceptEntry'
+]);
+
+Route::post('/reviewCitizenRegistrationRequest',[
+    'uses'=>'CitizenController@ViewRequest',
+    'as'=>'reviewCitizenRegistrationRequest'
+]);
+
+Route::post('/acceptCitizenRequest',[
+    'uses'=>'CitizenController@AcceptCitizenRequest',
+    'as'=>'acceptCitizenRequest'
+]);
+
+
 Route::get('/admin','AdminController@index');
 Route::get('/IGP','IGPController@index');
 Route::get('/RegisteredCitizen','CitizenLoginController@index');
