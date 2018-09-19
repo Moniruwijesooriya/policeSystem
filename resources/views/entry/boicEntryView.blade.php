@@ -29,11 +29,12 @@
             <div class="w3-col m3">
                 <!-- Profile -->
                 <div class="w3-card w3-round w3-white">
-                    <div class="w3-container">
+                    <div class="w3-container ">
                         <h4 class="w3-center">My Profile</h4>
-                        <p class="w3-center"><img src='{{asset('/img/admin.png')}}' class="w3-circle" style="height:106px;width:106px" alt="Admin Image"></p>
+                        <p class="w3-center"><img src='{{asset('/img/boic.png')}}' class="w3-circle" style="height:106px;width:106px" alt="IGP Image"></p>
                         <hr>
-                        <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>System Admin</p>
+                        <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>{{Auth::User()->profession}}</p>
+                        <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>{{Auth::User()->policeOffice}}</p>
                     </div>
                 </div>
                 <br>
@@ -41,41 +42,43 @@
                 <!-- Accordion -->
                 <div class="w3-card w3-round">
                     <div class="w3-white">
-                        <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-archive fa-fw w3-margin-right"></i>Police Office Management</button>
+                        <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Investigation</button>
                         <div id="Demo1" class="w3-hide w3-container">
                             {{--<p>Some text..</p>--}}
                         </div>
-                        <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-address-book-o fa-fw w3-margin-right"></i>Police Officer Management</button>
+                        <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Invetigation Branches</button>
                         <div id="Demo2" class="w3-hide w3-container">
                             {{--<p>Some other text..</p>--}}
                         </div>
-                        <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i>Citizen Management</button>
-                        <div id="Demo3" class="w3-hide w3-container">
-                            <div class="w3-row-padding">
-                                {{--<br>--}}
-                                {{--<div class="w3-half">--}}
-                                {{--<img src="/w3images/lights.jpg" style="width:100%" class="w3-margin-bottom">--}}
-                                {{--</div>--}}
-                                {{--<div class="w3-half">--}}
-                                {{--<img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">--}}
-                                {{--</div>--}}
-                                {{--<div class="w3-half">--}}
-                                {{--<img src="/w3images/mountains.jpg" style="width:100%" class="w3-margin-bottom">--}}
-                                {{--</div>--}}
-                                {{--<div class="w3-half">--}}
-                                {{--<img src="/w3images/forest.jpg" style="width:100%" class="w3-margin-bottom">--}}
-                                {{--</div>--}}
-                                {{--<div class="w3-half">--}}
-                                {{--<img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">--}}
-                                {{--</div>--}}
-                                {{--<div class="w3-half">--}}
-                                {{--<img src="/w3images/snow.jpg" style="width:100%" class="w3-margin-bottom">--}}
-                                {{--</div>--}}
-                            </div>
-                        </div>
+                        <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i>D Type Crime Enquries</button>
+                        {{--<div id="Demo3" class="w3-hide w3-container">--}}
+                        {{--<div class="w3-row-padding">--}}
+                        {{--<br>--}}
+                        {{--<div class="w3-half">--}}
+                        {{--<img src="/w3images/lights.jpg" style="width:100%" class="w3-margin-bottom">--}}
+                        {{--</div>--}}
+                        {{--<div class="w3-half">--}}
+                        {{--<img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">--}}
+                        {{--</div>--}}
+                        {{--<div class="w3-half">--}}
+                        {{--<img src="/w3images/mountains.jpg" style="width:100%" class="w3-margin-bottom">--}}
+                        {{--</div>--}}
+                        {{--<div class="w3-half">--}}
+                        {{--<img src="/w3images/forest.jpg" style="width:100%" class="w3-margin-bottom">--}}
+                        {{--</div>--}}
+                        {{--<div class="w3-half">--}}
+                        {{--<img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">--}}
+                        {{--</div>--}}
+                        {{--<div class="w3-half">--}}
+                        {{--<img src="/w3images/snow.jpg" style="width:100%" class="w3-margin-bottom">--}}
+                        {{--</div>--}}
+                        {{--</div>--}}
+                        {{--</div>--}}
                     </div>
                 </div>
                 <br>
+
+
 
 
                 <!-- End Left Column -->
@@ -83,84 +86,81 @@
 
             <!-- Middle Column -->
 
-
                 <div class="w3-col m7">
                     <div class="row justify-content-center">
                         <div class="col-md-10">
                             <div class="card">
-                                <div class="card-header">{{ __('Citizen Registrtion Form') }}</div>
+                                <div class="card-header">{{ __('Entry') }}</div>
 
                                 <div class="card-body">
-                                    <form method="post" action="{{ route('acceptCitizenRequest') }}" enctype="multipart/form-data">
+                                    <form method="post" action="{{ route('acceptEntry') }}" enctype="multipart/form-data">
                                         @csrf
 
                                         <div class="form-group row">
-                                            <label class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                                            <label class="col-md-4 col-form-label text-md-right">{{ __('Entry ID') }}</label>
 
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control"value="{{ $citizenDetails->name }}" readonly>
-                                                <input type="hidden" name="nic" value="{{ $citizenDetails->nic }}">
+                                                <input type="text" class="form-control"value="{{ $entry->entryID }}" readonly>
+                                                <input type="hidden" name="entryId" value="{{ $entry->entryID }}">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-md-4 col-form-label text-md-right">{{ __('NIC') }}</label>
+                                            <label class="col-md-4 col-form-label text-md-right">{{ __('Complainant NIC') }}</label>
 
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control"value="{{ $citizenDetails->nic }}" readonly>
+                                                <input type="text" class="form-control"value="{{ $entry->complainantID }}" readonly>
+                                                <input type="hidden" name="complainantNIC" value="{{ $entry->complainantID }}">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-md-4 col-form-label text-md-right">{{ __('Residence Address') }}</label>
+                                            <label class="col-md-4 col-form-label text-md-right">{{ __('Date And Time') }}</label>
 
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control"value="{{ $citizenDetails->address }}" readonly>
+                                                <input type="text" class="form-control"value="{{ $entry->created_at }}" readonly>
                                             </div>
                                         </div>
+
 
                                         <div class="form-group row">
-                                            <label class="col-md-4 col-form-label text-md-right">{{ __('Profession') }}</label>
+                                            <label class="col-md-4 col-form-label text-md-right">{{ __('Complaint') }}</label>
 
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control"value="{{ $citizenDetails->profession }}" readonly>
+                                                <input type="text" class="form-control"value="{{ $entry->complaint }}" readonly>
                                             </div>
                                         </div>
+
 
                                         <div class="form-group row">
-                                            <label class="col-md-4 col-form-label text-md-right">{{ __('Mobile Number') }}</label>
+                                            <label for="Progress" class="col-md-4 col-form-label text-md-right">{{ __('Progress') }}</label>
 
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control"value="{{ $citizenDetails->mobileNumber }}" readonly>
+                                                <input id="progress" type="text" class="form-control{{ $errors->has('progress') ? ' is-invalid' : '' }}" name="progress" value="{{ $entry->progress }}" required autofocus>
+
+                                                @if ($errors->has('progress'))
+                                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('progress') }}</strong>
+                                    </span>
+                                                @endif
                                             </div>
                                         </div>
+
+
 
                                         <div class="form-group row">
-                                            <label class="col-md-4 col-form-label text-md-right">{{ __('Landline Number') }}</label>
+                                            <label for="suspects" class="col-md-4 col-form-label text-md-right">{{ __('Suspects') }}</label>
 
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control"value="{{ $citizenDetails->landLineNumber }}" readonly>
+                                                <input id="suspects" type="text" class="form-control{{ $errors->has('suspects') ? ' is-invalid' : '' }}" name="suspects" value="{{ $entry->suspects }}" required autofocus>
+
+                                                @if ($errors->has('suspects'))
+                                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('suspects') }}</strong>
+                                    </span>
+                                                @endif
                                             </div>
                                         </div>
-
-                                        <div class="form-group row">
-                                            <label class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
-
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control"value="{{ $citizenDetails->email }}" readonly>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label class="col-md-4 col-form-label text-md-right">{{ __('Verify') }}</label>
-                                            <div class="col-md-6">
-                                                <select class="form-control" name ="verify" id="exampleFormControlSelect1">
-                                                    <option>y</option>
-                                                    <option>n</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
 
                                         {{--<div class="form-group row">--}}
                                         {{--<label for="profileImage" class="col-md-4 col-form-label text-md-right">{{ __('Profile Image') }}</label>--}}
@@ -185,27 +185,22 @@
                                 </div>
                             </div>
                         </div>
-          <!-- End Middle Column -->
+                    </div>
+
+                <!-- End Middle Column -->
             </div>
 
             <!-- Right Column -->
             <div class="w3-col m2">
                 <br>
 
-                <div class="w3-card w3-round w3-white w3-center">
-                    <div class="w3-container">
 
-                        <div class="w3-row w3-opacity">
-
-                        </div>
-                    </div>
-                </div>
                 <br>
 
-            {{--<div class="w3-card w3-round w3-white w3-padding-16 w3-center">--}}
-            {{--<p>ADS</p>--}}
-            {{--</div>--}}
-            {{--<br>--}}
+                {{--<div class="w3-card w3-round w3-white w3-padding-16 w3-center">--}}
+                {{--<p>ADS</p>--}}
+                {{--</div>--}}
+                <br>
 
             {{--<div class="w3-card w3-round w3-white w3-padding-32 w3-center">--}}
             {{--<p><i class="fa fa-bug w3-xxlarge"></i></p>--}}
@@ -215,10 +210,10 @@
             </div>
 
             <!-- End Grid -->
-        </div>
 
         <!-- End Page Container -->
     </div>
+
 
 
     <br>
@@ -256,5 +251,6 @@
             }
         }
     </script>
+
 
 @endsection

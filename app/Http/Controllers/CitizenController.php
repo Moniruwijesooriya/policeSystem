@@ -23,6 +23,8 @@ class CitizenController extends Controller
         $citizen->landLineNumber = $request->landNumber;
         $citizen->profession = $request->profession;
         $citizen->email = $request->email;
+        $citizen->gender = $request->gender;
+        $citizen->dob = $request->dob;
         $citizen->role = "citizen";
         $citizen->remember_token = str_random(60);
         $citizen->password = Hash::make($request->password);

@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+<?php
+    use Illuminate\Support\Facades\DB;
+?>
 @section('content')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,15 +44,27 @@
                 <!-- Accordion -->
                 <div class="w3-card w3-round">
                     <div class="w3-white">
-                        <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Submitted Entires </button>
+                        <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>Submitted Entries</button>
                         <div id="Demo1" class="w3-hide w3-container">
-                            <p>Some text..</p>
+                                {{--<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">--}}
+                                    <?php
+                                    $entries=db::table('entries')->where('complainantID',Auth::User()->nic)->get();
+                                    ?>
+                                    @foreach($entries as $entry)
+
+                                        <form method="post" action="{{'viewCitizenEntry'}}">
+                                            @csrf
+                                            <input type="hidden" value="{{$entry->entryID}}" name="nic">
+                                            <p><input type="submit" class="btn-link" value="Entry ID:{{$entry->entryID}}"></p>
+                                        </form>
+                                    @endforeach
+                        {{--</div>--}}
                         </div>
-                        <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> Following Cases</button>
+                        <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Following Cases</button>
                         <div id="Demo2" class="w3-hide w3-container">
-                            <p>Some other text..</p>
+
                         </div>
-                        <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> Evidence Submitted</button>
+                        <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i>Evidence Submitted</button>
                         <div id="Demo3" class="w3-hide w3-container">
                             <div class="w3-row-padding">
                                 <br>
@@ -272,9 +286,14 @@
                             <label for="exampleFormControlTextarea1">Complaint</label>
                             <textarea class="form-control" name="complaintText" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Evidences</label>
+                            <textarea class="form-control" name="evidences" id="exampleFormControlTextarea1" rows="2"></textarea>
+                        </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <input type="submit" class="btn btn-primary" name="submit" value="Save changes">
+                            <input type="submit" class="btn btn-primary" name="submit" value="Submit Entry">
                         </div>
                         <input type="hidden" name="_token" value="{{Session::token()}}">
                     </form>

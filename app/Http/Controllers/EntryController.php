@@ -23,22 +23,35 @@ class EntryController extends Controller
         $crimeEntry->nearestPoliceStation=$request->policeStation;
         $crimeEntry->complainantID=Auth::User()->nic;
         $crimeEntry->oicNotification="y";
+        $crimeEntry->boicNotification="n";
         $crimeEntry->progress="Entry is submitted to the ".$request->policeStation;
 
         $crimeEntry->save();
         return redirect()->back();
     }
 
-    public function acceptEntry(Request $request){
+    public function acceptOICEntry(Request $request){
 
         DB::table('entries')
             ->where('entryID',$request->entryId)
-            ->update(['oicNotification'=>"n",'suspects'=>$request->suspects,'branch'=>$request->branch,'progress'=>$request->progress]);
+            ->update(['oicNotification'=>"n",'boicNotification'=>"y",'suspects'=>$request->suspects,'branch'=>$request->branch,'progress'=>$request->progress]);
         return redirect('/OIC');
     }
-    public function viewEntry(Request $request){
+    public function viewOICEntry(Request $request){
         $entry=db::table('entries')->where('entryID',$request->entryID)->First();
-        return view('entry/entry',compact('entry'));
+        return view('entry/oicEntryView',compact('entry'));
+    }
+
+    public function acceptBOICEntry(Request $request){
+
+        DB::table('entries')
+            ->where('entryID',$request->entryId)
+            ->update(['boicNotification'=>"n",'suspects'=>$request->suspects,'branch'=>$request->branch,'progress'=>$request->progress]);
+        return redirect('/OIC');
+    }
+    public function viewBOICEntry(Request $request){
+        $entry=db::table('entries')->where('entryID',$request->entryID)->First();
+        return view('entry/boicEntryView',compact('entry'));
     }
 
 }

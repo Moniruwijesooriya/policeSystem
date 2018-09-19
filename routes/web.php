@@ -46,13 +46,23 @@ Route::post('/registerCitizen',[
     'as'=>'registerCitizen'
 ]);
 
-Route::post('/viewEntry',[
-    'uses'=>'EntryController@viewEntry',
+Route::post('/viewOICEntry',[
+    'uses'=>'EntryController@viewOICEntry',
     'as'=>'viewEntry'
 ]);
 
-Route::post('/acceptEntry',[
-    'uses'=>'EntryController@acceptEntry',
+Route::post('/accepOICtEntry',[
+    'uses'=>'EntryController@acceptOICEntry',
+    'as'=>'acceptEntry'
+]);
+
+Route::post('/viewBOICEntry',[
+    'uses'=>'EntryController@viewBOICEntry',
+    'as'=>'viewEntry'
+]);
+
+Route::post('/acceptBOICEntry',[
+    'uses'=>'EntryController@acceptBOICEntry',
     'as'=>'acceptEntry'
 ]);
 

@@ -30,13 +30,36 @@
                             <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('NIC') }}</label>
 
                             <div class="col-md-6">
-                                <input id="nic" type="text" class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}" name="nic" value="{{ old('nic') }}" required autofocus>
+                                <input id="nic" type="text" pattern=".{10,12}" class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}" name="nic" value="{{ old('nic') }}" required autofocus>
 
                                 @if ($errors->has('nic'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('nic') }}</strong>
                                     </span>
                                 @endif
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="landNumber" class="col-md-4 col-form-label text-md-right">{{ __('Date of Birth') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="dob" type="date" class="form-control" name="dob"  required autofocus>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="landNumber" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
+
+                            <div class="col-md-2">
+                                <div class="radio">
+                                    <label><input type="radio" name="gender" checked>Male</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="radio">
+                                    <label><input type="radio" name="gender">Female</label>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -71,7 +94,7 @@
                             <label for="mobNumber" class="col-md-4 col-form-label text-md-right">{{ __('Mobile Number') }}</label>
 
                             <div class="col-md-6">
-                                <input id="mobNumber" type="text" class="form-control{{ $errors->has('mobNumber') ? ' is-invalid' : '' }}" name="mobNumber" value="{{ old('mobNumber') }}" required autofocus>
+                                <input id="mobNumber" type="text" pattern=".{10}" class="form-control{{ $errors->has('mobNumber') ? ' is-invalid' : '' }}" name="mobNumber" value="{{ old('mobNumber') }}" required autofocus>
 
                                 @if ($errors->has('mobNumber'))
                                     <span class="invalid-feedback" role="alert">
@@ -85,7 +108,7 @@
                             <label for="landNumber" class="col-md-4 col-form-label text-md-right">{{ __('Landline Number') }}</label>
 
                             <div class="col-md-6">
-                                <input id="landNumber" type="text" class="form-control{{ $errors->has('landNumber') ? ' is-invalid' : '' }}" name="landNumber" value="{{ old('landNumber') }}" required autofocus>
+                                <input id="landNumber" type="text" pattern=".{10}" class="form-control{{ $errors->has('landNumber') ? ' is-invalid' : '' }}" name="landNumber" value="{{ old('landNumber') }}" required autofocus>
 
                                 @if ($errors->has('landNumber'))
                                     <span class="invalid-feedback" role="alert">
@@ -94,6 +117,8 @@
                                 @endif
                             </div>
                         </div>
+
+
 
                         {{--<div class="form-group row">--}}
                             {{--<label for="profileImage" class="col-md-4 col-form-label text-md-right">{{ __('Profile Image') }}</label>--}}

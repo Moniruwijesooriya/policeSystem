@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->text('address');
             $table->string('mobileNumber');
             $table->string('landLineNumber');
+            $table->string('gender')->nullable();
             $table->string('civilStatus')->nullable();
             $table->string('profession');
             $table->string('policeOffice')->nullable();

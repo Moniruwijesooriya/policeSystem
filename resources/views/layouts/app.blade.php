@@ -88,17 +88,21 @@ use Illuminate\Support\Facades\DB;
                                             @endif
 
                                             @if(Auth::User()->role=='Officer Incharge of Police Station')
+                                                <?php
+                                                $policeOffice=db::table('users')->where('nic',Auth::User()->nic)->first();
+                                                ?>
                                                 {{--<button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">{{db::table('citizen_registration_notifs')->where('verified',"n")->count()}}</span></button>--}}
                                                 <div class="dropdown">
-                                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">{{db::table('entries')->where('oicNotification',"y")->count()}}</span>
+                                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">{{db::table('entries')->where('oicNotification',"y")->where('nearestPoliceStation',$policeOffice->policeOffice)->count()}}</span>
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
+
                                                     <?php
-                                                    $notification=db::table('entries')->where('oicNotification',"y")->get();
+                                                    $notification=db::table('entries')->where('oicNotification',"y")->where('nearestPoliceStation',$policeOffice->policeOffice)->get();
                                                     ?>
                                                     @foreach($notification as $notifi)
-                                                            <form method="post" action="{{'viewEntry'}}">
+                                                            <form method="post" action="{{'viewOICEntry'}}">
                                                                 @csrf
                                                                 <input type="hidden" value="{{$notifi->entryID}}" name="entryID">
                                                                 <input type="submit" class="btn-link" value="{{$notifi->complainantID}} submitted a crime">
@@ -107,6 +111,31 @@ use Illuminate\Support\Facades\DB;
 
                                                         @endforeach
                                                         @endif
+
+                                                        @if(Auth::User()->role=='Branch Officer Incharge')
+                                                            <?php
+                                                            $policeOffice=db::table('users')->where('nic',Auth::User()->nic)->first();
+                                                            ?>
+                                                            {{--<button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">{{db::table('citizen_registration_notifs')->where('verified',"n")->count()}}</span></button>--}}
+                                                            <div class="dropdown">
+                                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">{{db::table('entries')->where('boicNotification',"y")->where('nearestPoliceStation',$policeOffice->policeOffice)->count()}}</span>
+                                                                </button>
+                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+
+                                                                    <?php
+                                                                    $notification=db::table('entries')->where('boicNotification',"y")->where('nearestPoliceStation',$policeOffice->policeOffice)->get();
+                                                                    ?>
+                                                                    @foreach($notification as $notifi)
+                                                                        <form method="post" action="{{'viewBOICEntry'}}">
+                                                                            @csrf
+                                                                            <input type="hidden" value="{{$notifi->entryID}}" name="entryID">
+                                                                            <input type="submit" class="btn-link" value="{{$notifi->complainantID}} received an entry">
+                                                                        </form>
+
+
+                                                                    @endforeach
+                                                                    @endif
 
 
 
