@@ -1,10 +1,10 @@
 <?php
 use Illuminate\Support\Facades\DB;
 ?>
-    <!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -71,10 +71,10 @@ use Illuminate\Support\Facades\DB;
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
-                                        <?php
-                                        $notification=db::table('users')->where('verified',"n")->where('role',"citizen")->get();
-                                        ?>
-                                        @foreach($notification as $notifi)
+                                            <?php
+                                            $notification=db::table('users')->where('verified',"n")->where('role',"citizen")->get();
+                                            ?>
+                                            @foreach($notification as $notifi)
 
                                                 <form method="post" action="{{'reviewCitizenRegistrationRequest'}}">
                                                     @csrf
@@ -98,15 +98,15 @@ use Illuminate\Support\Facades\DB;
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
 
-                                                    <?php
-                                                    $notification=db::table('entries')->where('oicNotification',"y")->where('nearestPoliceStation',$policeOffice->policeOffice)->get();
-                                                    ?>
-                                                    @foreach($notification as $notifi)
+                                                        <?php
+                                                        $notification=db::table('entries')->where('oicNotification',"y")->where('nearestPoliceStation',$policeOffice->policeOffice)->get();
+                                                        ?>
+                                                        @foreach($notification as $notifi)
                                                             <form method="post" action="{{'viewOICEntry'}}">
                                                                 @csrf
                                                                 <input type="hidden" value="{{$notifi->entryID}}" name="entryID">
                                                                 <input type="submit" class="btn-link" value="{{$notifi->complainantID}} submitted a crime">
-                                                        </form>
+                                                            </form>
 
 
                                                         @endforeach
@@ -139,10 +139,10 @@ use Illuminate\Support\Facades\DB;
 
 
 
-                                        </div>
-                                    </div>
-                                    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
-                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
+                                                            </a>
 
                         <li class="nav-item dropdown">
 
