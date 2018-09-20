@@ -1,7 +1,7 @@
 <?php
 use Illuminate\Support\Facades\DB;
 ?>
-        <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
 
@@ -182,3 +182,4 @@ use Illuminate\Support\Facades\DB;
 </body>
 
 </html>
+

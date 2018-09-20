@@ -93,7 +93,7 @@
                                 <div class="card-header">{{ __('Entry') }}</div>
 
                                 <div class="card-body">
-                                    <form method="post" action="{{ route('acceptEntry') }}" enctype="multipart/form-data">
+                                    <form method="post" action="{{ route('acceptBOICEntry') }}" enctype="multipart/form-data">
                                         @csrf
 
                                         <div class="form-group row">

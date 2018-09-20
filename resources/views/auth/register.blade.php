@@ -53,12 +53,12 @@
 
                             <div class="col-md-2">
                                 <div class="radio">
-                                    <label><input type="radio" name="gender" checked>Male</label>
+                                    <label><input type="radio" name="gender" value="Male" checked>Male</label>
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="radio">
-                                    <label><input type="radio" name="gender">Female</label>
+                                    <label><input type="radio" name="gender" value="Female">Female</label>
                                 </div>
                             </div>
                         </div>

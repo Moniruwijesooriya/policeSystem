@@ -254,7 +254,11 @@
                                     <option>Senior Deputy Inspector General of Police</option>
                                     <option>Deputy Inspector General of Police</option>
                                     <option>Senior Superintendent of Police</option>
-                                    <option>Senior Superintendent of Police</option>
+                                    <option>Superintendent of Police</option>
+                                    <option>Assistant Superintendent of Police</option>
+                                    <option>Chief Inspector of Police</option>
+                                    <option>Inspector of Police </option>
+                                    <option>Sub Inspector of Police</option>
                                 </select>
                             </div>
                         </div>
@@ -263,11 +267,13 @@
                             <label for="policeOffice" class="col-md-4 col-form-label text-md-right">{{ __('Police Office') }}</label>
                             <div class="col-md-7">
                                 <select class="form-control" name="policeOffice" id="exampleFormControlSelect1">
+                                    <option>Alpitiya</option>
                                     <option>Ampara</option>
                                     <option>Anuradhapura</option>
                                     <option>Badulla</option>
                                     <option>Batticaloa</option>
-
+                                    <option>Galle</option>
+                                    <option>Matara</option>
                                 </select>
                             </div>
                         </div>

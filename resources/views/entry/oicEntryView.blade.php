@@ -88,7 +88,7 @@ use Illuminate\Support\Facades\DB;
                             <div class="card-header">{{ __('Entry') }}</div>
 
                             <div class="card-body">
-                                <form method="post" action="{{ route('acceptEntry') }}" enctype="multipart/form-data">
+                                <form method="post" action="{{ route('acceptOICEntry') }}" enctype="multipart/form-data">
                                     @csrf
 
                                     <div class="form-group row">
@@ -204,19 +204,7 @@ use Illuminate\Support\Facades\DB;
 
             <!-- Right Column -->
             <div class="w3-col m2">
-                <br>
 
-
-                <br>
-
-                {{--<div class="w3-card w3-round w3-white w3-padding-16 w3-center">--}}
-                {{--<p>ADS</p>--}}
-                {{--</div>--}}
-                <br>
-
-            {{--<div class="w3-card w3-round w3-white w3-padding-32 w3-center">--}}
-            {{--<p><i class="fa fa-bug w3-xxlarge"></i></p>--}}
-            {{--</div>--}}
 
             <!-- End Right Column -->
             </div>

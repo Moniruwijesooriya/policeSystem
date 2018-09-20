@@ -47,7 +47,7 @@ class EntryController extends Controller
         DB::table('entries')
             ->where('entryID',$request->entryId)
             ->update(['boicNotification'=>"n",'suspects'=>$request->suspects,'branch'=>$request->branch,'progress'=>$request->progress]);
-        return redirect('/OIC');
+        return redirect('/BOIC');
     }
     public function viewBOICEntry(Request $request){
         $entry=db::table('entries')->where('entryID',$request->entryID)->First();
