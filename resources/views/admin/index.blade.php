@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+<?php
+use Illuminate\Support\Facades\DB;
+?>
 @section('content')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -160,8 +162,6 @@
                 <div class="modal-body">
                     <form method="POST" action="{{ route('registerPoliceOfficer') }}" enctype="multipart/form-data">
                         @csrf
-
-
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
@@ -263,39 +263,21 @@
                             </div>
                         </div>
 
+                        <?php
+                        $policeOffice=db::table('police_offices')->get();
+                        ?>
                         <div class="form-group row">
                             <label for="policeOffice" class="col-md-4 col-form-label text-md-right">{{ __('Police Office') }}</label>
                             <div class="col-md-7">
+
                                 <select class="form-control" name="policeOffice" id="exampleFormControlSelect1">
-                                    <option>Alpitiya</option>
-                                    <option>Ampara</option>
-                                    <option>Anuradhapura</option>
-                                    <option>Badulla</option>
-                                    <option>Batticaloa</option>
-                                    <option>Galle</option>
-                                    <option>Matara</option>
+                                    @foreach($policeOffice as $office)
+                                    <option>{{$office->OfficeName}}</option>
+                                    @endforeach
                                 </select>
+
                             </div>
                         </div>
-
-
-
-                        {{--<div class="form-group row">--}}
-                        {{--<label for="profileImage" class="col-md-4 col-form-label text-md-right">{{ __('Profile Image') }}</label>--}}
-
-                        {{--<div class="col-md-6">--}}
-                        {{--<input class="form-group mb-2" id="profileImage" type="file" name="profileImage" value="{{ old('profileImage') }}" required>--}}
-
-                        {{--@if ($errors->has('profileImage'))--}}
-                        {{--<span class="invalid-feedback" role="alert">--}}
-                        {{--<strong>{{ $errors->first('profileImage') }}</strong>--}}
-                        {{--</span>--}}
-                        {{--@endif--}}
-                        {{--</div>--}}
-                        {{--</div>--}}
-
-
-
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
@@ -362,8 +344,9 @@
                     <form method="POST" action="{{ route('registerPoliceOffice') }}">
                         @csrf
 
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect1">District</label>
+                        <div class="form-group row">
+                            <label for="exampleFormControlSelect1" class="col-md-4 col-form-label text-md-left">District</label>
+                            <div class="col-md-7">
                             <select class="form-control" name="district" id="exampleFormControlSelect1">
                                 <option>Ampara</option>
                                 <option>Anuradhapura</option>
@@ -390,37 +373,35 @@
                                 <option>Rathnapura</option>
                                 <option>Trincomalee</option>
                                 <option>Vavuniya</option>
-
                             </select>
+                            </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect1">Office Area</label>
-                            <select class="form-control" name ="policeOfficeArea" id="exampleFormControlSelect1">
-                                <option>Ampara</option>
-                                <option>Anuradhapura</option>
-                                <option>Badulla</option>
-                                <option>Batticaloa</option>
-                                <option>Colombo</option>
-                                <option>Galle</option>
 
 
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect1">Office Type</label>
+                        <div class="form-group row">
+                            <label for="exampleFormControlSelect1" class="col-md-4 col-form-label text-md-left">Office Type</label>
+                            <div class="col-md-7">
                             <select class="form-control" name ="policeOfficeType" id="exampleFormControlSelect1">
                                 <option>Police Station</option>
                                 <option>Inspector General of Police Office</option>
                                 <option>Branch Office</option>
                                 <option>Division Office</option>
-
                             </select>
+                            </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="landNumber" class="col-md-4 col-form-label text-md-right">{{ __('Landline Number') }}</label>
+                            <label for="policeOfficeArea" class="col-md-4 col-form-label text-md-left">{{ __('Office Area') }}</label>
+
+                            <div class="col-md-7">
+                                <input id="policeOfficeArea" type="text" class="form-control" name="policeOfficeArea" value="{{ old('policeOfficeArea') }}" required autofocus>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="landNumber" class="col-md-4 col-form-label text-md-left">{{ __('Landline Number') }}</label>
 
                             <div class="col-md-7">
                                 <input id="landNumber" type="text" class="form-control{{ $errors->has('landNumber') ? ' is-invalid' : '' }}" name="landNumber" value="{{ old('landNumber') }}" required autofocus>

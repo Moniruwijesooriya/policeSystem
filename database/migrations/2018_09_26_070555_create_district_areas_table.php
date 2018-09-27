@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePoliceOfficesTable extends Migration
+class CreateDistrictAreasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreatePoliceOfficesTable extends Migration
      */
     public function up()
     {
-        Schema::create('police_offices', function (Blueprint $table) {
+        Schema::create('district_areas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('OfficeName');
+            $table->string('policeArea');
             $table->string('district');
-            $table->string('policeOfficeArea');
-            $table->string('policeOfficeType');
-            $table->string('landNumber');
-            $table->string('mainOfficer');
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class CreatePoliceOfficesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('police_offices');
+        Schema::dropIfExists('district_areas');
     }
 }

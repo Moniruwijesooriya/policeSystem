@@ -45,6 +45,11 @@ class AdminController extends Controller
         $policeOffice->policeOfficeArea=$request-> policeOfficeArea;
         $policeOffice->policeOfficeType=$request->policeOfficeType;
         $policeOffice->landNumber=$request->landNumber;
+        $area=$request-> policeOfficeArea;
+        $type=$request->policeOfficeType;
+        $officeName=$area." ".$type;
+        $policeOffice->OfficeName=$officeName;
+        $policeOffice->mainOfficer=$request->landNumber;
 
         $policeOffice->save();
         return redirect()->back();
