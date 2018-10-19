@@ -6,6 +6,7 @@ use App\PoliceOffice;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Mail;
 
 class AdminController extends Controller
 {
@@ -27,12 +28,26 @@ class AdminController extends Controller
         $policeOfficer->profession=$request->profession;
         $policeOfficer->email=$request->email;
         $policeOfficer->role=$request->role;
+        $policeOfficer->gender = $request->gender;
+        $policeOfficer->dob = $request->dob;
         $policeOfficer->policeOffice=$request->policeOffice;
         $policeOfficer->remember_token=str_random(60);
         $policeOfficer->password=Hash::make($request->password);
         $policeOfficer->verified="y";
+        $policeOfficer->fullName=$request->fullName;
 
         $policeOfficer->save();
+
+        $data = array('heading'=>"Weclome to Crime Reporting System",'fullName'=>"Full Name: ".$request->fullName,'name'=>
+            "Name with initials: ".$request->name,'Tempory'=>rand(10,100));
+
+        Mail::send(['text'=>'mail'], $data, function($message) {
+            $message->to('monirutasad@gmail.com')->subject
+            ('SL Police System Registration');
+            $message->from('slpolicesystem@gmail.com','SL Police');
+        });
+
+
         return redirect()->back();
 
 
@@ -52,6 +67,9 @@ class AdminController extends Controller
         $policeOffice->mainOfficer=$request->landNumber;
 
         $policeOffice->save();
+
+
+
         return redirect()->back();
 
     }

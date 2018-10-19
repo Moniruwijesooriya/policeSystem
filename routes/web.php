@@ -84,4 +84,5 @@ Route::get('/OIC','OICController@index');
 Route::get('/BOIC','BOICController@index');
 Route::get('/DOIG','DOIGController@index');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+Route::get('verify/{token}','verifyController@verifyEmail');
 

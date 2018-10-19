@@ -27,26 +27,16 @@ class CitizenController extends Controller
         $citizen->dob = $request->dob;
         $citizen->role = "citizen";
         $citizen->remember_token = str_random(60);
+        $citizen->token=str_random(25);
         $citizen->password = Hash::make($request->password);
         $citizen->verified = "n";
+        $citizen->fullName=$request->fullName;
 
         $citizen->save();
 
-        $notification = new CitizenRegistrationNotif();
-        $notification->nic = $request->nic;
-        $notification->systemRole = "citizen";
-        $notification->verified = "n";
-
-        $notification->save();
         return redirect(('/'));
     }
 
-
-    public function getCitizenRegistrationNotification()
-    {
-        db::table('citizen_registration_notifs')->where('verified',"n")->where('role',"citizen")->get();
-
-    }
     public function ViewRequest(Request $request){
         $citizenDetails = db::table('users')->where('nic',$request->nic)->First();
         return view('admin/reviewRequest',compact('citizenDetails'));
