@@ -99,7 +99,7 @@ use Illuminate\Support\Facades\DB;
 
 
                                                         <?php
-                                                        $notification=db::table('entries')->where('oicNotification',"y")->where('nearestPoliceStation',$policeOffice->policeOffice)->get();
+                                                        $notification=db::table('entries')->where('oicNotification',"y")->where('nearestPoliceStation','Ampara')->get();
                                                         ?>
                                                         @foreach($notification as $notifi)
                                                             <form method="post" action="{{'viewOICEntry'}}">
@@ -124,7 +124,7 @@ use Illuminate\Support\Facades\DB;
 
 
                                                                     <?php
-                                                                    $notification=db::table('entries')->where('boicNotification',"y")->where('nearestPoliceStation',$policeOffice->policeOffice)->get();
+                                                                    $notification=db::table('entries')->where('boicNotification',"y")->where('nearestPoliceStation','Ampara')->get();
                                                                     ?>
                                                                     @foreach($notification as $notifi)
                                                                         <form method="post" action="{{'viewBOICEntry'}}">
