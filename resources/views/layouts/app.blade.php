@@ -69,13 +69,13 @@ use Illuminate\Support\Facades\DB;
                                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">{{db::table('users')->where('verified',"n")->where('role',"citizen")->count()}}</span>
                                         </button>
                                         <?php
-                                        $count=db::table('users')->where('verified',"n")->where('role',"citizen")->count();
+                                        $count=db::table('users')->where('verified',"No")->where('role',"citizen")->count();
                                         ?>
                                         @if($count>0)
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
                                                 <?php
-                                                $notification=db::table('users')->where('verified',"n")->where('role',"citizen")->get();
+                                                $notification=db::table('users')->where('verified',"No")->where('role',"citizen")->get();
                                                 ?>
                                                 @foreach($notification as $notifi)
 
@@ -95,16 +95,16 @@ use Illuminate\Support\Facades\DB;
                             <li>
                                 <div class="w3-dropdown-hover w3-hide-small">
                                     <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i><span class="w3-badge w3-right w3-small w3-green">{{db::table('users')->where('verified',"n")->where('role',"citizen")->count()}}</span>
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i><span class="w3-badge w3-right w3-small w3-green">{{db::table('users')->where('verified',"No")->where('role',"citizen")->count()}}</span>
                                         </button>
                                         <?php
-                                        $count=db::table('users')->where('verified',"n")->where('role',"citizen")->count();
+                                        $count=db::table('users')->where('verified',"No")->where('role',"citizen")->count();
                                         ?>
                                         @if($count>0)
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
                                                 <?php
-                                                $notification=db::table('users')->where('verified',"n")->where('role',"citizen")->get();
+                                                $notification=db::table('users')->where('verified',"No")->where('role',"citizen")->get();
                                                 ?>
                                                 @foreach($notification as $notifi)
 

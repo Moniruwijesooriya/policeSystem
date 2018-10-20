@@ -29,7 +29,7 @@ class CitizenController extends Controller
         $citizen->remember_token = str_random(60);
         $citizen->token=str_random(25);
         $citizen->password = Hash::make($request->password);
-        $citizen->verified = "n";
+        $citizen->verified = "No";
         $citizen->fullName=$request->fullName;
 
         $citizen->save();
@@ -39,14 +39,22 @@ class CitizenController extends Controller
 
     public function ViewRequest(Request $request){
         $citizenDetails = db::table('users')->where('nic',$request->nic)->First();
-        return view('admin/reviewRequest',compact('citizenDetails'));
+        return view('oic/reviewRequest',compact('citizenDetails'));
     }
 
     public function AcceptCitizenRequest(Request $request){
 
-        DB::table('users')
-            ->where('nic',$request->nic)
-            ->update(['verified'=>"y"]);
-        return redirect('/admin');
+        if ($request->verify=="Yes"){
+            DB::table('users')
+                ->where('nic',$request->nic)
+                ->update(['verified'=>$request->verify]);
+            return redirect('/OIC');
+        }
+        else{
+            DB::table('users')->where('nic',$request->nic)->delete();
+            return redirect('/OIC');
+        }
+
+
     }
 }

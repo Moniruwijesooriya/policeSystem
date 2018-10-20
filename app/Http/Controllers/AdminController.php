@@ -33,7 +33,8 @@ class AdminController extends Controller
         $policeOfficer->policeOffice=$request->policeOffice;
         $policeOfficer->remember_token=str_random(60);
         $policeOfficer->password=Hash::make($request->password);
-        $policeOfficer->verified="y";
+        $policeOfficer->verified="Yes";
+        $policeOfficer->token=str_random(25);
         $policeOfficer->fullName=$request->fullName;
 
         $policeOfficer->save();

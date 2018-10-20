@@ -43,7 +43,7 @@ class User extends Authenticatable
     }
 
     public function isCitizen(){
-        if($this->role=='citizen' AND $this->verified=='y'){
+        if($this->role=='citizen' AND $this->verified=='Yes'){
             return true;
         }
         return false;
