@@ -24,7 +24,7 @@
     </div>
 
     <!-- Page Container -->
-    <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+    <div class="w3-container w3-content" style="max-width:1400px;margin-top:10px">
         <!-- The Grid -->
         <div class="w3-row">
             <!-- Left Column -->
@@ -128,24 +128,24 @@
             <!-- Middle Column -->
             <div class="w3-col m7">
 
-                <!-- <div class="w3-row-padding">
+                 <div class="w3-row-padding">
                     <div class="w3-col m12">
                         <div class="w3-card w3-round w3-white">
                             <div class="w3-container w3-padding">
-                                <h6 class="w3-opacity">Social Media template by w3.css</h6>
+                                <h6 class="w3-opacity">Public Crime Posts</h6>
                                 <p contenteditable="true" class="w3-border w3-padding">Status: Feeling Blue</p>
                                 <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button>
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
 
                 <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
                     <img src="/w3images/avatar2.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
                     <span class="w3-right w3-opacity">1 min</span>
                     <h4>John Doe</h4><br>
                     <hr class="w3-clear">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <p></p>
                     <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-hand-o-right"></i>  Follow Case</button>
                     <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-file-o"></i>  Submit Evidence</button>
                 </div>
@@ -155,18 +155,6 @@
                     <span class="w3-right w3-opacity">16 min</span>
                     <h4>Jane Doe</h4><br>
                     <hr class="w3-clear">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-hand-o-right"></i>  Follow Case</button>
-                    <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-file-o"></i>  Submit Evidence</button>
-                </div>
-
-                <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                    <img src="/w3images/avatar6.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-                    <span class="w3-right w3-opacity">32 min</span>
-                    <h4>Angie Jane</h4><br>
-                    <hr class="w3-clear">
-                    <p>Have you seen this?</p>
-                    <img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                     <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-hand-o-right"></i>  Follow Case</button>
                     <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-file-o"></i>  Submit Evidence</button>
@@ -242,36 +230,16 @@
                             </select>
                         </div>
 
+                        <?php
+                        $policeOffice=db::table('police_offices')->get()->where('policeOfficeType',"Police Station");
+                        ?>
                         <div class="form-group">
-                            <label for="exampleFormControlSelect1">Nearest Police Station</label>
-                            <select class="form-control" name ="policeStation" id="exampleFormControlSelect1">
-                                <option>Ampara</option>
-                                <option>Anuradhapura</option>
-                                <option>Badulla</option>
-                                <option>Batticaloa</option>
-                                <option>Colombo</option>
-                                <option>Galle</option>
-                                <option>Gampaha</option>
-                                <option>Hambanthota</option>
-                                <option>Jaffna</option>
-                                <option>Kaluthara</option>
-                                <option>Kandy</option>
-                                <option>Kegalle</option>
-                                <option>Kilinochchi</option>
-                                <option>Kurunegala</option>
-                                <option>Mannar</option>
-                                <option>Matale</option>
-                                <option>Matara</option>
-                                <option>Monaragala</option>
-                                <option>Mullaitivu</option>
-                                <option>Nuwara Eliya</option>
-                                <option>Polonnaruwa</option>
-                                <option>Puttalam</option>
-                                <option>Rathnapura</option>
-                                <option>Trincomalee</option>
-                                <option>Vavuniya</option>
-
-                            </select>
+                            <label for="policeOffice">Nearest Police Station</label>
+                                <select class="form-control" name="policeStation" id="policeStation">
+                                    @foreach($policeOffice as $office)
+                                        <option>{{$office->policeOfficeArea}}</option>
+                                    @endforeach
+                                </select>
                         </div>
 
                         <div class="form-group">

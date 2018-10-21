@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+<?php
+use Illuminate\Support\Facades\DB;
+?>
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -87,6 +89,22 @@
                                         <strong>{{ $errors->first('homeAddress') }}</strong>
                                     </span>
                                 @endif
+                            </div>
+                        </div>
+
+                        <?php
+                        $policeOffice=db::table('police_offices')->get()->where('policeOfficeType',"Police Station");
+                        ?>
+                        <div class="form-group row">
+                            <label for="policeOffice" class="col-md-4 col-form-label text-md-right">{{ __('Nearest Police Station') }}</label>
+                            <div class="col-md-6">
+
+                                <select class="form-control" name="policeStation" id="exampleFormControlSelect1">
+                                    @foreach($policeOffice as $office)
+                                        <option>{{$office->OfficeName}}</option>
+                                    @endforeach
+                                </select>
+
                             </div>
                         </div>
 

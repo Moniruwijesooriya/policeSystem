@@ -31,17 +31,8 @@ use Illuminate\Support\Facades\DB;
     </style>
     <!-- Navbar -->
 
-
-    <!-- Navbar on small screens -->
-    <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">My Profile</a>
-    </div>
-
     <!-- Page Container -->
-    <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+    <div class="w3-container w3-content" style="max-width:1400px;margin-top:50x">
         <!-- The Grid -->
         <div class="w3-row">
             <!-- Left Column -->
@@ -126,10 +117,12 @@ use Illuminate\Support\Facades\DB;
                                     </div>
 
                                     <div class="form-group row">
+
                                         <label class="col-md-4 col-form-label text-md-right">{{ __('Complaint') }}</label>
 
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control"value="{{ $entry->complaint }}" readonly>
+                                            {{--<input type="text" class="form-control"value="{{ $entry->complaint }}" readonly>--}}
+                                            <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->complaint }}</p>
                                         </div>
                                     </div>
 
@@ -137,13 +130,9 @@ use Illuminate\Support\Facades\DB;
                                         <label for="Progress" class="col-md-4 col-form-label text-md-right">{{ __('Progress') }}</label>
 
                                         <div class="col-md-6">
-                                            <input id="progress" type="text" class="form-control{{ $errors->has('progress') ? ' is-invalid' : '' }}" name="progress" value="{{ $entry->progress }}" required autofocus>
+                                            <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->progress }}</p>
+                                            {{--<input id="progress" type="text" class="form-control{{ $errors->has('progress') ? ' is-invalid' : '' }}" name="progress" value="{{ $entry->progress }}" required autofocus>--}}
 
-                                            @if ($errors->has('progress'))
-                                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('progress') }}</strong>
-                                    </span>
-                                            @endif
                                         </div>
                                     </div>
 

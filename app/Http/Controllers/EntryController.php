@@ -20,11 +20,11 @@ class EntryController extends Controller
         $crimeEntry->complaintCategory=$request->complaintCategory;
         $crimeEntry->complaint=$request-> complaintText;
         $crimeEntry->district=$request->district;
-        $crimeEntry->nearestPoliceStation=$request->policeStation;
+        $crimeEntry->nearestPoliceStation=$request->policeStation." Police Station";
         $crimeEntry->complainantID=Auth::User()->nic;
         $crimeEntry->oicNotification="y";
         $crimeEntry->boicNotification="n";
-        $crimeEntry->progress="Entry is submitted to the ".$request->policeStation;
+        $crimeEntry->progress="Entry is submitted to the ".$request->policeStation." Police Station";
 
         $crimeEntry->save();
         return redirect()->back();
