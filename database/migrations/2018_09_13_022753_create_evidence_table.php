@@ -20,6 +20,7 @@ class CreateEvidenceTable extends Migration
             $table->text('evidence_txt');
             $table->text('evidence_image');
             $table->text('evidence_video');
+            $table->text('citizenView');
             $table->timestamp('created_at')->nullable();
         });
     }

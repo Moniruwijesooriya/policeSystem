@@ -22,10 +22,7 @@ class CreateEntriesTable extends Migration
             $table->string('nearestPoliceStation');
             $table->string('oicNotification');
             $table->string('boicNotification');
-            $table->string('progress')->nullable();
             $table->string('branch')->nullable();
-            $table->string('suspects')->nullable();
-            $table->string('convicts')->nullable();
             $table->timestamps();
         });
     }

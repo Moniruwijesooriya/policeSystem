@@ -37,9 +37,10 @@ class CitizenController extends Controller
 
         $em=$request->email;
         $data = array('heading'=>"Welcome to Crime Reporting System",'fullName'=>"Full Name: ".$request->fullName,'name'=>
-            "Name with initials: ".$request->name,'tempory'=>rand(1000,10000),'nic'=>"NIC: ".$request->nic,
+            "Name with initials: ".$request->name,'nic'=>"NIC: ".$request->nic,
             'msg'=>"Complete your Registration at $request->policeStation by showing NIC",'thank'=>"Thank You!"
         );
+
 
         Mail::send(['text'=>'mail'], $data, function($message) use ($em) {
             $message->to($em)->subject
@@ -47,6 +48,7 @@ class CitizenController extends Controller
             $message->from('slpolicesystem@gmail.com','SL Police');
         });
         $citizen->save();
+        $citizen->sendEmailVerificationNotification();
         return redirect(('/'));
     }
 

@@ -21,11 +21,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin', 'AdminController@index')->name('admin');
 
-Route::get('/colombo', [
-    'uses'=>'PostsController@colomboPost',
-    'as'=>'colomboPost'
-])->middleware('Auth');
-
 Route::post('/submitCrimeEntry',[
     'uses'=>'EntryController@submitEntry',
     'as'=>'submitEntry'
@@ -49,17 +44,27 @@ Route::post('/registerCitizen',[
 Route::post('/viewOICEntry',[
     'uses'=>'EntryController@viewOICEntry',
     'as'=>'viewOICEntry'
-]);
+])->middleware('auth');
 
 Route::post('/acceptOICEntry',[
     'uses'=>'EntryController@acceptOICEntry',
     'as'=>'acceptOICEntry'
-]);
+])->middleware('auth');
 
 Route::post('/viewBOICEntry',[
     'uses'=>'EntryController@viewBOICEntry',
-    'as'=>'viewEntry'
-]);
+    'as'=>'viewBOICEntry'
+])->middleware('auth');
+
+Route::post('/updateCitizenEntry',[
+    'uses'=>'EntryController@updateCitizenEntry',
+    'as'=>'updateCitizenEntry'
+])->middleware('auth');
+
+Route::post('/viewCitizenEntry',[
+    'uses'=>'EntryController@viewCitizenEntry',
+    'as'=>'viewCitizenEntry'
+])->middleware('auth');
 
 Route::post('/acceptBOICEntry',[
     'uses'=>'EntryController@acceptBOICEntry',
@@ -76,11 +81,13 @@ Route::post('/acceptCitizenRequest',[
     'as'=>'acceptCitizenRequest'
 ]);
 
+Auth::routes(['verify' => true]);
+
 
 Route::get('/admin','AdminController@index');
 Route::get('/IGP','IGPController@index');
-Route::get('/RegisteredCitizen','CitizenLoginController@index');
-Route::get('/OIC','OICController@index');
+Route::get('/RegisteredCitizen','CitizenLoginController@index')->middleware('verified');
+Route::get('/OIC','OICController@index')->middleware('auth');
 Route::get('/BOIC','BOICController@index');
 Route::get('/DOIG','DOIGController@index');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

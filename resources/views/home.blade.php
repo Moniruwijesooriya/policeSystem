@@ -1,6 +1,6 @@
 @extends('layouts.app')
 <?php
-    use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;
 ?>
 @section('content')
     <meta charset="UTF-8">
@@ -15,13 +15,6 @@
     <!-- Navbar -->
 
 
-    <!-- Navbar on small screens -->
-    <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">My Profile</a>
-    </div>
 
     <!-- Page Container -->
     <div class="w3-container w3-content" style="max-width:1400px;margin-top:10px">
@@ -46,48 +39,25 @@
                     <div class="w3-white">
                         <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>Submitted Entries</button>
                         <div id="Demo1" class="w3-hide w3-container">
-                                {{--<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">--}}
-                                    <?php
-                                    $entries=db::table('entries')->where('complainantID',Auth::User()->nic)->get();
-                                    ?>
-                                    @foreach($entries as $entry)
+                            {{--<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">--}}
+                            <?php
+                            $entries=db::table('entries')->where('complainantID',Auth::User()->nic)->get();
+                            ?>
+                            @foreach($entries as $entry)
 
-                                        <form method="post" action="{{'viewCitizenEntry'}}">
-                                            @csrf
-                                            <input type="hidden" value="{{$entry->entryID}}" name="nic">
-                                            <p><input type="submit" class="btn-link" value="Entry ID:{{$entry->entryID}}"></p>
-                                        </form>
-                                    @endforeach
-                        {{--</div>--}}
+                                <form method="post" action="{{'viewCitizenEntry'}}">
+                                    @csrf
+                                    <input type="hidden" value="{{$entry->entryID}}" name="entryID">
+                                    <p><input type="submit" class="btn-link" value="Entry ID :{{$entry->entryID}}"></p>
+                                </form>
+                            @endforeach
+                            {{--</div>--}}
                         </div>
                         <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Following Cases</button>
                         <div id="Demo2" class="w3-hide w3-container">
 
                         </div>
                         <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i>Evidence Submitted</button>
-                        <div id="Demo3" class="w3-hide w3-container">
-                            <div class="w3-row-padding">
-                                <br>
-                                <div class="w3-half">
-                                    <img src="/w3images/lights.jpg" style="width:100%" class="w3-margin-bottom">
-                                </div>
-                                <div class="w3-half">
-                                    <img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
-                                </div>
-                                <div class="w3-half">
-                                    <img src="/w3images/mountains.jpg" style="width:100%" class="w3-margin-bottom">
-                                </div>
-                                <div class="w3-half">
-                                    <img src="/w3images/forest.jpg" style="width:100%" class="w3-margin-bottom">
-                                </div>
-                                <div class="w3-half">
-                                    <img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
-                                </div>
-                                <div class="w3-half">
-                                    <img src="/w3images/snow.jpg" style="width:100%" class="w3-margin-bottom">
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <br>
@@ -99,15 +69,6 @@
                         <p>
                             <span class="w3-tag w3-small w3-theme-d5">Colombo</span>
                             <span class="w3-tag w3-small w3-theme-d4">Kandy</span>
-                            <!-- <span class="w3-tag w3-small w3-theme-d3">Labels</span>
-                            <span class="w3-tag w3-small w3-theme-d2">Games</span>
-                            <span class="w3-tag w3-small w3-theme-d1">Friends</span>
-                            <span class="w3-tag w3-small w3-theme">Games</span>
-                            <span class="w3-tag w3-small w3-theme-l1">Friends</span>
-                            <span class="w3-tag w3-small w3-theme-l2">Food</span>
-                            <span class="w3-tag w3-small w3-theme-l3">Design</span>
-                            <span class="w3-tag w3-small w3-theme-l4">Art</span>
-                            <span class="w3-tag w3-small w3-theme-l5">Photos</span> -->
                         </p>
                     </div>
                 </div>
@@ -124,38 +85,14 @@
 
                 <!-- End Left Column -->
             </div>
-
             <!-- Middle Column -->
             <div class="w3-col m7">
 
-                 <div class="w3-row-padding">
-                    <div class="w3-col m12">
-                        <div class="w3-card w3-round w3-white">
-                            <div class="w3-container w3-padding">
-                                <h6 class="w3-opacity">Public Crime Posts</h6>
-                                <p contenteditable="true" class="w3-border w3-padding">Status: Feeling Blue</p>
-                                <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                    <img src="/w3images/avatar2.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
                     <span class="w3-right w3-opacity">1 min</span>
                     <h4>John Doe</h4><br>
                     <hr class="w3-clear">
                     <p></p>
-                    <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-hand-o-right"></i>  Follow Case</button>
-                    <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-file-o"></i>  Submit Evidence</button>
-                </div>
-
-                <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                    <img src="/w3images/avatar5.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-                    <span class="w3-right w3-opacity">16 min</span>
-                    <h4>Jane Doe</h4><br>
-                    <hr class="w3-clear">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                     <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-hand-o-right"></i>  Follow Case</button>
                     <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-file-o"></i>  Submit Evidence</button>
                 </div>
@@ -165,22 +102,25 @@
 
             <!-- Right Column -->
             <div class="w3-col m2">
-                <div class="w3-card w3-round w3-white w3-center">
-                    <div class="w3-container">
-                        <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#submitCrimeEntry">
-                                Submit Your Crime Entry
-                            </button></p>
-                    </div>
+                <div class="row" style="margin-top:15px">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#submitCrimeEntry">
+                        Submit Your Crime Entry
+                    </button>
                 </div>
-                <br>
 
-                
+                    <div class="row" style="margin-top:15px">
+                        <button href="{{'viewCitizenEntry'}}"type="button" class="btn btn-primary">
+                            View Entry
+                        </button>
+                    </div>
+
+                </div>
+
 
                 <!-- End Right Column -->
-            </div>
 
+    </div>
             <!-- End Grid -->
-        </div>
 
         <!-- End Page Container -->
     </div>
@@ -235,11 +175,11 @@
                         ?>
                         <div class="form-group">
                             <label for="policeOffice">Nearest Police Station</label>
-                                <select class="form-control" name="policeStation" id="policeStation">
-                                    @foreach($policeOffice as $office)
-                                        <option>{{$office->policeOfficeArea}}</option>
-                                    @endforeach
-                                </select>
+                            <select class="form-control" name="policeStation" id="policeStation">
+                                @foreach($policeOffice as $office)
+                                    <option>{{$office->policeOfficeArea}}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group">

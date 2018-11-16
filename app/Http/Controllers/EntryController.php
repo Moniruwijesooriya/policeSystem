@@ -54,4 +54,9 @@ class EntryController extends Controller
         return view('entry/boicEntryView',compact('entry'));
     }
 
+    public function viewCitizenEntry(Request $request){
+        $entry=db::table('entries')->where('entryID',$request->entryID)->First();
+        return view('entry/entryView',compact('entry'));
+    }
+
 }

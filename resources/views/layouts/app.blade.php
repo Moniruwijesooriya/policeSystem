@@ -28,41 +28,38 @@ use Illuminate\Support\Facades\DB;
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="container">
-            {{--<a class="navbar-brand" href="{{ url('/') }}">--}}
-            {{--{{ config('app.name', 'Laravel') }}--}}
-            {{--</a>--}}
-
-            {{--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">--}}
-            {{--<span class="navbar-toggler-icon"></span>--}}
-            {{--</button>--}}
-
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav mr-auto">
 
-                </ul>
-
-                <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
-                    <!-- Authentication Links -->
-                    @guest
+                @guest
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/') }}">{{ __('Home') }}</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
-                    @else
-
+                    </ul>
+                @else
+                    <ul class="navbar-nav mr-auto">
+                        @if(Auth::User()->role=='citizen')
+                            <a class="navbar-brand" href="{{'RegisteredCitizen'}}">
+                                Home
+                            </a>
+                        @endif
+                        @if(Auth::User()->role=='Officer Incharge of Police Station')
+                            <a class="navbar-brand" href="{{'OIC'}}">
+                                Home
+                            </a>
+                        @endif
+                    </ul>
+                <ul class="navbar-nav ml-auto">
                         <li>
-
-                            <!-- Navbar -->
-
-                            {{--<a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>--}}
-
-                            {{--<a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i class="fa fa-globe"></i></a>--}}
-                            {{--<a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>--}}
-                            {{--<a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>--}}
                             <div class="w3-dropdown-hover w3-hide-small">
                                 @if(Auth::User()->role=='admin')
                                     <div class="dropdown">
