@@ -15,6 +15,14 @@ class CreateConvictsTable extends Migration
     {
         Schema::create('convicts', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('entryID');
+            $table->string('name');
+            $table->string('convictNic');
+            $table->string('convictAddress');
+            $table->string('OfficerName');
+            $table->string('officerNic');
+            $table->string('officerRole');
+            $table->string('officerRank');
             $table->timestamps();
         });
     }

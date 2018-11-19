@@ -19,16 +19,16 @@ use Illuminate\Support\Facades\DB;
     <!-- Navbar -->
 
     <!-- Page Container -->
-    <div class="w3-container w3-content" style="max-width:1400px;margin-top:10px">
+    <div class="w3-container w3-content" style="max-width:1400px;margin-top:5px">
         <!-- The Grid -->
         <div class="w3-row">
             <!-- Left Column -->
-            <div class="w3-col m3">
+            <div class="w3-col m2">
                 @if(Auth::User()->role=='citizen')
                 <div class="w3-card w3-round">
                     <div class="w3-white">
-                        <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>Submitted Entries</button>
-                        <div id="Demo1" class="w3-container">
+                        <button onclick="myFunction('myEntries')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>Submitted Entries</button>
+                        <div id="myEntries" class="w3-hide w3-container">
                             {{--<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">--}}
 
                             <?php
@@ -49,13 +49,26 @@ use Illuminate\Support\Facades\DB;
                 </div>
                     @endif
 
-
+                    <div class="card" style="margin-top: 10px">
+                        <div class="card-header">{{ __('Evidences') }}</div>
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <?php
+                                $evidences=db::table('entries')->where('entryID',$entr->entryID)->First();
+                                ?>
+                                <div class="col-md-11">
+                                    <input type="text" class="form-control"value="{{ $evidences->evidences }}" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
 
+
             <!-- Middle Column -->
-            <div class="w3-col m7">
+            <div class="w3-col m6">
                 <div class="row justify-content-center">
-                    <div class="col-md-10">
+                    <div class="col-md-11" style="margin-left: 6px;margin-right: 6px">
                         <div class="card">
                             <div class="card-header">{{ __('Entry') }}</div>
 
@@ -194,26 +207,12 @@ use Illuminate\Support\Facades\DB;
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="Progress" class="col-md-4 col-form-label text-md-right">{{ __('Progress') }}</label>
+
+                                            <label class="col-md-4 col-form-label text-md-right">{{ __('Evidences') }}</label>
 
                                             <div class="col-md-6">
-                                                <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->progress }}</p>
-                                                {{--<input id="progress" type="text" class="form-control{{ $errors->has('progress') ? ' is-invalid' : '' }}" name="progress" value="{{ $entry->progress }}" required autofocus>--}}
-
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label for="suspects" class="col-md-4 col-form-label text-md-right">{{ __('Suspects') }}</label>
-
-                                            <div class="col-md-6">
-                                                <input id="suspects" type="text" class="form-control{{ $errors->has('suspects') ? ' is-invalid' : '' }}" name="suspects" value="{{ $entry->suspects }}" required autofocus>
-
-                                                @if ($errors->has('suspects'))
-                                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('suspects') }}</strong>
-                                    </span>
-                                                @endif
+                                                {{--<input type="text" class="form-control"value="{{ $entry->evidences }}" readonly>--}}
+                                                <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->evidences }}</p>
                                             </div>
                                         </div>
 
@@ -233,10 +232,27 @@ use Illuminate\Support\Facades\DB;
             </div>
 
             <!-- Right Column -->
-            <div class="w3-col m2">
+            <div class="w3-col m4">
+                <div class="row">
+                    <div class="w3-card w3-round">
+                        <div class="w3-white">
+                            <button onclick="myFunction('progress')" class="w3-button w3-block w3-theme-l1 w3-center-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-left"></i>Progress</button>
+                            <div id="progress" class="w3-hide w3-container">
+
+                                <?php
+                                $progress=db::table('entries')->where('entryID',$entr->entryID)->First();
+                                ?>
+                                    <div class="w3-col m11">
+                                        <input type="text" class="form-control"value="{{ $progress->progress }}" readonly>
+                                    </div>
+                            </div>
+
+                        </div>
+                    </div>
 
 
-                <!-- End Right Column -->
+
+                </div>
             </div>
 
             <!-- End Grid -->

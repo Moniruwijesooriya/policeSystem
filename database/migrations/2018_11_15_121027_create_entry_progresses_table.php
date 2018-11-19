@@ -14,10 +14,10 @@ class CreateEntryProgressesTable extends Migration
     public function up()
     {
         Schema::create('entry_progresses', function (Blueprint $table) {
-            $table->increments('id');
             $table->string('entryID');
             $table->string('progress');
             $table->string('policeOfficerName');
+            $table->string('officerNic');
             $table->string('rank');
             $table->string('policeOffice');
             $table->string('role');

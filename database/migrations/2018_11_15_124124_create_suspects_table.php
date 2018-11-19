@@ -16,8 +16,14 @@ class CreateSuspectsTable extends Migration
         Schema::create('suspects', function (Blueprint $table) {
             $table->increments('id');
             $table->string('entryID');
-            $table->string('progress');
-            $table->string('policeOfficerName');
+            $table->string('name');
+            $table->string('suspectNic');
+            $table->string('suspectAddress');
+            $table->string('OfficerName');
+            $table->string('officerNic');
+            $table->string('officerRole');
+            $table->string('officerRank');
+
             $table->timestamps();
         });
     }

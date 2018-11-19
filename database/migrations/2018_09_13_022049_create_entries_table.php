@@ -23,6 +23,9 @@ class CreateEntriesTable extends Migration
             $table->string('oicNotification');
             $table->string('boicNotification');
             $table->string('branch')->nullable();
+            $table->string('progress');
+            $table->string('evidences');
+            $table->string('suspects')->nullable();
             $table->timestamps();
         });
     }

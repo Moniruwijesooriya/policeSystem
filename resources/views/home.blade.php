@@ -199,6 +199,11 @@ use Illuminate\Support\Facades\DB;
                             <label for="exampleFormControlTextarea1">Evidences</label>
                             <textarea class="form-control" name="evidences" id="exampleFormControlTextarea1" rows="2"></textarea>
                         </div>
+
+                        <div class="form-group">
+                            <label for="suspects">Suspects</label>
+                            <textarea class="form-control" name="suspects" id="exampleFormControlTextarea1" rows="2"></textarea>
+                        </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <input type="submit" class="btn btn-primary" name="submit" value="Submit Entry">

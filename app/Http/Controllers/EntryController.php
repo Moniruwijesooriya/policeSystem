@@ -25,6 +25,8 @@ class EntryController extends Controller
         $crimeEntry->oicNotification="y";
         $crimeEntry->boicNotification="n";
         $crimeEntry->progress="Entry is submitted to the ".$request->policeStation." Police Station";
+        $crimeEntry->suspects=$request->suspects;
+        $crimeEntry->evidences=$request->evidences;
 
         $crimeEntry->save();
         return redirect()->back();
