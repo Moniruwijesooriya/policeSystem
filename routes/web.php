@@ -93,3 +93,5 @@ Route::get('/DOIG','DOIGController@index');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('verify/{token}','verifyController@verifyEmail');
 
+//citizen
+Route::get('updateFormView','CitizenController@updateFormView');
