@@ -1,28 +1,8 @@
-@extends('layouts.app')
+@extends('admin.adminLayout')
 <?php
 use Illuminate\Support\Facades\DB;
 ?>
 @section('content')
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-        html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
-    </style>
-    <!-- Navbar -->
-
-
-    <!-- Navbar on small screens -->
-    <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">My Profile</a>
-    </div>
-
     <!-- Page Container -->
     <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
         <!-- The Grid -->
@@ -91,24 +71,26 @@ use Illuminate\Support\Facades\DB;
                     </div>
                 </div>
 
-
-
-
-
-
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card w3-round w3-white w3-center">
+                            <div class="w3-container">
+                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#removePoliceOfficer">
+                                        Remove Police Officer
+                                    </button></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- End Middle Column -->
             </div>
-
             <!-- Right Column -->
             <div class="w3-col m2">
                 <br>
-
                 <div class="w3-card w3-round w3-white w3-center">
                     <div class="w3-container">
 
-                        <div class="w3-row w3-opacity">
-
-                        </div>
+                        <a href="viewCrimeCategorySection" class="btn btn-primary" >Crime Categories</a>
                     </div>
                 </div>
                 <br>
@@ -311,6 +293,45 @@ use Illuminate\Support\Facades\DB;
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {{--Remove police officer form--}}
+    <div class="modal fade" id="removePoliceOfficer" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div  class="modal-dialog modal-dialog-centered" role="document">
+            <div  class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerPoliceOfficer">Remove Police Officer</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="removeFormView" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('NIC') }}</label>
+
+                            <div class="col-md-7">
+                                <input id="nic" type="text" pattern=".{10,12}" class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}" name="nic" value="{{ old('nic') }}" required autofocus>
+
+                                @if ($errors->has('nic'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('nic') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Check') }}
                                 </button>
                             </div>
                         </div>

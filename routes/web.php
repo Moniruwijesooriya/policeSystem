@@ -95,3 +95,17 @@ Route::get('verify/{token}','verifyController@verifyEmail');
 
 //citizen
 Route::get('updateFormView','CitizenController@updateFormView');
+
+//admin
+Route::post('removeFormView','AdminController@removeFormView');
+Route::post('/removePoliceOfficer',[
+    'uses'=>'AdminController@removePoliceOfficer',
+    'as'=>'removePoliceOfficer'
+])->middleware('auth');
+
+Route::post('/viewCrimeCategorySection',[
+    'uses'=>'AdminController@viewCrimeCategorySection',
+    'as'=>'viewCrimeCategorySection'
+])->middleware('auth');
+
+

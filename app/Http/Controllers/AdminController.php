@@ -6,6 +6,7 @@ use App\PoliceOffice;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use Mail;
 
 class AdminController extends Controller
@@ -55,9 +56,22 @@ class AdminController extends Controller
 
 
         return redirect()->back();
+    }
+//removeFormView to police officers
+    public function removeFormView(Request $request){
 
+        $policeOfficer = db::table('users')->where('nic',$request->nic)->First();
+        return view('admin.removePoliceOfficerForm',compact('policeOfficer'));
+    }
+    //removePoliceOfficer
 
+    public function removePoliceOfficer(Request $request)
+    {
+        $res = db::table('users')->where('nic', $request->nic)->delete();
 
+        if ($res) {
+            return redirect('/admin');
+        }
     }
 
     public function registerPoliceOffice(Request $request){
@@ -73,8 +87,6 @@ class AdminController extends Controller
         $policeOffice->mainOfficer=$request->landNumber;
 
         $policeOffice->save();
-
-
 
         return redirect()->back();
 
