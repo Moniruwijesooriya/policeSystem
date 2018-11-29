@@ -32,21 +32,26 @@ class AdminController extends Controller
         $policeOfficer->dob = $request->dob;
         $policeOfficer->policeOffice=$request->policeOffice;
         $policeOfficer->remember_token=str_random(60);
-        $policeOfficer->password=Hash::make($request->password);
+        $randomPassword="123123";
+//        $randomPassword=str_random(10);
+        $policeOfficer->password=Hash::make($randomPassword);
         $policeOfficer->verified="Yes";
         $policeOfficer->token=str_random(25);
         $policeOfficer->fullName=$request->fullName;
-
+        $email=$request->email;
         $policeOfficer->save();
 
         $data = array('heading'=>"Weclome to Crime Reporting System",'fullName'=>"Full Name: ".$request->fullName,'name'=>
-            "Name with initials: ".$request->name,'Tempory'=>rand(10,100));
+            "Name with initials: ".$request->name,'thank'=>"Thank You!",
+            'nic'=>"NIC : ".$request->nic,
+            'msg'=>"Your account is successfully created. A random password is provided and please change it.",'randomPassword'=>"Your random password: ".$randomPassword);
 
-        Mail::send(['text'=>'mail'], $data, function($message) {
-            $message->to('monirutasad@gmail.com')->subject
+        Mail::send(['text'=>'sendEmail.policeOfficerRegisterEmail'], $data, function($message) use($email) {
+            $message->to($email)->subject
             ('SL Police System Registration');
             $message->from('slpolicesystem@gmail.com','SL Police');
         });
+        $policeOfficer->save();
 
 
         return redirect()->back();

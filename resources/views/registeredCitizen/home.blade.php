@@ -108,19 +108,19 @@ use Illuminate\Support\Facades\DB;
                     </button>
                 </div>
 
-                    <div class="row" style="margin-top:15px">
-                        <button href="{{'viewCitizenEntry'}}"type="button" class="btn btn-primary">
-                            View Entry
-                        </button>
-                    </div>
-
+                <div class="row" style="margin-top:15px">
+                    <button href="{{'viewCitizenEntry'}}"type="button" class="btn btn-primary">
+                        View Entry
+                    </button>
                 </div>
 
+            </div>
 
-                <!-- End Right Column -->
 
-    </div>
-            <!-- End Grid -->
+            <!-- End Right Column -->
+
+        </div>
+        <!-- End Grid -->
 
         <!-- End Page Container -->
     </div>

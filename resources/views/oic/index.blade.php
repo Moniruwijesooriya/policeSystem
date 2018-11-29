@@ -41,13 +41,13 @@ use Illuminate\Support\Facades\DB;
     </div>
 
     <!-- Page Container -->
-    <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+    <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px;background-color: #000066">
         <!-- The Grid -->
         <div class="w3-row">
             <!-- Left Column -->
             <div class="w3-col m3">
                 <!-- Profile -->
-                <div class="w3-card w3-round w3-white">
+                <div class="w3-card w3-round w3-blue">
                     <div class="w3-container ">
                         <h4 class="w3-center">My Profile</h4>
                         <p class="w3-center"><img src='{{asset('/img/oic.jpeg')}}' class="w3-circle" style="height:106px;width:106px" alt="IGP Image"></p>

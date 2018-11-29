@@ -86,7 +86,7 @@ Auth::routes(['verify' => true]);
 
 Route::get('/admin','AdminController@index');
 Route::get('/IGP','IGPController@index');
-Route::get('/RegisteredCitizen','CitizenLoginController@index')->middleware('verified');
+Route::get('/RegisteredCitizen','CitizenController@index')->middleware('verified');
 Route::get('/OIC','OICController@index')->middleware('auth');
 Route::get('/BOIC','BOICController@index');
 Route::get('/DOIG','DOIGController@index');

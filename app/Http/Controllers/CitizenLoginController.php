@@ -14,3 +14,4 @@ class CitizenLoginController extends Controller
         return view('home');
     }
 }
+

@@ -54,25 +54,6 @@ use Illuminate\Support\Facades\DB;
                         <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i>Citizen Management</button>
                         <div id="Demo3" class="w3-hide w3-container">
                             <div class="w3-row-padding">
-                                {{--<br>--}}
-                                {{--<div class="w3-half">--}}
-                                    {{--<img src="/w3images/lights.jpg" style="width:100%" class="w3-margin-bottom">--}}
-                                {{--</div>--}}
-                                {{--<div class="w3-half">--}}
-                                    {{--<img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">--}}
-                                {{--</div>--}}
-                                {{--<div class="w3-half">--}}
-                                    {{--<img src="/w3images/mountains.jpg" style="width:100%" class="w3-margin-bottom">--}}
-                                {{--</div>--}}
-                                {{--<div class="w3-half">--}}
-                                    {{--<img src="/w3images/forest.jpg" style="width:100%" class="w3-margin-bottom">--}}
-                                {{--</div>--}}
-                                {{--<div class="w3-half">--}}
-                                    {{--<img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">--}}
-                                {{--</div>--}}
-                                {{--<div class="w3-half">--}}
-                                    {{--<img src="/w3images/snow.jpg" style="width:100%" class="w3-margin-bottom">--}}
-                                {{--</div>--}}
                             </div>
                         </div>
                     </div>
@@ -326,31 +307,6 @@ use Illuminate\Support\Facades\DB;
                                 @endif
                             </div>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-7">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-7">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-
-
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
