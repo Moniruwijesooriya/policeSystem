@@ -87,6 +87,13 @@ class CitizenController extends Controller
         return view('oic/reviewRequest',compact('citizenDetails'));
     }
 
+    //updateFormView
+    public function updateFormView(Request $request)
+    {
+        $citizenDetails = db::table('users')->where('nic',$request->nic)->First();
+        return view('auth/update',compact('citizenDetails'));
+    }
+
     public function AcceptCitizenRequest(Request $request){
 
         if ($request->verify=="Yes"){
