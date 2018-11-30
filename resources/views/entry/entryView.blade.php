@@ -82,16 +82,14 @@ use Illuminate\Support\Facades\DB;
                                         <label class="col-md-4 col-form-label text-md-right">{{ __('Entry ID') }}</label>
 
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control"value="{{ $entry->entryID }}" readonly>
-                                            <input type="hidden" name="entryId" value="{{ $entry->entryID }}">
+                                            <input type="text" class="form-control" name="entryId" value="{{ $entry->entryID }}" readonly>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-md-4 col-form-label text-md-right">{{ __('Complainant NIC') }}</label>
 
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control"value="{{ $entry->complainantID }}" readonly>
-                                            <input type="hidden" name="complainantNIC" value="{{ $entry->complainantID }}">
+                                            <input type="text" class="form-control" name="complainantNIC" value="{{ $entry->complainantID }}" readonly>
                                         </div>
                                     </div>
 
@@ -117,7 +115,6 @@ use Illuminate\Support\Facades\DB;
                                         <label class="col-md-4 col-form-label text-md-right">{{ __('Complaint') }}</label>
 
                                         <div class="col-md-6">
-                                            {{--<input type="text" class="form-control"value="{{ $entry->complaint }}" readonly>--}}
                                             <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->complaint }}</p>
                                         </div>
                                     </div>
@@ -163,10 +160,10 @@ use Illuminate\Support\Facades\DB;
                                         </div>
                                     </div>
                                 </form>
-                            </div>
-                                @endif
+                            </div>@endif
 
-                                @if(Auth::User()->role=='citizen')
+
+                                {{--@if(Auth::User()->role=='citizen')--}}
                                 <div class="card-body">
                                     <form method="post" action="{{ route('updateCitizenEntry') }}" enctype="multipart/form-data">
                                         @csrf
@@ -223,7 +220,7 @@ use Illuminate\Support\Facades\DB;
                                         </div>
                                     </form>
                                 </div>
-                                    @endif
+                                    {{--@endif--}}
                         </div>
                     </div>
                 </div>
