@@ -95,3 +95,7 @@ Route::get('verify/{token}','verifyController@verifyEmail');
 
 //citizen
 Route::get('updateFormView','CitizenController@updateFormView');
+
+Route::post('/updateFormView/{id}','CitizenController@edit');
+
+

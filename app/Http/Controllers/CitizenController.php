@@ -123,7 +123,7 @@ public function store(Request $request)
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -134,7 +134,8 @@ public function store(Request $request)
      */
     public function edit($id)
     {
-        //
+        $citizen=User::find($id);
+        return view('auth.update')->with($citizen,'citizen');
     }
 
     /**
@@ -146,7 +147,20 @@ public function store(Request $request)
      */
     public function update(Request $request, $id)
     {
-        //
+        $citizen = User::find($id);
+        $citizen->name = $request->name;
+        $citizen->nic = $request->nic;
+        $citizen->address = $request->homeAddress;
+        $citizen->mobileNumber = $request->mobNumber;
+        $citizen->landLineNumber = $request->landNumber;
+        $citizen->profession = $request->profession;
+        $citizen->email = $request->email;
+        $citizen->gender = $request->gender;
+        $citizen->dob = $request->dob;
+        $citizen->fullName=$request->fullName;
+        $citizen->policeOffice=$request->policeStation;
+        $citizen->save();
+        return redirect('index.blade');
     }
 
     /**
