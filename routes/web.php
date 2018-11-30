@@ -56,10 +56,7 @@ Route::post('/viewBOICEntry',[
     'as'=>'viewBOICEntry'
 ])->middleware('auth');
 
-Route::post('/updateCitizenEntry',[
-    'uses'=>'EntryController@updateCitizenEntry',
-    'as'=>'updateCitizenEntry'
-])->middleware('auth');
+
 
 Route::post('/viewCitizenEntry',[
     'uses'=>'EntryController@viewCitizenEntry',
@@ -95,6 +92,10 @@ Route::get('verify/{token}','verifyController@verifyEmail');
 
 //citizen
 Route::get('updateFormView','CitizenController@updateFormView');
+Route::post('/updateCitizenEntry',[
+    'uses'=>'EntryController@updateCitizenEntry',
+    'as'=>'updateCitizenEntry'
+])->middleware('auth');
 
 //admin
 Route::post('removeFormView','AdminController@removeFormView');
