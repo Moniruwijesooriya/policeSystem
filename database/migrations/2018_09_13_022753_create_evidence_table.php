@@ -18,10 +18,10 @@ class CreateEvidenceTable extends Migration
             $table->string('entryId');
             $table->string('witnessId');
             $table->text('evidence_txt');
-            $table->text('evidence_image');
-            $table->text('evidence_video');
+            $table->text('evidence_image')->nullable();
+            $table->text('evidence_video')->nullable();
             $table->text('citizenView');
-            $table->timestamp('created_at')->nullable();
+            $table->timestamps();
         });
     }
 

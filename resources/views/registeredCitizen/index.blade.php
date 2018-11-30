@@ -192,17 +192,17 @@ use Illuminate\Support\Facades\DB;
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Complaint</label>
-                            <textarea class="form-control" name="complaintText" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea class="form-control" name="complaintText" rows="3"></textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Evidences</label>
-                            <textarea class="form-control" name="evidences" id="exampleFormControlTextarea1" rows="2"></textarea>
+                            <textarea class="form-control" name="evidences"  rows="2"></textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="suspects">Suspects</label>
-                            <textarea class="form-control" name="suspects" id="exampleFormControlTextarea1" rows="2"></textarea>
+                            <textarea class="form-control" name="suspects" rows="2"></textarea>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

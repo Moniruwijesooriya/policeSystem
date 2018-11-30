@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
                             @method('PUT')
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Full Name') }}</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-rhg,jy;uoiuoiight">{{ __('Full Name') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="fullName" type="text" class="form-control{{ $errors->has('fullName') ? ' is-invalid' : '' }}" name="fullName" value="{{$citizen->fullName}}}}" required autofocus>

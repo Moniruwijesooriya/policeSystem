@@ -17,12 +17,12 @@ class CreateSuspectsTable extends Migration
             $table->increments('id');
             $table->string('entryID');
             $table->string('name');
-            $table->string('suspectNic');
-            $table->string('suspectAddress');
-            $table->string('OfficerName');
-            $table->string('officerNic');
-            $table->string('officerRole');
-            $table->string('officerRank');
+            $table->string('suspectNic')->nullable();
+            $table->string('suspectAddress')->nullable();
+            $table->string('userName');
+            $table->string('userNic');
+            $table->string('userRole');
+            $table->string('officerRank')->nullable();
 
             $table->timestamps();
         });

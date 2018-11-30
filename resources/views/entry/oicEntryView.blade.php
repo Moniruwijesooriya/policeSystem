@@ -193,7 +193,46 @@ use Illuminate\Support\Facades\DB;
 
             <!-- Right Column -->
             <div class="w3-col m2">
+                <div class="card rounded" style="margin-top: 10px">
+                    <div class>
+                        <button onclick="myFunction('evidences')"  class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>Evidences</button>
+                        <div id="evidences" class="w3-hide w3-container">
+                            {{--<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">--}}
 
+                            <?php
+                            $entryInfo=db::table('entries')->where('entryID',$entry->entryID)->First();
+                            ?>
+                            <div class="col-md-11">
+                                <p contenteditable="false" class="w3-border w3-padding" >{{ $entryInfo->evidences }}</p>
+                                @foreach($evidences as $evidence)
+                                    <p contenteditable="false" class="w3-border w3-padding" >{{ $evidence->evidence_txt }}</p>
+                                @endforeach
+                            </div>
+                            {{--</div>--}}
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card rounded" style="margin-top: 10px">
+                    <div class>
+                        <button onclick="myFunction('suspects')"  class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>Suspects</button>
+                        <div id="suspects" class="w3-hide w3-container">
+                            {{--<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">--}}
+
+                            <?php
+                            $entryInfo=db::table('entries')->where('entryID',$entry->entryID)->First();
+                            ?>
+                            <div class="col-md-11">
+                                <p contenteditable="false" class="w3-border w3-padding" >{{ $entryInfo->suspects }}</p>
+                                @foreach($suspects as $suspect)
+                                    <p contenteditable="false" class="w3-border w3-padding" >{{ $suspect->name }}</p>
+                                @endforeach
+                            </div>
+                            {{--</div>--}}
+                        </div>
+
+                    </div>
+                </div>
 
             <!-- End Right Column -->
             </div>
