@@ -10,6 +10,7 @@ use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Mail;
+use Illuminate\Support\Facades\Auth;
 
 class CitizenController extends Controller
 {
@@ -24,7 +25,8 @@ class CitizenController extends Controller
     }
     public function index()
     {
-        return view('registeredCitizen.index');
+        $citizenDetails = db::table('users')->where('nic',$nic)->First();
+        return view('registeredCitizen.index',compact('citizenDetails'));
     }
 
     /**

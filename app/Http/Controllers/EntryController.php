@@ -62,14 +62,14 @@ class EntryController extends Controller
 
     public function viewCitizenEntry(Request $request){
         $entry=db::table('entries')->where('entryID',$request->entryID)->First();
-        $evidences=db::table('evidence')->where('entryId',$request->entryID)->where('citizenView',"Yes")->get();
+        $evidences=db::table('evidence')->where('entryID',$request->entryID)->where('citizenView',"Yes")->get();
         $suspects=db::table('suspects')->where('entryID',$request->entryID)->where('userRole',"citizen")->get();
         return view('entry/entryView',compact('entry','evidences','suspects'));
     }
 
     public function updateCitizenEntry(Request $request){
         $evidence=new Evidence();
-        $evidence->entryId=$request->entryId;
+        $evidence->entryId=$request->entryID;
         $evidence->witnessId=Auth::User()->nic;
         $evidence->evidence_txt=$request->evidence;
         $evidence->citizenView="Yes";
@@ -77,7 +77,7 @@ class EntryController extends Controller
         $evidence->save();
 
         $suspects=new Suspect();
-        $suspects->entryId=$request->entryId;
+        $suspects->entryId=$request->entryID;
         $suspects->name=$request->suspects;
         $nic=Auth::User()->nic;
         $user=db::table('users')->where('Nic',$nic)->First();

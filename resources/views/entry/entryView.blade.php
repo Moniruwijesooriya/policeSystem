@@ -54,7 +54,7 @@ use Illuminate\Support\Facades\DB;
                         <div class="card-body">
                             <div class="form-group row">
                                 <?php
-                                $entryInfo=db::table('entries')->where('entryID',$entr->entryID)->First();
+                                $entryInfo=db::table('entries')->where('entryID',$entry->entryID)->First();
                                 ?>
                                 <div class="col-md-11">
                                     <p contenteditable="false" class="w3-border w3-padding" >{{ $entryInfo->evidences }}</p>
@@ -99,7 +99,7 @@ use Illuminate\Support\Facades\DB;
                                             <label class="col-md-4 col-form-label text-md-right">{{ __('Entry ID') }}</label>
 
                                             <div class="col-md-6">
-                                                <input type="text"name="entryId"class="form-control"value="{{ $entry->entryID }}" readonly>
+                                                <input type="text"name="entryID"class="form-control"value="{{ $entry->entryID }}" readonly>
                                             </div>
                                         </div>
 
@@ -107,7 +107,7 @@ use Illuminate\Support\Facades\DB;
                                             <label class="col-md-4 col-form-label text-md-right">{{ __('Polie Station') }}</label>
 
                                             <div class="col-md-6">
-                                                <input type="text"name="entryId"class="form-control"value="{{ $entry->nearestPoliceStation }}" readonly>
+                                                <input type="text" class="form-control"value="{{ $entry->nearestPoliceStation }}" readonly>
                                             </div>
                                         </div>
 

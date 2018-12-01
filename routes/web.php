@@ -97,6 +97,7 @@ Route::post('/updateCitizenEntry',[
     'as'=>'updateCitizenEntry'
 ])->middleware('auth');
 
+
 //admin
 Route::post('removeFormView','AdminController@removeFormView');
 Route::post('/removePoliceOfficer',[

@@ -15,7 +15,7 @@ class CreateEvidenceTable extends Migration
     {
         Schema::create('evidence', function (Blueprint $table) {
             $table->increments('evidenceId');
-            $table->string('entryId');
+            $table->string('entryID');
             $table->string('witnessId');
             $table->text('evidence_txt');
             $table->text('evidence_image')->nullable();
