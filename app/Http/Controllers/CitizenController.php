@@ -25,6 +25,7 @@ class CitizenController extends Controller
     }
     public function index()
     {
+        $nic=Auth::User()->nic;
         $citizenDetails = db::table('users')->where('nic',$nic)->First();
         return view('registeredCitizen.index',compact('citizenDetails'));
     }
