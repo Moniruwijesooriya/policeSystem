@@ -100,6 +100,9 @@ Route::post('/reviewCitizenRegistrationRequest',[
     'as'=>'reviewCitizenRegistrationRequest'
 ]);
 
+//Oic
+Route::get('/test','OICController@test');
+
 
 //admin
 Route::post('removeFormView','AdminController@removeFormView');

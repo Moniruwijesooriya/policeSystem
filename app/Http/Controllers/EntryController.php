@@ -87,7 +87,7 @@ class EntryController extends Controller
 
         $suspects->save();
 
-        return view('registeredCitizen.index');
+        return redirect('/RegisteredCitizen');
 
 
     }
