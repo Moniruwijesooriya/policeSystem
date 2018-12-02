@@ -36,10 +36,7 @@ Route::post('/registerPoliceOffice',[
     'as'=>'registerPoliceOffice'
 ])->middleware('auth');
 
-Route::post('/registerCitizen',[
-    'uses'=>'CitizenController@registerCitizen',
-    'as'=>'registerCitizen'
-]);
+
 
 Route::post('/viewOICEntry',[
     'uses'=>'EntryController@viewOICEntry',
@@ -68,10 +65,7 @@ Route::post('/acceptBOICEntry',[
     'as'=>'acceptBOICEntry'
 ]);
 
-Route::post('/reviewCitizenRegistrationRequest',[
-    'uses'=>'CitizenController@ViewRequest',
-    'as'=>'reviewCitizenRegistrationRequest'
-]);
+
 
 Route::post('/acceptCitizenRequest',[
     'uses'=>'CitizenController@AcceptCitizenRequest',
@@ -83,7 +77,7 @@ Auth::routes(['verify' => true]);
 
 Route::get('/admin','AdminController@index');
 Route::get('/IGP','IGPController@index');
-Route::get('/RegisteredCitizen','CitizenController@index')->middleware('verified');
+
 Route::get('/OIC','OICController@index')->middleware('auth');
 Route::get('/BOIC','BOICController@index');
 Route::get('/DOIG','DOIGController@index');
@@ -91,11 +85,20 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('verify/{token}','verifyController@verifyEmail');
 
 //citizen
+Route::get('/RegisteredCitizen','CitizenLoginController@index')->middleware('verified');
 Route::get('updateFormView','CitizenController@updateFormView');
 Route::post('/updateCitizenEntry',[
     'uses'=>'EntryController@updateCitizenEntry',
     'as'=>'updateCitizenEntry'
 ])->middleware('auth');
+Route::post('/registerCitizen',[
+    'uses'=>'CitizenController@registerCitizen',
+    'as'=>'registerCitizen'
+]);
+Route::post('/reviewCitizenRegistrationRequest',[
+    'uses'=>'CitizenController@ViewRequest',
+    'as'=>'reviewCitizenRegistrationRequest'
+]);
 
 
 //admin
