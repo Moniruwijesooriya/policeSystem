@@ -32,11 +32,11 @@ use Illuminate\Support\Facades\DB;
     <!-- Navbar -->
 
     <!-- Page Container -->
-    <div class="w3-container w3-content" style="max-width:1400px;margin-top:50x">
+    <div class="container-fluid" style="max-width:1400px;background-color:darkcyan">
         <!-- The Grid -->
-        <div class="w3-row">
+        <div class="row">
             <!-- Left Column -->
-            <div class="w3-col m3">
+            <div class="col-md-3">
                 <!-- Accordion -->
                 <div class="card">
                     <div class="bg-white">
@@ -79,9 +79,9 @@ use Illuminate\Support\Facades\DB;
             </div>
 
             <!-- Middle Column -->
-            <div class="w3-col m7">
+            <div class="col-md-5" style="margin-right: 40px;margin-left: 20px;margin-bottom: 10px">
                 <div class="row justify-content-center">
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">{{ __('Entry') }}</div>
 
@@ -128,10 +128,19 @@ use Illuminate\Support\Facades\DB;
                                         <label class="col-md-4 col-form-label text-md-right">{{ __('Complaint') }}</label>
 
                                         <div class="col-md-6">
-                                            {{--<input type="text" class="form-control"value="{{ $entry->complaint }}" readonly>--}}
                                             <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->complaint }}</p>
                                         </div>
                                     </div>
+
+                                    <div class="form-group row">
+                                        <label for="Progress" class="col-md-4 col-form-label text-md-right">{{ __('Progress') }}</label>
+
+                                        <div class="col-md-6">
+                                            <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->progress }}</p>
+
+                                        </div>
+                                    </div>
+
 
                                     <div class="form-group row">
                                         <label class="col-md-4 col-form-label text-md-right">{{ __('Branch') }}</label>
@@ -174,10 +183,29 @@ use Illuminate\Support\Facades\DB;
             </div>
 
             <!-- Right Column -->
-            <div class="w3-col m2">
-                </div>
+            <div class="col-md-3">
+                <div class="row">
+                            <p><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#createPost">
+                                   Create a Post
+                                </button></p>
+                    <div class="row justify-content-center">
 
-            <!-- End Right Column -->
+                        <div class="card" style="margin-top: 10px">
+                            <div class="card-header">{{ __('Progress') }}</div>
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <?php
+                                    $progress=db::table('entries')->where('entryID',$entry->entryID)->First();
+                                    ?>
+                                    <div class="col-md-11">
+                                        <p contenteditable="false" class="w3-border w3-padding" >{{ $progress->progress }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
             <!-- End Grid -->
@@ -187,6 +215,43 @@ use Illuminate\Support\Facades\DB;
     </div>
 
     <br>
+    {{--Create Post--}}
+    <div class="modal fade" id="createPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div  class="modal-dialog modal-dialog-centered" role="document">
+            <div  class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerPoliceOfficer">Create Post</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="createPost" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Title') }}</label>
+                            <div class="col-md-6">
+                                <input id="title" type="text" class="form-control" name="name" placeholder="Title of the Post" required autofocus>
+                                <input type="hidden" name="entryId" value="{{$entry->entryID}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Content</label>
+                            <textarea class="form-control" name="complaintText" rows="3"></textarea>
+                        </div>
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Check') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="w3-container w3-theme-d3 w3-padding-16">

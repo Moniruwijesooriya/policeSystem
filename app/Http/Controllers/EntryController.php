@@ -35,6 +35,24 @@ class EntryController extends Controller
     }
 
     public function acceptOICEntry(Request $request){
+        $evidence=new Evidence();
+        $evidence->entryId=$request->entryId;
+        $evidence->witnessId=Auth::User()->nic;
+        $evidence->evidence_txt=$request->evidence;
+        $evidence->citizenView="No";
+
+        $evidence->save();
+
+        $suspects=new Suspect();
+        $suspects->entryId=$request->entryID;
+        $suspects->name=$request->suspects;
+        $nic=Auth::User()->nic;
+        $user=db::table('users')->where('Nic',$nic)->First();
+        $suspects->userName=$user->name;
+        $suspects->userNic=$nic;
+        $suspects->userRole=$user->role;
+
+        $suspects->save();
 
         DB::table('entries')
             ->where('entryID',$request->entryId)
