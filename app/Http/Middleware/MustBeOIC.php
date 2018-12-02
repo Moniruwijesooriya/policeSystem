@@ -20,6 +20,6 @@ class MustBeOIC
         if($request->user()->isOIC()){
             return $next($request);
         }
-        return redirect(('/'));
+        return back();
     }
 }

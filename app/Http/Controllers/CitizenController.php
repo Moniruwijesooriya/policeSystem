@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-namespace App\Http\Controllers;
-
-use App\CitizenRegistrationNotif;
-use Illuminate\Http\Request;
 use App\User;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
+
 
 class CitizenController extends Controller
 {
@@ -27,36 +26,46 @@ class CitizenController extends Controller
         $citizen->dob = $request->dob;
         $citizen->role = "citizen";
         $citizen->remember_token = str_random(60);
+        $citizen->token=str_random(25);
         $citizen->password = Hash::make($request->password);
-        $citizen->verified = "n";
+        $citizen->verified = "No";
+        $citizen->fullName=$request->fullName;
+        $citizen->policeOffice=$request->policeStation;
 
         $citizen->save();
+        $em=$request->email;
+        $data = array('heading'=>"Welcome to Crime Reporting System",'fullName'=>"Full Name: ".$request->fullName,'name'=>
+            "Name with initials: ".$request->name,'nic'=>"NIC: ".$request->nic,
+            'msg'=>"Complete your Registration at $request->policeStation by showing NIC",'thank'=>"Thank You!"
+        );
 
-        $notification = new CitizenRegistrationNotif();
-        $notification->nic = $request->nic;
-        $notification->systemRole = "citizen";
-        $notification->verified = "n";
 
-        $notification->save();
+        Mail::send(['text'=>'mail'], $data, function($message) use ($em) {
+            $message->to($em)->subject
+            ('SL Police System Citizen Registration');
+            $message->from('slpolicesystem@gmail.com','SL Police');
+        });
+        $citizen->sendEmailVerificationNotification();
         return redirect(('/'));
     }
 
 
-    public function getCitizenRegistrationNotification()
-    {
-        db::table('citizen_registration_notifs')->where('verified',"n")->where('role',"citizen")->get();
-
-    }
     public function ViewRequest(Request $request){
         $citizenDetails = db::table('users')->where('nic',$request->nic)->First();
-        return view('admin/reviewRequest',compact('citizenDetails'));
+        return view('oic/reviewRequest',compact('citizenDetails'));
     }
-
     public function AcceptCitizenRequest(Request $request){
 
-        DB::table('users')
-            ->where('nic',$request->nic)
-            ->update(['verified'=>"y"]);
-        return redirect('/admin');
+        if ($request->verify=="Yes"){
+            DB::table('users')
+                ->where('nic',$request->nic)
+                ->update(['verified'=>$request->verify]);
+            return redirect('/OIC');
+        }
+        else{
+            DB::table('users')->where('nic',$request->nic)->delete();
+            return redirect('/OIC');
+        }
     }
+
 }

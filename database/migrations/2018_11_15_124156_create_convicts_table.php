@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOfficerRanksTable extends Migration
+class CreateConvictsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,15 @@ class CreateOfficerRanksTable extends Migration
      */
     public function up()
     {
-        Schema::create('officer_ranks', function (Blueprint $table) {
+        Schema::create('convicts', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('entryID');
+            $table->string('name');
+            $table->string('convictNic');
+            $table->string('convictAddress');
+            $table->string('OfficerName');
+            $table->string('officerNic');
+            $table->string('officerRole');
             $table->string('officerRank');
             $table->timestamps();
         });
@@ -27,6 +34,6 @@ class CreateOfficerRanksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('officer_ranks');
+        Schema::dropIfExists('convicts');
     }
 }

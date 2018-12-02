@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCitizenRegistrationNotifsTable extends Migration
+class CreateDistrictAreasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateCitizenRegistrationNotifsTable extends Migration
      */
     public function up()
     {
-        Schema::create('citizen_registration_notifs', function (Blueprint $table) {
+        Schema::create('district_areas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('systemRole');
-            $table->string('nic');
-            $table->string('verified');
+            $table->string('policeArea');
+            $table->string('district');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateCitizenRegistrationNotifsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('citizen_registration_notifs');
+        Schema::dropIfExists('district_areas');
     }
 }

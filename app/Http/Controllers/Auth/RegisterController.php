@@ -78,6 +78,7 @@ class RegisterController extends Controller
             'landLineNumber'=>$data['nic'],
             'profession'=>$data['profession'],
             'role'=>$data['role'],
+            'token'=> str_random(25),
             'verified'=>'no'
         ]);
     }

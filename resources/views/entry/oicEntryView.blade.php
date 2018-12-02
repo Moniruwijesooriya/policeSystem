@@ -31,45 +31,43 @@ use Illuminate\Support\Facades\DB;
     </style>
     <!-- Navbar -->
 
-
-    <!-- Navbar on small screens -->
-    <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">My Profile</a>
-    </div>
-
     <!-- Page Container -->
-    <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+    <div class="container-fluid" style="max-width:1400px;background-color:darkcyan">
         <!-- The Grid -->
-        <div class="w3-row">
+        <div class="row">
             <!-- Left Column -->
-            <div class="w3-col m3">
-                <!-- Profile -->
-                <div class="w3-card w3-round w3-white">
-                    <div class="w3-container ">
-                        <h4 class="w3-center">My Profile</h4>
-                        <p class="w3-center"><img src='{{asset('/img/oic.jpeg')}}' class="w3-circle" style="height:106px;width:106px" alt="IGP Image"></p>
-                        <hr>
-                        <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>{{Auth::User()->profession}}</p>
-                        <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>{{Auth::User()->policeOffice}}</p>
-                    </div>
-                </div>
-                <br>
-
+            <div class="col-md-3">
                 <!-- Accordion -->
-                <div class="w3-card w3-round">
-                    <div class="w3-white">
-                        <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Investigation</button>
-                        <div id="Demo1" class="w3-hide w3-container">
-                            {{--<p>Some text..</p>--}}
+                <div class="card">
+                    <div class="bg-white">
+                        <button onclick="myFunction('evidencesList')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Evidences</button>
+                        <div id="evidencesList" class="w3-hide w3-container">
+                            <div class="form-group row">
+                                <?php
+                                $entryInfo=db::table('entries')->where('entryID',$entry->entryID)->First();
+                                ?>
+                                <div class="col-md-11">
+                                    <p contenteditable="false" class="w3-border w3-padding" >{{ $entryInfo->evidences }}</p>
+                                    @foreach($evidences as $evidence)
+                                        <p contenteditable="false" class="w3-border w3-padding" >{{ $evidence->evidence_txt }}</p>
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
-                        <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Invetigation Branches</button>
-                        <div id="Demo2" class="w3-hide w3-container">
-                            {{--<p>Some other text..</p>--}}
+                        <button onclick="myFunction('suspectList')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i>Suspects</button>
+                        <div id="suspectList" class="w3-hide w3-container">
+                            <div class="form-group row">
+                                <?php
+                                $entryInfo=db::table('entries')->where('entryID',$entry->entryID)->First();
+                                ?>
+                                <div class="col-md-11">
+                                    <p contenteditable="false" class="w3-border w3-padding" >{{ $entryInfo->suspects }}</p>
+                                    @foreach($suspects as $suspect)
+                                        <p contenteditable="false" class="w3-border w3-padding" >{{ $suspect->name }}</p>
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
-                        <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i>D Type Crime Enquries</button>
                     </div>
                 </div>
                 <br>
@@ -81,14 +79,14 @@ use Illuminate\Support\Facades\DB;
             </div>
 
             <!-- Middle Column -->
-            <div class="w3-col m7">
+            <div class="col-md-5" style="margin-right: 40px;margin-left: 20px;margin-bottom: 10px">
                 <div class="row justify-content-center">
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">{{ __('Entry') }}</div>
 
                             <div class="card-body">
-                                <form method="post" action="{{ route('acceptEntry') }}" enctype="multipart/form-data">
+                                <form method="post" action="{{ route('acceptOICEntry') }}" enctype="multipart/form-data">
                                     @csrf
 
                                     <div class="form-group row">
@@ -126,10 +124,11 @@ use Illuminate\Support\Facades\DB;
                                     </div>
 
                                     <div class="form-group row">
+
                                         <label class="col-md-4 col-form-label text-md-right">{{ __('Complaint') }}</label>
 
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control"value="{{ $entry->complaint }}" readonly>
+                                            <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->complaint }}</p>
                                         </div>
                                     </div>
 
@@ -137,16 +136,10 @@ use Illuminate\Support\Facades\DB;
                                         <label for="Progress" class="col-md-4 col-form-label text-md-right">{{ __('Progress') }}</label>
 
                                         <div class="col-md-6">
-                                            <input id="progress" type="text" class="form-control{{ $errors->has('progress') ? ' is-invalid' : '' }}" name="progress" value="{{ $entry->progress }}" required autofocus>
+                                            <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->progress }}</p>
 
-                                            @if ($errors->has('progress'))
-                                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('progress') }}</strong>
-                                    </span>
-                                            @endif
                                         </div>
                                     </div>
-
 
 
                                     <div class="form-group row">
@@ -161,32 +154,19 @@ use Illuminate\Support\Facades\DB;
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="suspects" class="col-md-4 col-form-label text-md-right">{{ __('Suspects') }}</label>
-
+                                        <label class="col-md-4 col-form-label text-md-right">{{ __('Evidences') }}</label>
                                         <div class="col-md-6">
-                                            <input id="suspects" type="text" class="form-control{{ $errors->has('suspects') ? ' is-invalid' : '' }}" name="suspects" value="{{ $entry->suspects }}" required autofocus>
-
-                                            @if ($errors->has('suspects'))
-                                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('suspects') }}</strong>
-                                    </span>
-                                            @endif
+                                            <textarea class="form-control" name="evidence" id="exampleFormControlTextarea1" rows="2"></textarea>
                                         </div>
                                     </div>
 
-                                    {{--<div class="form-group row">--}}
-                                    {{--<label for="profileImage" class="col-md-4 col-form-label text-md-right">{{ __('Profile Image') }}</label>--}}
+                                    <div class="form-group row">
+                                        <label class="col-md-4 col-form-label text-md-right">Suspects</label>
+                                        <div class="col-md-6">
+                                            <textarea class="form-control" name="suspects" id="exampleFormControlTextarea1" rows="2"></textarea>
+                                        </div>
 
-                                    {{--<div class="col-md-6">--}}
-                                    {{--<input class="form-group mb-2" id="profileImage" type="file" name="profileImage" value="{{ old('profileImage') }}" required>--}}
-
-                                    {{--@if ($errors->has('profileImage'))--}}
-                                    {{--<span class="invalid-feedback" role="alert">--}}
-                                    {{--<strong>{{ $errors->first('profileImage') }}</strong>--}}
-                                    {{--</span>--}}
-                                    {{--@endif--}}
-                                    {{--</div>--}}
-                                    {{--</div>--}}
+                                    </div>
 
                                     <div class="form-group row mb-0">
                                         <div class="col-md-6 offset-md-6 col-xs-6"  >
@@ -203,22 +183,29 @@ use Illuminate\Support\Facades\DB;
             </div>
 
             <!-- Right Column -->
-            <div class="w3-col m2">
-                <br>
+            <div class="col-md-3">
+                <div class="row">
+                            <p><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#createPost">
+                                   Create a Post
+                                </button></p>
+                    <div class="row justify-content-center">
 
+                        <div class="card" style="margin-top: 10px">
+                            <div class="card-header">{{ __('Progress') }}</div>
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <?php
+                                    $progress=db::table('entries')->where('entryID',$entry->entryID)->First();
+                                    ?>
+                                    <div class="col-md-11">
+                                        <p contenteditable="false" class="w3-border w3-padding" >{{ $progress->progress }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                <br>
-
-                {{--<div class="w3-card w3-round w3-white w3-padding-16 w3-center">--}}
-                {{--<p>ADS</p>--}}
-                {{--</div>--}}
-                <br>
-
-            {{--<div class="w3-card w3-round w3-white w3-padding-32 w3-center">--}}
-            {{--<p><i class="fa fa-bug w3-xxlarge"></i></p>--}}
-            {{--</div>--}}
-
-            <!-- End Right Column -->
+                </div>
             </div>
 
             <!-- End Grid -->
@@ -228,6 +215,43 @@ use Illuminate\Support\Facades\DB;
     </div>
 
     <br>
+    {{--Create Post--}}
+    <div class="modal fade" id="createPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div  class="modal-dialog modal-dialog-centered" role="document">
+            <div  class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerPoliceOfficer">Create Post</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="createPost" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Title') }}</label>
+                            <div class="col-md-6">
+                                <input id="title" type="text" class="form-control" name="name" placeholder="Title of the Post" required autofocus>
+                                <input type="hidden" name="entryId" value="{{$entry->entryID}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Content</label>
+                            <textarea class="form-control" name="complaintText" rows="3"></textarea>
+                        </div>
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Check') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="w3-container w3-theme-d3 w3-padding-16">

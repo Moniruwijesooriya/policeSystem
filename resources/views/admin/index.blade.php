@@ -1,26 +1,8 @@
-@extends('layouts.app')
-
+@extends('admin.adminLayout')
+<?php
+use Illuminate\Support\Facades\DB;
+?>
 @section('content')
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-        html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
-    </style>
-    <!-- Navbar -->
-
-
-    <!-- Navbar on small screens -->
-    <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">My Profile</a>
-    </div>
-
     <!-- Page Container -->
     <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
         <!-- The Grid -->
@@ -52,25 +34,6 @@
                         <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i>Citizen Management</button>
                         <div id="Demo3" class="w3-hide w3-container">
                             <div class="w3-row-padding">
-                                {{--<br>--}}
-                                {{--<div class="w3-half">--}}
-                                    {{--<img src="/w3images/lights.jpg" style="width:100%" class="w3-margin-bottom">--}}
-                                {{--</div>--}}
-                                {{--<div class="w3-half">--}}
-                                    {{--<img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">--}}
-                                {{--</div>--}}
-                                {{--<div class="w3-half">--}}
-                                    {{--<img src="/w3images/mountains.jpg" style="width:100%" class="w3-margin-bottom">--}}
-                                {{--</div>--}}
-                                {{--<div class="w3-half">--}}
-                                    {{--<img src="/w3images/forest.jpg" style="width:100%" class="w3-margin-bottom">--}}
-                                {{--</div>--}}
-                                {{--<div class="w3-half">--}}
-                                    {{--<img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">--}}
-                                {{--</div>--}}
-                                {{--<div class="w3-half">--}}
-                                    {{--<img src="/w3images/snow.jpg" style="width:100%" class="w3-margin-bottom">--}}
-                                {{--</div>--}}
                             </div>
                         </div>
                     </div>
@@ -108,24 +71,26 @@
                     </div>
                 </div>
 
-
-
-
-
-
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card w3-round w3-white w3-center">
+                            <div class="w3-container">
+                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#removePoliceOfficer">
+                                        Remove Police Officer
+                                    </button></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- End Middle Column -->
             </div>
-
             <!-- Right Column -->
             <div class="w3-col m2">
                 <br>
-
                 <div class="w3-card w3-round w3-white w3-center">
                     <div class="w3-container">
 
-                        <div class="w3-row w3-opacity">
-
-                        </div>
+                        <a href="viewCrimeCategorySection" class="btn btn-primary" >Crime Categories</a>
                     </div>
                 </div>
                 <br>
@@ -160,10 +125,21 @@
                 <div class="modal-body">
                     <form method="POST" action="{{ route('registerPoliceOfficer') }}" enctype="multipart/form-data">
                         @csrf
-
-
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Full Name') }}</label>
+
+                            <div class="col-md-7">
+                                <input id="fullName" type="text" class="form-control{{ $errors->has('fullName') ? ' is-invalid' : '' }}" name="fullName" value="{{ old('fullName') }}" required autofocus>
+
+                                @if ($errors->has('fullName'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name with initials') }}</label>
 
                             <div class="col-md-7">
                                 <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
@@ -181,13 +157,35 @@
                             <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('NIC') }}</label>
 
                             <div class="col-md-7">
-                                <input id="nic" type="text" class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}" name="nic" value="{{ old('nic') }}" required autofocus>
+                                <input id="nic" type="text" pattern=".{10,12}" class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}" name="nic" value="{{ old('nic') }}" required autofocus>
 
                                 @if ($errors->has('nic'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('nic') }}</strong>
                                     </span>
                                 @endif
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="landNumber" class="col-md-4 col-form-label text-md-right">{{ __('Date of Birth') }}</label>
+
+                            <div class="col-md-7">
+                                <input id="dob" type="date" class="form-control" name="dob"  required autofocus>
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="landNumber" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
+
+                            <div class="col-md-3">
+                                <div class="radio">
+                                    <label><input type="radio" name="gender" value="Male" checked>Male</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="radio">
+                                    <label><input type="radio" name="gender" value="Female">Female</label>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -208,7 +206,7 @@
                             <label for="mobNumber" class="col-md-4 col-form-label text-md-right">{{ __('Mobile Number') }}</label>
 
                             <div class="col-md-7">
-                                <input id="mobNumber" type="text" class="form-control{{ $errors->has('mobNumber') ? ' is-invalid' : '' }}" name="mobNumber" value="{{ old('mobNumber') }}" required autofocus>
+                                <input id="mobNumber" type="text" maxlength="10" class="form-control{{ $errors->has('mobNumber') ? ' is-invalid' : '' }}" name="mobNumber" value="{{ old('mobNumber') }}" required autofocus>
 
                                 @if ($errors->has('mobNumber'))
                                     <span class="invalid-feedback" role="alert">
@@ -222,7 +220,7 @@
                             <label for="landNumber" class="col-md-4 col-form-label text-md-right">{{ __('Landline Number') }}</label>
 
                             <div class="col-md-7">
-                                <input id="landNumber" type="text" class="form-control{{ $errors->has('landNumber') ? ' is-invalid' : '' }}" name="landNumber" value="{{ old('landNumber') }}" required autofocus>
+                                <input id="landNumber" type="text" maxlength="10" class="form-control{{ $errors->has('landNumber') ? ' is-invalid' : '' }}" name="landNumber" value="{{ old('landNumber') }}" required autofocus>
 
                                 @if ($errors->has('landNumber'))
                                     <span class="invalid-feedback" role="alert">
@@ -254,42 +252,30 @@
                                     <option>Senior Deputy Inspector General of Police</option>
                                     <option>Deputy Inspector General of Police</option>
                                     <option>Senior Superintendent of Police</option>
-                                    <option>Senior Superintendent of Police</option>
+                                    <option>Superintendent of Police</option>
+                                    <option>Assistant Superintendent of Police</option>
+                                    <option>Chief Inspector of Police</option>
+                                    <option>Inspector of Police </option>
+                                    <option>Sub Inspector of Police</option>
                                 </select>
                             </div>
                         </div>
 
+                        <?php
+                        $policeOffice=db::table('police_offices')->get();
+                        ?>
                         <div class="form-group row">
                             <label for="policeOffice" class="col-md-4 col-form-label text-md-right">{{ __('Police Office') }}</label>
                             <div class="col-md-7">
-                                <select class="form-control" name="policeOffice" id="exampleFormControlSelect1">
-                                    <option>Ampara</option>
-                                    <option>Anuradhapura</option>
-                                    <option>Badulla</option>
-                                    <option>Batticaloa</option>
 
+                                <select class="form-control" name="policeOffice" id="exampleFormControlSelect1">
+                                    @foreach($policeOffice as $office)
+                                    <option>{{$office->OfficeName}}</option>
+                                    @endforeach
                                 </select>
+
                             </div>
                         </div>
-
-
-
-                        {{--<div class="form-group row">--}}
-                        {{--<label for="profileImage" class="col-md-4 col-form-label text-md-right">{{ __('Profile Image') }}</label>--}}
-
-                        {{--<div class="col-md-6">--}}
-                        {{--<input class="form-group mb-2" id="profileImage" type="file" name="profileImage" value="{{ old('profileImage') }}" required>--}}
-
-                        {{--@if ($errors->has('profileImage'))--}}
-                        {{--<span class="invalid-feedback" role="alert">--}}
-                        {{--<strong>{{ $errors->first('profileImage') }}</strong>--}}
-                        {{--</span>--}}
-                        {{--@endif--}}
-                        {{--</div>--}}
-                        {{--</div>--}}
-
-
-
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
@@ -303,35 +289,49 @@
                                 @endif
                             </div>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-7">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-7">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-
-
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {{--Remove police officer form--}}
+    <div class="modal fade" id="removePoliceOfficer" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div  class="modal-dialog modal-dialog-centered" role="document">
+            <div  class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerPoliceOfficer">Remove Police Officer</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="removeFormView" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('NIC') }}</label>
+
+                            <div class="col-md-7">
+                                <input id="nic" type="text" pattern=".{10,12}" class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}" name="nic" value="{{ old('nic') }}" required autofocus>
+
+                                @if ($errors->has('nic'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('nic') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Check') }}
                                 </button>
                             </div>
                         </div>
@@ -356,8 +356,9 @@
                     <form method="POST" action="{{ route('registerPoliceOffice') }}">
                         @csrf
 
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect1">District</label>
+                        <div class="form-group row">
+                            <label for="exampleFormControlSelect1" class="col-md-4 col-form-label text-md-left">District</label>
+                            <div class="col-md-7">
                             <select class="form-control" name="district" id="exampleFormControlSelect1">
                                 <option>Ampara</option>
                                 <option>Anuradhapura</option>
@@ -384,37 +385,35 @@
                                 <option>Rathnapura</option>
                                 <option>Trincomalee</option>
                                 <option>Vavuniya</option>
-
                             </select>
+                            </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect1">Office Area</label>
-                            <select class="form-control" name ="policeOfficeArea" id="exampleFormControlSelect1">
-                                <option>Ampara</option>
-                                <option>Anuradhapura</option>
-                                <option>Badulla</option>
-                                <option>Batticaloa</option>
-                                <option>Colombo</option>
-                                <option>Galle</option>
 
 
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect1">Office Type</label>
+                        <div class="form-group row">
+                            <label for="exampleFormControlSelect1" class="col-md-4 col-form-label text-md-left">Office Type</label>
+                            <div class="col-md-7">
                             <select class="form-control" name ="policeOfficeType" id="exampleFormControlSelect1">
                                 <option>Police Station</option>
                                 <option>Inspector General of Police Office</option>
                                 <option>Branch Office</option>
                                 <option>Division Office</option>
-
                             </select>
+                            </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="landNumber" class="col-md-4 col-form-label text-md-right">{{ __('Landline Number') }}</label>
+                            <label for="policeOfficeArea" class="col-md-4 col-form-label text-md-left">{{ __('Office Area') }}</label>
+
+                            <div class="col-md-7">
+                                <input id="policeOfficeArea" type="text" class="form-control" name="policeOfficeArea" value="{{ old('policeOfficeArea') }}" required autofocus>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="landNumber" class="col-md-4 col-form-label text-md-left">{{ __('Landline Number') }}</label>
 
                             <div class="col-md-7">
                                 <input id="landNumber" type="text" class="form-control{{ $errors->has('landNumber') ? ' is-invalid' : '' }}" name="landNumber" value="{{ old('landNumber') }}" required autofocus>
