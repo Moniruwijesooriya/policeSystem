@@ -15,10 +15,12 @@ class CreatePoliceOfficesTable extends Migration
     {
         Schema::create('police_offices', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('OfficeName');
             $table->string('district');
             $table->string('policeOfficeArea');
             $table->string('policeOfficeType');
             $table->string('landNumber');
+            $table->string('mainOfficer');
             $table->timestamps();
         });
     }

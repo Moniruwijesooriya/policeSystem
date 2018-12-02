@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEvidenceTable extends Migration
+class CreateEntryProgressesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateEvidenceTable extends Migration
      */
     public function up()
     {
-        Schema::create('evidence', function (Blueprint $table) {
-            $table->increments('evidenceId');
+        Schema::create('entry_progresses', function (Blueprint $table) {
             $table->string('entryID');
-            $table->string('witnessId');
-            $table->text('evidence_txt');
-            $table->text('evidence_image')->nullable();
-            $table->text('evidence_video')->nullable();
-            $table->text('citizenView');
+            $table->string('progress');
+            $table->string('policeOfficerName');
+            $table->string('officerNic');
+            $table->string('rank');
+            $table->string('policeOffice');
+            $table->string('role');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ class CreateEvidenceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('evidence');
+        Schema::dropIfExists('entry_progresses');
     }
 }

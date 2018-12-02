@@ -89,40 +89,10 @@ use Illuminate\Support\Facades\DB;
             <div class="w3-col m7">
 
                 <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-
-                    <img src="/img/" alt="" class="w3-left w3-circle w3-margin-right" style="width:60px">
-                    <span class="w3-right w3-opacity">Colombo,2 June 2018</span>
-                    <h4>Roberry</h4><br>
-                    <hr class="w3-clear">
-                    <p>There is a roberry incident at colombo wellawatha.</p>
-                    <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-hand-o-right"></i>  Follow Case</button>
-                    <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-file-o"></i>  Submit Evidence</button>
-                </div>
-
-                <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                    <img src="/img/" alt="" class="w3-left w3-circle w3-margin-right" style="width:60px">
-                    <span class="w3-right w3-opacity">Jaffna,3rd september 2018</span>
-                    <h4>Missing</h4><br>
-                    <hr class="w3-clear">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-hand-o-right"></i>  Follow Case</button>
-                    <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-file-o"></i>  Submit Evidence</button>
-                </div>
-
-                <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                    <img src="/img/" alt="" class="w3-left w3-circle w3-margin-right" style="width:60px">
-                    <span class="w3-right w3-opacity">Galle,21st september 2018</span>
-                    <h4>Murder</h4><br>
-                    <hr class="w3-clear">
-                    {{--<p>Have you seen this?</p>--}}
-                    {{--<img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">--}}
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
                     <span class="w3-right w3-opacity">1 min</span>
                     <h4>John Doe</h4><br>
                     <hr class="w3-clear">
                     <p></p>
-
                     <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-hand-o-right"></i>  Follow Case</button>
                     <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-file-o"></i>  Submit Evidence</button>
                 </div>
@@ -139,8 +109,8 @@ use Illuminate\Support\Facades\DB;
                 </div>
 
                 <div class="row" style="margin-top:15px">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#citizenUpdateForm">
-                        Update Profile
+                    <button href="{{'viewCitizenEntry'}}"type="button" class="btn btn-primary">
+                        View Entry
                     </button>
                 </div>
 
@@ -153,133 +123,6 @@ use Illuminate\Support\Facades\DB;
         <!-- End Grid -->
 
         <!-- End Page Container -->
-    </div>
-    {{--Citizen Update form--}}
-    <div class="modal fade" id="citizenUpdateForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div  class="modal-dialog modal-dialog-centered" role="document">
-            <div  class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="registerPoliceOfficer">Update Profile</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="{{ route('registerPoliceOfficer') }}" enctype="multipart/form-data">
-                        @csrf
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Full Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="fullName" type="text" class="form-control" name="fullName" value="{{$citizenDetails->fullName}}" readonly>
-
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name with initials') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{$citizenDetails->name}}" readonly>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row">
-                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('NIC') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="nic" type="text" pattern=".{10,12}" class="form-control" name="nic" value="{{$citizenDetails->nic}}" readonly>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="homeAddress" class="col-md-4 col-form-label text-md-right">{{ __('Home Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="homeAddress" type="text" class="form-control" name="homeAddress" value="{{$citizenDetails->address}}" required autofocus>
-
-                            </div>
-                        </div>
-
-                        <?php
-                        $policeOffice=db::table('police_offices')->get()->where('policeOfficeType',"Police Station");
-                        ?>
-                        <div class="form-group row">
-                            <label for="policeOffice" class="col-md-4 col-form-label text-md-right">{{ __('Nearest Police Station') }}</label>
-                            <div class="col-md-6">
-
-                                <select class="form-control" name="policeStation" id="exampleFormControlSelect1">
-                                    <option>{{$citizenDetails->policeOffice}}</option>
-                                    @foreach($policeOffice as $office)
-                                        <option>{{$office->OfficeName}}</option>
-                                    @endforeach
-                                </select>
-
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="profession" class="col-md-4 col-form-label text-md-right">{{ __('Profession') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="profession" type="text" class="form-control" name="profession" value="{{$citizenDetails->profession}}" required autofocus>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="mobNumber" class="col-md-4 col-form-label text-md-right">{{ __('Mobile Number') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="mobNumber" type="text" maxlength="10" class="form-control" name="mobNumber" value="{{$citizenDetails->mobileNumber}}" required autofocus>
-
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="landNumber" class="col-md-4 col-form-label text-md-right">{{ __('Landline Number') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="landNumber" type="text" maxlength="10" class="form-control" name="landNumber" value="{{$citizenDetails->landLineNumber}}" required autofocus>
-
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{$citizenDetails->email}}" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input  onkeyup="validatePassword()" id="confirm_password" type="password" class="form-control" name="confirm_password" required>
-                            </div>
-                        </div>
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Update') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-        </div>
     </div>
     {{--Submit crime entry form--}}
     <div class="modal fade" id="submitCrimeEntry" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -349,17 +192,17 @@ use Illuminate\Support\Facades\DB;
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Complaint</label>
-                            <textarea class="form-control" name="complaintText" rows="3"></textarea>
+                            <textarea class="form-control" name="complaintText" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Evidences</label>
-                            <textarea class="form-control" name="evidences"  rows="2"></textarea>
+                            <textarea class="form-control" name="evidences" id="exampleFormControlTextarea1" rows="2"></textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="suspects">Suspects</label>
-                            <textarea class="form-control" name="suspects" rows="2"></textarea>
+                            <textarea class="form-control" name="suspects" id="exampleFormControlTextarea1" rows="2"></textarea>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -406,17 +249,6 @@ use Illuminate\Support\Facades\DB;
                 x.className = x.className.replace(" w3-show", "");
             }
         }
-        var password = document.getElementById("password")
-            , confirm_password = document.getElementById("confirm_password");
-
-        function validatePassword(){
-            if(password.value != confirm_password.value) {
-                confirm_password.setCustomValidity("Passwords Don't Match");
-            } else {
-                confirm_password.setCustomValidity('');
-            }
-        }
-
     </script>
 
 
