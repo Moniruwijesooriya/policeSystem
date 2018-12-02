@@ -111,6 +111,68 @@
                     </div>
                 </div>
 
+                
+
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card w3-round w3-white w3-center">
+                            <div class="w3-container">
+                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOffice">
+                                        Update the Progress of the Entry
+                                    </button></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card w3-round w3-white w3-center">
+                            <div class="w3-container">
+                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOffice">
+                                       Post Public Crime Posts
+                                    </button></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card w3-round w3-white w3-center">
+                            <div class="w3-container">
+                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOffice">
+                                        Update Account
+                                    </button></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card w3-round w3-white w3-center">
+                            <div class="w3-container">
+                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOffice">
+                                        View Public Crime Post
+                                    </button></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card w3-round w3-white w3-center">
+                            <div class="w3-container">
+                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOffice">
+                                        Update Citizen Crime List
+                                    </button></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- End Middle Column -->
             </div>
 
