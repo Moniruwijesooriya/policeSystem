@@ -230,19 +230,22 @@ use Illuminate\Support\Facades\DB;
                         @csrf
                         <div class="form-group row">
                             <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Title') }}</label>
-                            <div class="col-md-6">
-                                <input id="title" type="text" class="form-control" name="name" placeholder="Title of the Post" required autofocus>
+                            <div class="col-md-8">
+                                <input id="title" type="text" class="form-control" name="title" placeholder="Title of the Post" required autofocus>
                                 <input type="hidden" name="entryId" value="{{$entry->entryID}}">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1">Content</label>
-                            <textarea class="form-control" name="complaintText" rows="3"></textarea>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Content</label>
+                            <div class="col-md-8">
+                                <textarea class="form-control" name="postContent" rows="3"></textarea>
+                            </div>
+
                         </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Check') }}
+                                    {{ __('Post') }}
                                 </button>
                             </div>
                         </div>

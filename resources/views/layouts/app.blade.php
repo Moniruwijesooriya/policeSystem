@@ -210,7 +210,6 @@ use Illuminate\Support\Facades\DB;
                             </div>
                         </li>
 
-
                         @endguest
                     </ul>
             </div>
