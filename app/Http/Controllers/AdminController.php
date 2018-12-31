@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CrimeCategories;
 use App\PoliceOffice;
 use Illuminate\Http\Request;
 use App\User;
@@ -92,6 +93,23 @@ class AdminController extends Controller
 
     }
 
+    public function addCrimeCategories(Request $request){
+        $crime=new CrimeCategories();
+        $crime->crimeType=$request->crimeType;
+        $crime ->categoryType=$request-> categoryType;
+        $crime->description=$request->description;
+        $crime->policeView=$request->policeView;
+        $crime->citizenView=$request->citizenView;
 
+        $crime->save();
+
+        return redirect()->back();
+
+    }
+
+    public function viewCrimeTypeList(){
+        $crimeTypeList=db::table('crime_categories')->get();
+        return view('admin.crimeTypeList',compact('crimeTypeList'));
+    }
 
 }
