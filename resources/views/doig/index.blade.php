@@ -10,6 +10,8 @@
     <style>
         html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
     </style>
+
+
     <!-- Navbar -->
 
 
@@ -22,7 +24,7 @@
     </div>
 
     <!-- Page Container -->
-    <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+    <div class="container-fluid" style="max-width:1400px;margin-top:80px;background-color: dodgerblue; ">
         <!-- The Grid -->
         <div class="w3-row">
             <!-- Left Column -->
@@ -111,7 +113,7 @@
                     </div>
                 </div>
 
-                
+
 
                 <div class="w3-row-padding">
                     <div class="w3-col m12">
