@@ -32,7 +32,7 @@ use Illuminate\Support\Facades\DB;
     <!-- Navbar -->
 
     <!-- Page Container -->
-    <div class="container-fluid" style="max-width:1400px;background-color:darkcyan">
+    <div class="container-fluid" style="max-width:1400px;">
         <!-- The Grid -->
         <div class="row">
             <!-- Left Column -->
@@ -41,7 +41,7 @@ use Illuminate\Support\Facades\DB;
                 <div class="card">
                     <div class="bg-white">
                         <button onclick="myFunction('entryView')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Entries</button>
-                        <div id="entryView" class="w3-hide w3-container">
+                        <div id="entryView" class="w3-container">
                             <button class="btn-dark" style="margin: 5px;width: 100%;"><a href="viewNewEntries">New Entries</a></button>
                             <br>
                             <button class="btn-dark" style="margin: 5px;width: 100%;"><a href="viewOngoingEntries">Ongoing Entries</a></button>
@@ -61,8 +61,41 @@ use Illuminate\Support\Facades\DB;
             </div>
 
             <!-- Middle Column -->
-            <div class="col-md-5" style="margin-right: 40px;margin-left: 20px;margin-bottom: 10px">
+            <div class="col-md-8" style="margin-right: 40px;margin-left: 20px;margin-bottom: 10px">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>{{$type}}</h2>
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input class="form-control" id="myInput" type="text" placeholder="Search...">
+                        <br>
+                    </div>
+                </div>
 
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Entry ID</th>
+                        <th scope="col">Complainant NIC</th>
+                        <th scope="col">Complaint Category</th>
+                        <th scope="col">Date</th>
+
+                    </tr>
+                    </thead>
+                    <tbody id="myTable">
+                    @foreach($entries as $entry)
+                        <tr>
+                            <td>{{$entry->entryID}}</td>
+                            <td>{{$entry->complainantID}}</td>
+                            <td>{{$entry->complaintCategory}}</td>
+                            <td>{{$entry->created_at}}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
 
                 <!-- End Middle Column -->
             </div>
@@ -111,7 +144,15 @@ use Illuminate\Support\Facades\DB;
                 x.className = x.className.replace(" w3-show", "");
             }
         }
-    </script>
 
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
 
 @endsection

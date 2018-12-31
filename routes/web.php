@@ -110,6 +110,13 @@ Route::get('/viewNewEntries',[
     'as'=>'NewEntries'
 ])->middleware('auth');
 
+Route::get('/viewOngoingEntries',[
+    'uses'=>'EntryController@viewOICOngoingEntries',
+    'as'=>'OngoingEntries'
+])->middleware('auth');
+
+
+
 
 
 //admin

@@ -26,37 +26,65 @@ class EntryController extends Controller
         $crimeEntry->complainantID=Auth::User()->nic;
         $crimeEntry->oicNotification="y";
         $crimeEntry->boicNotification="n";
+        $crimeEntry->status="new";
         $crimeEntry->progress="Entry is submitted to the ".$request->policeStation." Police Station";
         $crimeEntry->suspects=$request->suspects;
         $crimeEntry->evidences=$request->evidences;
+
 
         $crimeEntry->save();
         return redirect()->back();
     }
 
     public function acceptOICEntry(Request $request){
+
+        $nic=Auth::User()->nic;
+        $user=db::table('users')->where('Nic',$nic)->First();
+
         $evidence=new Evidence();
-        $evidence->entryId=$request->entryId;
+        $evidence->entryID=$request->entryID;
         $evidence->witnessId=Auth::User()->nic;
         $evidence->evidence_txt=$request->evidence;
         $evidence->citizenView="No";
 
         $evidence->save();
 
+        $progress=new EntryProgress();
+        $progress->entryID=$request->entryID;
+        $progress->progress=$request->initialProgress;
+        $progress->policeOfficerName=$user->name;
+        $progress->officerNic=$user->nic;
+        $progress->rank=$user->profession;
+        $progress->policeOffice=$user->policeOffice;
+        $progress->role=$user->role;
+
+        $progress->save();
+
         $suspects=new Suspect();
-        $suspects->entryId=$request->entryID;
+        $suspects->entryID=$request->entryID;
         $suspects->name=$request->suspects;
-        $nic=Auth::User()->nic;
-        $user=db::table('users')->where('Nic',$nic)->First();
+
         $suspects->userName=$user->name;
         $suspects->userNic=$nic;
         $suspects->userRole=$user->role;
 
+
         $suspects->save();
 
+        $progress=new EntryProgress();
+        $progress->entryID=$request->entryID;
+        $progress="Entry is forwarded to the ".$request->branch."of".$request->policeStation;
+        $progress->policeOfficerName=$user->name;
+        $progress->officerNic=$user->nic;
+        $progress->rank=$user->profession;
+        $progress->policeOffice=$user->policeOffice;
+        $progress->role=$user->role;
+
+        $progress->save();
+
         DB::table('entries')
-            ->where('entryID',$request->entryId)
-            ->update(['oicNotification'=>"n",'boicNotification'=>"y",'suspects'=>$request->suspects,'branch'=>$request->branch,'progress'=>$request->progress]);
+            ->where('entryID',$request->entryID)
+            ->update(['oicNotification'=>"n",'boicNotification'=>"y",'status'=>"ongoing",'suspects'=>$request->suspects,'branch'=>$request->branch,'progress']);
         return redirect('/OIC');
     }
     public function viewOICEntry(Request $request){
@@ -67,9 +95,17 @@ class EntryController extends Controller
     }
     public function viewOICNewEntries(Request $request){
 
-        $newEntries=db::table('entries')->where('oicNotification',"y")->get();
-        return view('entry.oicEntryListView',compact('newEntries'));
+        $entries=db::table('entries')->where('oicNotification',"y")->get();
+        $type="New Entries";
+        return view('entry.oicEntryListView',compact('entries','type'));
     }
+    public function viewOICOngoingEntries(Request $request){
+
+        $entries=db::table('entries')->where('status',"ongoing")->get();
+        $type="Ongoing Entries";
+        return view('entry.oicEntryListView',compact('entries','type'));
+    }
+
 
     public function acceptBOICEntry(Request $request){
 

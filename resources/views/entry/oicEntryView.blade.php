@@ -94,7 +94,9 @@ use Illuminate\Support\Facades\DB;
 
                                         <div class="col-md-6">
                                             <input type="text" class="form-control"value="{{ $entry->entryID }}" readonly>
-                                            <input type="hidden" name="entryId" value="{{ $entry->entryID }}">
+                                            <input type="hidden" name="entryID" value="{{ $entry->entryID }}">
+                                            <input type="hidden" name="policeStation" value="{{ $entry->nearestPoliceStation }}">
+                                            <input type="hidden" name="initialProgress" value="{{ $entry->progress }}">
                                         </div>
                                     </div>
                                     <div class="form-group row">
