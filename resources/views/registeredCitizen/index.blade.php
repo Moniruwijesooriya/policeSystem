@@ -48,7 +48,7 @@ use Illuminate\Support\Facades\DB;
                                 <form method="post" action="{{'viewCitizenEntry'}}">
                                     @csrf
                                     <input type="hidden" value="{{$entry->entryID}}" name="entryID">
-                                    <p><input type="submit" class="btn-link" value="Entry ID :{{$entry->entryID}}"></p>
+                                    <p><input type="submit" class="btn btn-primary" value="Entry ID :{{$entry->entryID}}"></p>
                                 </form>
                             @endforeach
                             {{--</div>--}}

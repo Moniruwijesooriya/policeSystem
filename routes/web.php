@@ -102,7 +102,14 @@ Route::post('/reviewCitizenRegistrationRequest',[
 
 //Oic
 Route::get('/test','OICController@test');
+
 Route::post('/createPost','PostsController@createPost');
+
+Route::get('/viewNewEntries',[
+    'uses'=>'EntryController@viewOICNewEntries',
+    'as'=>'NewEntries'
+])->middleware('auth');
+
 
 
 //admin

@@ -65,6 +65,11 @@ class EntryController extends Controller
         $suspects=db::table('suspects')->where('entryID',$request->entryID)->where('userRole',"citizen")->get();
         return view('entry/oicEntryView',compact('entry','evidences','suspects'));
     }
+    public function viewOICNewEntries(Request $request){
+
+        $newEntries=db::table('entries')->where('oicNotification',"y")->get();
+        return view('entry.oicEntryListView',compact('newEntries'));
+    }
 
     public function acceptBOICEntry(Request $request){
 

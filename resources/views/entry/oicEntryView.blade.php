@@ -133,16 +133,6 @@ use Illuminate\Support\Facades\DB;
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="Progress" class="col-md-4 col-form-label text-md-right">{{ __('Progress') }}</label>
-
-                                        <div class="col-md-6">
-                                            <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->progress }}</p>
-
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group row">
                                         <label class="col-md-4 col-form-label text-md-right">{{ __('Branch') }}</label>
                                         <div class="col-md-6">
                                             <select class="form-control" name ="branch" id="exampleFormControlSelect1">

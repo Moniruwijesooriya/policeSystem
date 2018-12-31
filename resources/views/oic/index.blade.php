@@ -57,9 +57,14 @@ use Illuminate\Support\Facades\DB;
                 <!-- Accordion -->
                 <div class="card">
                     <div class="bg-white">
-                        <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Investigation</button>
+                        <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>Entries</button>
                         <div id="Demo1" class="w3-hide w3-container">
-                            {{--<p>Some text..</p>--}}
+                            <button class="btn-dark" style="margin: 5px;width: 100%;"><a href="viewNewEntries">New Entries</a></button>
+                            <br>
+                            <button class="btn-dark" style="margin: 5px;width: 100%;"><a href="viewOngoingEntries">Ongoing Entries</a></button>
+                            <br>
+                            <button class="btn-dark" style="margin: 5px;width: 100%;"><a href="viewClosedEntries">Closed Entries</a></button>
+
                         </div>
                         <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Invetigation Branches</button>
                         <div id="Demo2" class="w3-hide w3-container">
