@@ -82,6 +82,28 @@ use Illuminate\Support\Facades\DB;
                         </div>
                     </div>
                 </div>
+
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card w3-round w3-white w3-center">
+                            <div class="w3-container">
+                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCrimeCategories">
+                                        Add Crime Categories
+                                    </button></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card w3-round w3-white w3-center">
+                            <div class="w3-container">
+                                <button class="btn-dark" style="margin-bottom: 5px;"><a href="viewCrimeTypeList">View Crime Types</a></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- End Middle Column -->
             </div>
             <!-- Right Column -->
@@ -439,6 +461,97 @@ use Illuminate\Support\Facades\DB;
             </div>
         </div>
     </div>
+    {{--Add crime categories form--}}
+    <div class="modal fade" id="addCrimeCategories" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div  class="modal-dialog modal-dialog-centered" role="document">
+            <div  class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCrimeCategories">Add Crime Categories  </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="addCrimeCategories">
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="crimeType" class="col-md-4 col-form-label text-md-left">{{ __('Crime Type') }}</label>
+
+                            <div class="col-md-7">
+                                <input id="crimeType" type="text" class="form-control" name="crimeType" value="{{ old('crimeType') }}" required autofocus>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="categoryType" class="col-md-4 col-form-label text-md-left">{{ __('Category Type') }}</label>
+
+                            <div class="col-md-7">
+                                <input id="categoryType" type="text" class="form-control" name="categoryType" value="{{ old('categoryType') }}" required autofocus>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="description" class="col-md-4 col-form-label text-md-left">{{ __('Description') }}</label>
+
+                            <div class="col-md-7">
+                                <textarea class="form-control" name="description"  rows="2"></textarea>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="categoryType" class="col-md-4 col-form-label text-md-left">{{ __('Police View') }}</label>
+
+                            <div class="col-md-2">
+                                <div class="radio">
+                                    <label><input type="radio" name="policeView" value="Yes" >Yes</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="radio">
+                                    <label><input type="radio" name="policeView" value="No">No</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="categoryType" class="col-md-4 col-form-label text-md-left">{{ __('Citizen View') }}</label>
+
+                            <div class="col-md-2">
+                                <div class="radio">
+                                    <label><input type="radio" name="citizenView" value="Yes">Yes</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="radio">
+                                    <label><input type="radio" name="citizenView" value="No">No</label>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Submit') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <br>
 
     <!-- Footer -->

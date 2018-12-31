@@ -119,6 +119,20 @@ Route::post('/removePoliceOfficer',[
     'as'=>'removePoliceOfficer'
 ])->middleware('auth');
 
+Route::post('/addCrimeCategories',[
+    'uses'=>'AdminController@addCrimeCategories',
+    'as'=>'addCrimeCategory'
+])->middleware('auth');
+
+Route::get('/viewCrimeTypeList',[
+    'uses'=>'AdminController@viewCrimeTypeList',
+    'as'=>'CrimeTypeList'
+])->middleware('auth');
+
+
+
+
+
 Route::post('/viewCrimeCategorySection',[
     'uses'=>'AdminController@viewCrimeCategorySection',
     'as'=>'viewCrimeCategorySection'
