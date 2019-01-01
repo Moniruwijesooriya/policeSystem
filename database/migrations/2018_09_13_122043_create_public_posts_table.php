@@ -17,9 +17,9 @@ class CreatePublicPostsTable extends Migration
             $table->increments('postId');
             $table->string('postedBy');
             $table->string('entryId');
-            $table->date('date');
-            $table->text('post');
-            $table->timestamp('created_at')->nullable();
+            $table->string('title');
+            $table->string('content');
+            $table->timestamps();
         });
     }
 

@@ -43,9 +43,9 @@ Route::post('/viewOICEntry',[
     'as'=>'viewOICEntry'
 ])->middleware('auth');
 
-Route::post('/acceptOICEntry',[
-    'uses'=>'EntryController@acceptOICEntry',
-    'as'=>'acceptOICEntry'
+Route::post('/entryOICAction',[
+    'uses'=>'EntryController@entryOICAction',
+    'as'=>'entryOICAction'
 ])->middleware('auth');
 
 Route::post('/viewBOICEntry',[
@@ -103,6 +103,21 @@ Route::post('/reviewCitizenRegistrationRequest',[
 //Oic
 Route::get('/test','OICController@test');
 
+Route::post('/createPost','PostsController@createPost');
+
+Route::get('/viewNewEntries',[
+    'uses'=>'EntryController@viewOICNewEntries',
+    'as'=>'NewEntries'
+])->middleware('auth');
+
+Route::get('/viewOngoingEntries',[
+    'uses'=>'EntryController@viewOICOngoingEntries',
+    'as'=>'OngoingEntries'
+])->middleware('auth');
+
+
+
+
 
 //admin
 Route::post('removeFormView','AdminController@removeFormView');
@@ -121,6 +136,7 @@ Route::get('/viewCrimeTypeList',[
     'as'=>'CrimeTypeList'
 ])->middleware('auth');
 
+
 Route::post('/deleteCrimeType',[
     'uses'=>'AdminController@deleteCrimeType',
     'as'=>'deleteCrimeType'
@@ -131,11 +147,6 @@ Route::post('/updateCrimeType',[
     'uses'=>'AdminController@updateCrimeType',
     'as'=>'updateCrimeType'
 ])->middleware('auth');
-
-
-
-
-
 
 Route::post('/viewCrimeCategorySection',[
     'uses'=>'AdminController@viewCrimeCategorySection',

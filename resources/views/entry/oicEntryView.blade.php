@@ -43,11 +43,8 @@ use Illuminate\Support\Facades\DB;
                         <button onclick="myFunction('evidencesList')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Evidences</button>
                         <div id="evidencesList" class="w3-hide w3-container">
                             <div class="form-group row">
-                                <?php
-                                $entryInfo=db::table('entries')->where('entryID',$entry->entryID)->First();
-                                ?>
                                 <div class="col-md-11">
-                                    <p contenteditable="false" class="w3-border w3-padding" >{{ $entryInfo->evidences }}</p>
+                                    <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->evidences }}</p>
                                     @foreach($evidences as $evidence)
                                         <p contenteditable="false" class="w3-border w3-padding" >{{ $evidence->evidence_txt }}</p>
                                     @endforeach
@@ -57,11 +54,8 @@ use Illuminate\Support\Facades\DB;
                         <button onclick="myFunction('suspectList')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i>Suspects</button>
                         <div id="suspectList" class="w3-hide w3-container">
                             <div class="form-group row">
-                                <?php
-                                $entryInfo=db::table('entries')->where('entryID',$entry->entryID)->First();
-                                ?>
                                 <div class="col-md-11">
-                                    <p contenteditable="false" class="w3-border w3-padding" >{{ $entryInfo->suspects }}</p>
+                                    <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->suspects }}</p>
                                     @foreach($suspects as $suspect)
                                         <p contenteditable="false" class="w3-border w3-padding" >{{ $suspect->name }}</p>
                                     @endforeach
@@ -71,9 +65,6 @@ use Illuminate\Support\Facades\DB;
                     </div>
                 </div>
                 <br>
-
-
-
 
                 <!-- End Left Column -->
             </div>
@@ -86,7 +77,7 @@ use Illuminate\Support\Facades\DB;
                             <div class="card-header">{{ __('Entry') }}</div>
 
                             <div class="card-body">
-                                <form method="post" action="{{ route('acceptOICEntry') }}" enctype="multipart/form-data">
+                                <form method="post" action="{{ route('entryOICAction') }}" enctype="multipart/form-data">
                                     @csrf
 
                                     <div class="form-group row">
@@ -94,7 +85,9 @@ use Illuminate\Support\Facades\DB;
 
                                         <div class="col-md-6">
                                             <input type="text" class="form-control"value="{{ $entry->entryID }}" readonly>
-                                            <input type="hidden" name="entryId" value="{{ $entry->entryID }}">
+                                            <input type="hidden" name="entryID" value="{{ $entry->entryID }}">
+                                            <input type="hidden" name="policeStation" value="{{ $entry->nearestPoliceStation }}">
+                                            <input type="hidden" name="initialProgress" value="{{ $entry->progress }}">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -132,16 +125,7 @@ use Illuminate\Support\Facades\DB;
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
-                                        <label for="Progress" class="col-md-4 col-form-label text-md-right">{{ __('Progress') }}</label>
-
-                                        <div class="col-md-6">
-                                            <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->progress }}</p>
-
-                                        </div>
-                                    </div>
-
-
+                                    @if($entry->status=="new")
                                     <div class="form-group row">
                                         <label class="col-md-4 col-form-label text-md-right">{{ __('Branch') }}</label>
                                         <div class="col-md-6">
@@ -152,6 +136,17 @@ use Illuminate\Support\Facades\DB;
                                             </select>
                                         </div>
                                     </div>
+                                    @endif
+
+                                    @if($entry->status=="ongoing")
+                                    <div class="form-group row">
+                                        <label class="col-md-4 col-form-label text-md-right">{{ __('Current Branch') }}</label>
+
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control"value="{{ $entry->branch }}" readonly>
+                                        </div>
+                                    </div>
+                                    @endif
 
                                     <div class="form-group row">
                                         <label class="col-md-4 col-form-label text-md-right">{{ __('Evidences') }}</label>
@@ -169,8 +164,21 @@ use Illuminate\Support\Facades\DB;
                                     </div>
 
                                     <div class="form-group row mb-0">
-                                        <div class="col-md-6 offset-md-6 col-xs-6"  >
-                                            <input type="submit" class="btn btn-primary">
+                                        @if($entry->status=="new")
+                                            <div class="col-md-6 offset-md-6 col-xs-6"  >
+                                                <input type="hidden" name="statusType" value="{{$entry->status}}">
+                                                <input type="submit" class="btn btn-primary" value="Accept and Forward">
+                                            </div>
+                                        @endif
+                                            @if($entry->status=="ongoing")
+                                                <div class="col-md-6 offset-md-6 col-xs-6"  >
+                                                    <input type="hidden" name="statusType" value="{{$entry->status}}">
+                                                    <input type="submit" class="btn btn-primary"  value="Submit">
+                                                </div>
+                                            @endif
+
+                                        <div class="col-md-3 col-xs-6"  >
+                                            <button  type="reset" class="btn btn-danger" value="cancel">Reset</button>
                                         </div>
                                     </div>
                                 </form>
@@ -194,11 +202,13 @@ use Illuminate\Support\Facades\DB;
                             <div class="card-header">{{ __('Progress') }}</div>
                             <div class="card-body">
                                 <div class="form-group row">
-                                    <?php
-                                    $progress=db::table('entries')->where('entryID',$entry->entryID)->First();
-                                    ?>
                                     <div class="col-md-11">
-                                        <p contenteditable="false" class="w3-border w3-padding" >{{ $progress->progress }}</p>
+                                        @if($entry->status=="new")
+                                        <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->progress }}</p>
+                                        @endif
+                                        @foreach($entryProgresses as $entryProgress)
+                                            <p contenteditable="false" class="w3-border w3-padding" >{{ $entryProgress->progress }}</p>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -230,19 +240,22 @@ use Illuminate\Support\Facades\DB;
                         @csrf
                         <div class="form-group row">
                             <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Title') }}</label>
-                            <div class="col-md-6">
-                                <input id="title" type="text" class="form-control" name="name" placeholder="Title of the Post" required autofocus>
+                            <div class="col-md-8">
+                                <input id="title" type="text" class="form-control" name="title" placeholder="Title of the Post" required autofocus>
                                 <input type="hidden" name="entryId" value="{{$entry->entryID}}">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1">Content</label>
-                            <textarea class="form-control" name="complaintText" rows="3"></textarea>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Content</label>
+                            <div class="col-md-8">
+                                <textarea class="form-control" name="postContent" rows="3"></textarea>
+                            </div>
+
                         </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Check') }}
+                                    {{ __('Post') }}
                                 </button>
                             </div>
                         </div>
