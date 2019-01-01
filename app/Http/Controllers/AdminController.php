@@ -112,4 +112,18 @@ class AdminController extends Controller
         return view('admin.crimeTypeList',compact('crimeTypeList'));
     }
 
+    public function deleteCrimeType(Request $request)
+    {
+        $crimeTypeList = db::table('crime_categories')->where('id', $request->crimeIdTemp)->delete();
+
+        if ($crimeTypeList) {
+            return redirect('/admin');
+        }
+    }
+
+    public function updateCrimeType(Request $request){
+
+        $crimeTypeList = db::table('crime_categories')->where('id',$request->crimeIdTemp)->First();
+        return view('admin.updateCrimeTypeForm',compact('crime'));
+    }
 }

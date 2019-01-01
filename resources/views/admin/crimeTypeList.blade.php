@@ -56,6 +56,7 @@ use Illuminate\Support\Facades\DB;
                 <td>{{$crimeType->policeView}}</td>
                 <td>{{$crimeType->citizenView}}</td>
                 <td><form action="updateCrimeType" method="post">
+                        @csrf
                         <input type="hidden" name="crimeIdTemp" value="{{$crimeType->id}}">
                         <button type="submit" class="btn btn-primary">
                             {{ __('Update') }}
@@ -63,11 +64,11 @@ use Illuminate\Support\Facades\DB;
 
                     </form>
                     <form action="deleteCrimeType" method="post">
+                        @csrf
                         <input type="hidden" name="crimeIdTemp" value="{{$crimeType->id}}">
                         <button type="submit" class="btn btn-primary">
                             {{ __('Delete') }}
                         </button>
-
                     </form>
                 </td>
 

@@ -121,6 +121,18 @@ Route::get('/viewCrimeTypeList',[
     'as'=>'CrimeTypeList'
 ])->middleware('auth');
 
+Route::post('/deleteCrimeType',[
+    'uses'=>'AdminController@deleteCrimeType',
+    'as'=>'deleteCrimeType'
+])->middleware('auth');
+
+
+Route::post('/updateCrimeType',[
+    'uses'=>'AdminController@updateCrimeType',
+    'as'=>'updateCrimeType'
+])->middleware('auth');
+
+
 
 
 
