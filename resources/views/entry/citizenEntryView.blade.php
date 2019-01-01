@@ -156,7 +156,7 @@ use Illuminate\Support\Facades\DB;
                                                 <input type="submit" class="btn btn-primary" value="Update">
                                             </div>
                                             <div class="col-md-3 col-xs-6"  >
-                                                <button  type="reset" class="btn btn-danger" value="cancel">Cancel</button>
+                                                <button  type="reset" class="btn btn-danger" value="cancel">Reset</button>
                                             </div>
                                         </div>
                                     </form>

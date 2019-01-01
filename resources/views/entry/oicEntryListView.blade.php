@@ -88,7 +88,12 @@ use Illuminate\Support\Facades\DB;
                     <tbody id="myTable">
                     @foreach($entries as $entry)
                         <tr>
-                            <td>{{$entry->entryID}}</td>
+                            <td><form action="viewOICEntry" method="post">
+                                    @csrf
+                                    <input type="hidden" name="entryID" value="{{$entry->entryID}}">
+                                    <input type="submit" value="{{$entry->entryID}}">
+                                </form>
+                            </td>
                             <td>{{$entry->complainantID}}</td>
                             <td>{{$entry->complaintCategory}}</td>
                             <td>{{$entry->created_at}}</td>

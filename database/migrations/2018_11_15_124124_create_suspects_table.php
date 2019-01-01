@@ -23,6 +23,8 @@ class CreateSuspectsTable extends Migration
             $table->string('userNic');
             $table->string('userRole');
             $table->string('officerRank')->nullable();
+            $table->string('policeView');
+            $table->string('citizenView');
 
             $table->timestamps();
         });

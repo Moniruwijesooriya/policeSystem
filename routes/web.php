@@ -43,9 +43,9 @@ Route::post('/viewOICEntry',[
     'as'=>'viewOICEntry'
 ])->middleware('auth');
 
-Route::post('/acceptOICEntry',[
-    'uses'=>'EntryController@acceptOICEntry',
-    'as'=>'acceptOICEntry'
+Route::post('/entryOICAction',[
+    'uses'=>'EntryController@entryOICAction',
+    'as'=>'entryOICAction'
 ])->middleware('auth');
 
 Route::post('/viewBOICEntry',[
@@ -135,10 +135,6 @@ Route::get('/viewCrimeTypeList',[
     'uses'=>'AdminController@viewCrimeTypeList',
     'as'=>'CrimeTypeList'
 ])->middleware('auth');
-
-
-
-
 
 Route::post('/viewCrimeCategorySection',[
     'uses'=>'AdminController@viewCrimeCategorySection',
