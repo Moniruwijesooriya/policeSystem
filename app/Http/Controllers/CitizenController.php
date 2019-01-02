@@ -68,4 +68,69 @@ class CitizenController extends Controller
         }
     }
 
+
+public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $citizen=User::find($id);
+        return view('auth.update')->with($citizen,'citizen');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $citizen = User::find($id);
+        $citizen->name = $request->name;
+        $citizen->nic = $request->nic;
+        $citizen->address = $request->homeAddress;
+        $citizen->mobileNumber = $request->mobNumber;
+        $citizen->landLineNumber = $request->landNumber;
+        $citizen->profession = $request->profession;
+        $citizen->email = $request->email;
+        $citizen->gender = $request->gender;
+        $citizen->dob = $request->dob;
+        $citizen->fullName=$request->fullName;
+        $citizen->policeOffice=$request->policeStation;
+        $citizen->save();
+        return redirect('index.blade');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+
 }
