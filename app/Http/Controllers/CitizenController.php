@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Types\Null_;
 
 
 class CitizenController extends Controller
@@ -104,22 +105,12 @@ public function store(Request $request)
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function citizenInfoUpdate(Request $request)
     {
-        $citizen = User::find($id);
-        $citizen->name = $request->name;
-        $citizen->nic = $request->nic;
-        $citizen->address = $request->homeAddress;
-        $citizen->mobileNumber = $request->mobNumber;
-        $citizen->landLineNumber = $request->landNumber;
-        $citizen->profession = $request->profession;
-        $citizen->email = $request->email;
-        $citizen->gender = $request->gender;
-        $citizen->dob = $request->dob;
-        $citizen->fullName=$request->fullName;
-        $citizen->policeOffice=$request->policeStation;
-        $citizen->save();
-        return redirect('index.blade');
+        DB::table('users')
+            ->where('nic',$request->nic)
+            ->update(['email_verified_at'=>Null,'verified'=>'No','address'=>$request->homeAddress,'policeOffice'=>$request->policeStation,'mobileNumber'=>$request->mobNumber,'landLineNumber'=>$request->landNumber,'email'=>$request->email]);
+        return redirect('/RegisteredCitizen');
     }
 
     /**
@@ -130,7 +121,7 @@ public function store(Request $request)
      */
     public function destroy($id)
     {
-        //
+
     }
 
 }

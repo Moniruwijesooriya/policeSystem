@@ -104,10 +104,13 @@ use Illuminate\Support\Facades\DB;
                             </div>
                         </li>
                         @if(Auth::User()->role=='Officer Incharge of Police Station')
+                            <?php
+                            $policeOfficer=db::table('users')->where('nic',Auth::User()->nic)->first();
+                            ?>
                             <li>
                                 <div class="w3-dropdown-hover w3-hide-small">
                                     <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i><span class="w3-badge w3-right w3-small w3-green">{{db::table('users')->where('verified',"No")->where('role',"citizen")->count()}}</span>
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i><span class="w3-badge w3-right w3-small w3-green">{{db::table('users')->where('verified',"No")->where('role',"citizen")->where('policeOffice',$policeOfficer->policeOffice)->count()}}</span>
                                         </button>
                                         <?php
                                         $count=db::table('users')->where('verified',"No")->where('role',"citizen")->count();
