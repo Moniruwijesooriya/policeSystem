@@ -135,8 +135,10 @@ class EntryController extends Controller
         return view('entry/oicEntryView',compact('entry','evidences','suspects','entryProgresses'));
     }
     public function viewOICNewEntries(){
+        $nic=Auth::User()->nic;
+        $user=db::table('users')->where('Nic',$nic)->First();
 
-        $entries=db::table('entries')->where('oicNotification',"y")->get();
+        $entries=db::table('entries')->where('oicNotification',"y")->where('nearestPoliceStation',$user->policeOffice)->get();
         $type="New Entries";
         return view('entry.oicEntryListView',compact('entries','type'));
     }
