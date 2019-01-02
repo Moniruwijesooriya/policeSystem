@@ -118,6 +118,18 @@ use Illuminate\Support\Facades\DB;
                     </button>
                 </div>
 
+                <div class="row" style="margin-top:15px">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deactivateaccountform">
+                        Deactivate Account
+                    </button>
+                </div>
+
+                <div class="row" style="margin-top:15px">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changepasswordform">
+                        change password
+                    </button>
+                </div>
+
             </div>
 
 
@@ -128,6 +140,120 @@ use Illuminate\Support\Facades\DB;
 
         <!-- End Page Container -->
     </div>
+
+
+    {{--Change Password--}}
+    <div class="modal fade" id="changepasswordform" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div  class="modal-dialog modal-dialog-centered" role="document">
+            <div  class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerPoliceOfficer">Change Password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="citizenPasswordChange" >
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('NIC') }}</label>
+
+                            <div class="col-md-6">
+                                <input type="hidden" name="nic" value="{{$citizenDetails->nic}}">
+                                <input id="nic" type="text" pattern=".{10,12}" name="tmp" class="form-control"  value="{{$citizenDetails->nic}}" readonly>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Current Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" name="currentpassword" required>
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('New Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" name="newpassword" required>
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" name="confirmpassword" required>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Change Passord') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    {{--Deactivate Account--}}
+    <div class="modal fade" id="deactivateaccountform" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div  class="modal-dialog modal-dialog-centered" role="document">
+            <div  class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerPoliceOfficer">Deactivate Account</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="citizenAccountDeactivate" >
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('NIC') }}</label>
+
+                            <div class="col-md-6">
+                                <input type="hidden" name="nic" value="{{$citizenDetails->nic}}">
+                                <input id="nic" type="text" pattern=".{10,12}" name="tmp" class="form-control"  value="{{$citizenDetails->nic}}" readonly>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" name="password" required>
+
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Deactivate Account') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     {{--Citizen Update form--}}
     <div class="modal fade" id="citizenUpdateForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div  class="modal-dialog modal-dialog-centered" role="document">
@@ -139,7 +265,7 @@ use Illuminate\Support\Facades\DB;
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="citizenInfoUpdate" enctype="multipart/form-data">
+                    <form method="POST" action="oicPasswordChange" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Full Name') }}</label>

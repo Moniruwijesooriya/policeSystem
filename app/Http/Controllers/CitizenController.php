@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\Types\Null_;
+use function PHPSTORM_META\elementType;
 
 
 class CitizenController extends Controller
@@ -119,8 +120,31 @@ public function store(Request $request)
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+
+
+    public function citizenAccountDeactivate(Request $request)
     {
+        $userpassword=Hash::make("123123");
+        $xuserpassword=Hash::make("123123");
+        $citizenDetails = db::table('users')->where('nic',$request->nic)->First();
+        if ($xuserpassword==$userpassword){
+            DB::table('users')->where('nic',$request->nic)->delete();
+            return redirect('/');
+        }
+        else{
+            return redirect('/RegisteredCitizen');
+        }
+
+    }
+
+    public function citizenPasswordChange(Request $request){
+        $currentpassword=Hash::make($request->currentpassword);
+        $newpassword=Hash::make($request->newpassword);
+        $confirmpassword=Hash::make($request->confirmpassword);
+
+
+        $citizenDetails = db::table('users')->where('nic',$request->nic)->First();
+
 
     }
 
