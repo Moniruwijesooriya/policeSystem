@@ -86,31 +86,8 @@ use Illuminate\Support\Facades\DB;
 
             <!-- Right Column -->
             <div class="col-md-3">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card rounded bg-white align-content-center">
-                            <div class="w3-container">
-                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-                                        View Crime Entries
-                                    </button></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="w3-row-padding">
-                    <div class="w3-col m12">
-                        <div class="w3-card w3-round w3-white w3-center">
-                            <div class="w3-container">
-                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOffice">
-                                        Call Up relevant Branches
-                                    </button></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
+                
                 <div class="w3-row-padding">
                     <div class="w3-col m12">
                         <div class="w3-card w3-round w3-white w3-center">
@@ -133,6 +110,7 @@ use Illuminate\Support\Facades\DB;
                         </div>
                     </div>
                 </div>
+
                 <br>
 
                 {{--<div class="w3-card w3-round w3-white w3-padding-16 w3-center">--}}

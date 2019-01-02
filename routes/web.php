@@ -138,6 +138,11 @@ Route::post('/oicPasswordChange',[
 ]);
 
 
+Route::get('/viewClosedEntries',[
+    'uses'=>'EntryController@viewClosedEntries',
+    'as'=>'ClosedEntries'
+])->middleware('auth');
+
 
 
 

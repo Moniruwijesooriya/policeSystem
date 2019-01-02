@@ -81,6 +81,7 @@ use Illuminate\Support\Facades\DB;
                         <th scope="col">Entry ID</th>
                         <th scope="col">Complainant NIC</th>
                         <th scope="col">Complaint Category</th>
+                        <th scope="col">Complaint</th>
                         <th scope="col">Date</th>
 
                     </tr>
@@ -96,6 +97,7 @@ use Illuminate\Support\Facades\DB;
                             </td>
                             <td>{{$entry->complainantID}}</td>
                             <td>{{$entry->complaintCategory}}</td>
+                            <td>{{$entry->complaint}}</td>
                             <td>{{$entry->created_at}}</td>
                         </tr>
                     @endforeach
