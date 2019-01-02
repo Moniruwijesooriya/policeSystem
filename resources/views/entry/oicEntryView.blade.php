@@ -43,10 +43,14 @@ use Illuminate\Support\Facades\DB;
                         <button onclick="myFunction('evidencesList')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Evidences</button>
                         <div id="evidencesList" class="w3-hide w3-container">
                             <div class="form-group row">
-                                <div class="col-md-11">
-                                    <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->evidences }}</p>
+                                <div class="col-md-12">
+                                    <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->evidences }}<br>Submitted by : <a href="">{{ $entry->complainantID }}</a></p>
                                     @foreach($evidences as $evidence)
-                                        <p contenteditable="false" class="w3-border w3-padding" >{{ $evidence->evidence_txt }}</p>
+                                        <p contenteditable="false" class="w3-border w3-padding" >{{ $evidence->evidence_txt }}<br>Submitted by : <a href="">{{ $evidence->witnessId }}</a>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewPerson">
+                                                {{ $evidence->witnessId }}
+                                            </button>
+                                        </p>
                                     @endforeach
                                 </div>
                             </div>
@@ -244,6 +248,39 @@ use Illuminate\Support\Facades\DB;
     </div>
 
     <br>
+    {{--viewUserProfile--}}
+    {{--<div class="modal fade" id="viewProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">--}}
+        {{--<div  class="modal-dialog modal-dialog-centered" role="document">--}}
+            {{--<div  class="modal-content">--}}
+                {{--<div class="modal-header">--}}
+                    {{--<h5 class="modal-title" id="registerPoliceOfficer">Remove Police Officer</h5>--}}
+                    {{--<button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+                        {{--<span aria-hidden="true">&times;</span>--}}
+                    {{--</button>--}}
+                {{--</div>--}}
+                {{--<div class="modal-body">--}}
+                    {{--<form method="post" action="removeFormView" enctype="multipart/form-data">--}}
+                        {{--@csrf--}}
+                        {{--<div class="form-group row">--}}
+                            {{--<label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('NIC') }}</label>--}}
+
+                            {{--<div class="col-md-7">--}}
+                                {{--<input id="name" type="text" class="form-control" name="name" value="{{ $evidence->witnessId }}" readonly></div>--}}
+                        {{--</div>--}}
+                        {{--<div class="form-group row mb-0">--}}
+                            {{--<div class="col-md-6 offset-md-4">--}}
+                                {{--<button type="submit" class="btn btn-primary">--}}
+                                    {{--{{ __('Check') }}--}}
+                                {{--</button>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</form>--}}
+                {{--</div>--}}
+
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+
     {{--Create Post--}}
     <div class="modal fade" id="createPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div  class="modal-dialog modal-dialog-centered" role="document">
