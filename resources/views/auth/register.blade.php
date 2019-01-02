@@ -100,7 +100,6 @@ use Illuminate\Support\Facades\DB;
                             <div class="col-md-6">
 
                                 <select class="form-control" name="policeStation" id="exampleFormControlSelect1" required autofocus>
-                                    <option>Admin</option>
                                     @foreach($policeOffice as $office)
                                         <option>{{$office->OfficeName}}</option>
                                     @endforeach

@@ -87,6 +87,9 @@ Route::get('verify/{token}','verifyController@verifyEmail');
 //citizen
 Route::get('/RegisteredCitizen','CitizenLoginController@index')->middleware('verified');
 Route::get('updateFormView','CitizenController@updateFormView');
+Route::post('citizenInfoUpdate','CitizenController@citizenInfoUpdate');
+
+
 
 
 Route::post('/updateFormView/{id}','CitizenController@edit');
