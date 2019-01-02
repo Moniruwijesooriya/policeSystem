@@ -143,9 +143,9 @@ Route::post('/deleteCrimeType',[
 ])->middleware('auth');
 
 
-Route::post('/updateCrimeType',[
-    'uses'=>'AdminController@updateCrimeType',
-    'as'=>'updateCrimeType'
+Route::post('/updateViewCrimeType',[
+    'uses'=>'AdminController@updateViewCrimeType',
+    'as'=>'updateViewCrimeType'
 ])->middleware('auth');
 
 Route::post('/viewCrimeCategorySection',[
