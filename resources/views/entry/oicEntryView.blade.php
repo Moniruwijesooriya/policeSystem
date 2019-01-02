@@ -153,12 +153,31 @@ use Illuminate\Support\Facades\DB;
                                         <div class="col-md-6">
                                             <textarea class="form-control" name="evidence" id="exampleFormControlTextarea1" rows="2"></textarea>
                                         </div>
+                                        <div class="form-check col-md-2">
+                                            <input type="checkbox" class="form-check-input" name="evidenceCitizenView" value="Yes" id="exampleCheck1">
+                                            <label class="form-check-label" for="exampleCheck1">Citizen View</label>
+                                        </div>
                                     </div>
 
                                     <div class="form-group row">
                                         <label class="col-md-4 col-form-label text-md-right">Suspects</label>
                                         <div class="col-md-6">
                                             <textarea class="form-control" name="suspects" id="exampleFormControlTextarea1" rows="2"></textarea>
+                                        </div>
+                                        <div class="form-check col-md-2">
+                                            <input type="checkbox" class="form-check-input" name="suspectCitizenView" value="Yes" id="exampleCheck1">
+                                            <label class="form-check-label" for="exampleCheck1">Citizen View</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-4 col-form-label text-md-right">Progress</label>
+                                        <div class="col-md-6">
+                                            <textarea class="form-control" name="entryProgress" id="exampleFormControlTextarea1" rows="2"></textarea>
+                                        </div>
+                                        <div class="form-check col-md-2">
+                                            <input type="checkbox" class="form-check-input" name="progressCitizenView" value="Yes" id="exampleCheck1">
+                                            <label class="form-check-label" for="exampleCheck1">Citizen View</label>
                                         </div>
 
                                     </div>

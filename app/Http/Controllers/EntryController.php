@@ -71,23 +71,53 @@ class EntryController extends Controller
                 ->update(['oicNotification'=>"n",'boicNotification'=>"y",'status'=>"ongoing",'branch'=>$request->branch]);
         }
 
-        $evidence=new Evidence();
-        $evidence->entryID=$request->entryID;
-        $evidence->witnessId=Auth::User()->nic;
-        $evidence->evidence_txt=$request->evidence;
-        $evidence->citizenView="No";
-        $evidence->policeView="Yes";
-        $evidence->save();
+        if($request->evidence!=null){
+            $evidence=new Evidence();
+            $evidence->entryID=$request->entryID;
+            $evidence->witnessId=Auth::User()->nic;
+            $evidence->evidence_txt=$request->evidence;
+            if ($request->evidenceCitizenView=="Yes"){
+                $evidence->citizenView="Yes";
+            }
+            else{
+                $evidence->citizenView="No";
+            }
+            $evidence->policeView="Yes";
+            $evidence->save();
 
-        $suspects=new Suspect();
-        $suspects->entryID=$request->entryID;
-        $suspects->name=$request->suspects;
-        $suspects->userName=$user->name;
-        $suspects->userNic=$nic;
-        $suspects->userRole=$user->role;
-        $suspects->citizenView="No";
-        $suspects->policeView="Yes";
-        $suspects->save();
+        }
+
+
+        if($request->suspects!=null){
+            $suspects=new Suspect();
+            $suspects->entryID=$request->entryID;
+            $suspects->name=$request->suspects;
+            $suspects->userName=$user->name;
+            $suspects->userNic=$nic;
+            $suspects->userRole=$user->role;
+            if ($request->suspectCitizenView=="Yes"){
+                $suspects->citizenView="Yes";
+            }
+            else{
+                $suspects->citizenView="No";
+            }
+            $suspects->policeView="Yes";
+            $suspects->save();
+        }
+
+        if($request->entryProgress!=null){
+            $progress=new EntryProgress();
+            $progress->entryID=$request->entryID;
+            $progress->progress=$request->entryProgress;
+            $progress->policeOfficerName=$user->name;
+            $progress->officerNic=$user->nic;
+            $progress->rank=$user->profession;
+            $progress->policeOffice=$user->policeOffice;
+            $progress->role=$user->role;
+            $progress->save();
+
+        }
+
 
         $entry=db::table('entries')->where('entryID',$request->entryID)->First();
         $evidences=db::table('evidence')->where('entryId',$request->entryID)->where('policeView',"Yes")->get();

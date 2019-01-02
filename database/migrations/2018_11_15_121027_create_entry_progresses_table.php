@@ -21,6 +21,8 @@ class CreateEntryProgressesTable extends Migration
             $table->string('rank');
             $table->string('policeOffice');
             $table->string('role');
+            $table->string('citizenView');
+            $table->string('policeView');
             $table->timestamps();
         });
     }
