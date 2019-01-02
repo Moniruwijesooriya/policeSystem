@@ -121,9 +121,16 @@ class AdminController extends Controller
         }
     }
 
-    public function updateCrimeType(Request $request){
+    public function updateViewCrimeType(Request $request){
 
         $crimeTypeList = db::table('crime_categories')->where('id',$request->crimeIdTemp)->First();
-        return view('admin.updateCrimeTypeForm',compact('crime'));
+        return view('admin.updateCrimeTypeForm',compact('crimeTypeList'));
+    }
+
+    public function updateCrimeType(Request $request){
+        DB::table('id')
+            ->where('id',$request->crimeIdTemp)
+            ->update(['oicNotification'=>"n",'boicNotification'=>"y",'status'=>"ongoing",'branch'=>$request->branch]);
+
     }
 }

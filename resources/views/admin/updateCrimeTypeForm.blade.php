@@ -6,61 +6,102 @@
                 <div class="card">
                     <div class="card-header">{{ __('Update Crime Type') }}</div>
 
-                    <div class="card-body">
-                        <form method="post" action="updateCrimeType" enctype="multipart/form-data">
-                            @csrf
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="updateCrimeType">
+                        @csrf
 
-                            <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Full Name') }}</label>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" value="{{  $crime->crimeType }}" readonly>
-                                </div>
+                        <div class="form-group row">
+                            <label for="crimeType" class="col-md-4 col-form-label text-md-left">{{ __('Crime Type') }}</label>
+
+                            <div class="col-md-7">
+                                <input id="crimeType" type="text" class="form-control" name="crimeType" value="{{ $crimeTypeList->crimeType }}" required autofocus>
+
                             </div>
+                        </div>
 
-                            {{--<div class="form-group row">--}}
-                                {{--<label for="crimeType" class="col-md-4 col-form-label text-md-left">{{ __('Crime Type') }}</label>--}}
+                        <div class="form-group row">
+                            <label for="categoryType" class="col-md-4 col-form-label text-md-left">{{ __('Category Type') }}</label>
 
-                                {{--<div class="col-md-7">--}}
-                                    {{--<input id="crimeType" type="text" class="form-control" name="crimeType" value="{{ old('crimeType') }}" required autofocus>--}}
+                            <div class="col-md-7">
+                                <input id="categoryType" type="text" class="form-control" name="categoryType" value="{{ $crimeTypeList->categoryType }}" required autofocus>
 
-                                {{--</div>--}}
-                            {{--</div>--}}
+                            </div>
+                        </div>
 
-                            {{--<div class="form-group row">--}}
-                                {{--<label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name with initials') }}</label>--}}
+                        <div class="form-group row">
+                            <label for="description" class="col-md-4 col-form-label text-md-left">{{ __('Description') }}</label>
 
-                                {{--<div class="col-md-6">--}}
-                                    {{--<input type="text" class="form-control" value="{{ $crime->name }}" readonly>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
+                            <div class="col-md-7">
+                                <textarea class="form-control" name="description"  rows="2">{{ $crimeTypeList->description }}</textarea>
 
-                            {{--<div class="form-group row">--}}
-                                {{--<label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('NIC') }}</label>--}}
+                            </div>
+                        </div>
 
-                                {{--<div class="col-md-6">--}}
-                                    {{--<input type="text" class="form-control" name="nic" value="{{ $crime->nic }}" readonly>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                            {{--<div class="form-group row">--}}
-                                {{--<label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Date of Birth') }}</label>--}}
-                                {{--<div class="col-md-6">--}}
-                                    {{--<input type="text" class="form-control" value="{{ $crime->dob }}" readonly>--}}
+                        <div class="form-group row">
+                            <label for="categoryType" class="col-md-4 col-form-label text-md-left">{{ __('Police View') }}</label>
+                            @if($crimeTypeList->policeView=="Yes")
+                                <div class="col-md-2">
+                                    <div class="radio">
+                                        <label><input type="radio" name="policeView"  checked>Yes</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="radio">
+                                        <label><input type="radio" name="policeView" >No</label>
+                                    </div>
+                                </div>
+                                @endif
+                            @if($crimeTypeList->policeView=="No")
+                                <div class="col-md-2">
+                                    <div class="radio">
+                                        <label><input type="radio" name="policeView"  >Yes</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="radio">
+                                        <label><input type="radio" name="policeView" checked>No</label>
+                                    </div>
+                                </div>
+                            @endif
 
-                                {{--</div>--}}
-                            {{--</div>--}}
-                            {{--<div class="form-group row">--}}
-                                {{--<label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>--}}
-                                {{--<div class="col-md-6">--}}
-                                    {{--<input type="text" class="form-control" value="{{ $crime->gender }}" readonly>--}}
 
-                                {{--</div>--}}
-                            {{--</div>--}}
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="categoryType" class="col-md-4 col-form-label text-md-left">{{ __('Citizen View') }}</label>
+                            @if($crimeTypeList->citizenView=="Yes")
+                                <div class="col-md-2">
+                                    <div class="radio">
+                                        <label><input type="radio" name="citizenView"  checked>Yes</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="radio">
+                                        <label><input type="radio" name="citizenView" >No</label>
+                                    </div>
+                                </div>
+                            @endif
+                            @if($crimeTypeList->citizenView=="No")
+                                <div class="col-md-2">
+                                    <div class="radio">
+                                        <label><input type="radio" name="citizenView"  >Yes</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="radio">
+                                        <label><input type="radio" name="citizenView" checked>No</label>
+                                    </div>
+                                </div>
+                            @endif
+
+                        </div>
 
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Remove') }}
+                                        {{ __('Update') }}
                                     </button>
                                 </div>
                             </div>
