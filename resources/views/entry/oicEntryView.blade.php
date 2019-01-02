@@ -198,6 +198,20 @@ use Illuminate\Support\Facades\DB;
                                                     <input type="hidden" name="statusType" value="{{$entry->status}}">
                                                     <input type="submit" class="btn btn-primary"  value="Submit">
                                                 </div>
+                                                <div class="col-md-6 offset-md-6 col-xs-6"  >
+                                                    <input type="hidden" name="statusType" value="closed">
+                                                    <input type="submit" class="btn btn-primary"  value="Close Entry">
+                                                </div>
+                                                <div class="col-md-6 offset-md-6 col-xs-6"  >
+                                                    <input type="hidden" name="statusType" value="closed">
+                                                    <input type="submit" class="btn btn-primary"  value="Forward">
+                                                </div>
+                                            @endif
+                                            @if($entry->status=="closed")
+                                                <div class="col-md-6 offset-md-6 col-xs-6"  >
+                                                    <input type="hidden" name="statusType" value="closed">
+                                                    <input type="submit" class="btn btn-primary"  value="Forward">
+                                                </div>
                                             @endif
 
                                         <div class="col-md-3 col-xs-6"  >
@@ -249,37 +263,37 @@ use Illuminate\Support\Facades\DB;
 
     <br>
     {{--viewUserProfile--}}
-    {{--<div class="modal fade" id="viewProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">--}}
-        {{--<div  class="modal-dialog modal-dialog-centered" role="document">--}}
-            {{--<div  class="modal-content">--}}
-                {{--<div class="modal-header">--}}
-                    {{--<h5 class="modal-title" id="registerPoliceOfficer">Remove Police Officer</h5>--}}
-                    {{--<button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-                        {{--<span aria-hidden="true">&times;</span>--}}
-                    {{--</button>--}}
-                {{--</div>--}}
-                {{--<div class="modal-body">--}}
-                    {{--<form method="post" action="removeFormView" enctype="multipart/form-data">--}}
-                        {{--@csrf--}}
-                        {{--<div class="form-group row">--}}
-                            {{--<label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('NIC') }}</label>--}}
+    <div class="modal fade" id="viewProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div  class="modal-dialog modal-dialog-centered" role="document">
+            <div  class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerPoliceOfficer">Remove Police Officer</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="removeFormView" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('NIC') }}</label>
 
-                            {{--<div class="col-md-7">--}}
+                            <div class="col-md-7">
                                 {{--<input id="name" type="text" class="form-control" name="name" value="{{ $evidence->witnessId }}" readonly></div>--}}
-                        {{--</div>--}}
-                        {{--<div class="form-group row mb-0">--}}
-                            {{--<div class="col-md-6 offset-md-4">--}}
-                                {{--<button type="submit" class="btn btn-primary">--}}
-                                    {{--{{ __('Check') }}--}}
-                                {{--</button>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</form>--}}
-                {{--</div>--}}
+                        </div>
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Check') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
 
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
+            </div>
+        </div>
+    </div>
 
     {{--Create Post--}}
     <div class="modal fade" id="createPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

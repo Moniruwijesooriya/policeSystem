@@ -90,10 +90,6 @@ Route::get('updateFormView','CitizenController@updateFormView');
 Route::post('citizenInfoUpdate','CitizenController@citizenInfoUpdate');
 
 
-
-
-Route::post('/updateFormView/{id}','CitizenController@edit');
-
 Route::post('/updateCitizenEntry',[
     'uses'=>'EntryController@updateCitizenEntry',
     'as'=>'updateCitizenEntry'
@@ -122,6 +118,11 @@ Route::get('/viewOngoingEntries',[
     'as'=>'OngoingEntries'
 ])->middleware('auth');
 
+
+Route::get('/viewClosedEntries',[
+    'uses'=>'EntryController@viewClosedEntries',
+    'as'=>'ClosedEntries'
+])->middleware('auth');
 
 
 
