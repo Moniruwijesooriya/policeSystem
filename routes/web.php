@@ -87,6 +87,13 @@ Route::get('verify/{token}','verifyController@verifyEmail');
 //citizen
 Route::get('/RegisteredCitizen','CitizenLoginController@index')->middleware('verified');
 Route::get('updateFormView','CitizenController@updateFormView');
+Route::post('citizenInfoUpdate','CitizenController@citizenInfoUpdate');
+
+
+
+
+Route::post('/updateFormView/{id}','CitizenController@edit');
+
 Route::post('/updateCitizenEntry',[
     'uses'=>'EntryController@updateCitizenEntry',
     'as'=>'updateCitizenEntry'
@@ -152,5 +159,6 @@ Route::post('/viewCrimeCategorySection',[
     'uses'=>'AdminController@viewCrimeCategorySection',
     'as'=>'viewCrimeCategorySection'
 ])->middleware('auth');
+
 
 

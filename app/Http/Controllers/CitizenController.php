@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Types\Null_;
 
 
 class CitizenController extends Controller
@@ -66,6 +67,61 @@ class CitizenController extends Controller
             DB::table('users')->where('nic',$request->nic)->delete();
             return redirect('/OIC');
         }
+    }
+
+
+public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $citizen=User::find($id);
+        return view('auth.update')->with($citizen,'citizen');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function citizenInfoUpdate(Request $request)
+    {
+        DB::table('users')
+            ->where('nic',$request->nic)
+            ->update(['email_verified_at'=>Null,'verified'=>'No','address'=>$request->homeAddress,'policeOffice'=>$request->policeStation,'mobileNumber'=>$request->mobNumber,'landLineNumber'=>$request->landNumber,'email'=>$request->email]);
+        return redirect('/RegisteredCitizen');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+
     }
 
 }
