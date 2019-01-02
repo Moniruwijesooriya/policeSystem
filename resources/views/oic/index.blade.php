@@ -86,6 +86,31 @@ use Illuminate\Support\Facades\DB;
 
             <!-- Right Column -->
             <div class="col-md-3">
+
+                
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card w3-round w3-white w3-center">
+                            <div class="w3-container">
+                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateProfile">
+                                        Update Profile
+                                    </button></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card w3-round w3-white w3-center">
+                            <div class="w3-container">
+                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changepasswordform">
+                                        Change Password
+                                    </button></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <br>
 
                 {{--<div class="w3-card w3-round w3-white w3-padding-16 w3-center">--}}
@@ -154,6 +179,176 @@ use Illuminate\Support\Facades\DB;
         </div>
     </div>
 
+
+    {{--Change Password--}}
+    <div class="modal fade" id="changepasswordform" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div  class="modal-dialog modal-dialog-centered" role="document">
+            <div  class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerPoliceOfficer">Change Password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="citizenPasswordChange" >
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('NIC') }}</label>
+
+                            <div class="col-md-6">
+                                <input type="hidden" name="nic" value="{{$oicDetails->nic}}">
+                                <input id="nic" type="text" pattern=".{10,12}" name="tmp" class="form-control"  value="{{$oicDetails->nic}}" readonly>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Current Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" name="currentpassword" required>
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('New Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" name="newpassword" required>
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" name="confirmpassword" required>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Change Passord') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    {{--OIC Update form--}}
+    <div class="modal fade" id="updateProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div  class="modal-dialog modal-dialog-centered" role="document">
+            <div  class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerPoliceOfficer">Update Profile</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="updateProfile" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group row">
+                            <label for="profession" class="col-md-4 col-form-label text-md-right">{{ __('Officer Rank') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="profession" type="text" class="form-control" name="profession" value="{{$oicDetails->profession}}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Full Name') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="fullName" type="text" class="form-control" name="fullName" value="{{$oicDetails->fullName}}" readonly>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name with initials') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control" name="name" value="{{$oicDetails->name}}" readonly>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('NIC') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="nic" type="text" pattern=".{10,12}" class="form-control" name="nic" value="{{$oicDetails->nic}}" readonly>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group row">
+                            <label for="homeAddress" class="col-md-4 col-form-label text-md-right">{{ __('Police Station') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="homeAddress" type="text" class="form-control" name="homeAddress" value="{{$oicDetails->policeOffice}}" readonly>
+
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="homeAddress" class="col-md-4 col-form-label text-md-right">{{ __('Home Address') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="homeAddress" type="text" class="form-control" name="homeAddress" value="{{$oicDetails->address}}" required autofocus>
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="mobNumber" class="col-md-4 col-form-label text-md-right">{{ __('Mobile Number') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="mobNumber" type="text" maxlength="10" class="form-control" name="mobNumber" value="{{$oicDetails->mobileNumber}}" required autofocus>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="landNumber" class="col-md-4 col-form-label text-md-right">{{ __('Landline Number') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="landNumber" type="text" maxlength="10" class="form-control" name="landNumber" value="{{$oicDetails->landLineNumber}}" required autofocus>
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control" name="email" value="{{$oicDetails->email}}" required>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Update') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     <br>
 
