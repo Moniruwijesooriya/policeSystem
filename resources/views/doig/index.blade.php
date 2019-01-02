@@ -10,6 +10,8 @@
     <style>
         html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
     </style>
+
+
     <!-- Navbar -->
 
 
@@ -22,7 +24,7 @@
     </div>
 
     <!-- Page Container -->
-    <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+    <div class="container-fluid" style="max-width:1400px;margin-top:80px;background-color: dodgerblue; ">
         <!-- The Grid -->
         <div class="w3-row">
             <!-- Left Column -->
@@ -40,7 +42,7 @@
                 <br>
 
                 <!-- Accordion -->
-                <div class="w3-card w3-round">
+                <div class="w3-card w3-round ">
                     <div class="w3-white">
                         <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Investigation</button>
                         <div id="Demo1" class="w3-hide w3-container">
@@ -105,6 +107,68 @@
                             <div class="w3-container">
                                 <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOffice">
                                         Call Up relevant Branches
+                                    </button></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card w3-round w3-white w3-center">
+                            <div class="w3-container">
+                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOffice">
+                                        Update the Progress of the Entry
+                                    </button></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card w3-round w3-white w3-center">
+                            <div class="w3-container">
+                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOffice">
+                                       Post Public Crime Posts
+                                    </button></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card w3-round w3-white w3-center">
+                            <div class="w3-container">
+                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOffice">
+                                        Update Account
+                                    </button></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card w3-round w3-white w3-center">
+                            <div class="w3-container">
+                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOffice">
+                                        View Public Crime Post
+                                    </button></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card w3-round w3-white w3-center">
+                            <div class="w3-container">
+                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOffice">
+                                        Update Citizen Crime List
                                     </button></p>
                             </div>
                         </div>

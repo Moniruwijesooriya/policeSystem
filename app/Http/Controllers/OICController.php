@@ -14,4 +14,8 @@ class OICController extends Controller
     public function index(){
         return view('oic.index');
     }
+    public function test(){
+        return view('oic.test');
+    }
+
 }

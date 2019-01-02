@@ -15,12 +15,13 @@ class CreateEvidenceTable extends Migration
     {
         Schema::create('evidence', function (Blueprint $table) {
             $table->increments('evidenceId');
-            $table->string('entryId');
+            $table->string('entryID');
             $table->string('witnessId');
             $table->text('evidence_txt');
-            $table->text('evidence_image')->nullable();
-            $table->text('evidence_video')->nullable();
-            $table->text('citizenView');
+            $table->string('evidence_image')->nullable();
+            $table->string('evidence_video')->nullable();
+            $table->string('citizenView');
+            $table->string('policeView');
             $table->timestamps();
         });
     }

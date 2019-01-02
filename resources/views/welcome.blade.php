@@ -38,7 +38,7 @@
             <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
             <a href="#entries" class="w3-bar-item w3-button"><i class="fa fa-window-restore"></i>ENTRIES</a>
             <a href="#gallery" class="w3-bar-item w3-button"><i class="fa fa-th"></i>GALLERY</a>
-            <a href="#ranking" class="w3-bar-item w3-button"><i class="fa fa-reorder"></i> RANGING</a>
+            <a href="#ranking" class="w3-bar-item w3-button"><i class="fa fa-reorder"></i> RANKING</a>
             <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
         </div>
         <!-- Hide right-floated links on small screens and replace them with a menu icon -->

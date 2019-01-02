@@ -36,19 +36,16 @@ Route::post('/registerPoliceOffice',[
     'as'=>'registerPoliceOffice'
 ])->middleware('auth');
 
-Route::post('/registerCitizen',[
-    'uses'=>'CitizenController@registerCitizen',
-    'as'=>'registerCitizen'
-]);
+
 
 Route::post('/viewOICEntry',[
     'uses'=>'EntryController@viewOICEntry',
     'as'=>'viewOICEntry'
 ])->middleware('auth');
 
-Route::post('/acceptOICEntry',[
-    'uses'=>'EntryController@acceptOICEntry',
-    'as'=>'acceptOICEntry'
+Route::post('/entryOICAction',[
+    'uses'=>'EntryController@entryOICAction',
+    'as'=>'entryOICAction'
 ])->middleware('auth');
 
 Route::post('/viewBOICEntry',[
@@ -68,10 +65,7 @@ Route::post('/acceptBOICEntry',[
     'as'=>'acceptBOICEntry'
 ]);
 
-Route::post('/reviewCitizenRegistrationRequest',[
-    'uses'=>'CitizenController@ViewRequest',
-    'as'=>'reviewCitizenRegistrationRequest'
-]);
+
 
 Route::post('/acceptCitizenRequest',[
     'uses'=>'CitizenController@AcceptCitizenRequest',
@@ -83,7 +77,7 @@ Auth::routes(['verify' => true]);
 
 Route::get('/admin','AdminController@index');
 Route::get('/IGP','IGPController@index');
-Route::get('/RegisteredCitizen','CitizenController@index')->middleware('verified');
+
 Route::get('/OIC','OICController@index')->middleware('auth');
 Route::get('/BOIC','BOICController@index');
 Route::get('/DOIG','DOIGController@index');
@@ -91,6 +85,7 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('verify/{token}','verifyController@verifyEmail');
 
 //citizen
+Route::get('/RegisteredCitizen','CitizenLoginController@index')->middleware('verified');
 Route::get('updateFormView','CitizenController@updateFormView');
 
 
@@ -100,12 +95,61 @@ Route::post('/updateCitizenEntry',[
     'uses'=>'EntryController@updateCitizenEntry',
     'as'=>'updateCitizenEntry'
 ])->middleware('auth');
+Route::post('/registerCitizen',[
+    'uses'=>'CitizenController@registerCitizen',
+    'as'=>'registerCitizen'
+]);
+Route::post('/reviewCitizenRegistrationRequest',[
+    'uses'=>'CitizenController@ViewRequest',
+    'as'=>'reviewCitizenRegistrationRequest'
+]);
+
+//Oic
+Route::get('/test','OICController@test');
+
+Route::post('/createPost','PostsController@createPost');
+
+Route::get('/viewNewEntries',[
+    'uses'=>'EntryController@viewOICNewEntries',
+    'as'=>'NewEntries'
+])->middleware('auth');
+
+Route::get('/viewOngoingEntries',[
+    'uses'=>'EntryController@viewOICOngoingEntries',
+    'as'=>'OngoingEntries'
+])->middleware('auth');
+
+
+
+
 
 //admin
 Route::post('removeFormView','AdminController@removeFormView');
 Route::post('/removePoliceOfficer',[
     'uses'=>'AdminController@removePoliceOfficer',
     'as'=>'removePoliceOfficer'
+])->middleware('auth');
+
+Route::post('/addCrimeCategories',[
+    'uses'=>'AdminController@addCrimeCategories',
+    'as'=>'addCrimeCategory'
+])->middleware('auth');
+
+Route::get('/viewCrimeTypeList',[
+    'uses'=>'AdminController@viewCrimeTypeList',
+    'as'=>'CrimeTypeList'
+])->middleware('auth');
+
+
+Route::post('/deleteCrimeType',[
+    'uses'=>'AdminController@deleteCrimeType',
+    'as'=>'deleteCrimeType'
+])->middleware('auth');
+
+
+Route::post('/updateViewCrimeType',[
+    'uses'=>'AdminController@updateViewCrimeType',
+    'as'=>'updateViewCrimeType'
 ])->middleware('auth');
 
 Route::post('/viewCrimeCategorySection',[

@@ -57,8 +57,23 @@ use Illuminate\Support\Facades\DB;
                                 Home
                             </a>
                         @endif
+                        @if(Auth::User()->role=='Inspector General of Police')
+                            <a class="navbar-brand" href="{{'IGP'}}">
+                                Home
+                            </a>
+                        @endif
+                        @if(Auth::User()->role=='Branch Officer Incharge')
+                            <a class="navbar-brand" href="{{'BOIC'}}">
+                                Home
+                            </a>
+                        @endif
+                        @if(Auth::User()->role=='Division Officer Incharge')
+                            <a class="navbar-brand" href="{{'DOIG'}}">
+                                Home
+                            </a>
+                        @endif
                     </ul>
-                <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto">
                         <li>
                             <div class="w3-dropdown-hover w3-hide-small">
                                 @if(Auth::User()->role=='admin')
@@ -195,9 +210,8 @@ use Illuminate\Support\Facades\DB;
                             </div>
                         </li>
 
-
-                    @endguest
-                </ul>
+                        @endguest
+                    </ul>
             </div>
         </div>
 

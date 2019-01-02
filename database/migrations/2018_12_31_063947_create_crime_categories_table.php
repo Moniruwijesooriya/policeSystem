@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSuspectsTable extends Migration
+class CreateCrimeCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,15 @@ class CreateSuspectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('suspects', function (Blueprint $table) {
+        Schema::create('crime_categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('entryID');
-            $table->string('name');
-            $table->string('suspectNic')->nullable();
-            $table->string('suspectAddress')->nullable();
-            $table->string('userName');
-            $table->string('userNic');
-            $table->string('userRole');
-            $table->string('officerRank')->nullable();
+            $table->string('crimeType');
+            $table->string('categoryType');
+            $table->string('description');
             $table->string('policeView');
             $table->string('citizenView');
+
+
 
             $table->timestamps();
         });
@@ -37,6 +34,6 @@ class CreateSuspectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('suspects');
+        Schema::dropIfExists('crime_categories');
     }
 }

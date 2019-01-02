@@ -99,7 +99,8 @@ use Illuminate\Support\Facades\DB;
                             <label for="policeOffice" class="col-md-4 col-form-label text-md-right">{{ __('Nearest Police Station') }}</label>
                             <div class="col-md-6">
 
-                                <select class="form-control" name="policeStation" id="exampleFormControlSelect1">
+                                <select class="form-control" name="policeStation" id="exampleFormControlSelect1" required autofocus>
+                                    <option>Admin</option>
                                     @foreach($policeOffice as $office)
                                         <option>{{$office->OfficeName}}</option>
                                     @endforeach
@@ -172,7 +173,7 @@ use Illuminate\Support\Facades\DB;
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
@@ -186,7 +187,7 @@ use Illuminate\Support\Facades\DB;
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required autofocus>
 
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback" role="alert">
@@ -200,7 +201,7 @@ use Illuminate\Support\Facades\DB;
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autofocus>
                             </div>
                         </div>
 

@@ -51,29 +51,7 @@
                             {{--<p>Some other text..</p>--}}
                         </div>
                         <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i>D Type Crime Enquries</button>
-                        {{--<div id="Demo3" class="w3-hide w3-container">--}}
-                            {{--<div class="w3-row-padding">--}}
-                                {{--<br>--}}
-                                {{--<div class="w3-half">--}}
-                                    {{--<img src="/w3images/lights.jpg" style="width:100%" class="w3-margin-bottom">--}}
-                                {{--</div>--}}
-                                {{--<div class="w3-half">--}}
-                                    {{--<img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">--}}
-                                {{--</div>--}}
-                                {{--<div class="w3-half">--}}
-                                    {{--<img src="/w3images/mountains.jpg" style="width:100%" class="w3-margin-bottom">--}}
-                                {{--</div>--}}
-                                {{--<div class="w3-half">--}}
-                                    {{--<img src="/w3images/forest.jpg" style="width:100%" class="w3-margin-bottom">--}}
-                                {{--</div>--}}
-                                {{--<div class="w3-half">--}}
-                                    {{--<img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">--}}
-                                {{--</div>--}}
-                                {{--<div class="w3-half">--}}
-                                    {{--<img src="/w3images/snow.jpg" style="width:100%" class="w3-margin-bottom">--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
+
                     </div>
                 </div>
                 <br>
@@ -85,6 +63,7 @@
             </div>
 
             <!-- Middle Column -->
+
             <div class="w3-col m7">
 
                 <div class="w3-row-padding">
@@ -110,6 +89,18 @@
                         </div>
                     </div>
                 </div>
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card w3-round w3-white w3-center">
+                            <div class="w3-container">
+                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#igpUpdateform">
+                                        Update Account
+                                    </button></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
                 <!-- End Middle Column -->
             </div>
@@ -140,6 +131,132 @@
     </div>
 
 
+    {{--<div class="modal fade" id="igpUpdateform" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">--}}
+        {{--<div  class="modal-dialog modal-dialog-centered" role="document">--}}
+            {{--<div  class="modal-content">--}}
+                {{--<div class="modal-header">--}}
+                    {{--<h5 class="modal-title" id="registerPoliceOfficer">Update Profile</h5>--}}
+                    {{--<button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+                        {{--<span aria-hidden="true">&times;</span>--}}
+                    {{--</button>--}}
+                {{--</div>--}}
+                {{--<div class="modal-body">--}}
+                    {{--<form method="POST" action="{{ route('registerPoliceOfficer') }}" enctype="multipart/form-data">--}}
+                        {{--@csrf--}}
+                        {{--<div class="form-group row">--}}
+                            {{--<label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Full Name') }}</label>--}}
+
+                            {{--<div class="col-md-6">--}}
+                                {{--<input id="fullName" type="text" class="form-control" name="fullName" value="{{$citizenDetails->fullName}}" readonly>--}}
+
+                            {{--</div>--}}
+                        {{--</div>--}}
+
+                        {{--<div class="form-group row">--}}
+                            {{--<label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name with initials') }}</label>--}}
+
+                            {{--<div class="col-md-6">--}}
+                                {{--<input id="name" type="text" class="form-control" name="name" value="{{$citizenDetails->name}}" readonly>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+
+
+                        {{--<div class="form-group row">--}}
+                            {{--<label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('NIC') }}</label>--}}
+
+                            {{--<div class="col-md-6">--}}
+                                {{--<input id="nic" type="text" pattern=".{10,12}" class="form-control" name="nic" value="{{$citizenDetails->nic}}" readonly>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+
+                        {{--<div class="form-group row">--}}
+                            {{--<label for="homeAddress" class="col-md-4 col-form-label text-md-right">{{ __('Home Address') }}</label>--}}
+
+                            {{--<div class="col-md-6">--}}
+                                {{--<input id="homeAddress" type="text" class="form-control" name="homeAddress" value="{{$citizenDetails->address}}" required autofocus>--}}
+
+                            {{--</div>--}}
+                        {{--</div>--}}
+
+                        {{--<?php--}}
+                        {{--$policeOffice=db::table('police_offices')->get()->where('policeOfficeType',"Police Station");--}}
+                        {{--?>--}}
+                        {{--<div class="form-group row">--}}
+                            {{--<label for="policeOffice" class="col-md-4 col-form-label text-md-right">{{ __('Nearest Police Station') }}</label>--}}
+                            {{--<div class="col-md-6">--}}
+
+                                {{--<select class="form-control" name="policeStation" id="exampleFormControlSelect1">--}}
+                                    {{--<option>{{$citizenDetails->policeOffice}}</option>--}}
+                                    {{--@foreach($policeOffice as $office)--}}
+                                        {{--<option>{{$office->OfficeName}}</option>--}}
+                                    {{--@endforeach--}}
+                                {{--</select>--}}
+
+                            {{--</div>--}}
+                        {{--</div>--}}
+
+                        {{--<div class="form-group row">--}}
+                            {{--<label for="profession" class="col-md-4 col-form-label text-md-right">{{ __('Profession') }}</label>--}}
+
+                            {{--<div class="col-md-6">--}}
+                                {{--<input id="profession" type="text" class="form-control" name="profession" value="{{$citizenDetails->profession}}" required autofocus>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+
+                        {{--<div class="form-group row">--}}
+                            {{--<label for="mobNumber" class="col-md-4 col-form-label text-md-right">{{ __('Mobile Number') }}</label>--}}
+
+                            {{--<div class="col-md-6">--}}
+                                {{--<input id="mobNumber" type="text" maxlength="10" class="form-control" name="mobNumber" value="{{$citizenDetails->mobileNumber}}" required autofocus>--}}
+
+                            {{--</div>--}}
+                        {{--</div>--}}
+
+                        {{--<div class="form-group row">--}}
+                            {{--<label for="landNumber" class="col-md-4 col-form-label text-md-right">{{ __('Landline Number') }}</label>--}}
+
+                            {{--<div class="col-md-6">--}}
+                                {{--<input id="landNumber" type="text" maxlength="10" class="form-control" name="landNumber" value="{{$citizenDetails->landLineNumber}}" required autofocus>--}}
+
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="form-group row">--}}
+                            {{--<label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>--}}
+
+                            {{--<div class="col-md-6">--}}
+                                {{--<input id="email" type="email" class="form-control" name="email" value="{{$citizenDetails->email}}" required>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+
+                        {{--<div class="form-group row">--}}
+                            {{--<label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>--}}
+
+                            {{--<div class="col-md-6">--}}
+                                {{--<input id="password" type="password" class="form-control" name="password" required>--}}
+
+                            {{--</div>--}}
+                        {{--</div>--}}
+
+                        {{--<div class="form-group row">--}}
+                            {{--<label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>--}}
+
+                            {{--<div class="col-md-6">--}}
+                                {{--<input  onkeyup="validatePassword()" id="confirm_password" type="password" class="form-control" name="confirm_password" required>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="form-group row mb-0">--}}
+                            {{--<div class="col-md-6 offset-md-4">--}}
+                                {{--<button type="submit" class="btn btn-primary">--}}
+                                    {{--{{ __('Update') }}--}}
+                                {{--</button>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</form>--}}
+                {{--</div>--}}
+
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
     <!-- Modal -->
     <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">

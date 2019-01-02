@@ -25,63 +25,62 @@ use Illuminate\Support\Facades\DB;
             <!-- Left Column -->
             <div class="col-md-3">
                 @if(Auth::User()->role=='citizen')
-                <div class="card rounded" style="margin-top: 10px">
-                    <div class>
-                        <button onclick="myFunction('myEntries')"  class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>Submitted Entries</button>
-                        <div id="myEntries" class="w3-hide w3-container">
-                            {{--<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">--}}
+                    <div class="card">
+                        <div class="bg-white">
+                            <button onclick="myFunction('myEntries')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>Submitted Entries</button>
+                            <div id="myEntries" class="w3-hide w3-container">
+                                {{--<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">--}}
 
-                            <?php
-                            $entries=db::table('entries')->where('complainantID',Auth::User()->nic)->get();
-                            ?>
-                            @foreach($entries as $entr)
-
-                                <form method="post" action="{{'viewCitizenEntry'}}">
-                                    @csrf
-                                    <input type="hidden" value="{{$entr->entryID}}" name="entryID">
-                                    <p><input type="submit" class="btn-link" value="Entry ID :{{$entr->entryID}}"></p>
-                                </form>
-                            @endforeach
-                            {{--</div>--}}
-                        </div>
-
-                    </div>
-                </div>
-                    @endif
-
-                    <div class="card" style="margin-top: 10px">
-                        <div class="card-header">{{ __('Evidences') }}</div>
-                        <div class="card-body">
-                            <div class="form-group row">
                                 <?php
-                                $entryInfo=db::table('entries')->where('entryID',$entr->entryID)->First();
+                                $entries=db::table('entries')->where('complainantID',Auth::User()->nic)->get();
                                 ?>
-                                <div class="col-md-11">
-                                    <p contenteditable="false" class="w3-border w3-padding" >{{ $entryInfo->evidences }}</p>
-                                    @foreach($evidences as $evidence)
-                                        <p contenteditable="false" class="w3-border w3-padding" >{{ $evidence->evidence_txt }}</p>
+                                @foreach($entries as $entr)
+
+                                    <form method="post" action="{{'viewCitizenEntry'}}">
+                                        @csrf
+                                        <input type="hidden" value="{{$entr->entryID}}" name="entryID">
+                                        <p><input type="submit" class="btn-link" value="Entry ID :{{$entr->entryID}}"></p>
+                                    </form>
+                                @endforeach
+                                {{--</div>--}}
+                            </div>
+                        </div>
+                    </div>
+                <br>
+                <br>
+                    <div class="card">
+                        <div class="bg-white">
+                            <button onclick="myFunction('evidencesList')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Evidences</button>
+                            <div id="evidencesList" class="w3-hide w3-container">
+                                <div class="form-group row">
+                                    <?php
+                                    $entryInfo=db::table('entries')->where('entryID',$entry->entryID)->First();
+                                    ?>
+                                    <div class="col-md-11">
+                                        <p contenteditable="false" class="w3-border w3-padding" >{{ $entryInfo->evidences }}</p>
+                                        @foreach($evidences as $evidence)
+                                            <p contenteditable="false" class="w3-border w3-padding" >{{ $evidence->evidence_txt }}</p>
                                         @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                            <button onclick="myFunction('suspectList')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i>Suspects</button>
+                            <div id="suspectList" class="w3-hide w3-container">
+                                <div class="form-group row">
+                                    <?php
+                                    $entryInfo=db::table('entries')->where('entryID',$entr->entryID)->First();
+                                    ?>
+                                    <div class="col-md-11">
+                                        <p contenteditable="false" class="w3-border w3-padding" >{{ $entryInfo->suspects }}</p>
+                                        @foreach($suspects as $suspect)
+                                            <p contenteditable="false" class="w3-border w3-padding" >{{ $suspect->name }}</p>
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="card" style="margin-top: 10px">
-                        <div class="card-header">{{ __('Suspects') }}</div>
-                        <div class="card-body">
-                            <div class="form-group row">
-                                <?php
-                                $entryInfo=db::table('entries')->where('entryID',$entr->entryID)->First();
-                                ?>
-                                <div class="col-md-11">
-                                    <p contenteditable="false" class="w3-border w3-padding" >{{ $entryInfo->suspects }}</p>
-                                    @foreach($suspects as $suspect)
-                                        <p contenteditable="false" class="w3-border w3-padding" >{{ $suspect->name }}</p>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endif
             </div>
 
 
@@ -99,7 +98,7 @@ use Illuminate\Support\Facades\DB;
                                             <label class="col-md-4 col-form-label text-md-right">{{ __('Entry ID') }}</label>
 
                                             <div class="col-md-6">
-                                                <input type="text"name="entryId"class="form-control"value="{{ $entry->entryID }}" readonly>
+                                                <input type="text"name="entryID"class="form-control"value="{{ $entry->entryID }}" readonly>
                                             </div>
                                         </div>
 
@@ -107,7 +106,7 @@ use Illuminate\Support\Facades\DB;
                                             <label class="col-md-4 col-form-label text-md-right">{{ __('Polie Station') }}</label>
 
                                             <div class="col-md-6">
-                                                <input type="text"name="entryId"class="form-control"value="{{ $entry->nearestPoliceStation }}" readonly>
+                                                <input type="text" class="form-control"value="{{ $entry->nearestPoliceStation }}" readonly>
                                             </div>
                                         </div>
 
@@ -157,7 +156,7 @@ use Illuminate\Support\Facades\DB;
                                                 <input type="submit" class="btn btn-primary" value="Update">
                                             </div>
                                             <div class="col-md-3 col-xs-6"  >
-                                                <button  type="reset" class="btn btn-danger" value="cancel">Cancel</button>
+                                                <button  type="reset" class="btn btn-danger" value="cancel">Reset</button>
                                             </div>
                                         </div>
                                     </form>

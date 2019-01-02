@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\DB;
 ?>
 
-
 @section('content')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,43 +26,45 @@ use Illuminate\Support\Facades\DB;
             padding: 8px;
         }
 
-
     </style>
     <!-- Navbar -->
-
-
     <!-- Navbar on small screens -->
-    <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">My Profile</a>
-    </div>
+    {{--<div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">--}}
+        {{--<a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>--}}
+        {{--<a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>--}}
+        {{--<a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>--}}
+        {{--<a href="#" class="w3-bar-item w3-button w3-padding-large">My Profile</a>--}}
+    {{--</div>--}}
 
     <!-- Page Container -->
-    <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px;background-color: lightblue">
+    <div class="container-fluid" style="max-width:1400px;margin-top:8px;background-color: lightblue">
         <!-- The Grid -->
-        <div class="w3-row">
+        <div class="row">
             <!-- Left Column -->
-            <div class="w3-col m3">
-                <!-- Profile -->
-                <div class="w3-card w3-round w3-blue">
-                    <div class="w3-container ">
-                        <h4 class="w3-center">My Profile</h4>
-                        <p class="w3-center"><img src='{{asset('/img/oic.jpeg')}}' class="w3-circle" style="height:106px;width:106px" alt="IGP Image"></p>
+            <div class="col-md-3">
+                <!-- Profile --> <div class="card bg-white">
+                    <div class="container">
+                        <h4 class="text-center">My Profile</h4>
+                        <p class="text-center"><img src='{{asset('/img/oic.jpeg')}}' class="rounded-circle" style="height:106px;width:106px" alt="IGP Image"></p>
                         <hr>
                         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>{{Auth::User()->profession}}</p>
                         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>{{Auth::User()->policeOffice}}</p>
                     </div>
                 </div>
+
                 <br>
 
                 <!-- Accordion -->
-                <div class="w3-card w3-round">
-                    <div class="w3-white">
-                        <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Investigation</button>
+                <div class="card">
+                    <div class="bg-white">
+                        <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>Entries</button>
                         <div id="Demo1" class="w3-hide w3-container">
-                            {{--<p>Some text..</p>--}}
+                            <button class="btn-dark" style="margin: 5px;width: 100%;"><a href="viewNewEntries">New Entries</a></button>
+                            <br>
+                            <button class="btn-dark" style="margin: 5px;width: 100%;"><a href="viewOngoingEntries">Ongoing Entries</a></button>
+                            <br>
+                            <button class="btn-dark" style="margin: 5px;width: 100%;"><a href="viewClosedEntries">Closed Entries</a></button>
+
                         </div>
                         <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Invetigation Branches</button>
                         <div id="Demo2" class="w3-hide w3-container">
@@ -73,19 +74,21 @@ use Illuminate\Support\Facades\DB;
                     </div>
                 </div>
                 <br>
-
-
-
-
                 <!-- End Left Column -->
             </div>
-
             <!-- Middle Column -->
-            <div class="w3-col m7">
+            <div class="col-md-5">
 
-                <div class="w3-row-padding">
-                    <div class="w3-col m12">
-                        <div class="w3-card w3-round w3-white w3-center">
+
+
+                <!-- End Middle Column -->
+            </div>
+
+            <!-- Right Column -->
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card rounded bg-white align-content-center">
                             <div class="w3-container">
                                 <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
                                         View Crime Entries
@@ -106,14 +109,6 @@ use Illuminate\Support\Facades\DB;
                         </div>
                     </div>
                 </div>
-
-                <!-- End Middle Column -->
-            </div>
-
-            <!-- Right Column -->
-            <div class="w3-col m2">
-                <br>
-
 
                 <br>
 
