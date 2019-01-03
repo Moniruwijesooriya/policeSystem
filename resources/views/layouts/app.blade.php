@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\DB;
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body style="background-image: url('/img/swirl_pattern.png')">
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="container">

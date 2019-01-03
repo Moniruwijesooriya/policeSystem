@@ -51,9 +51,7 @@ use Illuminate\Support\Facades\DB;
                     <div class="w3-col m12">
                         <div class="w3-card w3-round w3-white w3-center">
                             <div class="w3-container">
-                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOfficer">
-                                        Register Police Officer
-                                    </button></p>
+                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOfficer">Register Police Officer</button></p>
                             </div>
                         </div>
                     </div>
@@ -63,6 +61,9 @@ use Illuminate\Support\Facades\DB;
                     <div class="w3-col m12">
                         <div class="w3-card w3-round w3-white w3-center">
                             <div class="w3-container">
+
+                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOffice">Register Police Office</button></p>
+
                                 {{--<p><button type="button" style="margin-right: 5px" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOffice">--}}
                                         {{--Register Police Office--}}
                                     {{--</button></p>--}}
@@ -88,12 +89,11 @@ use Illuminate\Support\Facades\DB;
                     <div class="w3-col m12">
                         <div class="w3-card w3-round w3-white w3-center">
                             <div class="w3-container">
-                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#removePoliceOfficer">
-                                        Remove Police Officer
-                                    </button></p>
+                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#removePoliceOfficer">Remove Police Officer</button></p>
                             </div>
                         </div>
                     </div>
+                </div>
 
                     <div class="w3-row-padding">
                         <div class="w3-col m12">
@@ -105,24 +105,22 @@ use Illuminate\Support\Facades\DB;
                         </div>
                     </div>
 
-                    <div class="w3-row-padding">
-                        <div class="w3-col m12">
-                            <div class="w3-card w3-round w3-white w3-center">
-                                <div class="w3-container">
-                                    <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateRank">
-                                            Update Rank
-                                        </button></p>
-                                </div>
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card w3-round w3-white w3-center">
+                            <div class="w3-container">
+                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateRank">Update Rank</button></p>
                             </div>
                         </div>
+                    </div>
+                </div>
+
 
                 <div class="w3-row-padding">
                     <div class="w3-col m12">
                         <div class="w3-card w3-round w3-white w3-center">
                             <div class="w3-container">
-                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCrimeCategories">
-                                        Add Crime Categories
-                                    </button></p>
+                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCrimeCategories">Add Crime Categories</button></p>
                             </div>
                         </div>
                     </div>
@@ -132,13 +130,16 @@ use Illuminate\Support\Facades\DB;
                     <div class="w3-col m12">
                         <div class="w3-card w3-round w3-white w3-center">
                             <div class="w3-container">
-                                <button class="btn-dark" style="margin-bottom: 5px;"><a href="viewCrimeTypeList">View Crime Types</a></button>
+                                <button type="button" class="btn btn-primary"><a href="viewCrimeTypeList"><font color="white">View Crime Types</font></a></button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- End Middle Column -->
+            <!-- End Middle Column -->
             </div>
+            
+
+            
             <!-- Right Column -->
             <div class="w3-col m2">
                 <br>
@@ -150,14 +151,14 @@ use Illuminate\Support\Facades\DB;
                 </div>
                 <br>
 
-                {{--<div class="w3-card w3-round w3-white w3-padding-16 w3-center">--}}
+                {{-- <div class="w3-card w3-round w3-white w3-padding-16 w3-center">--}}
                     {{--<p>ADS</p>--}}
                 {{--</div>--}}
                 {{--<br>--}}
 
                 {{--<div class="w3-card w3-round w3-white w3-padding-32 w3-center">--}}
                     {{--<p><i class="fa fa-bug w3-xxlarge"></i></p>--}}
-                {{--</div>--}}
+                {{--</div> --}}
 
                 <!-- End Right Column -->
             </div>
@@ -991,14 +992,7 @@ use Illuminate\Support\Facades\DB;
 
     <br>
 
-    <!-- Footer -->
-    <footer class="w3-container w3-theme-d3 w3-padding-16">
-        <h5>Crime Reporting System</h5>
-    </footer>
-
-    <footer class="w3-container w3-theme-d5">
-        <p>Group 26</p>
-    </footer>
+    @extends('layouts.footer')
 
     <script>
         // Accordion
