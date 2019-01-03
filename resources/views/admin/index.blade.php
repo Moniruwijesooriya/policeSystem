@@ -95,6 +95,15 @@ use Illuminate\Support\Facades\DB;
                         </div>
                     </div>
 
+                    <div class="w3-row-padding">
+                        <div class="w3-col m12">
+                            <div class="w3-card w3-round w3-white w3-center">
+                                <div class="w3-container">
+                                    <button class="btn-dark" style="margin-bottom: 5px;"><a href="viewPoliceOfficesList">View Police Offices List</a></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="w3-row-padding">
                         <div class="w3-col m12">
@@ -875,8 +884,6 @@ use Illuminate\Support\Facades\DB;
                         </div>
 
                         <div class="form-group row">
-
-
                             <label for="categoryType" class="col-md-4 col-form-label text-md-left">{{ __('Category Type ') }}</label>
                             <div class="col-md-7">
                                 <select class="form-control" name="categoryType" id="categoryType">
