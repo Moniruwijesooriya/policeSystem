@@ -90,7 +90,7 @@ use Illuminate\Support\Facades\DB;
 
                         <div class="form-group row">
                             <label for="civilStatus" class="col-md-4 col-form-label text-md-right">{{ __('Civil Status') }}</label>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <select class="form-control" name="civilStatus" id="exampleFormControlSelect1">
                                     <option>Single</option>
                                     <option>Married</option>
@@ -121,6 +121,7 @@ use Illuminate\Support\Facades\DB;
                             <div class="col-md-6">
 
                                 <select class="form-control" name="policeStation" id="exampleFormControlSelect1" required autofocus>
+                                    <option>Temp</option>
                                     @foreach($policeOffice as $office)
                                         <option>{{$office->OfficeName}}</option>
                                     @endforeach
