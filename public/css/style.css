@@ -1,0 +1,6 @@
+.pat-bg{
+    background-image: url('/public/img/full-bloom.png');
+    background-repeat: repeat-y; /* for vertical repeat */
+    background-repeat: repeat-x; /* for horizontal repeat */
+    height:400px;
+}

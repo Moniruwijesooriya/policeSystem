@@ -67,8 +67,10 @@
         <span class="w3-large">24/7 POLICE SYSTEM</span>
         <p><a href="{{ route('register') }}" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">REGISTER</a></p>
         <p><a href="{{ route('login') }}" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">LOGIN</a></p>
+    </div>  
+    <div>
+            <a href="#about" class="w3-button w3-light-grey w3-display-bottommiddle"><i class="fa fa-arrow-down w3-margin-right"></i>About</a>
     </div>
-
 </header>
 
 <!-- About Section -->
