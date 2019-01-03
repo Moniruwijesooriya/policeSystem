@@ -174,7 +174,15 @@ class AdminController extends Controller
     }
 
     public function viewPoliceOfficesList(){
-        $crimeTypeList=db::table('police_offices')->get();
+        $policeOfficesList=db::table('police_offices')->get();
         return view('admin.policeOfficesList',compact('policeOfficesList'));
+    }
+    public function deletePoliceOffices(Request $request)
+    {
+        $policeOfficesList = db::table('police_offices')->where('id', $request->id)->delete();
+
+        if ($policeOfficesList) {
+            return redirect('/admin');
+        }
     }
 }
