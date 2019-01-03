@@ -202,3 +202,8 @@ Route::get('/viewPoliceOfficesList',[
     'as'=>'viewPoliceOfficesList'
 ])->middleware('auth');
 
+Route::post('/deletePoliceOffices',[
+    'uses'=>'AdminController@deletePoliceOffices',
+    'as'=>'deletePoliceOffices'
+])->middleware('auth');
+
