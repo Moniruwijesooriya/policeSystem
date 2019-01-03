@@ -27,6 +27,9 @@ class EntryController extends Controller
         $crimeEntry->complainantID=Auth::User()->nic;
         $crimeEntry->oicNotification="y";
         $crimeEntry->boicNotification="n";
+        $crimeEntry->doigNotification="n";
+        $crimeEntry->igpNotification="n";
+        $crimeEntry->citizenNotification="n";
         $crimeEntry->status="new";
         $crimeEntry->progress="Entry is submitted to the ".$request->policeStation." Police Station";
         $crimeEntry->suspects=$request->suspects;
@@ -135,14 +138,23 @@ class EntryController extends Controller
         return view('entry/oicEntryView',compact('entry','evidences','suspects','entryProgresses'));
     }
     public function viewOICNewEntries(){
+        $nic=Auth::User()->nic;
+        $user=db::table('users')->where('Nic',$nic)->First();
 
-        $entries=db::table('entries')->where('oicNotification',"y")->get();
+        $entries=db::table('entries')->where('oicNotification',"y")->where('nearestPoliceStation',$user->policeOffice)->get();
         $type="New Entries";
         return view('entry.oicEntryListView',compact('entries','type'));
     }
     public function viewOICOngoingEntries(){
 
         $entries=db::table('entries')->where('status',"ongoing")->get();
+        $type="Ongoing Entries";
+        return view('entry.oicEntryListView',compact('entries','type'));
+    }
+
+    public function viewClosedEntries(){
+
+        $entries=db::table('entries')->where('status',"closed")->get();
         $type="Ongoing Entries";
         return view('entry.oicEntryListView',compact('entries','type'));
     }
@@ -165,6 +177,12 @@ class EntryController extends Controller
         $evidences=db::table('evidence')->where('entryID',$request->entryID)->where('citizenView',"Yes")->get();
         $suspects=db::table('suspects')->where('entryID',$request->entryID)->where('userRole',"citizen")->get();
         return view('entry/citizenEntryView',compact('entry','evidences','suspects'));
+    }
+    public function getUserInfo(Request $request){
+//        return $request->all();
+        $userInfo=db::table('users')->where('nic',$request->id)->First();
+        return response()->json($userInfo);
+
     }
 
     public function updateCitizenEntry(Request $request){

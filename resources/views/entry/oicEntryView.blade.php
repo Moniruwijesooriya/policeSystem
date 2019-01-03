@@ -44,10 +44,13 @@ use Illuminate\Support\Facades\DB;
                         <div id="evidencesList" class="w3-hide w3-container">
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                    <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->evidences }}<br>Submitted by : <a href="">{{ $entry->complainantID }}</a></p>
+                                    <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->evidences }}<br>Submitted by : <button type="button" value="{{ $entry->complainantID }}" id="nicbutton" class="btn btn-primary nic-button" data-toggle="modal" data-target="#viewPerson">
+                                            {{ $entry->complainantID }}
+                                        </button></p>
                                     @foreach($evidences as $evidence)
-                                        <p contenteditable="false" class="w3-border w3-padding" >{{ $evidence->evidence_txt }}<br>Submitted by : <a href="">{{ $evidence->witnessId }}</a>
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewPerson">
+                                        <p contenteditable="false" class="w3-border w3-padding" >{{ $evidence->evidence_txt }}<br>Submitted by :
+                                            {{--<input type="hidden" name="{{ $evidence->witnessId }}" value="{{ $evidence->witnessId }}">--}}
+                                            <button type="button" value="{{ $evidence->witnessId }}" id="nicbutton" class="btn btn-primary nic-button" data-toggle="modal" data-target="#viewPerson">
                                                 {{ $evidence->witnessId }}
                                             </button>
                                         </p>
@@ -130,26 +133,26 @@ use Illuminate\Support\Facades\DB;
                                     </div>
 
                                     @if($entry->status=="new")
-                                    <div class="form-group row">
-                                        <label class="col-md-4 col-form-label text-md-right">{{ __('Branch') }}</label>
-                                        <div class="col-md-6">
-                                            <select class="form-control" name ="branch" id="exampleFormControlSelect1">
-                                                <option>Crime Branch</option>
-                                                <option>Vice Unit</option>
-                                                <option>Miscellaneous Complaints</option>
-                                            </select>
+                                        <div class="form-group row">
+                                            <label class="col-md-4 col-form-label text-md-right">{{ __('Branch') }}</label>
+                                            <div class="col-md-6">
+                                                <select class="form-control" name ="branch" id="exampleFormControlSelect1">
+                                                    <option>Crime Branch</option>
+                                                    <option>Vice Unit</option>
+                                                    <option>Miscellaneous Complaints</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
                                     @endif
 
                                     @if($entry->status=="ongoing")
-                                    <div class="form-group row">
-                                        <label class="col-md-4 col-form-label text-md-right">{{ __('Current Branch') }}</label>
+                                        <div class="form-group row">
+                                            <label class="col-md-4 col-form-label text-md-right">{{ __('Current Branch') }}</label>
 
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control"value="{{ $entry->branch }}" readonly>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control"value="{{ $entry->branch }}" readonly>
+                                            </div>
                                         </div>
-                                    </div>
                                     @endif
 
                                     <div class="form-group row">
@@ -193,12 +196,26 @@ use Illuminate\Support\Facades\DB;
                                                 <input type="submit" class="btn btn-primary" value="Accept and Forward">
                                             </div>
                                         @endif
-                                            @if($entry->status=="ongoing")
-                                                <div class="col-md-6 offset-md-6 col-xs-6"  >
-                                                    <input type="hidden" name="statusType" value="{{$entry->status}}">
-                                                    <input type="submit" class="btn btn-primary"  value="Submit">
-                                                </div>
-                                            @endif
+                                        @if($entry->status=="ongoing")
+                                            <div class="col-md-6 offset-md-6 col-xs-6"  >
+                                                <input type="hidden" name="statusType" value="{{$entry->status}}">
+                                                <input type="submit" class="btn btn-primary"  value="Submit">
+                                            </div>
+                                            <div class="col-md-6 offset-md-6 col-xs-6"  >
+                                                <input type="hidden" name="statusType" value="closed">
+                                                <input type="submit" class="btn btn-primary"  value="Close Entry">
+                                            </div>
+                                            <div class="col-md-6 offset-md-6 col-xs-6"  >
+                                                <input type="hidden" name="statusType" value="closed">
+                                                <input type="submit" class="btn btn-primary"  value="Forward">
+                                            </div>
+                                        @endif
+                                        @if($entry->status=="closed")
+                                            <div class="col-md-6 offset-md-6 col-xs-6"  >
+                                                <input type="hidden" name="statusType" value="closed">
+                                                <input type="submit" class="btn btn-primary"  value="Forward">
+                                            </div>
+                                        @endif
 
                                         <div class="col-md-3 col-xs-6"  >
                                             <button  type="reset" class="btn btn-danger" value="cancel">Reset</button>
@@ -216,9 +233,9 @@ use Illuminate\Support\Facades\DB;
             <!-- Right Column -->
             <div class="col-md-3">
                 <div class="row">
-                            <p><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#createPost">
-                                   Create a Post
-                                </button></p>
+                    <p><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#createPost">
+                            Create a Post
+                        </button></p>
                     <div class="row justify-content-center">
 
                         <div class="card" style="margin-top: 10px">
@@ -227,7 +244,7 @@ use Illuminate\Support\Facades\DB;
                                 <div class="form-group row">
                                     <div class="col-md-11">
                                         @if($entry->status=="new")
-                                        <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->progress }}</p>
+                                            <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->progress }}</p>
                                         @endif
                                         @foreach($entryProgresses as $entryProgress)
                                             <p contenteditable="false" class="w3-border w3-padding" >{{ $entryProgress->progress }}</p>
@@ -248,38 +265,6 @@ use Illuminate\Support\Facades\DB;
     </div>
 
     <br>
-    {{--viewUserProfile--}}
-    {{--<div class="modal fade" id="viewProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">--}}
-        {{--<div  class="modal-dialog modal-dialog-centered" role="document">--}}
-            {{--<div  class="modal-content">--}}
-                {{--<div class="modal-header">--}}
-                    {{--<h5 class="modal-title" id="registerPoliceOfficer">Remove Police Officer</h5>--}}
-                    {{--<button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-                        {{--<span aria-hidden="true">&times;</span>--}}
-                    {{--</button>--}}
-                {{--</div>--}}
-                {{--<div class="modal-body">--}}
-                    {{--<form method="post" action="removeFormView" enctype="multipart/form-data">--}}
-                        {{--@csrf--}}
-                        {{--<div class="form-group row">--}}
-                            {{--<label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('NIC') }}</label>--}}
-
-                            {{--<div class="col-md-7">--}}
-                                {{--<input id="name" type="text" class="form-control" name="name" value="{{ $evidence->witnessId }}" readonly></div>--}}
-                        {{--</div>--}}
-                        {{--<div class="form-group row mb-0">--}}
-                            {{--<div class="col-md-6 offset-md-4">--}}
-                                {{--<button type="submit" class="btn btn-primary">--}}
-                                    {{--{{ __('Check') }}--}}
-                                {{--</button>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</form>--}}
-                {{--</div>--}}
-
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
 
     {{--Create Post--}}
     <div class="modal fade" id="createPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -312,6 +297,93 @@ use Illuminate\Support\Facades\DB;
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Post') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {{--viewUserProfile--}}
+    <div class="modal fade" id="viewPerson" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div  class="modal-dialog modal-dialog-centered" role="document">
+            <div  class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerPoliceOfficer">Profile</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="removeFormView" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('NIC') }}</label>
+
+                            <div class="col-md-7">
+                                <input id="nicTempId" type="text" class="form-control" name="nicTemp" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+
+                            <div class="col-md-7">
+                                <input id="nameTempId" type="text" class="form-control" name="nameTemp"  readonly></div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Date of Birth') }}</label>
+
+                            <div class="col-md-7">
+                                <input id="dobTempId" type="text" class="form-control" name="dobTemp"  readonly></div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
+
+                            <div class="col-md-7">
+                                <input id="TempId" type="text" class="form-control" name="addressTemp"  readonly></div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Mobile Number') }}</label>
+
+                            <div class="col-md-7">
+                                <input id="mobileNumberTempId" type="text" class="form-control" name="mobileNumberTemp"  readonly></div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Land Line Number') }}</label>
+
+                            <div class="col-md-7">
+                                <input id="landLineNumberTempId" type="text" class="form-control" name="landLineNumberTemp"  readonly></div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
+
+                            <div class="col-md-7">
+                                <input id=emailTempId" type="text" class="form-control" name="emailTemp"  readonly></div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
+
+                            <div class="col-md-7">
+                                <input id="genderTempId" type="text" class="form-control" name="genderTemp"  readonly></div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Profession') }}</label>
+
+                            <div class="col-md-7">
+                                <input id="professionTempId" type="text" class="form-control" name="professionTemp"  readonly></div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Nearest Police Station') }}</label>
+
+                            <div class="col-md-7">
+                                <input id="professionTempId" type="text" class="form-control" name="professionTemp"  readonly></div>
+                        </div>
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Check') }}
                                 </button>
                             </div>
                         </div>
@@ -354,6 +426,65 @@ use Illuminate\Support\Facades\DB;
                 x.className = x.className.replace(" w3-show", "");
             }
         }
+        // var tempNic="";
+        // $("#nicbutton").click(function () {
+        //     tempNic= $(this).val();
+        //     console.log(tempNic);
+        //     console.log("sdf");
+        // });
+/*        var url='{{route('getUserInfo')}}';
+        var token='{{Session::token()}}';*/
+
+        // $('document').ready(function () {
+        /*function retriveUserInfo() {
+            console.log(tempNic);
+            $.ajax({
+                method: 'post',
+                url: url,
+                data:{
+                    _token: token,
+                    id: tempNic
+                },
+                success:function (data) {
+                    console.log(tempNic);
+                    document.getElementById("nictempid").innerHTML = data.nic;
+
+                    // $('#x').innerHTML=data.nic;
+
+                }
+
+            })
+        }*/
+        // })
+
+        $(document).ready(function () {
+            var url = '{{route('getUserInfo')}}';
+            var token = '{{Session::token()}}';
+            var tempNic="";
+
+            $(".nic-button").click(function () {
+                tempNic= $(this).val();
+                $.ajax({
+                    method: 'post',
+                    url: url,
+                    data:{
+                        _token: token,
+                        id: tempNic
+                    },
+                    success:function (data) {
+                        console.log("Here");
+                        console.log(data);
+                        console.log(tempNic);
+                        $("#nicTempId").val(data.nic);
+                        $("#nameTempId").val(data.name);
+                    }
+                });
+            });
+            // console.log(tempNic);
+
+            // console.log("Here");
+
+        });
     </script>
 
 
