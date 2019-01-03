@@ -32,6 +32,7 @@ class AdminController extends Controller
         $policeOfficer->role=$request->role;
         $policeOfficer->gender = $request->gender;
         $policeOfficer->dob = $request->dob;
+        $policeOfficer->dob = $request->civilStatus;
         $policeOfficer->policeOffice=$request->policeOffice;
         $policeOfficer->remember_token=str_random(60);
         $randomPassword="123123";
@@ -124,13 +125,28 @@ class AdminController extends Controller
     public function updateViewCrimeType(Request $request){
 
         $crimeTypeList = db::table('crime_categories')->where('id',$request->crimeIdTemp)->First();
-        return view('admin.updateCrimeTypeForm',compact('crimeTypeList'));
+        $crimeCategoryList = db::table('crime_categories')->get();
+        return view('admin.updateCrimeTypeForm',compact('crimeTypeList','crimeCategoryList'));
     }
 
     public function updateCrimeType(Request $request){
-        DB::table('id')
+        $result=DB::table('crime_categories')
             ->where('id',$request->crimeIdTemp)
-            ->update(['oicNotification'=>"n",'boicNotification'=>"y",'status'=>"ongoing",'branch'=>$request->branch]);
+            ->update(['crimeType'=>$request->crimeType,'categoryType'=>$request->categoryType,'description'=>$request->description,'policeView'=>$request->policeView,'citizenView'=>$request->citizenView]);
+        if($result){
+            $crimeTypeList=db::table('crime_categories')->get();
+            return view('admin.crimeTypeList',compact('crimeTypeList'));
 
+        }
+        else{
+            return redirect('/admin');
+        }
+    }
+
+    public function updateRankFormView(Request $request){
+
+
+        $policeOfficer = db::table('users')->where('nic',$request->nic)->First();
+        return view('admin.updateRank',compact('policeOfficer'));
     }
 }

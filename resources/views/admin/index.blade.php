@@ -81,7 +81,18 @@ use Illuminate\Support\Facades\DB;
                             </div>
                         </div>
                     </div>
-                </div>
+
+
+                    <div class="w3-row-padding">
+                        <div class="w3-col m12">
+                            <div class="w3-card w3-round w3-white w3-center">
+                                <div class="w3-container">
+                                    <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateRank">
+                                            Update Rank
+                                        </button></p>
+                                </div>
+                            </div>
+                        </div>
 
                 <div class="w3-row-padding">
                     <div class="w3-col m12">
@@ -211,6 +222,17 @@ use Illuminate\Support\Facades\DB;
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="civilStatus" class="col-md-4 col-form-label text-md-right">{{ __('Civil Status') }}</label>
+                            <div class="col-md-7">
+                                <select class="form-control" name="civilStatus" id="exampleFormControlSelect1">
+                                    <option>Single</option>
+                                    <option>Married</option>
+                                    <option>Divorced</option>
+                                    <option>Widowed</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="homeAddress" class="col-md-4 col-form-label text-md-right">{{ __('Home Address') }}</label>
 
                             <div class="col-md-7">
@@ -253,8 +275,6 @@ use Illuminate\Support\Facades\DB;
                         </div>
 
                         <div class="form-group row">
-
-
                             <label for="profession" class="col-md-4 col-form-label text-md-right">{{ __('System Role') }}</label>
                             <div class="col-md-7">
                                 <select class="form-control" name="role" id="exampleFormControlSelect1">
@@ -485,11 +505,17 @@ use Illuminate\Support\Facades\DB;
                         </div>
 
                         <div class="form-group row">
-                            <label for="categoryType" class="col-md-4 col-form-label text-md-left">{{ __('Category Type') }}</label>
 
+
+                            <label for="categoryType" class="col-md-4 col-form-label text-md-left">{{ __('Category Type ') }}</label>
                             <div class="col-md-7">
-                                <input id="categoryType" type="text" class="form-control" name="categoryType" value="{{ old('categoryType') }}" required autofocus>
-
+                                <select class="form-control" name="categoryType" id="categoryType">
+                                    <option>Criminal Investigation Branch</option>
+                                    <option>D-Type of Offence</option>
+                                    <option>Miscellaneous complaints Branch</option>
+                                    <option>Admin Branch</option>
+                                    <option>Women Bureau</option>
+                                </select>
                             </div>
                         </div>
 
@@ -531,13 +557,6 @@ use Illuminate\Support\Facades\DB;
                                 </div>
                             </div>
                         </div>
-
-
-
-
-
-
-
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -551,6 +570,47 @@ use Illuminate\Support\Facades\DB;
             </div>
         </div>
     </div>
+
+            {{--Update Rank Form--}}
+            <div class="modal fade" id="updateRank" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div  class="modal-dialog modal-dialog-centered" role="document">
+                    <div  class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="updateRank">Update Police Officer Rank</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="updateRankFormView" enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-group row">
+                                    <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('NIC') }}</label>
+
+                                    <div class="col-md-7">
+                                        <input id="nic" type="text" pattern=".{10,12}" class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}" name="nic" value="{{ old('nic') }}" required autofocus>
+
+                                        @if ($errors->has('nic'))
+                                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('nic') }}</strong>
+                                    </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="form-group row mb-0">
+                                    <div class="col-md-6 offset-md-4">
+                                        <button type="submit" class="btn btn-primary">
+                                            {{ __('Check') }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
 
     <br>
 
