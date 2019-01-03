@@ -14,10 +14,12 @@ class AdminController extends Controller
 {
     public function __construct()
     {
+
         $this->middleware('admin');
     }
 
     public function index(){
+
         return view('admin.index');
     }
     public function registerPoliceOfficer(Request $request){
@@ -61,7 +63,8 @@ class AdminController extends Controller
 //removeFormView to police officers
     public function removeFormView(Request $request){
 
-        $policeOfficer = db::table('users')->where('nic',$request->nic)->First();
+
+
         return view('admin.removePoliceOfficerForm',compact('policeOfficer'));
     }
     //removePoliceOfficer
@@ -144,8 +147,30 @@ class AdminController extends Controller
 
     public function updateRankFormView(Request $request){
 
-
+        $dataSystemRole = db::table('data_entries')->where('dataType',"systemRole")->get();
+        $dataOfficerRank = db::table('data_entries')->where('dataType',"officerRank")->get();
+        $dataPoliceOffice = db::table('police_offices')->get();
         $policeOfficer = db::table('users')->where('nic',$request->nic)->First();
-        return view('admin.updateRank',compact('policeOfficer'));
+        return view('admin.updateRank',compact('policeOfficer','dataOfficerRank','dataSystemRole','dataPoliceOffice'));
+
+    }
+
+    public function updateRank(Request $request){
+        $result=DB::table('users')
+            ->where('nic',$request->nic)
+            ->update(['role'=>$request->role,'profession'=>$request->officerRank,'policeOffice'=>$request->policeOffice]);
+        if($result){
+            $policeOfficer=db::table('users')->get();
+            return view('admin.index',compact('policeOfficer'));
+
+        }
+        else{
+            return redirect('/admin');
+        }
+    }
+
+    public function viewPoliceOfficesList(){
+        $crimeTypeList=db::table('police_offices')->get();
+        return view('admin.policeOfficesList',compact('policeOfficesList'));
     }
 }

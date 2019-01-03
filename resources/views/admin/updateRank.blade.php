@@ -63,25 +63,49 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="profession" class="col-md-4 col-form-label text-md-right">{{ __('System Role') }}</label>
+                                <label for="categoryType" class="col-md-4 col-form-label text-md-right">{{ __('System Role') }}</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" value="{{ $policeOfficer->role }}" readonly>
+                                    <select class="form-control" name="role" id="categoryType">
+                                        <option>{{$policeOfficer->role}}</option>
+                                        @foreach($dataSystemRole as $systemRole)
+                                            @if($policeOfficer->role!=$systemRole->data)
+                                        <option>{{$systemRole->data}}</option>
+                                            @endif
+                                            @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group row">
+                                <label for="categoryType" class="col-md-4 col-form-label text-md-right">{{ __('Officer Rank') }}</label>
+                                <div class="col-md-6">
+                                    <select class="form-control" name="officerRank" id="categoryType">
+                                        <option>{{$policeOfficer->profession}}</option>
+                                        @foreach($dataOfficerRank as $officerRank)
+                                            @if($policeOfficer->profession!= $officerRank->data)
+                                                <option>{{$officerRank->data}}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="rank" class="col-md-4 col-form-label text-md-right">{{ __('Officer Rank') }}</label>
+                                <label for="categoryType" class="col-md-4 col-form-label text-md-right">{{ __('Police Office') }}</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" value="{{ $policeOfficer->profession }}" readonly>
+                                    <select class="form-control" name="policeOffice" id="categoryType">
+                                        <option>{{$policeOfficer->policeOffice}}</option>
+                                        @foreach($dataPoliceOffice as $policeOffices)
+                                            @if($policeOfficer->policeOffice!= $policeOffices->OfficeName)
+                                                <option>{{$policeOffices->OfficeName}}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <label for="policeOffice" class="col-md-4 col-form-label text-md-right">{{ __('Police Office') }}</label>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" value="{{ $policeOfficer->policeOffice }}" readonly>
-                                </div>
-                            </div>
                             <div class="form-group row">
                                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
@@ -92,7 +116,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Remove') }}
+                                        {{ __('Update') }}
                                     </button>
                                 </div>
                             </div>

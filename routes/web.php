@@ -165,3 +165,15 @@ Route::post('/updateRankFormView',[
 ])->middleware('auth');
 
 
+
+Route::post('/updateRank',[
+    'uses'=>'AdminController@updateRank',
+    'as'=>'updateRank'
+])->middleware('auth');
+
+
+Route::get('/viewPoliceOfficesList',[
+    'uses'=>'AdminController@viewPoliceOfficesList',
+    'as'=>'viewPoliceOfficesList'
+])->middleware('auth');
+
