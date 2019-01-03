@@ -87,6 +87,8 @@ Route::get('verify/{token}','verifyController@verifyEmail');
 //citizen
 Route::get('/RegisteredCitizen','CitizenLoginController@index')->middleware('verified');
 Route::get('updateFormView','CitizenController@updateFormView');
+Route::post('citizenInfoUpdate','CitizenController@citizenInfoUpdate');
+
 Route::post('/updateCitizenEntry',[
     'uses'=>'EntryController@updateCitizenEntry',
     'as'=>'updateCitizenEntry'
@@ -98,6 +100,16 @@ Route::post('/registerCitizen',[
 Route::post('/reviewCitizenRegistrationRequest',[
     'uses'=>'CitizenController@ViewRequest',
     'as'=>'reviewCitizenRegistrationRequest'
+]);
+
+Route::post('/citizenAccountDeactivate',[
+    'uses'=>'CitizenController@citizenAccountDeactivate',
+    'as'=>'citizenAccountDeactivate'
+]);
+
+Route::post('/citizenPasswordChange',[
+    'uses'=>'CitizenController@citizenPasswordChange',
+    'as'=>'citizenPasswordChange'
 ]);
 
 //Oic
@@ -115,9 +127,16 @@ Route::get('/viewOngoingEntries',[
     'as'=>'OngoingEntries'
 ])->middleware('auth');
 
+Route::post('/oicPasswordChange',[
+    'uses'=>'OICController@oicPasswordChange',
+    'as'=>'oicPasswordChange'
+]);
 
 
-
+Route::get('/viewClosedEntries',[
+    'uses'=>'EntryController@viewClosedEntries',
+    'as'=>'ClosedEntries'
+])->middleware('auth');
 
 //admin
 Route::post('removeFormView','AdminController@removeFormView');
@@ -162,6 +181,12 @@ Route::post('/viewCrimeCategorySection',[
 Route::post('/updateRankFormView',[
     'uses'=>'AdminController@updateRankFormView',
     'as'=>'updateRankFormView'
+])->middleware('auth');
+
+//general
+Route::post('/getUserInfo',[
+    'uses'=>'EntryController@getUserInfo',
+    'as'=>'getUserInfo'
 ])->middleware('auth');
 
 
