@@ -27,7 +27,7 @@ class CitizenController extends Controller
         $citizen->gender = $request->gender;
         $citizen->dob = $request->dob;
         $citizen->role = "citizen";
-        $citizen->dob = $request->civilStatus;
+        $citizen->civilStatus = $request->civilStatus;
         $citizen->remember_token = str_random(60);
         $citizen->token=str_random(25);
         $citizen->password = Hash::make($request->password);

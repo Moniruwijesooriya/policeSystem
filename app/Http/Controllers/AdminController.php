@@ -18,7 +18,9 @@ class AdminController extends Controller
     }
 
     public function index(){
-        return view('admin.index');
+        $policeStationOffices = db::table('police_offices')->where('policeOfficeType',"Police Station")->get();
+        $divisionPoliceOffices = db::table('police_offices')->where('policeOfficeType',"Division Police Office")->get();
+        return view('admin.index',compact('divisionPoliceOffices','policeStationOffices'));
     }
     public function registerPoliceOfficer(Request $request){
         $policeOfficer=new User();
@@ -32,7 +34,7 @@ class AdminController extends Controller
         $policeOfficer->role=$request->role;
         $policeOfficer->gender = $request->gender;
         $policeOfficer->dob = $request->dob;
-        $policeOfficer->dob = $request->civilStatus;
+        $policeOfficer->civilStatus = $request->civilStatus;
         $policeOfficer->policeOffice=$request->policeOffice;
         $policeOfficer->remember_token=str_random(60);
         $randomPassword="123123";
@@ -86,10 +88,10 @@ class AdminController extends Controller
         $type=$request->policeOfficeType;
         $officeName=$area." ".$type;
         $policeOffice->OfficeName=$officeName;
-        $policeOffice->mainOfficer=$request->landNumber;
+        $policeOffice->mainOfficer="Not Appointed Yet";
+        $policeOffice->headPoliceOffice=$request->headPoliceOffice;
 
         $policeOffice->save();
-
         return redirect()->back();
 
     }
