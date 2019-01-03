@@ -27,7 +27,7 @@ class CitizenController extends Controller
         $citizen->gender = $request->gender;
         $citizen->dob = $request->dob;
         $citizen->role = "citizen";
-        $citizen->dob = $request->civilStatus;
+        $citizen->civilStatus = $request->civilStatus;
         $citizen->remember_token = str_random(60);
         $citizen->token=str_random(25);
         $citizen->password = Hash::make($request->password);
@@ -125,10 +125,9 @@ public function store(Request $request)
 
     public function citizenAccountDeactivate(Request $request)
     {
-        $userpassword=Hash::make("123123");
-        $xuserpassword=Hash::make("123123");
-        $citizenDetails = db::table('users')->where('nic',$request->nic)->First();
-        if ($xuserpassword==$userpassword){
+        $userpassword=$request->password;
+        $citizen = db::table('users')->where('nic',$request->nic)->first();
+        if (Hash::check($userpassword,$citizen->password)){
             DB::table('users')->where('nic',$request->nic)->delete();
             return redirect('/');
         }
@@ -139,13 +138,19 @@ public function store(Request $request)
     }
 
     public function citizenPasswordChange(Request $request){
-        $currentpassword=Hash::make($request->currentpassword);
-        $newpassword=Hash::make($request->newpassword);
-        $confirmpassword=Hash::make($request->confirmpassword);
+        $currentpassword=$request->currentpassword;
+        $newpassword=$request->newpassword;
+        $confirmpassword=$request->confirmpassword;
 
 
         $citizenDetails = db::table('users')->where('nic',$request->nic)->First();
 
+        if(Hash::check($currentpassword,$citizenDetails->password) && $newpassword == $confirmpassword){
+            DB::table('users')
+                ->where('nic',$request->nic)
+                ->update(['password'=>Hash::make($request->newpassword)]);
+            return redirect('/RegisteredCitizen');
+        }
 
     }
 
