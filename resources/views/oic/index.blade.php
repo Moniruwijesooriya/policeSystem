@@ -191,7 +191,7 @@ use Illuminate\Support\Facades\DB;
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="citizenPasswordChange" >
+                    <form method="POST" action="oicPasswordChange" >
                         @csrf
 
                         <div class="form-group row">
