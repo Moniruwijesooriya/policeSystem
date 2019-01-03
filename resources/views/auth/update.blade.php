@@ -197,4 +197,5 @@ use Illuminate\Support\Facades\DB;
             </div>
         </div>
     </div>
+    @extends('layouts.footer')
 @endsection
