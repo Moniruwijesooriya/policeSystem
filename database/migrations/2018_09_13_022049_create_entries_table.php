@@ -19,9 +19,13 @@ class CreateEntriesTable extends Migration
             $table->string('complainantID');
             $table->string('complaint');
             $table->string('district');
+            $table->string('policeDivisionOffice');
             $table->string('nearestPoliceStation');
             $table->string('oicNotification');
             $table->string('boicNotification');
+            $table->string('doigNotification');
+            $table->string('igpNotification');
+            $table->string('citizenNotification');
             $table->string('branch')->nullable();
             $table->string('progress');
             $table->string('status');

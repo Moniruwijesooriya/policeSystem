@@ -222,6 +222,17 @@ use Illuminate\Support\Facades\DB;
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="civilStatus" class="col-md-4 col-form-label text-md-right">{{ __('Civil Status') }}</label>
+                            <div class="col-md-7">
+                                <select class="form-control" name="civilStatus" id="exampleFormControlSelect1">
+                                    <option>Single</option>
+                                    <option>Married</option>
+                                    <option>Divorced</option>
+                                    <option>Widowed</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="homeAddress" class="col-md-4 col-form-label text-md-right">{{ __('Home Address') }}</label>
 
                             <div class="col-md-7">
@@ -264,8 +275,6 @@ use Illuminate\Support\Facades\DB;
                         </div>
 
                         <div class="form-group row">
-
-
                             <label for="profession" class="col-md-4 col-form-label text-md-right">{{ __('System Role') }}</label>
                             <div class="col-md-7">
                                 <select class="form-control" name="role" id="exampleFormControlSelect1">

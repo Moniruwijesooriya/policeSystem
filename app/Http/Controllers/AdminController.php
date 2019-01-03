@@ -32,6 +32,7 @@ class AdminController extends Controller
         $policeOfficer->role=$request->role;
         $policeOfficer->gender = $request->gender;
         $policeOfficer->dob = $request->dob;
+        $policeOfficer->dob = $request->civilStatus;
         $policeOfficer->policeOffice=$request->policeOffice;
         $policeOfficer->remember_token=str_random(60);
         $randomPassword="123123";

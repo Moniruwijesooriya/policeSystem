@@ -112,11 +112,6 @@ Route::post('/citizenPasswordChange',[
     'as'=>'citizenPasswordChange'
 ]);
 
-
-
-
-
-
 //Oic
 Route::get('/test','OICController@test');
 
@@ -142,9 +137,6 @@ Route::get('/viewClosedEntries',[
     'uses'=>'EntryController@viewClosedEntries',
     'as'=>'ClosedEntries'
 ])->middleware('auth');
-
-
-
 
 //admin
 Route::post('removeFormView','AdminController@removeFormView');
@@ -191,6 +183,10 @@ Route::post('/updateRankFormView',[
     'as'=>'updateRankFormView'
 ])->middleware('auth');
 
-
+//general
+Route::post('/getUserInfo',[
+    'uses'=>'EntryController@getUserInfo',
+    'as'=>'getUserInfo'
+])->middleware('auth');
 
 
