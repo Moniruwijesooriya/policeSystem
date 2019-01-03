@@ -126,7 +126,7 @@ use Illuminate\Support\Facades\DB;
 
                 <div class="row" style="margin-top:15px">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changepasswordform">
-                        change password
+                        Change Password
                     </button>
                 </div>
 
