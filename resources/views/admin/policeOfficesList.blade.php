@@ -34,6 +34,12 @@ use Illuminate\Support\Facades\DB;
     <!-- Page Container -->
     <div class="container-fluid" style="max-width:1400px;">
         <!-- The Grid -->
+        <div class="row">
+            <div class="col-md-6">
+                <input class="form-control" id="myInput" type="text" placeholder="Search...">
+                <br>
+            </div>
+        </div>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -42,12 +48,13 @@ use Illuminate\Support\Facades\DB;
                 <th scope="col">District</th>
                 <th scope="col">Police Office Area</th>
                 <th scope="col">Police Office Type</th>
+                <th scope="col">Head Police Office</th>
                 <th scope="col">Land Number</th>
                 <th scope="col">Main Officer</th>
                 <th scope="col"> Action</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="myTable">
             @foreach($policeOfficesList as $policeOffices)
                 <tr>
                     <td>{{$policeOffices->id}}</td>
@@ -55,6 +62,7 @@ use Illuminate\Support\Facades\DB;
                     <td>{{$policeOffices->district}}</td>
                     <td>{{$policeOffices->policeOfficeArea}}</td>
                     <td>{{$policeOffices->policeOfficeType}}</td>
+                    <td>{{$policeOffices->headPoliceOffice}}</td>
                     <td>{{$policeOffices->landNumber}}</td>
                     <td>{{$policeOffices->mainOfficer}}</td>
                     <td><form action="updatePoliceOffices" method="post">
@@ -119,6 +127,14 @@ use Illuminate\Support\Facades\DB;
                 x.className = x.className.replace(" w3-show", "");
             }
         }
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
     </script>
 
 

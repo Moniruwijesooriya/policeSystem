@@ -72,6 +72,11 @@ use Illuminate\Support\Facades\DB;
                                 Home
                             </a>
                         @endif
+                            @if(Auth::User()->role=='admin')
+                                <a class="navbar-brand" href="{{'admin'}}">
+                                    Home
+                                </a>
+                            @endif
                     </ul>
 
                     <?php
