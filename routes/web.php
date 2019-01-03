@@ -182,3 +182,4 @@ Route::post('/viewCrimeCategorySection',[
 
 
 
+

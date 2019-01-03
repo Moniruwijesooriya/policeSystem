@@ -47,7 +47,8 @@ use Illuminate\Support\Facades\DB;
                                     <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->evidences }}<br>Submitted by : <a href="">{{ $entry->complainantID }}</a></p>
                                     @foreach($evidences as $evidence)
                                         <p contenteditable="false" class="w3-border w3-padding" >{{ $evidence->evidence_txt }}<br>Submitted by : <a href="">{{ $evidence->witnessId }}</a>
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewPerson">
+                                            {{--<input type="hidden" name="{{ $evidence->witnessId }}" value="{{ $evidence->witnessId }}">--}}
+                                            <button type="button" onclick="retriveUserInfo()" value="{{ $evidence->witnessId }}" id="nicbutton" class="btn btn-primary" data-toggle="modal" data-target="#viewPerson">
                                                 {{ $evidence->witnessId }}
                                             </button>
                                         </p>
@@ -130,26 +131,26 @@ use Illuminate\Support\Facades\DB;
                                     </div>
 
                                     @if($entry->status=="new")
-                                    <div class="form-group row">
-                                        <label class="col-md-4 col-form-label text-md-right">{{ __('Branch') }}</label>
-                                        <div class="col-md-6">
-                                            <select class="form-control" name ="branch" id="exampleFormControlSelect1">
-                                                <option>Crime Branch</option>
-                                                <option>Vice Unit</option>
-                                                <option>Miscellaneous Complaints</option>
-                                            </select>
+                                        <div class="form-group row">
+                                            <label class="col-md-4 col-form-label text-md-right">{{ __('Branch') }}</label>
+                                            <div class="col-md-6">
+                                                <select class="form-control" name ="branch" id="exampleFormControlSelect1">
+                                                    <option>Crime Branch</option>
+                                                    <option>Vice Unit</option>
+                                                    <option>Miscellaneous Complaints</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
                                     @endif
 
                                     @if($entry->status=="ongoing")
-                                    <div class="form-group row">
-                                        <label class="col-md-4 col-form-label text-md-right">{{ __('Current Branch') }}</label>
+                                        <div class="form-group row">
+                                            <label class="col-md-4 col-form-label text-md-right">{{ __('Current Branch') }}</label>
 
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control"value="{{ $entry->branch }}" readonly>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control"value="{{ $entry->branch }}" readonly>
+                                            </div>
                                         </div>
-                                    </div>
                                     @endif
 
                                     <div class="form-group row">
@@ -193,26 +194,26 @@ use Illuminate\Support\Facades\DB;
                                                 <input type="submit" class="btn btn-primary" value="Accept and Forward">
                                             </div>
                                         @endif
-                                            @if($entry->status=="ongoing")
-                                                <div class="col-md-6 offset-md-6 col-xs-6"  >
-                                                    <input type="hidden" name="statusType" value="{{$entry->status}}">
-                                                    <input type="submit" class="btn btn-primary"  value="Submit">
-                                                </div>
-                                                <div class="col-md-6 offset-md-6 col-xs-6"  >
-                                                    <input type="hidden" name="statusType" value="closed">
-                                                    <input type="submit" class="btn btn-primary"  value="Close Entry">
-                                                </div>
-                                                <div class="col-md-6 offset-md-6 col-xs-6"  >
-                                                    <input type="hidden" name="statusType" value="closed">
-                                                    <input type="submit" class="btn btn-primary"  value="Forward">
-                                                </div>
-                                            @endif
-                                            @if($entry->status=="closed")
-                                                <div class="col-md-6 offset-md-6 col-xs-6"  >
-                                                    <input type="hidden" name="statusType" value="closed">
-                                                    <input type="submit" class="btn btn-primary"  value="Forward">
-                                                </div>
-                                            @endif
+                                        @if($entry->status=="ongoing")
+                                            <div class="col-md-6 offset-md-6 col-xs-6"  >
+                                                <input type="hidden" name="statusType" value="{{$entry->status}}">
+                                                <input type="submit" class="btn btn-primary"  value="Submit">
+                                            </div>
+                                            <div class="col-md-6 offset-md-6 col-xs-6"  >
+                                                <input type="hidden" name="statusType" value="closed">
+                                                <input type="submit" class="btn btn-primary"  value="Close Entry">
+                                            </div>
+                                            <div class="col-md-6 offset-md-6 col-xs-6"  >
+                                                <input type="hidden" name="statusType" value="closed">
+                                                <input type="submit" class="btn btn-primary"  value="Forward">
+                                            </div>
+                                        @endif
+                                        @if($entry->status=="closed")
+                                            <div class="col-md-6 offset-md-6 col-xs-6"  >
+                                                <input type="hidden" name="statusType" value="closed">
+                                                <input type="submit" class="btn btn-primary"  value="Forward">
+                                            </div>
+                                        @endif
 
                                         <div class="col-md-3 col-xs-6"  >
                                             <button  type="reset" class="btn btn-danger" value="cancel">Reset</button>
@@ -230,9 +231,9 @@ use Illuminate\Support\Facades\DB;
             <!-- Right Column -->
             <div class="col-md-3">
                 <div class="row">
-                            <p><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#createPost">
-                                   Create a Post
-                                </button></p>
+                    <p><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#createPost">
+                            Create a Post
+                        </button></p>
                     <div class="row justify-content-center">
 
                         <div class="card" style="margin-top: 10px">
@@ -241,7 +242,7 @@ use Illuminate\Support\Facades\DB;
                                 <div class="form-group row">
                                     <div class="col-md-11">
                                         @if($entry->status=="new")
-                                        <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->progress }}</p>
+                                            <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->progress }}</p>
                                         @endif
                                         @foreach($entryProgresses as $entryProgress)
                                             <p contenteditable="false" class="w3-border w3-padding" >{{ $entryProgress->progress }}</p>
@@ -280,14 +281,14 @@ use Illuminate\Support\Facades\DB;
 
                             <div class="col-md-7">
                                 {{--<input id="name" type="text" class="form-control" name="name" value="{{ $evidence->witnessId }}" readonly></div>--}}
-                        </div>
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Check') }}
-                                </button>
                             </div>
-                        </div>
+                            <div class="form-group row mb-0">
+                                <div class="col-md-6 offset-md-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        {{ __('Check') }}
+                                    </button>
+                                </div>
+                            </div>
                     </form>
                 </div>
 
@@ -368,6 +369,31 @@ use Illuminate\Support\Facades\DB;
                 x.className = x.className.replace(" w3-show", "");
             }
         }
+        var tempNic="";
+        $("#nicbutton").click(function () {
+            tempNic= $("#nicbutton").val();
+        })
+        var url='{{route('getUserInfo')}}';
+        var token='{{Session::token()}}';
+
+        // $('document').ready(function () {
+            function retriveUserInfo() {
+                $.ajax({
+                        method: 'post',
+                        url: url,
+                    data:{
+                            _token: token,
+                            id: tempNic
+                    },
+                    success:function (data) {
+                            console.log(tempNic);
+                        // $('#x').innerHTML=data.nic;
+
+                    }
+
+                    })
+            }
+        // })
     </script>
 
 

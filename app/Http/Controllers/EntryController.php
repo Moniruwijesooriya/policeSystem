@@ -175,6 +175,11 @@ class EntryController extends Controller
         $suspects=db::table('suspects')->where('entryID',$request->entryID)->where('userRole',"citizen")->get();
         return view('entry/citizenEntryView',compact('entry','evidences','suspects'));
     }
+    public function getUserInfo(Request $request){
+        $userInfo=db::table('users')->where('nic',$request->id)->First();
+        return response()->json($userInfo);
+
+    }
 
     public function updateCitizenEntry(Request $request){
         $evidence=new Evidence();
