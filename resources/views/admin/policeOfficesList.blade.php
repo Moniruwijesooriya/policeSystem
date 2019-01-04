@@ -44,44 +44,48 @@ use Illuminate\Support\Facades\DB;
             <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Crime Type</th>
-                <th scope="col">Category Type</th>
-                <th scope="col">Description</th>
-                <th scope="col">Police View</th>
-                <th scope="col">Citizen View</th>
+                <th scope="col">Office Name</th>
+                <th scope="col">District</th>
+                <th scope="col">Police Office Area</th>
+                <th scope="col">Police Office Type</th>
+                <th scope="col">Head Police Office</th>
+                <th scope="col">Land Number</th>
+                <th scope="col">Main Officer</th>
                 <th scope="col"> Action</th>
             </tr>
             </thead>
             <tbody id="myTable">
-            @foreach($crimeTypeList as $crimeType)
-            <tr>
-                <td>{{$crimeType->id}}</td>
-                <td>{{$crimeType->crimeType}}</td>
-                <td>{{$crimeType->categoryType}}</td>
-                <td>{{$crimeType->description}}</td>
-                <td>{{$crimeType->policeView}}</td>
-                <td>{{$crimeType->citizenView}}</td>
-                <td><form action="updateViewCrimeType" method="post">
-                        @csrf
-                        <input type="hidden" name="crimeIdTemp" value="{{$crimeType->id}}">
-                        <button type="submit" class="btn btn-primary">
-                            {{ __('Update') }}
-                        </button>
+            @foreach($policeOfficesList as $policeOffices)
+                <tr>
+                    <td>{{$policeOffices->id}}</td>
+                    <td>{{$policeOffices->OfficeName}}</td>
+                    <td>{{$policeOffices->district}}</td>
+                    <td>{{$policeOffices->policeOfficeArea}}</td>
+                    <td>{{$policeOffices->policeOfficeType}}</td>
+                    <td>{{$policeOffices->headPoliceOffice}}</td>
+                    <td>{{$policeOffices->landNumber}}</td>
+                    <td>{{$policeOffices->mainOfficer}}</td>
+                    <td><form action="updatePoliceOffices" method="post">
+                            @csrf
+                            <input type="hidden" name="crimeIdTemp" value="{{$policeOffices->id}}">
+                            <button type="submit" class="btn btn-primary">
+                                {{ __('Update') }}
+                            </button>
 
-                    </form>
-                    <form action="deleteCrimeType" method="post">
-                        @csrf
-                        <input type="hidden" name="crimeIdTemp" value="{{$crimeType->id}}">
-                        <button type="submit" class="btn btn-primary">
-                            {{ __('Delete') }}
-                        </button>
-                    </form>
-                </td>
+                        </form>
+                        <form action="deletePoliceOffices" method="post">
+                            @csrf
+                            <input type="hidden" name="policeOfficeID" value="{{$policeOffices->id}}">
+                            <button type="submit" class="btn btn-primary">
+                                {{ __('Delete') }}
+                            </button>
+                        </form>
+                    </td>
 
 
 
-            </tr>
-                @endforeach
+                </tr>
+            @endforeach
             </tbody>
         </table>
 

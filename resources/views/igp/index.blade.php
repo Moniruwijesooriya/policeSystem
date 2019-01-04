@@ -342,5 +342,5 @@
         }
     </script>
 
-
+@extends('layouts.footer')
 @endsection

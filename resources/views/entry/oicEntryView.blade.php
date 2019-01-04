@@ -472,9 +472,6 @@ use Illuminate\Support\Facades\DB;
                         id: tempNic
                     },
                     success:function (data) {
-                        console.log("Here");
-                        console.log(data);
-                        console.log(tempNic);
                         $("#nicTempId").val(data.nic);
                         $("#nameTempId").val(data.name);
                     }

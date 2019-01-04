@@ -3,6 +3,15 @@
 use Illuminate\Support\Facades\DB;
 ?>
 @section('content')
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="{{ asset('css/style.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -81,7 +90,7 @@ use Illuminate\Support\Facades\DB;
 
                         <div class="form-group row">
                             <label for="civilStatus" class="col-md-4 col-form-label text-md-right">{{ __('Civil Status') }}</label>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <select class="form-control" name="civilStatus" id="exampleFormControlSelect1">
                                     <option>Single</option>
                                     <option>Married</option>
@@ -112,6 +121,7 @@ use Illuminate\Support\Facades\DB;
                             <div class="col-md-6">
 
                                 <select class="form-control" name="policeStation" id="exampleFormControlSelect1" required autofocus>
+                                    <option>Temp</option>
                                     @foreach($policeOffice as $office)
                                         <option>{{$office->OfficeName}}</option>
                                     @endforeach
@@ -229,4 +239,5 @@ use Illuminate\Support\Facades\DB;
         </div>
     </div>
 </div>
+@extends('layouts.footer')
 @endsection

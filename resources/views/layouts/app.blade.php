@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\DB;
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body style="background-image: url('/img/swirl_pattern.png')">
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="container">
@@ -72,6 +72,11 @@ use Illuminate\Support\Facades\DB;
                                 Home
                             </a>
                         @endif
+                            @if(Auth::User()->role=='admin')
+                                <a class="navbar-brand" href="{{'admin'}}">
+                                    Home
+                                </a>
+                            @endif
                     </ul>
 
                     <?php
