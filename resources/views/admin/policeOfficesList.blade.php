@@ -48,18 +48,18 @@ use Illuminate\Support\Facades\DB;
             </tr>
             </thead>
             <tbody>
-            @foreach($policeOfficesList as $policeOffices)
+            @foreach($policeOfficesList as $policeOffice)
                 <tr>
-                    <td>{{$policeOffices->id}}</td>
-                    <td>{{$policeOffices->OfficeName}}</td>
-                    <td>{{$policeOffices->district}}</td>
-                    <td>{{$policeOffices->policeOfficeArea}}</td>
-                    <td>{{$policeOffices->policeOfficeType}}</td>
-                    <td>{{$policeOffices->landNumber}}</td>
-                    <td>{{$policeOffices->mainOfficer}}</td>
-                    <td><form action="updatePoliceOffices" method="post">
+                    <td>{{$policeOffice->id}}</td>
+                    <td>{{$policeOffice->OfficeName}}</td>
+                    <td>{{$policeOffice->district}}</td>
+                    <td>{{$policeOffice->policeOfficeArea}}</td>
+                    <td>{{$policeOffice->policeOfficeType}}</td>
+                    <td>{{$policeOffice->landNumber}}</td>
+                    <td>{{$policeOffice->mainOfficer}}</td>
+                    <td><form action="updatePoliceOfficesFormView" method="post">
                             @csrf
-                            <input type="hidden" name="crimeIdTemp" value="{{$policeOffices->id}}">
+                            <input type="hidden" name="policeOfficeID" value="{{$policeOffice->id}}">
                             <button type="submit" class="btn btn-primary">
                                 {{ __('Update') }}
                             </button>
@@ -67,7 +67,7 @@ use Illuminate\Support\Facades\DB;
                         </form>
                         <form action="deletePoliceOffices" method="post">
                             @csrf
-                            <input type="hidden" name="policeOfficeID" value="{{$policeOffices->id}}">
+                            <input type="hidden" name="policeOfficeID" value="{{$policeOffice->id}}">
                             <button type="submit" class="btn btn-primary">
                                 {{ __('Delete') }}
                             </button>

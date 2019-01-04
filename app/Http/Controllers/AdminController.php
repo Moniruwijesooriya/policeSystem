@@ -179,9 +179,29 @@ class AdminController extends Controller
     }
     public function deletePoliceOffices(Request $request)
     {
-        $policeOfficesList = db::table('police_offices')->where('id', $request->id)->delete();
+        $policeOfficesList = db::table('police_offices')->where('id', $request->policeOfficeID)->delete();
 
         if ($policeOfficesList) {
+            return redirect('/admin');
+        }
+    }
+
+    public function updatePoliceOfficesFormView(Request $request){
+
+        $policeOffice = db::table('police_offices')->where('id',$request->policeOfficeID)->First();
+        return view('admin.updatePoliceOfficesForm',compact('policeOffice'));
+    }
+
+    public function updatePoliceOffices(Request $request){
+        $result=DB::table('police_offices')
+            ->where('id',$request->policeOfficeID)
+            ->update(['landNumber'=>$request->landNumber]);
+        if($result){
+            $policeOfficesList=db::table('police_offices')->get();
+            return view('admin.policeOfficesList',compact('policeOfficesList'));
+
+        }
+        else{
             return redirect('/admin');
         }
     }
