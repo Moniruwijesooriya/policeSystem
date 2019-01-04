@@ -101,7 +101,7 @@ use Illuminate\Support\Facades\DB;
                                         <label class="col-md-4 col-form-label text-md-right">{{ __('Complainant NIC') }}</label>
 
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control"value="{{ $entry->complainantID }}" readonly>
+                                            <button type="button" value="{{ $entry->complainantID }}" id="nicbutton" class="btn btn-primary nic-button" data-toggle="modal" data-target="#viewPerson">{{ $entry->complainantID }}</button>
                                             <input type="hidden" name="complainantNIC" value="{{ $entry->complainantID }}">
                                         </div>
                                     </div>
@@ -333,6 +333,13 @@ use Illuminate\Support\Facades\DB;
                                 <input id="nameTempId" type="text" class="form-control" name="nameTemp"  readonly></div>
                         </div>
                         <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Full Name') }}</label>
+
+                            <div class="col-md-7">
+                                <input id="fullNameTempId" type="text" class="form-control" name="fullNameTemp"  readonly></div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Date of Birth') }}</label>
 
                             <div class="col-md-7">
@@ -342,7 +349,7 @@ use Illuminate\Support\Facades\DB;
                             <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
 
                             <div class="col-md-7">
-                                <input id="TempId" type="text" class="form-control" name="addressTemp"  readonly></div>
+                                <input id="addressTempId" type="text" class="form-control" name="addressTemp"  readonly></div>
                         </div>
                         <div class="form-group row">
                             <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Mobile Number') }}</label>
@@ -360,7 +367,7 @@ use Illuminate\Support\Facades\DB;
                             <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
 
                             <div class="col-md-7">
-                                <input id=emailTempId" type="text" class="form-control" name="emailTemp"  readonly></div>
+                                <input id="emailTempId" type="text" class="form-control" name="emailTemp"  readonly></div>
                         </div>
                         <div class="form-group row">
                             <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
@@ -375,10 +382,10 @@ use Illuminate\Support\Facades\DB;
                                 <input id="professionTempId" type="text" class="form-control" name="professionTemp"  readonly></div>
                         </div>
                         <div class="form-group row">
-                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Nearest Police Station') }}</label>
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Relevant Police Station') }}</label>
 
                             <div class="col-md-7">
-                                <input id="professionTempId" type="text" class="form-control" name="professionTemp"  readonly></div>
+                                <input id="policeStationId" type="text" class="form-control" name="policeStationTemp"  readonly></div>
                         </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
@@ -426,37 +433,6 @@ use Illuminate\Support\Facades\DB;
                 x.className = x.className.replace(" w3-show", "");
             }
         }
-        // var tempNic="";
-        // $("#nicbutton").click(function () {
-        //     tempNic= $(this).val();
-        //     console.log(tempNic);
-        //     console.log("sdf");
-        // });
-/*        var url='{{route('getUserInfo')}}';
-        var token='{{Session::token()}}';*/
-
-        // $('document').ready(function () {
-        /*function retriveUserInfo() {
-            console.log(tempNic);
-            $.ajax({
-                method: 'post',
-                url: url,
-                data:{
-                    _token: token,
-                    id: tempNic
-                },
-                success:function (data) {
-                    console.log(tempNic);
-                    document.getElementById("nictempid").innerHTML = data.nic;
-
-                    // $('#x').innerHTML=data.nic;
-
-                }
-
-            })
-        }*/
-        // })
-
         $(document).ready(function () {
             var url = '{{route('getUserInfo')}}';
             var token = '{{Session::token()}}';
@@ -472,17 +448,20 @@ use Illuminate\Support\Facades\DB;
                         id: tempNic
                     },
                     success:function (data) {
-                        console.log("Here");
-                        console.log(data);
-                        console.log(tempNic);
                         $("#nicTempId").val(data.nic);
                         $("#nameTempId").val(data.name);
+                        $("#fullNameTempId").val(data.fullName);
+                        $("#dobTempId").val(data.dob);
+                        $("#addressTempId").val(data.address);
+                        $("#mobileNumberTempId").val(data.mobileNumber);
+                        $("#landLineNumberTempId").val(data.landLineNumber);
+                        $("#emailTempId").val(data.email);
+                        $("#genderTempId").val(data.gender);
+                        $("#professionTempId").val(data.profession);
+                        $("#policeStationId").val(data.policeOffice);
                     }
                 });
             });
-            // console.log(tempNic);
-
-            // console.log("Here");
 
         });
     </script>

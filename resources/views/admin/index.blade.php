@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\DB;
 ?>
 @section('content')
     <!-- Page Container -->
-    <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+    <div class="w3-container w3-content" style="max-width:1400px;margin-top:5px">
         <!-- The Grid -->
         <div class="w3-row">
             <!-- Left Column -->
@@ -21,23 +21,6 @@ use Illuminate\Support\Facades\DB;
                 <br>
 
                 <!-- Accordion -->
-                <div class="w3-card w3-round">
-                    <div class="w3-white">
-                        <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-archive fa-fw w3-margin-right"></i>Police Office Management</button>
-                        <div id="Demo1" class="w3-hide w3-container">
-                            {{--<p>Some text..</p>--}}
-                        </div>
-                        <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-address-book-o fa-fw w3-margin-right"></i>Police Officer Management</button>
-                        <div id="Demo2" class="w3-hide w3-container">
-                            {{--<p>Some other text..</p>--}}
-                        </div>
-                        <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i>Citizen Management</button>
-                        <div id="Demo3" class="w3-hide w3-container">
-                            <div class="w3-row-padding">
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <br>
 
 
@@ -45,96 +28,46 @@ use Illuminate\Support\Facades\DB;
             </div>
 
             <!-- Middle Column -->
-            <div class="w3-col m7">
+            <div class="w3-col m5">
 
-                <div class="w3-row-padding">
-                    <div class="w3-col m12">
-                        <div class="w3-card w3-round w3-white w3-center">
-                            <div class="w3-container">
-                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOfficer">Register Police Officer</button></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="w3-row-padding">
-                    <div class="w3-col m12">
-                        <div class="w3-card w3-round w3-white w3-center">
-                            <div class="w3-container">
-
-                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOffice">Register Police Office</button></p>
-
-                                {{--<p><button type="button" style="margin-right: 5px" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOffice">--}}
-                                        {{--Register Police Office--}}
-                                    {{--</button></p>--}}
-                                <p><button type="button" style="margin-right: 5px" class="btn btn-primary" data-toggle="modal" data-target="#registerIGPOffice">
-                                        Register IGP Office
-                                    </button></p>
-                                <p><button type="button" style="margin-right: 5px" class="btn btn-primary" data-toggle="modal" data-target="#registerDivisionOffice">
-                                        Register Division Office
-                                    </button></p>
-                                <p><button type="button" style="margin-right: 5px" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceStation">
-                                        Register Police Station
-                                    </button></p>
-                                <p><button type="button" style="margin-right: 5px" class="btn btn-primary" data-toggle="modal" data-target="#registerBranchOffice">
-                                        Register Branch Office
-                                    </button></p>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="w3-row-padding">
-                    <div class="w3-col m12">
-                        <div class="w3-card w3-round w3-white w3-center">
-                            <div class="w3-container">
-                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#removePoliceOfficer">Remove Police Officer</button></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                    <div class="w3-row-padding">
-                        <div class="w3-col m12">
-                            <div class="w3-card w3-round w3-white w3-center">
-                                <div class="w3-container">
-                                    <button class="btn-dark" style="margin-bottom: 5px;"><a href="viewPoliceOfficesList">View Police Offices List</a></button>
+                {{--<div class="w3-row-padding">--}}
+                    {{--<div class="w3-col m12">--}}
+                        {{--<div class="w3-card w3-round w3-white w3-center">--}}
+                            {{--<div class="w3-container">--}}
+                                {{--<p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOfficer">Register Police Officer</button></p>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                <div class="w3-card w3-round" style="margin-left: 10px;margin-right: 10px">
+                    <div class="w3-white">
+                        <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-archive fa-fw w3-margin-right"></i>Police Office Management</button>
+                        <div id="Demo1" class="w3-hide w3-container">
+                            <p><button type="button" style="margin-right: 5px" class="btn btn-primary" data-toggle="modal" data-target="#registerIGPOffice">
+                                    Register IGP Office
+                                </button></p>
+                            <p><button type="button" style="margin-right: 5px" class="btn btn-primary" data-toggle="modal" data-target="#registerDivisionOffice">
+                                    Register Division Office
+                                </button></p>
+                            <p><button type="button" style="margin-right: 5px" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceStation">
+                                    Register Police Station
+                                </button></p>
+                            <p><button type="button" style="margin-right: 5px" class="btn btn-primary" data-toggle="modal" data-target="#registerBranchOffice">
+                                    Register Branch Office
+                                </button></p>
+                            <div class="w3-row-padding">
+                                <div class="w3-col m12">
+                                    <div class="w3-card w3-round w3-white w3-center">
+                                        <div class="w3-container">
+                                            <button class="btn-dark" style="margin-bottom: 5px;"><a href="viewPoliceOfficesList">View Police Offices List</a></button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                <div class="w3-row-padding">
-                    <div class="w3-col m12">
-                        <div class="w3-card w3-round w3-white w3-center">
-                            <div class="w3-container">
-                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateRank">Update Rank</button></p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
-
-                <div class="w3-row-padding">
-                    <div class="w3-col m12">
-                        <div class="w3-card w3-round w3-white w3-center">
-                            <div class="w3-container">
-                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCrimeCategories">Add Crime Categories</button></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="w3-row-padding">
-                    <div class="w3-col m12">
-                        <div class="w3-card w3-round w3-white w3-center">
-                            <div class="w3-container">
-                                <button type="button" class="btn btn-primary"><a href="viewCrimeTypeList"><font color="white">View Crime Types</font></a></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             <!-- End Middle Column -->
             </div>
             
@@ -142,15 +75,72 @@ use Illuminate\Support\Facades\DB;
             
             <!-- Right Column -->
             <div class="w3-col m2">
-                <br>
-                <div class="w3-card w3-round w3-white w3-center">
-                    <div class="w3-container">
+                <div class="w3-card w3-round">
+                    <div class="w3-white">
+                        <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-address-book-o fa-fw w3-margin-right"></i>Police Officer Management</button>
+                        <div id="Demo2" class="w3-hide w3-container">
+                            <div class="w3-row-padding">
+                                <div class="w3-col m12">
+                                    <div class="w3-card w3-round w3-white w3-center">
+                                        <div class="w3-container">
 
-                        <a href="viewCrimeCategorySection" class="btn btn-primary" >Crime Categories</a>
+                                            <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOfficer">Register Police Officer</button></p>
+
+                                            {{--<p><button type="button" style="margin-right: 5px" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOffice">--}}
+                                            {{--Register Police Office--}}
+                                            {{--</button></p>--}}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w3-row-padding">
+                                <div class="w3-col m12">
+                                    <div class="w3-card w3-round w3-white w3-center">
+                                        <div class="w3-container">
+                                            <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateRank">Update Rank</button></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="w3-row-padding">
+                                <div class="w3-col m12">
+                                    <div class="w3-card w3-round w3-white w3-center">
+                                        <div class="w3-container">
+                                            <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#removePoliceOfficer">Remove Police Officer</button></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i>Crime Category Management</button>
+                        <div id="Demo3" class="w3-hide w3-container">
+                            <div class="w3-row-padding">
+                                <div class="w3-row-padding">
+                                    <div class="w3-col m12">
+                                        <div class="w3-card w3-round w3-white w3-center">
+                                            <div class="w3-container">
+                                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCrimeCategories">Add Crime Categories</button></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="w3-row-padding">
+                                    <div class="w3-col m12">
+                                        <div class="w3-card w3-round w3-white w3-center">
+                                            <div class="w3-container">
+                                                <button type="button" class="btn btn-primary"><a href="viewCrimeTypeList"><font color="white">View Crime Types</font></a></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <br>
-
                 {{-- <div class="w3-card w3-round w3-white w3-padding-16 w3-center">--}}
                     {{--<p>ADS</p>--}}
                 {{--</div>--}}
@@ -992,7 +982,7 @@ use Illuminate\Support\Facades\DB;
 
     <br>
 
-    @extends('layouts.footer')
+
 
     <script>
         // Accordion
@@ -1021,3 +1011,4 @@ use Illuminate\Support\Facades\DB;
 
 
 @endsection
+@extends('layouts.footer')

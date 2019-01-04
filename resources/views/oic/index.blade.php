@@ -57,8 +57,8 @@ use Illuminate\Support\Facades\DB;
                 <!-- Accordion -->
                 <div class="card">
                     <div class="bg-white">
-                        <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>Entries</button>
-                        <div id="Demo1" class="w3-hide w3-container">
+                        <button onclick="myFunction('entryManagement')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>Entries</button>
+                        <div id="entryManagement" class="w3-hide w3-container">
                             <button class="btn-dark" style="margin: 5px;width: 100%;"><a href="viewNewEntries">New Entries</a></button>
                             <br>
                             <button class="btn-dark" style="margin: 5px;width: 100%;"><a href="viewOngoingEntries">Ongoing Entries</a></button>
@@ -66,11 +66,23 @@ use Illuminate\Support\Facades\DB;
                             <button class="btn-dark" style="margin: 5px;width: 100%;"><a href="viewClosedEntries">Closed Entries</a></button>
 
                         </div>
-                        <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Invetigation Branches</button>
-                        <div id="Demo2" class="w3-hide w3-container">
-                            {{--<p>Some other text..</p>--}}
+                        <button onclick="myFunction('citizenManagement')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Citizen Management</button>
+
+                            <div id="citizenManagement" class="w3-hide w3-container">
+                                <button class="btn-dark" style="margin: 5px;width: 100%;"><a href="viewNewCitizenRequests">New Registration Requests</a></button>
+                                <br>
+                                <button class="btn-dark" style="margin: 5px;width: 100%;"><a href="viewRegisteredCitizens">Registered Citizens</a></button>
+                                <br>
+                                <button class="btn-dark" style="margin: 5px;width: 100%;"><a href="viewClosedAccounts">Closed Accounts</a></button>
+                            </div>
+                        <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i>Branches</button>
+                        <div id="citizenManagement" class="w3-hide w3-container">
+                            <button class="btn-dark" style="margin: 5px;width: 100%;"><a href="viewNewCitizenRequests">New Registration Requests</a></button>
+                            <br>
+                            <button class="btn-dark" style="margin: 5px;width: 100%;"><a href="viewRegisteredCitizens">Registered Citizens</a></button>
+                            <br>
+                            <button class="btn-dark" style="margin: 5px;width: 100%;"><a href="viewClosedAccounts">Closed Accounts</a></button>
                         </div>
-                        <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i>D Type Crime Enquries</button>
                     </div>
                 </div>
                 <br>
