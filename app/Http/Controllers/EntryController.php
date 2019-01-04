@@ -19,12 +19,15 @@ class EntryController extends Controller
      */
     public function submitEntry(Request $request){
 
+        $policeStationTemp=$request->policeStation." Police Station";
+        $divisionOffice=db::table('police_offices')->where('OfficeName',$policeStationTemp)->First();
         $crimeEntry=new Entry();
         $crimeEntry->complaintCategory=$request->complaintCategory;
         $crimeEntry->complaint=$request-> complaintText;
         $crimeEntry->district=$request->district;
         $crimeEntry->nearestPoliceStation=$request->policeStation." Police Station";
         $crimeEntry->complainantID=Auth::User()->nic;
+        $crimeEntry->policeDivisionOffice=$divisionOffice->headPoliceOffice;
         $crimeEntry->oicNotification="y";
         $crimeEntry->boicNotification="n";
         $crimeEntry->doigNotification="n";

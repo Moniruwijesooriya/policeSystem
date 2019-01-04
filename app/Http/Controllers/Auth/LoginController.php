@@ -56,7 +56,7 @@ class LoginController extends Controller
         }
         else{
             Auth::logout();
-            return view('lanka');
+            return view('errors.loginError');
         }
     }
 
