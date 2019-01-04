@@ -158,7 +158,7 @@ class EntryController extends Controller
     public function viewClosedEntries(){
 
         $entries=db::table('entries')->where('status',"closed")->get();
-        $type="Ongoing Entries";
+        $type="Closed Entries";
         return view('entry.oicEntryListView',compact('entries','type'));
     }
 

@@ -84,7 +84,7 @@ use Illuminate\Support\Facades\DB;
                                     <div class="w3-card w3-round w3-white w3-center">
                                         <div class="w3-container">
 
-                                            <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOffice">Register Police Office</button></p>
+                                            <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOfficer">Register Police Officer</button></p>
 
                                             {{--<p><button type="button" style="margin-right: 5px" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOffice">--}}
                                             {{--Register Police Office--}}

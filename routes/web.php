@@ -127,16 +127,36 @@ Route::get('/viewOngoingEntries',[
     'as'=>'OngoingEntries'
 ])->middleware('auth');
 
-Route::post('/oicPasswordChange',[
-    'uses'=>'OICController@oicPasswordChange',
-    'as'=>'oicPasswordChange'
-]);
-
-
 Route::get('/viewClosedEntries',[
     'uses'=>'EntryController@viewClosedEntries',
     'as'=>'ClosedEntries'
 ])->middleware('auth');
+
+Route::get('/viewNewCitizenRequests',[
+    'uses'=>'OICController@viewNewCitizenRequests',
+    'as'=>'viewNewCitizenRequests'
+])->middleware('auth');
+
+Route::get('/viewRegisteredCitizens',[
+    'uses'=>'OICController@viewRegisteredCitizens',
+    'as'=>'viewRegisteredCitizens'
+])->middleware('auth');
+
+
+Route::get('/viewClosedAccounts',[
+    'uses'=>'OICController@viewClosedAccounts',
+    'as'=>'viewClosedAccounts'
+])->middleware('auth');
+
+Route::post('/oicPasswordChange',[
+    'uses'=>'OICController@oicPasswordChange',
+    'as'=>'oicPasswordChange'
+]);
+Route::post('/manageCitizen',[
+    'uses'=>'OICController@manageCitizen',
+    'as'=>'manageCitizen'
+]);
+
 
 //admin
 Route::post('removeFormView','AdminController@removeFormView');
