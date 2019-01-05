@@ -27,6 +27,7 @@ class AdminController extends Controller
 
     }
     public function registerPoliceOfficer(Request $request){
+
         $policeOfficer=new User();
         $policeOfficer->name=$request->name;
         $policeOfficer->nic=$request-> nic;
@@ -39,7 +40,38 @@ class AdminController extends Controller
         $policeOfficer->gender = $request->gender;
         $policeOfficer->dob = $request->dob;
         $policeOfficer->civilStatus = $request->civilStatus;
-        $policeOfficer->policeOffice=$request->policeOffice;
+
+        if($request->officeNameTemp=="Inspector General of Police Office"){
+
+            $policeOfficer->policeOffice=$request->igpPoliceOffice;
+
+            DB::table('police_offices')
+                ->where('OfficeName',$request->igpPoliceOffice)
+                ->update(['mainOfficer'=>$request->nic]);
+
+        }
+        elseif ($request->officeNameTemp=="Division Police Office"){
+            $policeOfficer->policeOffice=$request->doigPoliceOffice;
+
+            DB::table('police_offices')
+                ->where('OfficeName',$request->doigPoliceOffice)
+                ->update(['mainOfficer'=>$request->nic]);
+        }
+        elseif ($request->officeNameTemp=="Police Station"){
+            $policeOfficer->policeOffice=$request->oicPoliceOffice;
+
+            DB::table('police_offices')
+                ->where('OfficeName',$request->oicPoliceOffice)
+                ->update(['mainOfficer'=>$request->nic]);
+        }
+        elseif ($request->officeNameTemp=="Branch Police Office"){
+            $policeOfficer->policeOffice=$request->boicPoliceOffice;
+
+            DB::table('police_offices')
+                ->where('OfficeName',$request->boicPoliceOffice)
+                ->update(['mainOfficer'=>$request->nic]);
+        }
+
         $policeOfficer->remember_token=str_random(60);
         $randomPassword="123123";
 //        $randomPassword=str_random(10);
