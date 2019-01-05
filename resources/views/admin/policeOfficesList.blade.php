@@ -66,7 +66,7 @@ use Illuminate\Support\Facades\DB;
                     <td>{{$policeOffices->headPoliceOffice}}</td>
                     <td>{{$policeOffices->landNumber}}</td>
                     <td>{{$policeOffices->mainOfficer}}</td>
-                    <td><form action="updatePoliceOffices" method="post">
+                    <td><form action="updatePoliceOfficesFormView" method="post">
 
                             @csrf
                             <input type="hidden" name="policeOfficeID" value="{{$policeOffices->id}}">
