@@ -156,6 +156,11 @@ Route::post('/manageCitizen',[
     'uses'=>'OICController@manageCitizen',
     'as'=>'manageCitizen'
 ]);
+Route::post('/viewBranch',[
+    'uses'=>'OICController@viewBranch',
+    'as'=>'viewBranch'
+]);
+
 
 
 //admin
@@ -207,6 +212,11 @@ Route::post('/updateRankFormView',[
 Route::post('/getUserInfo',[
     'uses'=>'EntryController@getUserInfo',
     'as'=>'getUserInfo'
+])->middleware('auth');
+
+Route::post('/getRemovedUserInfo',[
+    'uses'=>'EntryController@getRemovedUserInfo',
+    'as'=>'getRemovedUserInfo'
 ])->middleware('auth');
 
 

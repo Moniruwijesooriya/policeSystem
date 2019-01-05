@@ -80,13 +80,26 @@
                     <tbody id="myTable">
                     @foreach($citizens as $citizen)
                         <tr>
-                            <td><form action="viewOICEntry" method="post">
-                                    @csrf
+                            <td>
+                                    @if($type=="Registered Citizens")
                                     <button type="button" value="{{ $citizen->nic }}" id="nicbutton" class="btn btn-primary nic-button" data-toggle="modal" data-target="#viewPerson">
                                         {{ $citizen->nic }}
                                     </button>
-                                    <input type="hidden" name="entryID" value="{{$citizen->nic}}">
-                                </form>
+                                        @endif
+                                        @if($type=="New Citizen Registration Requests")
+                                            <form method="post" action="{{'reviewCitizenRegistrationRequest'}}">
+                                                @csrf
+                                                <input type="hidden" value="{{ $citizen->nic }}" name="nic">
+                                                <input type="submit" class="btn btn-primary" value="{{ $citizen->nic }}">
+                                            </form>
+                                        @endif
+                                        @if($type=="Closed Accounts")
+                                            <button type="button" value="{{ $citizen->nic }}" id="nicbutton" class="btn btn-primary nic-button-closed" data-toggle="modal" data-target="#viewPerson">
+                                                {{ $citizen->nic }}
+                                            </button>
+                                        @endif
+
+
                             </td>
                             <td>{{$citizen->fullName}}</td>
                             <td>{{$citizen->email}}</td>
@@ -263,6 +276,37 @@
             var tempNic="";
 
             $(".nic-button").click(function () {
+                tempNic= $(this).val();
+                $.ajax({
+                    method: 'post',
+                    url: url,
+                    data:{
+                        _token: token,
+                        id: tempNic
+                    },
+                    success:function (data) {
+                        $("#nicTempId").val(data.nic);
+                        $("#nameTempId").val(data.name);
+                        $("#fullNameTempId").val(data.fullName);
+                        $("#dobTempId").val(data.dob);
+                        $("#addressTempId").val(data.address);
+                        $("#mobileNumberTempId").val(data.mobileNumber);
+                        $("#landLineNumberTempId").val(data.landLineNumber);
+                        $("#emailTempId").val(data.email);
+                        $("#genderTempId").val(data.gender);
+                        $("#professionTempId").val(data.profession);
+                        $("#policeStationId").val(data.policeOffice);
+                    }
+                });
+            });
+
+        });
+        $(document).ready(function () {
+            var url = '{{route('getRemovedUserInfo')}}';
+            var token = '{{Session::token()}}';
+            var tempNic="";
+
+            $(".nic-button-closed").click(function () {
                 tempNic= $(this).val();
                 $.ajax({
                     method: 'post',

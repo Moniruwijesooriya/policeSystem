@@ -21,8 +21,9 @@ class AdminController extends Controller
     public function index(){
 
         $policeStationOffices = db::table('police_offices')->where('policeOfficeType',"Police Station")->get();
+        $branchPoliceOffices = db::table('police_offices')->where('policeOfficeType',"Branch Police Office")->get();
         $divisionPoliceOffices = db::table('police_offices')->where('policeOfficeType',"Division Police Office")->get();
-        return view('admin.index',compact('divisionPoliceOffices','policeStationOffices'));
+        return view('admin.index',compact('divisionPoliceOffices','policeStationOffices','branchPoliceOffices'));
 
     }
     public function registerPoliceOfficer(Request $request){
@@ -48,6 +49,10 @@ class AdminController extends Controller
         $policeOfficer->fullName=$request->fullName;
         $email=$request->email;
         $policeOfficer->save();
+
+        DB::table('police_offices')
+            ->where('OfficeName',$request->policeOffice)
+            ->update(['mainOfficer'=>$request->nic]);
 
         $data = array('heading'=>"Weclome to Crime Reporting System",'fullName'=>"Full Name: ".$request->fullName,'name'=>
             "Name with initials: ".$request->name,'thank'=>"Thank You!",
@@ -90,7 +95,14 @@ class AdminController extends Controller
         $policeOffice->landNumber=$request->landNumber;
         $area=$request-> policeOfficeArea;
         $type=$request->policeOfficeType;
-        $officeName=$area." ".$type;
+        if ($type=="Branch Police Office"){
+            $policeStationArea=$request->headPoliceOffice;
+            $officeName=$policeStationArea." ".$area." ".$type;
+        }
+        else{
+            $officeName=$area." ".$type;
+        }
+
         $policeOffice->OfficeName=$officeName;
         $policeOffice->mainOfficer="Not Appointed Yet";
         $policeOffice->headPoliceOffice=$request->headPoliceOffice;

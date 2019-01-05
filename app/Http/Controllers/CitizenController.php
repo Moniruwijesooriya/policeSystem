@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\Types\Null_;
@@ -35,6 +36,11 @@ class CitizenController extends Controller
         $citizen->fullName=$request->fullName;
         $citizen->policeOffice=$request->policeStation;
 
+        if ($request->hasFile('profileImage')){
+
+
+        }
+
         $citizen->save();
         $em=$request->email;
         $data = array('heading'=>"Welcome to Crime Reporting System",'fullName'=>"Full Name: ".$request->fullName,'name'=>
@@ -51,7 +57,6 @@ class CitizenController extends Controller
         $citizen->sendEmailVerificationNotification();
         return redirect(('/'));
     }
-
 
     public function ViewRequest(Request $request){
         $citizenDetails = db::table('users')->where('nic',$request->nic)->First();
