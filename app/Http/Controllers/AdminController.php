@@ -24,6 +24,7 @@ class AdminController extends Controller
         $branchPoliceOffices = db::table('police_offices')->where('policeOfficeType',"Branch Police Office")->get();
         $divisionPoliceOffices = db::table('police_offices')->where('policeOfficeType',"Division Police Office")->get();
         return view('admin.index',compact('divisionPoliceOffices','policeStationOffices','branchPoliceOffices'));
+        //return view('admin.temp',compact('divisionPoliceOffices','policeStationOffices','branchPoliceOffices'));
 
     }
     public function registerPoliceOfficer(Request $request){
@@ -228,6 +229,13 @@ class AdminController extends Controller
         if ($policeOfficesList) {
             return redirect('/admin');
         }
+    }
+
+    public function viewIGPRegisterForm(){
+        return view('admin.igpRegister');
+    }
+    public function viewRegisterLTE(){
+        return view('admin.temp');
     }
 
     public function updatePoliceOfficesFormView(Request $request){

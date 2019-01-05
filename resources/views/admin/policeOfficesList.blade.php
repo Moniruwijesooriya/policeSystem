@@ -1,41 +1,37 @@
-@extends('layouts.app')
+@extends('admin.adminApp')
 <?php
 use Illuminate\Support\Facades\DB;
 ?>
-
-
 @section('content')
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <style>
-        html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
-        table {
-            border-collapse: collapse;
-            border-spacing: 0;
-            width: 100%;
-            border: 1px solid #ddd;
-        }
+    {{--<meta charset="UTF-8">--}}
+    {{--<meta name="viewport" content="width=device-width, initial-scale=1">--}}
+    {{--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">--}}
+    {{--<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">--}}
+    {{--<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>--}}
+    {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">--}}
+    {{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>--}}
+    {{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--}}
+    {{--<style>--}}
+        {{--html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}--}}
+        {{--table {--}}
+            {{--border-collapse: collapse;--}}
+            {{--border-spacing: 0;--}}
+            {{--width: 100%;--}}
+            {{--border: 1px solid #ddd;--}}
+        {{--}--}}
 
-        th, td {
-            text-align: left;
-            padding: 8px;
-        }
-
-
-    </style>
-    <!-- Navbar -->
+        {{--th, td {--}}
+            {{--text-align: left;--}}
+            {{--padding: 8px;--}}
+        {{--}--}}
+    {{--</style>--}}
 
     <!-- Page Container -->
     <div class="container-fluid" style="max-width:1400px;">
         <!-- The Grid -->
         <div class="row">
             <div class="col-md-6">
+                <br>
                 <input class="form-control" id="myInput" type="text" placeholder="Search...">
                 <br>
             </div>
@@ -54,7 +50,6 @@ use Illuminate\Support\Facades\DB;
                 <th scope="col"> Action</th>
             </tr>
             </thead>
-
             <tbody id="myTable">
             @foreach($policeOfficesList as $policeOffices)
                 <tr>
@@ -67,13 +62,11 @@ use Illuminate\Support\Facades\DB;
                     <td>{{$policeOffices->landNumber}}</td>
                     <td>{{$policeOffices->mainOfficer}}</td>
                     <td><form action="updatePoliceOfficesFormView" method="post">
-
                             @csrf
                             <input type="hidden" name="policeOfficeID" value="{{$policeOffices->id}}">
                             <button type="submit" class="btn btn-primary">
                                 {{ __('Update') }}
                             </button>
-
                         </form>
                         <form action="deletePoliceOffices" method="post">
                             @csrf
@@ -83,9 +76,6 @@ use Illuminate\Support\Facades\DB;
                             </button>
                         </form>
                     </td>
-
-
-
                 </tr>
             @endforeach
             </tbody>
@@ -95,16 +85,6 @@ use Illuminate\Support\Facades\DB;
     </div>
 
     <br>
-
-
-    <!-- Footer -->
-    <footer class="w3-container w3-theme-d3 w3-padding-16">
-        <h5>Crime Reporting System</h5>
-    </footer>
-
-    <footer class="w3-container w3-theme-d5">
-        <p>Group 26</p>
-    </footer>
 
     <script>
         // Accordion
@@ -138,6 +118,4 @@ use Illuminate\Support\Facades\DB;
             });
         });
     </script>
-
-
 @endsection

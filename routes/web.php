@@ -255,12 +255,23 @@ Route::post('/updatePoliceOfficer',[
     'as'=>'updatePoliceOfficer'
 ])->middleware('auth');
 
+Route::get('/viewIGPRegisterForm',[
+    'uses'=>'AdminController@viewIGPRegisterForm',
+    'as'=>'viewIGPRegisterForm'
+])->middleware('auth');
+
 
 //general
 Route::post('/getUserInfo',[
     'uses'=>'EntryController@getUserInfo',
     'as'=>'getUserInfo'
 ])->middleware('auth');
+
+Route::get('/viewRegisterLTE',[
+    'uses'=>'AdminController@viewRegisterLTE',
+    'as'=>'viewRegisterLTE'
+])->middleware('auth');
+
 
 
 

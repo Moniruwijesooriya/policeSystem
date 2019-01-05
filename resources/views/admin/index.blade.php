@@ -1056,7 +1056,7 @@ use Illuminate\Support\Facades\DB;
 
     <br>
 
-    @extends('layouts.footer')
+
 
     <script>
         // Accordion
