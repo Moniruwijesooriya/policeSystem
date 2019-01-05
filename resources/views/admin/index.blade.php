@@ -110,7 +110,7 @@ use Illuminate\Support\Facades\DB;
                     <div class="w3-col m12">
                         <div class="w3-card w3-round w3-white w3-center">
                             <div class="w3-container">
-                                <button class="btn-dark" style="margin-bottom: 5px;"><a href="viewPoliceOfficersList">View Police Offcers List</a></button>
+                                <button class="btn-dark" style="margin-bottom: 5px;"><a href="viewPoliceOfficersList">View Police Officers List</a></button>
                             </div>
                         </div>
                     </div>
@@ -148,9 +148,9 @@ use Illuminate\Support\Facades\DB;
                 </div>
             <!-- End Middle Column -->
             </div>
-            
 
-            
+
+
             <!-- Right Column -->
             <div class="w3-col m2">
                 <br>
