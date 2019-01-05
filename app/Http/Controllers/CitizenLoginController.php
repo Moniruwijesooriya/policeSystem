@@ -15,7 +15,8 @@ class CitizenLoginController extends Controller
     {
         $nic=Auth::User()->nic;
         $citizenDetails = db::table('users')->where('nic',$nic)->First();
-        return view('registeredCitizen.index',compact('citizenDetails'));
+        $crimeCategories = db::table('crime_categories')->where('citizenView',"Yes")->get();
+        return view('registeredCitizen.index',compact('citizenDetails','crimeCategories'));
     }
 }
 
