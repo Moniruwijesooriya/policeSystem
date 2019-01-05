@@ -163,7 +163,15 @@ Route::post('/viewBranch',[
 
 
 
-//admin
+
+Route::get('/viewClosedEntries',[
+    'uses'=>'EntryController@viewClosedEntries',
+    'as'=>'ClosedEntries'
+])->middleware('auth');
+
+//admin////////////////////
+
+
 Route::post('removeFormView','AdminController@removeFormView');
 Route::post('/removePoliceOfficer',[
     'uses'=>'AdminController@removePoliceOfficer',
@@ -180,13 +188,10 @@ Route::get('/viewCrimeTypeList',[
     'as'=>'CrimeTypeList'
 ])->middleware('auth');
 
-
 Route::post('/deleteCrimeType',[
     'uses'=>'AdminController@deleteCrimeType',
     'as'=>'deleteCrimeType'
 ])->middleware('auth');
-
-
 
 Route::post('/updateViewCrimeType',[
     'uses'=>'AdminController@updateViewCrimeType',
@@ -208,25 +213,6 @@ Route::post('/updateRankFormView',[
     'as'=>'updateRankFormView'
 ])->middleware('auth');
 
-//general
-Route::post('/getUserInfo',[
-    'uses'=>'EntryController@getUserInfo',
-    'as'=>'getUserInfo'
-])->middleware('auth');
-
-Route::post('/getRemovedUserInfo',[
-    'uses'=>'EntryController@getRemovedUserInfo',
-    'as'=>'getRemovedUserInfo'
-])->middleware('auth');
-
-
-
-Route::post('/updateRank',[
-    'uses'=>'AdminController@updateRank',
-    'as'=>'updateRank'
-])->middleware('auth');
-
-
 Route::get('/viewPoliceOfficesList',[
     'uses'=>'AdminController@viewPoliceOfficesList',
     'as'=>'viewPoliceOfficesList'
@@ -236,4 +222,47 @@ Route::post('/deletePoliceOffices',[
     'uses'=>'AdminController@deletePoliceOffices',
     'as'=>'deletePoliceOffices'
 ])->middleware('auth');
+
+
+Route::post('/updatePoliceOfficesFormView',[
+    'uses'=>'AdminController@updatePoliceOfficesFormView',
+    'as'=>'updatePoliceOfficesFormView'
+])->middleware('auth');
+
+Route::post('/getRemovedUserInfo',[
+    'uses'=>'EntryController@getRemovedUserInfo',
+    'as'=>'getRemovedUserInfo'
+])->middleware('auth');
+
+Route::post('/updatePoliceOffices',[
+    'uses'=>'AdminController@updatePoliceOffices',
+    'as'=>'updatePoliceOffices'
+])->middleware('auth');
+
+Route::get('/viewPoliceOfficersList',[
+    'uses'=>'AdminController@viewPoliceOfficersList',
+    'as'=>'viewPoliceOfficersList'
+])->middleware('auth');
+
+
+Route::post('/updatePoliceOfficerFormView',[
+    'uses'=>'AdminController@updatePoliceOfficerFormView',
+    'as'=>'updatePoliceOfficerFormView'
+])->middleware('auth');
+
+Route::post('/updatePoliceOfficer',[
+    'uses'=>'AdminController@updatePoliceOfficer',
+    'as'=>'updatePoliceOfficer'
+])->middleware('auth');
+
+
+//general
+Route::post('/getUserInfo',[
+    'uses'=>'EntryController@getUserInfo',
+    'as'=>'getUserInfo'
+])->middleware('auth');
+
+
+
+
 

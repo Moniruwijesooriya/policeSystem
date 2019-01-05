@@ -7,7 +7,7 @@
                     <div class="card-header">{{ __('Update Police Officer Rank') }}</div>
 
                     <div class="card-body">
-                        <form method="post" action="updateRank" enctype="multipart/form-data">
+                        <form method="post" action="updatePoliceOfficer" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group row">
