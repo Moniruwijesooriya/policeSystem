@@ -1,243 +1,237 @@
-@extends('layouts.app')
 <?php
+
+namespace App\Http\Controllers;
+
+use App\CrimeCategories;
+use App\PoliceOffice;
+use Illuminate\Http\Request;
+use App\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
-?>
-@section('content')
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="{{ asset('css/style.css') }}" rel="stylesheet">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+use Mail;
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('registerCitizen') }}" enctype="multipart/form-data">
-                        @csrf
+class AdminController extends Controller
+{
+    public function __construct()
+    {
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Full Name') }}</label>
+        $this->middleware('admin');
+    }
 
-                            <div class="col-md-6">
-                                <input id="fullName" type="text" class="form-control{{ $errors->has('fullName') ? ' is-invalid' : '' }}" name="fullName" value="{{ old('fullName') }}" required autofocus>
+    public function index(){
 
-                                @if ($errors->has('fullName'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+        $policeStationOffices = db::table('police_offices')->where('policeOfficeType',"Police Station")->get();
+        $branchPoliceOffices = db::table('police_offices')->where('policeOfficeType',"Branch Police Office")->get();
+        $divisionPoliceOffices = db::table('police_offices')->where('policeOfficeType',"Division Police Office")->get();
+        return view('admin.index',compact('divisionPoliceOffices','policeStationOffices','branchPoliceOffices'));
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name with initials') }}</label>
+    }
+    public function registerPoliceOfficer(Request $request){
+        $policeOfficer=new User();
+        $policeOfficer->name=$request->name;
+        $policeOfficer->nic=$request-> nic;
+        $policeOfficer->address=$request->homeAddress;
+        $policeOfficer->mobileNumber=$request->mobNumber;
+        $policeOfficer->landLineNumber=$request->landNumber;
+        $policeOfficer->profession=$request->profession;
+        $policeOfficer->email=$request->email;
+        $policeOfficer->role=$request->role;
+        $policeOfficer->gender = $request->gender;
+        $policeOfficer->dob = $request->dob;
+        $policeOfficer->civilStatus = $request->civilStatus;
+        $policeOfficer->policeOffice=$request->policeOffice;
+        $policeOfficer->remember_token=str_random(60);
+        $randomPassword="123123";
+//        $randomPassword=str_random(10);
+        $policeOfficer->password=Hash::make($randomPassword);
+        $policeOfficer->verified="Yes";
+        $policeOfficer->token=str_random(25);
+        $policeOfficer->fullName=$request->fullName;
+        $email=$request->email;
+        $policeOfficer->save();
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+        DB::table('police_offices')
+            ->where('OfficeName',$request->policeOffice)
+            ->update(['mainOfficer'=>$request->nic]);
 
-                                @if ($errors->has('name'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+        $data = array('heading'=>"Weclome to Crime Reporting System",'fullName'=>"Full Name: ".$request->fullName,'name'=>
+            "Name with initials: ".$request->name,'thank'=>"Thank You!",
+            'nic'=>"NIC : ".$request->nic,
+            'msg'=>"Your account is successfully created. A random password is provided and please change it.",'randomPassword'=>"Your random password: ".$randomPassword);
+
+        Mail::send(['text'=>'sendEmail.policeOfficerRegisterEmail'], $data, function($message) use($email) {
+            $message->to($email)->subject
+            ('SL Police System Registration');
+            $message->from('slpolicesystem@gmail.com','SL Police');
+        });
+        $policeOfficer->save();
 
 
-                        <div class="form-group row">
-                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('NIC') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="nic" type="text" pattern=".{10,12}" class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}" name="nic" value="{{ old('nic') }}" required autofocus>
-
-                                @if ($errors->has('nic'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('nic') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="landNumber" class="col-md-4 col-form-label text-md-right">{{ __('Date of Birth') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="dob" type="date" class="form-control" name="dob"  required autofocus>
-
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="landNumber" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
-
-                            <div class="col-md-2">
-                                <div class="radio">
-                                    <label><input type="radio" name="gender" value="Male" checked>Male</label>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="radio">
-                                    <label><input type="radio" name="gender" value="Female">Female</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="civilStatus" class="col-md-4 col-form-label text-md-right">{{ __('Civil Status') }}</label>
-                            <div class="col-md-6">
-                                <select class="form-control" name="civilStatus" id="exampleFormControlSelect1">
-                                    <option>Single</option>
-                                    <option>Married</option>
-                                    <option>Divorced</option>
-                                    <option>Widowed</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="homeAddress" class="col-md-4 col-form-label text-md-right">{{ __('Home Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="homeAddress" type="text" class="form-control{{ $errors->has('homeAddress') ? ' is-invalid' : '' }}" name="homeAddress" value="{{ old('homeAddress') }}" required autofocus>
-
-                                @if ($errors->has('homeAddress'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('homeAddress') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <?php
-                        $policeOffice=db::table('police_offices')->get()->where('policeOfficeType',"Police Station");
-                        ?>
-                        <div class="form-group row">
-                            <label for="policeOffice" class="col-md-4 col-form-label text-md-right">{{ __('Nearest Police Station') }}</label>
-                            <div class="col-md-6">
-
-                                <select class="form-control" name="policeStation" id="exampleFormControlSelect1" required autofocus>
-                                    <option>Temp</option>
-                                    @foreach($policeOffice as $office)
-                                        <option>{{$office->OfficeName}}</option>
-                                    @endforeach
-                                </select>
-
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="profession" class="col-md-4 col-form-label text-md-right">{{ __('Profession') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="profession" type="text" class="form-control{{ $errors->has('profession') ? ' is-invalid' : '' }}" name="profession" value="{{ old('profession') }}" required autofocus>
-
-                                @if ($errors->has('profession'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('profession') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="mobNumber" class="col-md-4 col-form-label text-md-right">{{ __('Mobile Number') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="mobNumber" type="text" maxlength="10" class="form-control{{ $errors->has('mobNumber') ? ' is-invalid' : '' }}" name="mobNumber" value="{{ old('mobNumber') }}" required autofocus>
-
-                                @if ($errors->has('mobNumber'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('mobNumber') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="landNumber" class="col-md-4 col-form-label text-md-right">{{ __('Landline Number') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="landNumber" type="text" maxlength="10" class="form-control{{ $errors->has('landNumber') ? ' is-invalid' : '' }}" name="landNumber" value="{{ old('landNumber') }}" required autofocus>
-
-                                @if ($errors->has('landNumber'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('landNumber') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+        return redirect()->back();
+    }
+//removeFormView to police officers
+    public function removeFormView(Request $request){
 
 
 
-                        {{--<div class="form-group row">--}}
-                            {{--<label for="profileImage" class="col-md-4 col-form-label text-md-right">{{ __('Profile Image') }}</label>--}}
+        return view('admin.removePoliceOfficerForm',compact('policeOfficer'));
+    }
+    //removePoliceOfficer
 
-                            {{--<div class="col-md-6">--}}
-                                {{--<input class="form-group mb-2" id="profileImage" type="file" name="profileImage" value="{{ old('profileImage') }}" required>--}}
+//    public function removePoliceOfficer(Request $request)
+//    {
+//        $res = db::table('users')->where('nic', $request->nic)->delete();
+//
+//        if ($res) {
+//            return redirect('/admin');
+//        }
+//    }
 
-                                {{--@if ($errors->has('profileImage'))--}}
-                                    {{--<span class="invalid-feedback" role="alert">--}}
-                                        {{--<strong>{{ $errors->first('profileImage') }}</strong>--}}
-                                    {{--</span>--}}
-                                {{--@endif--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
+    public function registerPoliceOffice(Request $request){
+        $policeOffice=new PoliceOffice();
+        $policeOffice->district=$request->district;
+        $policeOffice->policeOfficeArea=$request-> policeOfficeArea;
+        $policeOffice->policeOfficeType=$request->policeOfficeType;
+        $policeOffice->landNumber=$request->landNumber;
+        $area=$request-> policeOfficeArea;
+        $type=$request->policeOfficeType;
+        if ($type=="Branch Police Office"){
+            $policeStationArea=$request->headPoliceOffice;
+            $officeName=$policeStationArea." ".$area." ".$type;
+        }
+        else{
+            $officeName=$area." ".$type;
+        }
 
+        $policeOffice->OfficeName=$officeName;
+        $policeOffice->mainOfficer="Not Appointed Yet";
+        $policeOffice->headPoliceOffice=$request->headPoliceOffice;
 
+        $policeOffice->save();
+        return redirect()->back();
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+    }
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+    public function addCrimeCategories(Request $request){
+        $crime=new CrimeCategories();
+        $crime->crimeType=$request->crimeType;
+        $crime ->categoryType=$request-> categoryType;
+        $crime->description=$request->description;
+        $crime->policeView=$request->policeView;
+        $crime->citizenView=$request->citizenView;
 
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+        $crime->save();
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+        return redirect()->back();
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required autofocus>
+    }
 
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+    public function viewCrimeTypeList(){
+        $crimeTypeList=db::table('crime_categories')->get();
+        return view('admin.crimeTypeList',compact('crimeTypeList'));
+    }
 
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+    public function deleteCrimeType(Request $request)
+    {
+        $crimeTypeList = db::table('crime_categories')->where('id', $request->crimeIdTemp)->delete();
 
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autofocus>
-                            </div>
-                        </div>
+        if ($crimeTypeList) {
+            return redirect('/admin');
+        }
+    }
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@extends('layouts.footer')
-@endsection
+    public function updateViewCrimeType(Request $request){
+
+        $crimeTypeList = db::table('crime_categories')->where('id',$request->crimeIdTemp)->First();
+        $crimeCategoryList = db::table('crime_categories')->get();
+        return view('admin.updateCrimeTypeForm',compact('crimeTypeList','crimeCategoryList'));
+    }
+
+    public function updateCrimeType(Request $request){
+        $result=DB::table('crime_categories')
+            ->where('id',$request->crimeIdTemp)
+            ->update(['crimeType'=>$request->crimeType,'categoryType'=>$request->categoryType,'description'=>$request->description,'policeView'=>$request->policeView,'citizenView'=>$request->citizenView]);
+        if($result){
+            $crimeTypeList=db::table('crime_categories')->get();
+            return view('admin.crimeTypeList',compact('crimeTypeList'));
+
+        }
+        else{
+            return redirect('/admin');
+        }
+    }
+
+    public function updatePoliceOfficerFormView(Request $request){
+
+        $dataSystemRole = db::table('data_entries')->where('dataType',"systemRole")->get();
+        $dataOfficerRank = db::table('data_entries')->where('dataType',"officerRank")->get();
+        $dataPoliceOffice = db::table('police_offices')->get();
+        $policeOfficer = db::table('users')->where('nic',$request->policeOfficer)->First();
+        return view('admin.updateRank',compact('policeOfficer','dataOfficerRank','dataSystemRole','dataPoliceOffice'));
+
+    }
+
+    public function updatePoliceOfficer(Request $request){
+        $result=DB::table('users')
+            ->where('nic',$request->nic)
+            ->update(['role'=>$request->role,'profession'=>$request->officerRank,'policeOffice'=>$request->policeOffice]);
+        if($result){
+            $policeOfficersList=db::table('users')->where("role" , "Branch Officer Incharge")->orWhere('role' , "Division Officer Incharge")->orWhere('role' , "Inspector General of Police")->orWhere('role' , "Officer Incharge of Police Station")->get();
+            return view('admin.policeOfficersList',compact('policeOfficersList'));
+
+        }
+        else{
+            return redirect('/admin');
+        }
+    }
+
+    public function viewPoliceOfficesList(){
+        $policeOfficesList=db::table('police_offices')->get();
+        return view('admin.policeOfficesList',compact('policeOfficesList'));
+    }
+    public function deletePoliceOffices(Request $request)
+    {
+        $policeOfficesList = db::table('police_offices')->where('id', $request->policeOfficeID)->delete();
+
+        if ($policeOfficesList) {
+            return redirect('/admin');
+        }
+    }
+
+    public function updatePoliceOfficesFormView(Request $request){
+
+        $policeOffice = db::table('police_offices')->where('id',$request->policeOfficeID)->First();
+        return view('admin.updatePoliceOfficesForm',compact('policeOffice'));
+    }
+
+    public function updatePoliceOffices(Request $request){
+        $result=DB::table('police_offices')
+            ->where('id',$request->policeOfficeID)
+            ->update(['landNumber'=>$request->landNumber]);
+        if($result){
+            $policeOfficesList=db::table('police_offices')->get();
+            return view('admin.policeOfficesList',compact('policeOfficesList'));
+
+        }
+        else{
+            return redirect('/admin');
+        }
+    }
+    public function viewPoliceOfficersList(){
+        $policeOfficersList=db::table('users')->where("role" , "Branch Officer Incharge")->orWhere('role' , "Division Officer Incharge")->orWhere('role' , "Inspector General of Police")->orWhere('role' , "Officer Incharge of Police Station")->get();
+        return view('admin.policeOfficersList',compact('policeOfficersList'));
+    }
+
+    public function removePoliceOfficer(Request $request)
+    {
+        $res = db::table('users')->where('nic', $request->policeOfficer)->delete();
+
+        if ($res) {
+            $policeOfficersList=db::table('users')->where("role" , "Branch Officer Incharge")->orWhere('role' , "Division Officer Incharge")->orWhere('role' , "Inspector General of Police")->orWhere('role' , "Officer Incharge of Police Station")->get();
+            return view('admin.policeOfficersList',compact('policeOfficersList'));
+        }
+        else{
+            return redirect('/admin');
+        }
+    }
+}

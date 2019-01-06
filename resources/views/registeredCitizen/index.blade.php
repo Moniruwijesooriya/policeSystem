@@ -442,8 +442,9 @@ use Illuminate\Support\Facades\DB;
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Complaint Category</label>
                             <select class="form-control" name="complaintCategory" id="exampleFormControlSelect1">
-                                <option>Robbery</option>
-                                <option>Assault</option>
+                                @foreach($crimeCategories as $crimeCategory)
+                                <option>{{$crimeCategory->crimeType}}</option>
+                                    @endforeach
 
                             </select>
                         </div>
@@ -456,6 +457,7 @@ use Illuminate\Support\Facades\DB;
                             <label for="exampleFormControlTextarea1">Evidences</label>
                             <textarea class="form-control" name="evidences"  rows="2"></textarea>
                         </div>
+
 
                         <div class="form-group">
                             <label for="suspects">Suspects</label>

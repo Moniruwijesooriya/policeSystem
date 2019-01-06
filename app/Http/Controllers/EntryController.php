@@ -154,12 +154,22 @@ class EntryController extends Controller
         $type="Ongoing Entries";
         return view('entry.oicEntryListView',compact('entries','type'));
     }
+    public function getUserInfo(Request $request){
+        $userInfo=db::table('users')->where('nic',$request->id)->First();
+        return response()->json($userInfo);
+
+    }
 
     public function viewClosedEntries(){
 
         $entries=db::table('entries')->where('status',"closed")->get();
         $type="Closed Entries";
         return view('entry.oicEntryListView',compact('entries','type'));
+    }
+
+    public function getRemovedUserInfo(Request $request){
+        $userInfo=db::table('removed_users')->where('nic',$request->id)->First();
+        return response()->json(($userInfo));
     }
 
 
@@ -181,12 +191,7 @@ class EntryController extends Controller
         $suspects=db::table('suspects')->where('entryID',$request->entryID)->where('userRole',"citizen")->get();
         return view('entry/citizenEntryView',compact('entry','evidences','suspects'));
     }
-    public function getUserInfo(Request $request){
-//        return $request->all();
-        $userInfo=db::table('users')->where('nic',$request->id)->First();
-        return response()->json($userInfo);
 
-    }
 
     public function updateCitizenEntry(Request $request){
         $evidence=new Evidence();

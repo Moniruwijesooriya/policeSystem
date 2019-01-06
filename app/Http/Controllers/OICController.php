@@ -17,7 +17,8 @@ class OICController extends Controller
     public function index(){
         $nic=Auth::User()->nic;
         $oicDetails = db::table('users')->where('nic',$nic)->First();
-        return view('oic.index',compact('oicDetails'));
+        $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
+        return view('oic.index',compact('oicDetails','branches'));
     }
     public function test(){
         return view('oic.test');
@@ -92,7 +93,7 @@ class OICController extends Controller
         $nic=Auth::User()->nic;
         $user=db::table('users')->where('Nic',$nic)->First();
 
-        $citizens=db::table('users')->where('role',"citizen")->where('verified',"No")->where('policeOffice',$user->policeOffice)->get();
+        $citizens=db::table('removed_users')->where('role',"citizen")->where('policeOffice',$user->policeOffice)->get();
         $type="Closed Accounts";
         return view('oic.citizenListView',compact('citizens','type'));
     }

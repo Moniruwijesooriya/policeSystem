@@ -156,6 +156,11 @@ Route::post('/manageCitizen',[
     'uses'=>'OICController@manageCitizen',
     'as'=>'manageCitizen'
 ]);
+Route::post('/viewBranch',[
+    'uses'=>'OICController@viewBranch',
+    'as'=>'viewBranch'
+]);
+
 
 
 
@@ -218,9 +223,15 @@ Route::post('/deletePoliceOffices',[
     'as'=>'deletePoliceOffices'
 ])->middleware('auth');
 
+
 Route::post('/updatePoliceOfficesFormView',[
     'uses'=>'AdminController@updatePoliceOfficesFormView',
     'as'=>'updatePoliceOfficesFormView'
+])->middleware('auth');
+
+Route::post('/getRemovedUserInfo',[
+    'uses'=>'EntryController@getRemovedUserInfo',
+    'as'=>'getRemovedUserInfo'
 ])->middleware('auth');
 
 Route::post('/updatePoliceOffices',[
@@ -250,6 +261,12 @@ Route::post('/getUserInfo',[
     'uses'=>'EntryController@getUserInfo',
     'as'=>'getUserInfo'
 ])->middleware('auth');
+
+Route::get('/viewRegisterLTE',[
+    'uses'=>'AdminController@viewRegisterLTE',
+    'as'=>'viewRegisterLTE'
+])->middleware('auth');
+
 
 
 

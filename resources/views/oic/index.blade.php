@@ -75,13 +75,15 @@ use Illuminate\Support\Facades\DB;
                                 <br>
                                 <button class="btn-dark" style="margin: 5px;width: 100%;"><a href="viewClosedAccounts">Closed Accounts</a></button>
                             </div>
-                        <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i>Branches</button>
-                        <div id="citizenManagement" class="w3-hide w3-container">
-                            <button class="btn-dark" style="margin: 5px;width: 100%;"><a href="viewNewCitizenRequests">New Registration Requests</a></button>
-                            <br>
-                            <button class="btn-dark" style="margin: 5px;width: 100%;"><a href="viewRegisteredCitizens">Registered Citizens</a></button>
-                            <br>
-                            <button class="btn-dark" style="margin: 5px;width: 100%;"><a href="viewClosedAccounts">Closed Accounts</a></button>
+                        <button onclick="myFunction('branchOffice')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i>Branches</button>
+                        <div id="branchOffice" class="w3-hide w3-container">
+                            @foreach($branches as $branch)
+                                <form method="post" action="{{'viewBranch'}}">
+                                    @csrf
+                                    <input type="hidden" value="{{ $branch->OfficeName }}" name="branchOfficeName">
+                                    <input type="submit" class="btn btn-primary" value="{{ $branch->OfficeName }}">
+                                </form>
+                                @endforeach
                         </div>
                     </div>
                 </div>

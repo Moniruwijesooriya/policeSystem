@@ -28,5 +28,11 @@ class UserRegistration extends Controller
         return redirect(('/'));
 
     }
+    public function getUserInfo(Request $request){
+//        return $request->all();
+        $userInfo=db::table('users')->where('nic',$request->id)->First();
+        return response()->json($userInfo);
+
+    }
 }
 
