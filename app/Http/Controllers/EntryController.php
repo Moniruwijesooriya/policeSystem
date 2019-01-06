@@ -150,25 +150,35 @@ class EntryController extends Controller
 
         $entries=db::table('entries')->where('oicNotification',"y")->where('nearestPoliceStation',$user->policeOffice)->get();
         $type="New Entries";
-        return view('entry.oicEntryListView',compact('entries','type'));
+        $oicDetails = db::table('users')->where('nic',$nic)->First();
+        $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
+
+        return view('oic.entryList',compact('entries','type','oicDetails','branches'));
     }
     public function viewOICOngoingEntries(){
 
+        $nic=Auth::User()->nic;
         $entries=db::table('entries')->where('status',"ongoing")->get();
         $type="Ongoing Entries";
-        return view('entry.oicEntryListView',compact('entries','type'));
+        $oicDetails = db::table('users')->where('nic',$nic)->First();
+        $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
+
+        return view('oic.entryList',compact('entries','type','oicDetails','branches'));
+    }
+
+    public function viewOICClosedEntries(){
+        $nic=Auth::User()->nic;
+        $entries=db::table('entries')->where('status',"closed")->get();
+        $type="Closed Entries";
+        $oicDetails = db::table('users')->where('nic',$nic)->First();
+        $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
+
+        return view('oic.entryList',compact('entries','type','oicDetails','branches'));
     }
     public function getUserInfo(Request $request){
         $userInfo=db::table('users')->where('nic',$request->id)->First();
         return response()->json($userInfo);
 
-    }
-
-    public function viewClosedEntries(){
-
-        $entries=db::table('entries')->where('status',"closed")->get();
-        $type="Closed Entries";
-        return view('entry.oicEntryListView',compact('entries','type'));
     }
 
     public function getRemovedUserInfo(Request $request){
