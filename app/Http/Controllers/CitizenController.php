@@ -10,13 +10,31 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\Types\Null_;
 use function PHPSTORM_META\elementType;
+use App\Http\Requests\citizenRegistrationValidation;
 
 
 class CitizenController extends Controller
 {
 
-    public function registerCitizen(Request $request)
+
+//    protected function validator(array $data)
+//    {
+//        return Validator::make($data, [
+//
+//            'email' => 'required|email|max:255|unique:users,email',
+////            'password' => 'required|string|min:6|confirmed',
+////            'role' => 'required|string|max:50',
+//
+//        ]);
+//    }
+
+
+    public function registerCitizen(citizenRegistrationValidation $request)
     {
+
+//        dd($request->email,$request->password,$request->nic,$request->password_confirmation);
+
+
         $citizen = new User();
         $citizen->name = $request->name;
         $citizen->nic = $request->nic;
@@ -75,6 +93,8 @@ class CitizenController extends Controller
             return redirect('/OIC');
         }
     }
+
+
 
 
 public function store(Request $request)
