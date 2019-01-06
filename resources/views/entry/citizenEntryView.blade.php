@@ -1,4 +1,4 @@
-@extends('registeredCitizen.registeredCitizenApp')
+@extends('layouts.app')
 <?php
 use Illuminate\Support\Facades\DB;
 ?>

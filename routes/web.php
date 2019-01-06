@@ -308,6 +308,9 @@ Route::get('/viewRegisterLTE',[
 ])->middleware('auth');
 
 
-
+Route::get('/tempHome',[
+    'uses'=>'OICController@tempHome',
+    'as'=>'tempHome'
+])->middleware('auth');
 
 

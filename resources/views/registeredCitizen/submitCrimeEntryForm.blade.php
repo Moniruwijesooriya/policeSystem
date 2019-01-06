@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
     <div class="w3-card w3-round w3-white">
         <div class="w3-container-center">
             <div class="row" style="background-color: whitesmoke">
-                <div class="col-md-10">
+                <div class="col-md-12">
                     <div class="card">
                         <h4 class="w3-center">Submit Crime Entry</h4>
                         <div class="card-body">
@@ -93,8 +93,5 @@ use Illuminate\Support\Facades\DB;
             </div>
         </div>
     </div>
-
-
-</div>
 
     @endsection
