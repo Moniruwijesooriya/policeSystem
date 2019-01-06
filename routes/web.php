@@ -111,6 +111,10 @@ Route::post('/citizenPasswordChange',[
     'uses'=>'CitizenController@citizenPasswordChange',
     'as'=>'citizenPasswordChange'
 ]);
+Route::get('/submitCrimeEntryForm',[
+    'uses'=>'CitizenController@submitCrimeEntryForm',
+    'as'=>'submitCrimeEntryForm'
+]);
 
 //Oic
 Route::get('/test','OICController@test');

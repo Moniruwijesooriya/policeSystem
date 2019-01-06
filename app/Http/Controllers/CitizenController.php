@@ -184,5 +184,9 @@ public function store(Request $request)
         }
 
     }
+    public function submitCrimeEntryForm(){
+        $crimeCategories = db::table('crime_categories')->where('citizenView',"Yes")->get();
+        return view('registeredCitizen.submitCrimeEntryForm',compact('crimeCategories'));
+    }
 
 }
