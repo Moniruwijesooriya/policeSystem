@@ -18,10 +18,14 @@ class OICController extends Controller
         $nic=Auth::User()->nic;
         $oicDetails = db::table('users')->where('nic',$nic)->First();
         $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
-        return view('oic.index',compact('oicDetails','branches'));
+//        return view('oic.index',compact('oicDetails','branches'));
+        return view('oic.tempHome',compact('oicDetails','branches'));
     }
     public function test(){
         return view('oic.test');
+    }
+    public function tempHome(){
+        return view('oic.tempHome',compact('oicDetails','branches'));
     }
 
 
