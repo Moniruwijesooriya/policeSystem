@@ -23,10 +23,15 @@ class AdminController extends Controller
         $policeStationOffices = db::table('police_offices')->where('policeOfficeType',"Police Station")->get();
         $branchPoliceOffices = db::table('police_offices')->where('policeOfficeType',"Branch Police Office")->get();
         $divisionPoliceOffices = db::table('police_offices')->where('policeOfficeType',"Division Police Office")->get();
-        return view('admin.index',compact('divisionPoliceOffices','policeStationOffices','branchPoliceOffices'));
+
+        //return view('admin.temp',compact('divisionPoliceOffices','policeStationOffices','branchPoliceOffices'));
+
+        //return view('admin.index',compact('divisionPoliceOffices','policeStationOffices','branchPoliceOffices'));
+        return view('admin.adminHome',compact('divisionPoliceOffices','policeStationOffices','branchPoliceOffices'));
 
     }
     public function registerPoliceOfficer(Request $request){
+
         $policeOfficer=new User();
         $policeOfficer->name=$request->name;
         $policeOfficer->nic=$request-> nic;
@@ -39,7 +44,38 @@ class AdminController extends Controller
         $policeOfficer->gender = $request->gender;
         $policeOfficer->dob = $request->dob;
         $policeOfficer->civilStatus = $request->civilStatus;
-        $policeOfficer->policeOffice=$request->policeOffice;
+
+        if($request->officeNameTemp=="Inspector General of Police Office"){
+
+            $policeOfficer->policeOffice=$request->igpPoliceOffice;
+
+            DB::table('police_offices')
+                ->where('OfficeName',$request->igpPoliceOffice)
+                ->update(['mainOfficer'=>$request->nic]);
+
+        }
+        elseif ($request->officeNameTemp=="Division Police Office"){
+            $policeOfficer->policeOffice=$request->doigPoliceOffice;
+
+            DB::table('police_offices')
+                ->where('OfficeName',$request->doigPoliceOffice)
+                ->update(['mainOfficer'=>$request->nic]);
+        }
+        elseif ($request->officeNameTemp=="Police Station"){
+            $policeOfficer->policeOffice=$request->oicPoliceOffice;
+
+            DB::table('police_offices')
+                ->where('OfficeName',$request->oicPoliceOffice)
+                ->update(['mainOfficer'=>$request->nic]);
+        }
+        elseif ($request->officeNameTemp=="Branch Police Office"){
+            $policeOfficer->policeOffice=$request->boicPoliceOffice;
+
+            DB::table('police_offices')
+                ->where('OfficeName',$request->boicPoliceOffice)
+                ->update(['mainOfficer'=>$request->nic]);
+        }
+
         $policeOfficer->remember_token=str_random(60);
         $randomPassword="123123";
 //        $randomPassword=str_random(10);
@@ -197,6 +233,38 @@ class AdminController extends Controller
             return redirect('/admin');
         }
     }
+
+    public function viewIGPRegisterForm(){
+        return view('admin.igpRegister');
+    }
+    public function viewDORegisterForm(){
+        return view('admin.divisionOfficeRegister');
+    }
+    public function viewPSRegisterForm(){
+        $divisionPoliceOffices = db::table('police_offices')->where('policeOfficeType',"Division Police Office")->get();
+        return view('admin.policeStationRegister',compact('divisionPoliceOffices'));
+    }
+    public function viewBORegisterForm(){
+        $policeStationOffices = db::table('police_offices')->where('policeOfficeType',"Police Station")->get();
+        return view('admin.branchOfficeRegister',compact('policeStationOffices'));
+    }
+    public function viewAddCrimeTypeForm(){
+        return view('admin.addCrimeTypeForm');
+    }
+    public function viewregisterPoliceOfficerForm(){
+        $policeStationOffices = db::table('police_offices')->where('policeOfficeType',"Police Station")->get();
+        $branchPoliceOffices = db::table('police_offices')->where('policeOfficeType',"Branch Police Office")->get();
+        $divisionPoliceOffices = db::table('police_offices')->where('policeOfficeType',"Division Police Office")->get();
+        //return view('admin.index',compact('divisionPoliceOffices','policeStationOffices','branchPoliceOffices'));
+        return view('admin.registerPoliceOfficerForm',compact('divisionPoliceOffices','policeStationOffices','branchPoliceOffices'));
+
+    }
+
+
+    public function viewRegisterLTE(){
+        return view('admin.temp');
+    }
+
 
     public function updatePoliceOfficesFormView(Request $request){
 

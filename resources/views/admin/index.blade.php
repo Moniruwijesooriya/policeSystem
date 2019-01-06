@@ -345,7 +345,7 @@ use Illuminate\Support\Facades\DB;
                                 </select>
                             </div>
                         </div>
-
+                        <input type="hidden" name="officeNameTemp" id="officeNameId">
                         <div id="IGPSection" style="display: none">
                             <div class="form-group row">
                                 <label for="policeOffice" class="col-md-4 col-form-label text-md-right">{{ __('Police Office') }}</label>
@@ -358,7 +358,6 @@ use Illuminate\Support\Facades\DB;
                             <div class="form-group row">
                                 <label for="policeOffice" class="col-md-4 col-form-label text-md-right">{{ __('Division Police Office') }}</label>
                                 <div class="col-md-7">
-
                                     <select class="form-control" name="doigPoliceOffice" id="exampleFormControlSelect1">
                                         @foreach($divisionPoliceOffices as $office)
                                             <option>{{$office->OfficeName}}</option>
@@ -372,7 +371,6 @@ use Illuminate\Support\Facades\DB;
                             <div class="form-group row">
                                 <label for="policeOffice" class="col-md-4 col-form-label text-md-right">{{ __('Police Station') }}</label>
                                 <div class="col-md-7">
-
                                     <select class="form-control" name="oicPoliceOffice" id="exampleFormControlSelect1">
 
                                         @foreach($policeStationOffices as $office)
@@ -387,10 +385,7 @@ use Illuminate\Support\Facades\DB;
                             <div class="form-group row">
                                 <label for="policeOffice" class="col-md-4 col-form-label text-md-right">{{ __('Branch Police Office') }}</label>
                                 <div class="col-md-7">
-                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-                                        <span class="caret"></span></button>
-                                    <select class="form-control" name="oicPoliceOffice" id="exampleFormControlSelect1">
-
+                                    <select class="form-control" name="boicPoliceOffice" id="exampleFormControlSelect1">
                                         @foreach($branchPoliceOffices as $office)
                                             <option>{{$office->OfficeName}}</option>
                                         @endforeach
@@ -1061,7 +1056,7 @@ use Illuminate\Support\Facades\DB;
 
     <br>
 
-    @extends('layouts.footer')
+
 
     <script>
         // Accordion
@@ -1097,6 +1092,8 @@ use Illuminate\Support\Facades\DB;
                     $("#DIOGSection").hide();
                     $("#BOICGSection").hide();
                     $("#OICSection").hide();
+                    $("#officeNameId").val("Inspector General of Police Office");
+
                 }
                 else{
                     if(tempRole=="Division Officer Incharge"){
@@ -1104,6 +1101,7 @@ use Illuminate\Support\Facades\DB;
                         $("#OICSection").hide();
                         $("#IGPGSection").hide();
                         $("#BOICSection").hide();
+                        $("#officeNameId").val("Division Police Office");
                     }
                     else {
                         if(tempRole=="Officer Incharge of Police Station"){
@@ -1111,6 +1109,7 @@ use Illuminate\Support\Facades\DB;
                             $("#DIOGSection").hide();
                             $("#BOICSection").hide();
                             $("#IGPSection").hide();
+                            $("#officeNameId").val("Police Station");
                         }
                         else{
                             if(tempRole=="Branch Officer Incharge"){
@@ -1118,6 +1117,7 @@ use Illuminate\Support\Facades\DB;
                                 $("#IGPSection").hide();
                                 $("#OICSection").hide();
                                 $("#DIOGSection").hide();
+                                $("#officeNameId").val("Branch Police Office");
                             }
                         }
                     }

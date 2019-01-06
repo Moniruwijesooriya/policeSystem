@@ -74,15 +74,6 @@ use Illuminate\Support\Facades\DB;
                             </div>
 
                             <div class="form-group row">
-                                <label for="landNumber" class="col-md-4 col-form-label text-md-right">{{ __('Profile Image') }}</label>
-
-                                <div class="col-md-6">
-                                    <input type="date" class="form-control" name="dob"  required autofocus>
-
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
                                 <label for="landNumber" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
 
                                 <div class="col-md-2">
@@ -117,6 +108,20 @@ use Illuminate\Support\Facades\DB;
                                     @if ($errors->has('homeAddress'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('homeAddress') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="profileImage" class="col-md-4 col-form-label text-md-right">{{ __('Profile Image') }}</label>
+
+                                <div class="col-md-6">
+                                    <input type="file"  class="form-control" name="profileImage">
+
+                                    @if ($errors->has('landNumber'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('landNumber') }}</strong>
                                     </span>
                                     @endif
                                 </div>
@@ -181,24 +186,9 @@ use Illuminate\Support\Facades\DB;
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <label for="profileImage" class="col-md-4 col-form-label text-md-right">{{ __('Profile Image') }}</label>
 
-                                <div class="col-md-6">
-                                    <input class="form-group mb-2" id="profileImage" type="file" name="profileImage" value="{{ old('profileImage') }}" required>
-
-                                    @if ($errors->has('profileImage'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('profileImage') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-
-
-                            <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
@@ -231,6 +221,7 @@ use Illuminate\Support\Facades\DB;
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autofocus>
                                 </div>
+
                             </div>
 
                             <div class="form-group row mb-0">

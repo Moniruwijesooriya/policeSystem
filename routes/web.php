@@ -255,6 +255,42 @@ Route::post('/updatePoliceOfficer',[
     'as'=>'updatePoliceOfficer'
 ])->middleware('auth');
 
+Route::get('/viewIGPRegisterForm',[
+    'uses'=>'AdminController@viewIGPRegisterForm',
+    'as'=>'viewIGPRegisterForm'
+])->middleware('auth');
+
+Route::get('/viewDORegisterForm',[
+    'uses'=>'AdminController@viewDORegisterForm',
+    'as'=>'viewDORegisterForm'
+])->middleware('auth');
+
+Route::get('/viewPSRegisterForm',[
+    'uses'=>'AdminController@viewPSRegisterForm',
+    'as'=>'viewPSRegisterForm'
+])->middleware('auth');
+
+Route::get('/viewBORegisterForm',[
+    'uses'=>'AdminController@viewBORegisterForm',
+    'as'=>'viewBORegisterForm'
+])->middleware('auth');
+
+Route::get('/viewPoliceOfficesList',[
+    'uses'=>'AdminController@viewPoliceOfficesList',
+    'as'=>'viewPoliceOfficesList'
+])->middleware('auth');
+
+Route::get('/viewAddCrimeTypeForm',[
+    'uses'=>'AdminController@viewAddCrimeTypeForm',
+    'as'=>'viewAddCrimeTypeForm'
+])->middleware('auth');
+
+Route::get('/viewregisterPoliceOfficer',[
+    'uses'=>'AdminController@viewregisterPoliceOfficerForm',
+    'as'=>'viewregisterPoliceOfficer'
+])->middleware('auth');
+
+
 
 //general
 Route::post('/getUserInfo',[
@@ -266,7 +302,6 @@ Route::get('/viewRegisterLTE',[
     'uses'=>'AdminController@viewRegisterLTE',
     'as'=>'viewRegisterLTE'
 ])->middleware('auth');
-
 
 
 

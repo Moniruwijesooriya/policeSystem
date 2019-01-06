@@ -10,13 +10,42 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\Types\Null_;
 use function PHPSTORM_META\elementType;
+use App\Http\Requests\citizenRegistrationValidation;
 
 
 class CitizenController extends Controller
 {
 
-    public function registerCitizen(Request $request)
+
+//    protected function validator(array $data)
+//    {
+//        return Validator::make($data, [
+//
+//            'email' => 'required|email|max:255|unique:users,email',
+////            'password' => 'required|string|min:6|confirmed',
+////            'role' => 'required|string|max:50',
+//
+//        ]);
+//    }
+
+
+    public function registerCitizen(citizenRegistrationValidation $request)
     {
+
+//        dd($request->email,$request->password,$request->nic,$request->password_confirmation);
+
+        if ($request->hasFile('profileImage')){
+
+            $files=$request->file('profileImage');
+            $fileExtension=$files->getClientOriginalExtension();
+            $filename = $request->nic.".".$fileExtension;
+
+            $request->file('profileImage')->move(
+                base_path() . '/public/userProfileImages/',$filename
+            );
+        }else{
+
+        }
         $citizen = new User();
         $citizen->name = $request->name;
         $citizen->nic = $request->nic;
@@ -35,13 +64,8 @@ class CitizenController extends Controller
         $citizen->verified = "No";
         $citizen->fullName=$request->fullName;
         $citizen->policeOffice=$request->policeStation;
-
-        if ($request->hasFile('profileImage')){
-
-
-        }
-
         $citizen->save();
+
         $em=$request->email;
         $data = array('heading'=>"Welcome to Crime Reporting System",'fullName'=>"Full Name: ".$request->fullName,'name'=>
             "Name with initials: ".$request->name,'nic'=>"NIC: ".$request->nic,
@@ -75,6 +99,8 @@ class CitizenController extends Controller
             return redirect('/OIC');
         }
     }
+
+
 
 
 public function store(Request $request)
