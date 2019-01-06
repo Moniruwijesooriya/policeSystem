@@ -34,7 +34,18 @@ class CitizenController extends Controller
 
 //        dd($request->email,$request->password,$request->nic,$request->password_confirmation);
 
+        if ($request->hasFile('profileImage')){
 
+            $files=$request->file('profileImage');
+            $fileExtension=$files->getClientOriginalExtension();
+            $filename = $request->nic.".".$fileExtension;
+
+            $request->file('profileImage')->move(
+                base_path() . '/public/userProfileImages/',$filename
+            );
+        }else{
+
+        }
         $citizen = new User();
         $citizen->name = $request->name;
         $citizen->nic = $request->nic;
@@ -53,13 +64,8 @@ class CitizenController extends Controller
         $citizen->verified = "No";
         $citizen->fullName=$request->fullName;
         $citizen->policeOffice=$request->policeStation;
-
-        if ($request->hasFile('profileImage')){
-
-
-        }
-
         $citizen->save();
+
         $em=$request->email;
         $data = array('heading'=>"Welcome to Crime Reporting System",'fullName'=>"Full Name: ".$request->fullName,'name'=>
             "Name with initials: ".$request->name,'nic'=>"NIC: ".$request->nic,

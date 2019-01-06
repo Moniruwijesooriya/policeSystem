@@ -113,6 +113,20 @@ use Illuminate\Support\Facades\DB;
                                 </div>
                             </div>
 
+                            <div class="form-group row">
+                                <label for="profileImage" class="col-md-4 col-form-label text-md-right">{{ __('Profile Image') }}</label>
+
+                                <div class="col-md-6">
+                                    <input type="file"  class="form-control" name="profileImage">
+
+                                    @if ($errors->has('landNumber'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('landNumber') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
                             <?php
                             $policeOffice=db::table('police_offices')->get()->where('policeOfficeType',"Police Station");
                             ?>
