@@ -237,10 +237,31 @@ class AdminController extends Controller
     public function viewDORegisterForm(){
         return view('admin.divisionOfficeRegister');
     }
+    public function viewPSRegisterForm(){
+        $divisionPoliceOffices = db::table('police_offices')->where('policeOfficeType',"Division Police Office")->get();
+        return view('admin.policeStationRegister',compact('divisionPoliceOffices'));
+    }
+    public function viewBORegisterForm(){
+        $policeStationOffices = db::table('police_offices')->where('policeOfficeType',"Police Station")->get();
+        return view('admin.branchOfficeRegister',compact('policeStationOffices'));
+    }
+    public function viewAddCrimeTypeForm(){
+        return view('admin.addCrimeTypeForm');
+    }
+    public function viewregisterPoliceOfficerForm(){
+        $policeStationOffices = db::table('police_offices')->where('policeOfficeType',"Police Station")->get();
+        $branchPoliceOffices = db::table('police_offices')->where('policeOfficeType',"Branch Police Office")->get();
+        $divisionPoliceOffices = db::table('police_offices')->where('policeOfficeType',"Division Police Office")->get();
+        //return view('admin.index',compact('divisionPoliceOffices','policeStationOffices','branchPoliceOffices'));
+        return view('admin.registerPoliceOfficerForm',compact('divisionPoliceOffices','policeStationOffices','branchPoliceOffices'));
+
+    }
+
 
     public function viewRegisterLTE(){
         return view('admin.temp');
     }
+
 
     public function updatePoliceOfficesFormView(Request $request){
 

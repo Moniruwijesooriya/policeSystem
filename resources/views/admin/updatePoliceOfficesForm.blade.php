@@ -1,12 +1,26 @@
-@extends('layouts.app')
-@section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Update Police Offices') }}</div>
 
-                    <div class="card-body">
+@extends('admin.adminApp')
+@section('content')
+
+    <div class="content-header">
+        <h1>
+            Update Police Office
+        </h1>
+    </div>
+
+    <!-- Main content -->
+    <div class="content">
+        <!-- Small boxes (Stat box) -->
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+            <!-- Left col -->
+            <div class="col-lg-12 ">
+                <!-- TO DO List -->
+                <div class="box box-primary">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        {{--Register IGP office form--}}
                         <form method="post" action="updatePoliceOffices" enctype="multipart/form-data">
                             @csrf
 
@@ -65,8 +79,26 @@
                             </div>
                         </form>
                     </div>
+                    <!-- /.box-body -->
+
                 </div>
+                <!-- /.box -->
             </div>
+            <!-- /.Left col -->
+            <!-- right col (We are only adding the ID to make the widgets sortable)-->
+
+            <!-- right col -->
         </div>
+        <!-- /.row (main row) -->
+
     </div>
+
 @endsection
+
+
+
+
+
+
+
+
