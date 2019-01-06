@@ -3,8 +3,16 @@
 use Illuminate\Support\Facades\DB;
 ?>
 @section('content')
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- Page Container -->
-    <div class="w3-container w3-content" style="max-width:1400px;margin-top:5px">
+    <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
         <!-- The Grid -->
         <div class="w3-row">
             <!-- Left Column -->
@@ -21,6 +29,23 @@ use Illuminate\Support\Facades\DB;
                 <br>
 
                 <!-- Accordion -->
+                <div class="w3-card w3-round">
+                    <div class="w3-white">
+                        <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-archive fa-fw w3-margin-right"></i>Police Office Management</button>
+                        <div id="Demo1" class="w3-hide w3-container">
+                            {{--<p>Some text..</p>--}}
+                        </div>
+                        <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-address-book-o fa-fw w3-margin-right"></i>Police Officer Management</button>
+                        <div id="Demo2" class="w3-hide w3-container">
+                            {{--<p>Some other text..</p>--}}
+                        </div>
+                        <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i>Citizen Management</button>
+                        <div id="Demo3" class="w3-hide w3-container">
+                            <div class="w3-row-padding">
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <br>
 
 
@@ -28,119 +53,123 @@ use Illuminate\Support\Facades\DB;
             </div>
 
             <!-- Middle Column -->
-            <div class="w3-col m5">
+            <div class="w3-col m7">
 
-                {{--<div class="w3-row-padding">--}}
-                    {{--<div class="w3-col m12">--}}
-                        {{--<div class="w3-card w3-round w3-white w3-center">--}}
-                            {{--<div class="w3-container">--}}
-                                {{--<p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOfficer">Register Police Officer</button></p>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-                <div class="w3-card w3-round" style="margin-left: 10px;margin-right: 10px">
-                    <div class="w3-white">
-                        <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-archive fa-fw w3-margin-right"></i>Police Office Management</button>
-                        <div id="Demo1" class="w3-hide w3-container">
-                            <p><button type="button" style="margin-right: 5px" class="btn btn-primary" data-toggle="modal" data-target="#registerIGPOffice">
-                                    Register IGP Office
-                                </button></p>
-                            <p><button type="button" style="margin-right: 5px" class="btn btn-primary" data-toggle="modal" data-target="#registerDivisionOffice">
-                                    Register Division Office
-                                </button></p>
-                            <p><button type="button" style="margin-right: 5px" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceStation">
-                                    Register Police Station
-                                </button></p>
-                            <p><button type="button" style="margin-right: 5px" class="btn btn-primary" data-toggle="modal" data-target="#registerBranchOffice">
-                                    Register Branch Office
-                                </button></p>
-                            <div class="w3-row-padding">
-                                <div class="w3-col m12">
-                                    <div class="w3-card w3-round w3-white w3-center">
-                                        <div class="w3-container">
-                                            <button class="btn-dark" style="margin-bottom: 5px;"><a href="viewPoliceOfficesList">View Police Offices List</a></button>
-                                        </div>
-                                    </div>
-                                </div>
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card w3-round w3-white w3-center">
+                            <div class="w3-container">
+                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOfficer">Register Police Officer</button></p>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card w3-round w3-white w3-center">
+                            <div class="w3-container">
+
+                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOffice">Register Police Office</button></p>
+
+                                {{--<p><button type="button" style="margin-right: 5px" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOffice">--}}
+                                        {{--Register Police Office--}}
+                                    {{--</button></p>--}}
+                                <p><button type="button" style="margin-right: 5px" class="btn btn-primary" data-toggle="modal" data-target="#registerIGPOffice">
+                                        Register IGP Office
+                                    </button></p>
+                                <p><button type="button" style="margin-right: 5px" class="btn btn-primary" data-toggle="modal" data-target="#registerDivisionOffice">
+                                        Register Division Office
+                                    </button></p>
+                                <p><button type="button" style="margin-right: 5px" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceStation">
+                                        Register Police Station
+                                    </button></p>
+                                <p><button type="button" style="margin-right: 5px" class="btn btn-primary" data-toggle="modal" data-target="#registerBranchOffice">
+                                        Register Branch Office
+                                    </button></p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card w3-round w3-white w3-center">
+                            <div class="w3-container">
+                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#removePoliceOfficer">Remove Police Officer</button></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card w3-round w3-white w3-center">
+                            <div class="w3-container">
+                                <button class="btn-dark" style="margin-bottom: 5px;"><a href="viewPoliceOfficesList">View Police Offices List</a></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card w3-round w3-white w3-center">
+                            <div class="w3-container">
+                                <button class="btn-dark" style="margin-bottom: 5px;"><a href="viewPoliceOfficersList">View Police Officers List</a></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card w3-round w3-white w3-center">
+                            <div class="w3-container">
+                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateRank">Update Rank</button></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card w3-round w3-white w3-center">
+                            <div class="w3-container">
+                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCrimeCategories">Add Crime Categories</button></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card w3-round w3-white w3-center">
+                            <div class="w3-container">
+                                <button type="button" class="btn btn-primary"><a href="viewCrimeTypeList"><font color="white">View Crime Types</font></a></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             <!-- End Middle Column -->
             </div>
-            
 
-            
+
+
             <!-- Right Column -->
             <div class="w3-col m2">
-                <div class="w3-card w3-round">
-                    <div class="w3-white">
-                        <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-address-book-o fa-fw w3-margin-right"></i>Police Officer Management</button>
-                        <div id="Demo2" class="w3-hide w3-container">
-                            <div class="w3-row-padding">
-                                <div class="w3-col m12">
-                                    <div class="w3-card w3-round w3-white w3-center">
-                                        <div class="w3-container">
+                <br>
+                <div class="w3-card w3-round w3-white w3-center">
+                    <div class="w3-container">
 
-                                            <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOffice">Register Police Office</button></p>
-
-                                            {{--<p><button type="button" style="margin-right: 5px" class="btn btn-primary" data-toggle="modal" data-target="#registerPoliceOffice">--}}
-                                            {{--Register Police Office--}}
-                                            {{--</button></p>--}}
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w3-row-padding">
-                                <div class="w3-col m12">
-                                    <div class="w3-card w3-round w3-white w3-center">
-                                        <div class="w3-container">
-                                            <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateRank">Update Rank</button></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="w3-row-padding">
-                                <div class="w3-col m12">
-                                    <div class="w3-card w3-round w3-white w3-center">
-                                        <div class="w3-container">
-                                            <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#removePoliceOfficer">Remove Police Officer</button></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i>Crime Category Management</button>
-                        <div id="Demo3" class="w3-hide w3-container">
-                            <div class="w3-row-padding">
-                                <div class="w3-row-padding">
-                                    <div class="w3-col m12">
-                                        <div class="w3-card w3-round w3-white w3-center">
-                                            <div class="w3-container">
-                                                <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCrimeCategories">Add Crime Categories</button></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="w3-row-padding">
-                                    <div class="w3-col m12">
-                                        <div class="w3-card w3-round w3-white w3-center">
-                                            <div class="w3-container">
-                                                <button type="button" class="btn btn-primary"><a href="viewCrimeTypeList"><font color="white">View Crime Types</font></a></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <a href="viewCrimeCategorySection" class="btn btn-primary" >Crime Categories</a>
                     </div>
                 </div>
+                <br>
+
                 {{-- <div class="w3-card w3-round w3-white w3-padding-16 w3-center">--}}
                     {{--<p>ADS</p>--}}
                 {{--</div>--}}
@@ -288,18 +317,6 @@ use Illuminate\Support\Facades\DB;
                         </div>
 
                         <div class="form-group row">
-                            <label for="profession" class="col-md-4 col-form-label text-md-right">{{ __('System Role') }}</label>
-                            <div class="col-md-7">
-                                <select class="form-control" name="role" id="exampleFormControlSelect1">
-                                    <option>Branch Officer Incharge</option>
-                                    <option>Officer Incharge of Police Station</option>
-                                    <option>Division Officer Incharge</option>
-                                    <option>Inspector General of Police</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
                             <label for="rank" class="col-md-4 col-form-label text-md-right">{{ __('Officer Rank') }}</label>
                             <div class="col-md-7">
                                 <select class="form-control" name="profession" id="exampleFormControlSelect1">
@@ -316,19 +333,76 @@ use Illuminate\Support\Facades\DB;
                             </div>
                         </div>
 
-                        <?php
-                        $policeOffice=db::table('police_offices')->get();
-                        ?>
                         <div class="form-group row">
-                            <label for="policeOffice" class="col-md-4 col-form-label text-md-right">{{ __('Police Office') }}</label>
+                            <label for="profession" class="col-md-4 col-form-label text-md-right">{{ __('System Role') }}</label>
                             <div class="col-md-7">
-
-                                <select class="form-control" name="policeOffice" id="exampleFormControlSelect1">
-                                    @foreach($policeOffice as $office)
-                                    <option>{{$office->OfficeName}}</option>
-                                    @endforeach
+                                <select class="form-control" name="role" id="systemRoleSelect">
+                                    <option></option>
+                                    <option>Branch Officer Incharge</option>
+                                    <option>Officer Incharge of Police Station</option>
+                                    <option>Division Officer Incharge</option>
+                                    <option>Inspector General of Police</option>
                                 </select>
+                            </div>
+                        </div>
+                        <input type="hidden" name="officeNameTemp" id="officeNameId">
+                        <div id="IGPSection" style="display: none">
+                            <div class="form-group row">
+                                <label for="policeOffice" class="col-md-4 col-form-label text-md-right">{{ __('Police Office') }}</label>
+                                <div class="col-md-7">
+                                    <input type="text"name="igpPoliceOffice"class="form-control"value="Sri Lanka Inspector General of Police Office" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="DIOGSection" style="display: none">
+                            <div class="form-group row">
+                                <label for="policeOffice" class="col-md-4 col-form-label text-md-right">{{ __('Division Police Office') }}</label>
+                                <div class="col-md-7">
+                                    <select class="form-control" name="doigPoliceOffice" id="exampleFormControlSelect1">
+                                        @foreach($divisionPoliceOffices as $office)
+                                            <option>{{$office->OfficeName}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div id="OICSection" style="display: none">
+                            <div class="form-group row">
+                                <label for="policeOffice" class="col-md-4 col-form-label text-md-right">{{ __('Police Station') }}</label>
+                                <div class="col-md-7">
+                                    <select class="form-control" name="oicPoliceOffice" id="exampleFormControlSelect1">
+
+                                        @foreach($policeStationOffices as $office)
+                                            <option>{{$office->OfficeName}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="BOICSection" style="display: none">
+                            <div class="form-group row">
+                                <label for="policeOffice" class="col-md-4 col-form-label text-md-right">{{ __('Branch Police Office') }}</label>
+                                <div class="col-md-7">
+                                    <select class="form-control" name="boicPoliceOffice" id="exampleFormControlSelect1">
+                                        @foreach($branchPoliceOffices as $office)
+                                            <option>{{$office->OfficeName}}</option>
+                                        @endforeach
+                                    </select>
+
+                                    {{--<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example--}}
+                                        {{--<span class="caret"></span></button>--}}
+                                    {{--<ul class="dropdown-menu">--}}
+                                        {{--<input class="form-control" id="myInput" type="text" placeholder="Search..">--}}
+                                        {{--<select class="dropdown boic-select" name="boicPoliceOffice" id="exampleFormControlSelect1">--}}
+                                            {{--@foreach($branchPoliceOffices as $office)--}}
+                                                {{--<li><option>{{$office->OfficeName}}</option></li>--}}
+                                            {{--@endforeach--}}
+                                        {{--</select>--}}
+                                    {{--</ul>--}}
+
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -676,11 +750,11 @@ use Illuminate\Support\Facades\DB;
                                 @csrf
                                 <input type="hidden" name="policeOfficeType" value="Branch Police Office">
 
+
                                 <div class="form-group row">
                                     <label for="exampleFormControlSelect1" class="col-md-4 col-form-label text-md-left">Police Station</label>
                                     <div class="col-md-7">
                                         <select class="form-control" name ="headPoliceOffice" id="policeOfficeType">
-
                                             @foreach($policeStationOffices as $policeStationOffice)
                                                 <option>{{$policeStationOffice->OfficeName}}</option>
                                             @endforeach
@@ -1007,8 +1081,60 @@ use Illuminate\Support\Facades\DB;
                 x.className = x.className.replace(" w3-show", "");
             }
         }
+        $(document).ready(function () {
+            var tempRole="";
+
+            $("#systemRoleSelect").change(function () {
+                console.log("Hello world!");
+                tempRole= $(this).val();
+                if(tempRole=="Inspector General of Police"){
+                    $("#IGPSection").show();
+                    $("#DIOGSection").hide();
+                    $("#BOICGSection").hide();
+                    $("#OICSection").hide();
+                    $("#officeNameId").val("Inspector General of Police Office");
+
+                }
+                else{
+                    if(tempRole=="Division Officer Incharge"){
+                        $("#DIOGSection").show();
+                        $("#OICSection").hide();
+                        $("#IGPGSection").hide();
+                        $("#BOICSection").hide();
+                        $("#officeNameId").val("Division Police Office");
+                    }
+                    else {
+                        if(tempRole=="Officer Incharge of Police Station"){
+                            $("#OICSection").show();
+                            $("#DIOGSection").hide();
+                            $("#BOICSection").hide();
+                            $("#IGPSection").hide();
+                            $("#officeNameId").val("Police Station");
+                        }
+                        else{
+                            if(tempRole=="Branch Officer Incharge"){
+                                $("#BOICSection").show();
+                                $("#IGPSection").hide();
+                                $("#OICSection").hide();
+                                $("#DIOGSection").hide();
+                                $("#officeNameId").val("Branch Police Office");
+                            }
+                        }
+                    }
+
+                }
+            });
+
+        });
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $(".dropdown boic-select option").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
     </script>
 
 
 @endsection
-@extends('layouts.footer')

@@ -21,11 +21,14 @@ class AdminController extends Controller
     public function index(){
 
         $policeStationOffices = db::table('police_offices')->where('policeOfficeType',"Police Station")->get();
+        $branchPoliceOffices = db::table('police_offices')->where('policeOfficeType',"Branch Police Office")->get();
         $divisionPoliceOffices = db::table('police_offices')->where('policeOfficeType',"Division Police Office")->get();
-        return view('admin.index',compact('divisionPoliceOffices','policeStationOffices'));
+        //return view('admin.index',compact('divisionPoliceOffices','policeStationOffices','branchPoliceOffices'));
+        return view('admin.adminHome',compact('divisionPoliceOffices','policeStationOffices','branchPoliceOffices'));
 
     }
     public function registerPoliceOfficer(Request $request){
+
         $policeOfficer=new User();
         $policeOfficer->name=$request->name;
         $policeOfficer->nic=$request-> nic;
@@ -38,7 +41,38 @@ class AdminController extends Controller
         $policeOfficer->gender = $request->gender;
         $policeOfficer->dob = $request->dob;
         $policeOfficer->civilStatus = $request->civilStatus;
-        $policeOfficer->policeOffice=$request->policeOffice;
+
+        if($request->officeNameTemp=="Inspector General of Police Office"){
+
+            $policeOfficer->policeOffice=$request->igpPoliceOffice;
+
+            DB::table('police_offices')
+                ->where('OfficeName',$request->igpPoliceOffice)
+                ->update(['mainOfficer'=>$request->nic]);
+
+        }
+        elseif ($request->officeNameTemp=="Division Police Office"){
+            $policeOfficer->policeOffice=$request->doigPoliceOffice;
+
+            DB::table('police_offices')
+                ->where('OfficeName',$request->doigPoliceOffice)
+                ->update(['mainOfficer'=>$request->nic]);
+        }
+        elseif ($request->officeNameTemp=="Police Station"){
+            $policeOfficer->policeOffice=$request->oicPoliceOffice;
+
+            DB::table('police_offices')
+                ->where('OfficeName',$request->oicPoliceOffice)
+                ->update(['mainOfficer'=>$request->nic]);
+        }
+        elseif ($request->officeNameTemp=="Branch Police Office"){
+            $policeOfficer->policeOffice=$request->boicPoliceOffice;
+
+            DB::table('police_offices')
+                ->where('OfficeName',$request->boicPoliceOffice)
+                ->update(['mainOfficer'=>$request->nic]);
+        }
+
         $policeOfficer->remember_token=str_random(60);
         $randomPassword="123123";
 //        $randomPassword=str_random(10);
@@ -48,6 +82,10 @@ class AdminController extends Controller
         $policeOfficer->fullName=$request->fullName;
         $email=$request->email;
         $policeOfficer->save();
+
+        DB::table('police_offices')
+            ->where('OfficeName',$request->policeOffice)
+            ->update(['mainOfficer'=>$request->nic]);
 
         $data = array('heading'=>"Weclome to Crime Reporting System",'fullName'=>"Full Name: ".$request->fullName,'name'=>
             "Name with initials: ".$request->name,'thank'=>"Thank You!",
@@ -73,14 +111,14 @@ class AdminController extends Controller
     }
     //removePoliceOfficer
 
-    public function removePoliceOfficer(Request $request)
-    {
-        $res = db::table('users')->where('nic', $request->nic)->delete();
-
-        if ($res) {
-            return redirect('/admin');
-        }
-    }
+//    public function removePoliceOfficer(Request $request)
+//    {
+//        $res = db::table('users')->where('nic', $request->nic)->delete();
+//
+//        if ($res) {
+//            return redirect('/admin');
+//        }
+//    }
 
     public function registerPoliceOffice(Request $request){
         $policeOffice=new PoliceOffice();
@@ -90,7 +128,14 @@ class AdminController extends Controller
         $policeOffice->landNumber=$request->landNumber;
         $area=$request-> policeOfficeArea;
         $type=$request->policeOfficeType;
-        $officeName=$area." ".$type;
+        if ($type=="Branch Police Office"){
+            $policeStationArea=$request->headPoliceOffice;
+            $officeName=$policeStationArea." ".$area." ".$type;
+        }
+        else{
+            $officeName=$area." ".$type;
+        }
+
         $policeOffice->OfficeName=$officeName;
         $policeOffice->mainOfficer="Not Appointed Yet";
         $policeOffice->headPoliceOffice=$request->headPoliceOffice;
@@ -149,23 +194,23 @@ class AdminController extends Controller
         }
     }
 
-    public function updateRankFormView(Request $request){
+    public function updatePoliceOfficerFormView(Request $request){
 
         $dataSystemRole = db::table('data_entries')->where('dataType',"systemRole")->get();
         $dataOfficerRank = db::table('data_entries')->where('dataType',"officerRank")->get();
         $dataPoliceOffice = db::table('police_offices')->get();
-        $policeOfficer = db::table('users')->where('nic',$request->nic)->First();
+        $policeOfficer = db::table('users')->where('nic',$request->policeOfficer)->First();
         return view('admin.updateRank',compact('policeOfficer','dataOfficerRank','dataSystemRole','dataPoliceOffice'));
 
     }
 
-    public function updateRank(Request $request){
+    public function updatePoliceOfficer(Request $request){
         $result=DB::table('users')
             ->where('nic',$request->nic)
             ->update(['role'=>$request->role,'profession'=>$request->officerRank,'policeOffice'=>$request->policeOffice]);
         if($result){
-            $policeOfficer=db::table('users')->get();
-            return view('admin.index',compact('policeOfficer'));
+            $policeOfficersList=db::table('users')->where("role" , "Branch Officer Incharge")->orWhere('role' , "Division Officer Incharge")->orWhere('role' , "Inspector General of Police")->orWhere('role' , "Officer Incharge of Police Station")->get();
+            return view('admin.policeOfficersList',compact('policeOfficersList'));
 
         }
         else{
@@ -179,9 +224,57 @@ class AdminController extends Controller
     }
     public function deletePoliceOffices(Request $request)
     {
-        $policeOfficesList = db::table('police_offices')->where('id', $request->id)->delete();
+        $policeOfficesList = db::table('police_offices')->where('id', $request->policeOfficeID)->delete();
 
         if ($policeOfficesList) {
+            return redirect('/admin');
+        }
+    }
+
+    public function viewIGPRegisterForm(){
+        return view('admin.igpRegister');
+    }
+    public function viewDORegisterForm(){
+        return view('admin.divisionOfficeRegister');
+    }
+
+    public function viewRegisterLTE(){
+        return view('admin.temp');
+    }
+
+    public function updatePoliceOfficesFormView(Request $request){
+
+        $policeOffice = db::table('police_offices')->where('id',$request->policeOfficeID)->First();
+        return view('admin.updatePoliceOfficesForm',compact('policeOffice'));
+    }
+
+    public function updatePoliceOffices(Request $request){
+        $result=DB::table('police_offices')
+            ->where('id',$request->policeOfficeID)
+            ->update(['landNumber'=>$request->landNumber]);
+        if($result){
+            $policeOfficesList=db::table('police_offices')->get();
+            return view('admin.policeOfficesList',compact('policeOfficesList'));
+
+        }
+        else{
+            return redirect('/admin');
+        }
+    }
+    public function viewPoliceOfficersList(){
+        $policeOfficersList=db::table('users')->where("role" , "Branch Officer Incharge")->orWhere('role' , "Division Officer Incharge")->orWhere('role' , "Inspector General of Police")->orWhere('role' , "Officer Incharge of Police Station")->get();
+        return view('admin.policeOfficersList',compact('policeOfficersList'));
+    }
+
+    public function removePoliceOfficer(Request $request)
+    {
+        $res = db::table('users')->where('nic', $request->policeOfficer)->delete();
+
+        if ($res) {
+            $policeOfficersList=db::table('users')->where("role" , "Branch Officer Incharge")->orWhere('role' , "Division Officer Incharge")->orWhere('role' , "Inspector General of Police")->orWhere('role' , "Officer Incharge of Police Station")->get();
+            return view('admin.policeOfficersList',compact('policeOfficersList'));
+        }
+        else{
             return redirect('/admin');
         }
     }
