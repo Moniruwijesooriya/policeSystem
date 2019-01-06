@@ -293,7 +293,7 @@
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                            <span class="hidden-xs">Alexander Pierce</span>
+                            <span class="hidden-xs">{{Auth::User()->name}}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
@@ -301,8 +301,8 @@
                                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                 <p>
-                                    Alexander Pierce - Web Developer
-                                    <small>Member since Nov. 2012</small>
+                                    {{Auth::User()->name}}
+                                    <small>{{Auth::User()->profession}}</small>
                                 </p>
                             </li>
                             <!-- Menu Body -->
@@ -349,20 +349,20 @@
                     <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>Alexander Pierce</p>
+                    <p>{{Auth::User()->name}}</p>
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
             <!-- search form -->
-            <form action="#" method="get" class="sidebar-form">
-                <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-                </div>
-            </form>
+            {{--<form action="#" method="get" class="sidebar-form">--}}
+                {{--<div class="input-group">--}}
+                    {{--<input type="text" name="q" class="form-control" placeholder="Search...">--}}
+                    {{--<span class="input-group-btn">--}}
+                {{--<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>--}}
+                {{--</button>--}}
+              {{--</span>--}}
+                {{--</div>--}}
+            {{--</form>--}}
             <!-- /.search form -->
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
@@ -375,7 +375,7 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> Register Police Officer</a></li>
+                        <li><a href="viewregisterPoliceOfficer"><i class="fa fa-circle-o"></i> Register Police Officer</a></li>
                         <li><a href="viewPoliceOfficersList"><i class="fa fa-circle-o"></i> View Police Officer</a></li>
                     </ul>
                 </li>
@@ -403,8 +403,8 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> Add Crime Type</a></li>
-                        <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> View Crime Type</a></li>
+                        <li><a href="viewAddCrimeTypeForm"><i class="fa fa-circle-o"></i> Add Crime Type</a></li>
+                        <li><a href="viewCrimeTypeList"><i class="fa fa-circle-o"></i> View Crime Type</a></li>
                     </ul>
                 </li>
             </ul>

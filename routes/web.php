@@ -265,6 +265,31 @@ Route::get('/viewDORegisterForm',[
     'as'=>'viewDORegisterForm'
 ])->middleware('auth');
 
+Route::get('/viewPSRegisterForm',[
+    'uses'=>'AdminController@viewPSRegisterForm',
+    'as'=>'viewPSRegisterForm'
+])->middleware('auth');
+
+Route::get('/viewBORegisterForm',[
+    'uses'=>'AdminController@viewBORegisterForm',
+    'as'=>'viewBORegisterForm'
+])->middleware('auth');
+
+Route::get('/viewPoliceOfficesList',[
+    'uses'=>'AdminController@viewPoliceOfficesList',
+    'as'=>'viewPoliceOfficesList'
+])->middleware('auth');
+
+Route::get('/viewAddCrimeTypeForm',[
+    'uses'=>'AdminController@viewAddCrimeTypeForm',
+    'as'=>'viewAddCrimeTypeForm'
+])->middleware('auth');
+
+Route::get('/viewregisterPoliceOfficer',[
+    'uses'=>'AdminController@viewregisterPoliceOfficerForm',
+    'as'=>'viewregisterPoliceOfficer'
+])->middleware('auth');
+
 
 
 //general
@@ -283,6 +308,5 @@ Route::get('/tempHome',[
     'uses'=>'OICController@tempHome',
     'as'=>'tempHome'
 ])->middleware('auth');
-
 
 
