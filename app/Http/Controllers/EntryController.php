@@ -40,7 +40,11 @@ class EntryController extends Controller
 
 
         $crimeEntry->save();
-        return redirect()->back();
+
+        $entry=db::table('entries')->where('complainantID',Auth::User()->nic)->latest()->first();
+        $evidences=db::table('evidence')->where('entryID',$request->entryID)->where('citizenView',"Yes")->get();
+        $suspects=db::table('suspects')->where('entryID',$request->entryID)->where('userRole',"citizen")->get();
+        return view('registeredCitizen/citizenEntryView',compact('entry','evidences','suspects'));
     }
 
     public function entryOICAction(Request $request){
@@ -172,7 +176,6 @@ class EntryController extends Controller
         return response()->json(($userInfo));
     }
 
-
     public function acceptBOICEntry(Request $request){
 
         DB::table('entries')
@@ -189,7 +192,7 @@ class EntryController extends Controller
         $entry=db::table('entries')->where('entryID',$request->entryID)->First();
         $evidences=db::table('evidence')->where('entryID',$request->entryID)->where('citizenView',"Yes")->get();
         $suspects=db::table('suspects')->where('entryID',$request->entryID)->where('userRole',"citizen")->get();
-        return view('entry/citizenEntryView',compact('entry','evidences','suspects'));
+        return view('registeredCitizen/citizenEntryView',compact('entry','evidences','suspects'));
     }
 
 
@@ -216,7 +219,11 @@ class EntryController extends Controller
 
         $suspects->save();
 
-        return redirect('/RegisteredCitizen');
+        $entry=db::table('entries')->where('entryID',$request->entryID)->First();
+        $evidences=db::table('evidence')->where('entryID',$request->entryID)->where('citizenView',"Yes")->get();
+        $suspects=db::table('suspects')->where('entryID',$request->entryID)->where('userRole',"citizen")->get();
+        return view('registeredCitizen/citizenEntryView',compact('entry','evidences','suspects'));
+
 
 
     }
