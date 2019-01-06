@@ -260,6 +260,12 @@ Route::get('/viewIGPRegisterForm',[
     'as'=>'viewIGPRegisterForm'
 ])->middleware('auth');
 
+Route::get('/viewDORegisterForm',[
+    'uses'=>'AdminController@viewDORegisterForm',
+    'as'=>'viewDORegisterForm'
+])->middleware('auth');
+
+
 
 //general
 Route::post('/getUserInfo',[

@@ -75,7 +75,7 @@
 
     <header class="main-header">
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a href="admin" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>A</b></span>
             <!-- logo for regular state and mobile devices -->
@@ -374,7 +374,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> Register Police Officer</a></li>
-                        <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> View Police Officer</a></li>
+                        <li><a href="viewPoliceOfficersList"><i class="fa fa-circle-o"></i> View Police Officer</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
