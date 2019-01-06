@@ -32,7 +32,7 @@ class CitizenController extends Controller
     public function registerCitizen(citizenRegistrationValidation $request)
     {
 
-        dd($request->email);
+//        dd($request->email,$request->password,$request->nic,$request->password_confirmation);
 
 
         $citizen = new User();

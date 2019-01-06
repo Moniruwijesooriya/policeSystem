@@ -74,15 +74,6 @@ use Illuminate\Support\Facades\DB;
                             </div>
 
                             <div class="form-group row">
-                                <label for="landNumber" class="col-md-4 col-form-label text-md-right">{{ __('Profile Image') }}</label>
-
-                                <div class="col-md-6">
-                                    <input type="date" class="form-control" name="dob"  required autofocus>
-
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
                                 <label for="landNumber" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
 
                                 <div class="col-md-2">
@@ -216,6 +207,7 @@ use Illuminate\Support\Facades\DB;
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autofocus>
                                 </div>
+
                             </div>
 
                             <div class="form-group row mb-0">

@@ -27,7 +27,8 @@ class citizenRegistrationValidation extends FormRequest
         return [
             'email'=>'email|unique:users,email',
             'nic'=>'unique:users,nic',
-            'password'=>'min:6|same:password-confirm',
+            'password'=>'min:6|same:password_confirmation',
+
 
         ];
     }
