@@ -71,6 +71,7 @@
                             <div class="card-body">
                                 <form method="post" action="{{ route('acceptCitizenRequest') }}" enctype="multipart/form-data">
                                     @csrf
+                                    <p class="w3-center"><img src='{{asset('/userProfileImages/'.$citizenDetails->nic.'.jpg')}}' class="w3-circle" style="height:500px;width:500px" alt="{{ $citizenDetails->nic }}"></p>
 
                                     <div class="form-group row">
                                         <label class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>

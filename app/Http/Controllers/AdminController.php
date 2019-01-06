@@ -23,6 +23,9 @@ class AdminController extends Controller
         $policeStationOffices = db::table('police_offices')->where('policeOfficeType',"Police Station")->get();
         $branchPoliceOffices = db::table('police_offices')->where('policeOfficeType',"Branch Police Office")->get();
         $divisionPoliceOffices = db::table('police_offices')->where('policeOfficeType',"Division Police Office")->get();
+
+        //return view('admin.temp',compact('divisionPoliceOffices','policeStationOffices','branchPoliceOffices'));
+
         //return view('admin.index',compact('divisionPoliceOffices','policeStationOffices','branchPoliceOffices'));
         return view('admin.adminHome',compact('divisionPoliceOffices','policeStationOffices','branchPoliceOffices'));
 
