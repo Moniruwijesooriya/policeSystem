@@ -2,6 +2,8 @@
 <?php
 use Illuminate\Support\Facades\DB;
 ?>
+
+
 @section('content')
     {{--<meta charset="UTF-8">--}}
     {{--<meta name="viewport" content="width=device-width, initial-scale=1">--}}
@@ -24,14 +26,17 @@ use Illuminate\Support\Facades\DB;
             {{--text-align: left;--}}
             {{--padding: 8px;--}}
         {{--}--}}
+
+
     {{--</style>--}}
+    <!-- Navbar -->
 
     <!-- Page Container -->
     <div class="container-fluid" style="max-width:1400px;">
         <!-- The Grid -->
+        <br>
         <div class="row">
             <div class="col-md-6">
-                <br>
                 <input class="form-control" id="myInput" type="text" placeholder="Search...">
                 <br>
             </div>
@@ -39,43 +44,52 @@ use Illuminate\Support\Facades\DB;
         <table class="table table-striped">
             <thead>
             <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Office Name</th>
-                <th scope="col">District</th>
-                <th scope="col">Police Office Area</th>
-                <th scope="col">Police Office Type</th>
-                <th scope="col">Head Police Office</th>
-                <th scope="col">Land Number</th>
-                <th scope="col">Main Officer</th>
-                <th scope="col"> Action</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Name with initials</th>
+                <th scope="col">NIC</th>
+                <th scope="col">Date of Birth</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Mobile Number</th>
+                <th scope="col">Landline Number</th>
+                <th scope="col">System Role</th>
+                <th scope="col">Officer Rank</th>
+                <th scope="col">Police Office</th>
+                <th scope="col">E-Mail Address</th>
             </tr>
             </thead>
             <tbody id="myTable">
-            @foreach($policeOfficesList as $policeOffices)
+            @foreach($policeOfficersList as $policeOfficer)
                 <tr>
-                    <td>{{$policeOffices->id}}</td>
-                    <td>{{$policeOffices->OfficeName}}</td>
-                    <td>{{$policeOffices->district}}</td>
-                    <td>{{$policeOffices->policeOfficeArea}}</td>
-                    <td>{{$policeOffices->policeOfficeType}}</td>
-                    <td>{{$policeOffices->headPoliceOffice}}</td>
-                    <td>{{$policeOffices->landNumber}}</td>
-                    <td>{{$policeOffices->mainOfficer}}</td>
-                    <td><form action="updatePoliceOfficesFormView" method="post">
+                    <td>{{$policeOfficer->fullName}}</td>
+                    <td>{{$policeOfficer->name}}</td>
+                    <td>{{$policeOfficer->nic}}</td>
+                    <td>{{$policeOfficer->dob}}</td>
+                    <td>{{$policeOfficer->gender}}</td>
+                    <td>{{$policeOfficer->mobileNumber}}</td>
+                    <td>{{$policeOfficer->landLineNumber}}</td>
+                    <td>{{$policeOfficer->role}}</td>
+                    <td>{{$policeOfficer->profession}}</td>
+                    <td>{{$policeOfficer->policeOffice}}</td>
+                    <td>{{$policeOfficer->email}}</td>
+                    <td><form action="updatePoliceOfficerFormView" method="post">
                             @csrf
-                            <input type="hidden" name="policeOfficeID" value="{{$policeOffices->id}}">
+                            <input type="hidden" name="policeOfficer" value="{{$policeOfficer->nic}}">
                             <button type="submit" class="btn btn-primary">
                                 {{ __('Update') }}
                             </button>
+
                         </form>
-                        <form action="deletePoliceOffices" method="post">
+                        <form action="removePoliceOfficer" method="post">
                             @csrf
-                            <input type="hidden" name="policeOfficeID" value="{{$policeOffices->id}}">
+                            <input type="hidden" name="policeOfficer" value="{{$policeOfficer->nic}}">
                             <button type="submit" class="btn btn-primary">
-                                {{ __('Delete') }}
+                                {{ __('Remove') }}
                             </button>
                         </form>
                     </td>
+
+
+
                 </tr>
             @endforeach
             </tbody>
@@ -85,7 +99,6 @@ use Illuminate\Support\Facades\DB;
     </div>
 
     <br>
-
     <script>
         // Accordion
         function myFunction(id) {
@@ -118,4 +131,6 @@ use Illuminate\Support\Facades\DB;
             });
         });
     </script>
+
+
 @endsection
