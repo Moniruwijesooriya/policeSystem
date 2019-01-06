@@ -1,4 +1,4 @@
-@extends('admin.adminLayout')
+@extends('admin.app')
 <?php
 use Illuminate\Support\Facades\DB;
 ?>
