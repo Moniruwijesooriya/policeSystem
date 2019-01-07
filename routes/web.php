@@ -133,14 +133,18 @@ Route::get('/citizenInfoUpdate',[
     'as'=>'citizenInfoUpdate'
 ]);
 
+
+Route::post('/viewHigherAuthorityAttention',[
+    'uses'=>'EntryController@viewHigherAuthorityAttention',
+    'as'=>'viewHigherAuthorityAttention'
+]);
+
 Route::get('/deactivateCitizenForm',[
     'uses'=>'CitizenController@deactivateCitizenForm',
     'as'=>'deactivateCitizenForm'
 ]);
 
 Route::get('/RedirectRegisteredCitizen','CitizenLoginController@index');
-
-
 
 //Oic
 Route::get('/test','OICController@test');

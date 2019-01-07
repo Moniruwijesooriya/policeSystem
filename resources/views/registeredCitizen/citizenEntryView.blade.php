@@ -160,7 +160,11 @@ use Illuminate\Support\Facades\DB;
                 <div class="row">
 
                     <div style="margin-top: 10px">
-                        <button type="button" class="btn btn-dark">Request Higher Authority Attention</button>
+                        <form action="viewHigherAuthorityAttention" method="post" style>
+                            @csrf
+                            <input type="hidden" name="entryIDTemp" value="{{$entry->entryID}}">
+                            <input type="submit" class="btn btn-dark" value="Request Higher Authority Attention">
+                        </form>
                     </div>
                     <div class="row justify-content-center">
 
