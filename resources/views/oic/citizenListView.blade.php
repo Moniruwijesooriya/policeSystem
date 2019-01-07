@@ -42,6 +42,9 @@
                                     <th scope="col">Full Name</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Address</th>
+                                    @if($type=="Registered Citizens")
+                                    <th scope="col">Remove</th>
+                                        @endif
 
                                 </tr>
                                 </thead>
@@ -72,6 +75,11 @@
                                         <td>{{$citizen->fullName}}</td>
                                         <td>{{$citizen->email}}</td>
                                         <td>{{$citizen->address}}</td>
+                                        <td> @if($type=="Registered Citizens")
+                                                <button type="button" value="{{ $citizen->nic }}" id="nicbutton" class="btn btn-primary nic-button" data-toggle="modal" data-target="#viewPerson">
+                                                    Remove
+                                                </button>
+                                        @endif
                                     </tr>
                                 @endforeach
                                 </tbody>

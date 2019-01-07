@@ -51,7 +51,6 @@ class EntryController extends Controller
 
         $nic=Auth::User()->nic;
         $user=db::table('users')->where('Nic',$nic)->First();
-
         $statusType=$request->statusType;
         if($statusType=="new"){
             //initial entry progress when submitting the entry
@@ -95,6 +94,21 @@ class EntryController extends Controller
             DB::table('entries')
                 ->where('entryID',$request->entryID)
                 ->update(['oicNotification'=>"n",'boicNotification'=>"y",'status'=>"ongoing",'branch'=>$request->branch]);
+        }
+        else if($statusType=="ongoing"){
+            if($request->ongoingSubmit=="Close Entry"){
+                DB::table('entries')
+                    ->where('entryID',$request->entryID)
+                    ->update(['status'=>"closed"]);
+                $nic=Auth::User()->nic;
+                $entries=db::table('entries')->where('status',"ongoing")->get();
+                $type="Ongoing Entries";
+                $oicDetails = db::table('users')->where('nic',$nic)->First();
+                $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
+
+                return view('oic.entryList',compact('entries','type','oicDetails','branches'));
+            }
+
         }
 
         if($request->evidence!=null){

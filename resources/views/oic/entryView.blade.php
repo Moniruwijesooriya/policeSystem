@@ -153,6 +153,19 @@
                                                                 <label class="form-check-label" for="exampleCheck1">Citizen View</label>
                                                             </div>
                                                         </div>
+                                                        <div class="form-group row">
+                                                            <label for="profileImage" class="col-md-4 col-form-label text-md-right">{{ __('Profile Image') }}</label>
+
+                                                            <div class="col-md-6">
+                                                                <input type="file"  class="form-control" name="profileImage">
+
+                                                                @if ($errors->has('landNumber'))
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $errors->first('landNumber') }}</strong>
+                                                                    </span>
+                                                                @endif
+                                                            </div>
+                                                        </div>
 
                                                         <div class="form-group row">
                                                             <label class="col-md-4 col-form-label text-md-right">Suspects</label>
@@ -187,15 +200,13 @@
                                                             @if($entry->status=="ongoing")
                                                                 <div class="col-md-6 offset-md-6 col-xs-6"  >
                                                                     <input type="hidden" name="statusType" value="{{$entry->status}}">
-                                                                    <input type="submit" class="btn btn-primary"  value="Submit">
+                                                                    <input type="submit" class="btn btn-primary" name="ongoingSubmit" value="Submit">
                                                                 </div>
                                                                 <div class="col-md-6 offset-md-6 col-xs-6"  >
-                                                                    <input type="hidden" name="statusType" value="closed">
-                                                                    <input type="submit" class="btn btn-primary"  value="Close Entry">
+                                                                    <input type="submit" class="btn btn-primary" name="ongoingSubmit" value="Close Entry">
                                                                 </div>
                                                                 <div class="col-md-6 offset-md-6 col-xs-6"  >
-                                                                    <input type="hidden" name="statusType" value="closed">
-                                                                    <input type="submit" class="btn btn-primary"  value="Forward">
+                                                                    <input type="submit" class="btn btn-primary" name="ongoingSubmit" value="Forward">
                                                                 </div>
                                                             @endif
                                                             @if($entry->status=="closed")
