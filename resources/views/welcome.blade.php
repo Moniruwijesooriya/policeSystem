@@ -26,11 +26,12 @@
     } 
 
     .wrap-login100 {
-        width: 20%;
+        width: auto;
+        min-width: 20%;
         background: #fff;
         border-radius: 10px;
         overflow: hidden;
-        margin: 0px 0px 0px 35px;
+        margin: 0px 35px 0px 35px;
         padding: 77px 55px 33px 55px;
         padding-left: 50px;
         opacity: 0.7;
@@ -92,8 +93,8 @@
 <!-- Header with full-height image -->
 <header class="bgimg-1 w3-display-container" id="home">
         <div class="container wrap-login100 w3-display-left w3-light-grey" style="padding:48px">
-            <span class="w3-jumbo" style="line-height: 60px">Crime Reporting System</span><br>
-            <span class="w3-xxlarge w3-hide-large w3-hide-medium">Start something that matters</span><br>
+            <span class="w3-jumbo w3-hide-small" style="line-height: 60px">Crime Reporting System</span><br>
+            <span class="w3-xxlarge w3-hide-large w3-hide-medium">Crime Reporting System</span><br>
             <span class="w3-large">24/7 POLICE SYSTEM</span>
             <p><a href="{{ route('register') }}" class="btn-width w3-button w3-grey w3-padding-large w3-large w3-margin-top">REGISTER</a></p>
             <p><a href="{{ route('login') }}" class="btn-width w3-button w3-grey w3-padding-large w3-large w3-margin-top">LOGIN</a></p>
