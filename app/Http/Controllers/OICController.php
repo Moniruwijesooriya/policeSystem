@@ -18,10 +18,13 @@ class OICController extends Controller
         $nic=Auth::User()->nic;
         $oicDetails = db::table('users')->where('nic',$nic)->First();
         $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
-        return view('oic.index',compact('oicDetails','branches'));
+        return view('oic.oicHome',compact('oicDetails','branches'));
     }
     public function test(){
         return view('oic.test');
+    }
+    public function tempHome(){
+        return view('oic.tempHome',compact('oicDetails','branches'));
     }
 
 
@@ -76,10 +79,12 @@ class OICController extends Controller
     public function viewNewCitizenRequests(){
         $nic=Auth::User()->nic;
         $user=db::table('users')->where('Nic',$nic)->First();
+        $oicDetails = db::table('users')->where('nic',$nic)->First();
+        $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
 
         $citizens=db::table('users')->where('role',"citizen")->where('verified',"No")->where('policeOffice',$user->policeOffice)->get();
         $type="New Citizen Registration Requests";
-        return view('oic.citizenListView',compact('citizens','type'));
+        return view('oic.citizenListView',compact('citizens','type','branches','oicDetails'));
     }
     public function viewRegisteredCitizens(){
         $nic=Auth::User()->nic;
@@ -87,7 +92,10 @@ class OICController extends Controller
 
         $citizens=db::table('users')->where('role',"citizen")->where('verified',"Yes")->where('policeOffice',$user->policeOffice)->get();
         $type="Registered Citizens";
-        return view('oic.citizenListView',compact('citizens','type'));
+        $oicDetails = db::table('users')->where('nic',$nic)->First();
+        $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
+
+        return view('oic.citizenListView',compact('citizens','type','oicDetails','branches'));
     }
     public function viewClosedAccounts(){
         $nic=Auth::User()->nic;
@@ -95,7 +103,21 @@ class OICController extends Controller
 
         $citizens=db::table('removed_users')->where('role',"citizen")->where('policeOffice',$user->policeOffice)->get();
         $type="Closed Accounts";
-        return view('oic.citizenListView',compact('citizens','type'));
+        $oicDetails = db::table('users')->where('nic',$nic)->First();
+        $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
+
+        return view('oic.citizenListView',compact('citizens','type','branches','oicDetails'));
+    }
+
+    public function viewBranch(Request $request){
+        $branchDetails=db::table('police_offices')->where('id',$request->branchID)->First();
+        $nic=Auth::User()->nic;
+        $oicDetails = db::table('users')->where('nic',$nic)->First();
+        $entries = db::table('entries')->where('branch',$request->branchName)->where('nearestPoliceStation',$oicDetails->policeOffice)->get();
+        $branchOfficerDetails = db::table('users')->where('nic',$request->mainOfficer)->First();
+        $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
+        return view('oic.viewBranchOffice',compact('branchDetails','oicDetails','entries','branches','oicDetails','branchOfficerDetails'));
+
     }
 
 }

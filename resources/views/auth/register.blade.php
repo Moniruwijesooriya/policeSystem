@@ -121,6 +121,20 @@ use Illuminate\Support\Facades\DB;
                                 </div>
                             </div>
 
+                            <div class="form-group row">
+                                <label for="profileImage" class="col-md-4 col-form-label text-md-right">{{ __('Profile Image') }}</label>
+
+                                <div class="col-md-6">
+                                    <input type="file"  class="form-control" name="profileImage" required autofocus>
+
+                                    @if ($errors->has('landNumber'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('landNumber') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
                             <?php
                             $policeOffice=db::table('police_offices')->get()->where('policeOfficeType',"Police Station");
                             ?>
@@ -156,7 +170,7 @@ use Illuminate\Support\Facades\DB;
                                 <label for="mobNumber" class="col-md-4 col-form-label text-md-right">{{ __('Mobile Number') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="mobNumber" type="text" maxlength="10" class="form-control{{ $errors->has('mobNumber') ? ' is-invalid' : '' }}" name="mobNumber" value="{{ old('mobNumber') }}" required autofocus>
+                                    <input id="mobNumber" type="text" maxlength="10" class="form-control{{ $errors->has('mobNumber') ? ' is-invalid' : '' }}" name="mobNumber" value="{{ old('mobNumber') }}">
 
                                     @if ($errors->has('mobNumber'))
                                         <span class="invalid-feedback" role="alert">
@@ -170,7 +184,7 @@ use Illuminate\Support\Facades\DB;
                                 <label for="landNumber" class="col-md-4 col-form-label text-md-right">{{ __('Landline Number') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="landNumber" type="text" maxlength="10" class="form-control{{ $errors->has('landNumber') ? ' is-invalid' : '' }}" name="landNumber" value="{{ old('landNumber') }}" required autofocus>
+                                    <input id="landNumber" type="text" maxlength="10" class="form-control{{ $errors->has('landNumber') ? ' is-invalid' : '' }}" name="landNumber" value="{{ old('landNumber') }}">
 
                                     @if ($errors->has('landNumber'))
                                         <span class="invalid-feedback" role="alert">

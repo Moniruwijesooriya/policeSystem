@@ -3,7 +3,7 @@
 
     <div class="content-header">
         <h1>
-            Register Inspector General of Police Office
+            Register Police Station
         </h1>
     </div>
 
@@ -22,8 +22,19 @@
                         {{--Register IGP office form--}}
                         <form method="POST" action="{{ route('registerPoliceOffice') }}">
                             @csrf
-                            <input type="hidden" name="headPoliceOffice" value="Ministry">
-                            <input type="hidden" name="policeOfficeType" value="Inspector General of Police Office">
+                            <input type="hidden" name="policeOfficeType" value="Police Station">
+
+                            <div class="form-group row">
+                                <label for="exampleFormControlSelect1" class="col-md-4 col-form-label text-md-left">Division Police Office</label>
+                                <div class="col-md-7">
+                                    <select class="form-control" name ="headPoliceOffice" id="policeOfficeType">
+
+                                        @foreach($divisionPoliceOffices as $divisionPoliceOffice)
+                                            <option>{{$divisionPoliceOffice->OfficeName}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label for="exampleFormControlSelect1" class="col-md-4 col-form-label text-md-left">District</label>
                                 <div class="col-md-7">
@@ -61,7 +72,7 @@
                                 <label for="policeOfficeArea" class="col-md-4 col-form-label text-md-left">{{ __('Office Area') }}</label>
 
                                 <div class="col-md-7">
-                                    <input id="policeOfficeArea" type="text" class="form-control" name="policeOfficeArea" value="Sri Lanka" readonly>
+                                    <input id="policeOfficeArea" type="text" class="form-control" name="policeOfficeArea" value="{{ old('policeOfficeArea') }}" required autofocus>
 
                                 </div>
                             </div>

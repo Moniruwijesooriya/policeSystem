@@ -105,8 +105,9 @@ use Illuminate\Support\Facades\DB;
                                                         <input type="hidden" value="{{$notifi->nic}}" name="nic">
                                                         <input type="submit" class="btn-link" value="{{$notifi->nic}} requested a registration request">
                                                     </form>
-                                            </div>
+
                                             @endforeach
+                                            </div>
                                         @endif
                                     </div>
                                 @endif
