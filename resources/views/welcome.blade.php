@@ -20,9 +20,39 @@
         filter:brightness(40%);
         filter:contrast(100%);
         filter:saturate(1);
-        background-image: url("/img/police3.jpg");
+        animation: animate_bg 10s;
+        animation-iteration-count: infinite;
         min-height: 100%;
+    } 
+
+    .wrap-login100 {
+        width: 20%;
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 0px 0px 0px 35px;
+        padding: 77px 55px 33px 55px;
+        padding-left: 50px;
+        opacity: 0.7;
+
+        box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+        -moz-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+        -webkit-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+        -o-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+        -ms-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
     }
+
+    .btn-width{
+        width:140px;
+        opacity: 1;
+    }
+
+    @keyframes animate_bg {
+        0%   {background-image: url("/img/police2.jpg");}
+        50%  {background-image: url("/img/gallery2.jpg");}
+        100% {background-image: url("/img/police4.jpg");}
+    }
+
     .w3-bar .w3-button {
         padding: 16px;
     }
@@ -32,7 +62,7 @@
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
     <div class="w3-bar w3-white w3-card" id="myNavbar">
-        <a href="#home" class="w3-bar-item w3-button w3-wide">SRILANKAN POLICE</a>
+        <a href="#home" class="w3-bar-item w3-button w3-wide">SRI LANKAN POLICE</a>
         <!-- Right-sided navbar links -->
         <div class="w3-right w3-hide-small">
             <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
@@ -60,14 +90,14 @@
 </nav>
 
 <!-- Header with full-height image -->
-<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
-    <div class="w3-display-left w3-text-white" style="padding:48px">
-        <span class="w3-jumbo w3-hide-small">Crime Reporting System</span><br>
-        <span class="w3-xxlarge w3-hide-large w3-hide-medium">Start something that matters</span><br>
-        <span class="w3-large">24/7 POLICE SYSTEM</span>
-        <p><a href="{{ route('register') }}" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">REGISTER</a></p>
-        <p><a href="{{ route('login') }}" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">LOGIN</a></p>
-    </div>  
+<header class="bgimg-1 w3-display-container" id="home">
+        <div class="container wrap-login100 w3-display-left w3-light-grey" style="padding:48px">
+            <span class="w3-jumbo" style="line-height: 60px">Crime Reporting System</span><br>
+            <span class="w3-xxlarge w3-hide-large w3-hide-medium">Start something that matters</span><br>
+            <span class="w3-large">24/7 POLICE SYSTEM</span>
+            <p><a href="{{ route('register') }}" class="btn-width w3-button w3-grey w3-padding-large w3-large w3-margin-top">REGISTER</a></p>
+            <p><a href="{{ route('login') }}" class="btn-width w3-button w3-grey w3-padding-large w3-large w3-margin-top">LOGIN</a></p>
+        </div> 
     <div>
             <a href="#about" class="w3-button w3-light-grey w3-display-bottommiddle"><i class="fa fa-arrow-down w3-margin-right"></i>About</a>
     </div>
@@ -311,7 +341,7 @@
 <footer class="w3-center w3-black w3-padding-64">
     <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
 
-    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">SRILANKAN POLICE</a></p>
+    <p>Powered by <a href="#home" title="W3.CSS"  class="w3-hover-text-green">SRILANKAN POLICE</a></p>
 </footer>
 
 <!-- Add Google Maps -->
