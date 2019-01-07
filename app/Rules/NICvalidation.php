@@ -4,7 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class NICvalidation implements Rule
+class NicValidation implements Rule
 {
     /**
      * Create a new rule instance.
@@ -25,10 +25,17 @@ class NICvalidation implements Rule
      */
     public function passes($attribute, $value)
     {
-        $regularExpression1= '/^[0-9]{9}[VvxX]$/';
-        $regularExpression2= '/[0-9]{12}$/';
+        $regex1 = '/^[0-9]{2}[5-8]{1}[0-9]{6}[vVxX]$/';
+        $regex2 = '/^[0-9]{4}[5-8]{1}[0-9]{7}$/';
 
+        if(((!empty($value) && strlen($value) == 10 && (preg_match($regex1, $value)))) ||((!empty($value) && strlen($value)==12) && (preg_match($regex2, $value)))){
 
+            return true;
+
+        }
+        else{
+            return false;
+        }
     }
 
     /**
@@ -38,6 +45,6 @@ class NICvalidation implements Rule
      */
     public function message()
     {
-        return 'Invalid NIC format.';
+        return 'The NIC format is not valid';
     }
 }

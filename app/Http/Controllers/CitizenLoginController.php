@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+
+
 class CitizenLoginController extends Controller
 {
     public function __construct()
@@ -15,7 +17,10 @@ class CitizenLoginController extends Controller
     {
         $nic=Auth::User()->nic;
         $citizenDetails = db::table('users')->where('nic',$nic)->First();
-        return view('registeredCitizen.index',compact('citizenDetails'));
+        $crimeCategories = db::table('crime_categories')->where('citizenView',"Yes")->get();
+        //return view('registeredCitizen.index',compact('citizenDetails','crimeCategories'));
+        return view('registeredCitizen.tempCitizen',compact('citizenDetails','crimeCategories'));
     }
+
 }
 

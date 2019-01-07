@@ -72,6 +72,11 @@ use Illuminate\Support\Facades\DB;
                                 Home
                             </a>
                         @endif
+                            @if(Auth::User()->role=='admin')
+                                <a class="navbar-brand" href="{{'admin'}}">
+                                    Home
+                                </a>
+                            @endif
                     </ul>
 
                     <?php
@@ -100,8 +105,9 @@ use Illuminate\Support\Facades\DB;
                                                         <input type="hidden" value="{{$notifi->nic}}" name="nic">
                                                         <input type="submit" class="btn-link" value="{{$notifi->nic}} requested a registration request">
                                                     </form>
-                                            </div>
+
                                             @endforeach
+                                            </div>
                                         @endif
                                     </div>
                                 @endif

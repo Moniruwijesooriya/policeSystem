@@ -1,13 +1,27 @@
-@extends('layouts.app')
-@section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Update Police Officer Rank') }}</div>
 
-                    <div class="card-body">
-                        <form method="post" action="updateRank" enctype="multipart/form-data">
+@extends('admin.adminApp')
+@section('content')
+
+    <div class="content-header">
+        <h1>
+            Update Police Officers
+        </h1>
+    </div>
+
+    <!-- Main content -->
+    <div class="content">
+        <!-- Small boxes (Stat box) -->
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+            <!-- Left col -->
+            <div class="col-lg-12 ">
+                <!-- TO DO List -->
+                <div class="box box-primary">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        {{--Register IGP office form--}}
+                        <form method="post" action="updatePoliceOfficer" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group row">
@@ -69,9 +83,9 @@
                                         <option>{{$policeOfficer->role}}</option>
                                         @foreach($dataSystemRole as $systemRole)
                                             @if($policeOfficer->role!=$systemRole->data)
-                                        <option>{{$systemRole->data}}</option>
+                                                <option>{{$systemRole->data}}</option>
                                             @endif
-                                            @endforeach
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -122,8 +136,29 @@
                             </div>
                         </form>
                     </div>
+                    <!-- /.box-body -->
+
                 </div>
+                <!-- /.box -->
             </div>
+            <!-- /.Left col -->
+            <!-- right col (We are only adding the ID to make the widgets sortable)-->
+
+            <!-- right col -->
         </div>
+        <!-- /.row (main row) -->
+
     </div>
+
 @endsection
+
+
+
+
+
+
+
+
+
+
+

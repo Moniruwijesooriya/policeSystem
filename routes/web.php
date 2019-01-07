@@ -111,26 +111,61 @@ Route::post('/citizenPasswordChange',[
     'uses'=>'CitizenController@citizenPasswordChange',
     'as'=>'citizenPasswordChange'
 ]);
+Route::get('/submitCrimeEntryForm',[
+    'uses'=>'CitizenController@submitCrimeEntryForm',
+    'as'=>'submitCrimeEntryForm'
+]);
 
 //Oic
 Route::get('/test','OICController@test');
 
 Route::post('/createPost','PostsController@createPost');
 
-Route::get('/viewNewEntries',[
+Route::get('/viewOICNewEntries',[
     'uses'=>'EntryController@viewOICNewEntries',
     'as'=>'NewEntries'
 ])->middleware('auth');
 
-Route::get('/viewOngoingEntries',[
+Route::get('/viewOICOngoingEntries',[
     'uses'=>'EntryController@viewOICOngoingEntries',
     'as'=>'OngoingEntries'
+])->middleware('auth');
+
+Route::get('/viewOICClosedEntries',[
+    'uses'=>'EntryController@viewOICClosedEntries',
+    'as'=>'ClosedEntries'
+])->middleware('auth');
+
+Route::get('/viewNewCitizenRequests',[
+    'uses'=>'OICController@viewNewCitizenRequests',
+    'as'=>'viewNewCitizenRequests'
+])->middleware('auth');
+
+Route::get('/viewRegisteredCitizens',[
+    'uses'=>'OICController@viewRegisteredCitizens',
+    'as'=>'viewRegisteredCitizens'
+])->middleware('auth');
+
+
+Route::get('/viewClosedAccounts',[
+    'uses'=>'OICController@viewClosedAccounts',
+    'as'=>'viewClosedAccounts'
 ])->middleware('auth');
 
 Route::post('/oicPasswordChange',[
     'uses'=>'OICController@oicPasswordChange',
     'as'=>'oicPasswordChange'
 ]);
+Route::post('/manageCitizen',[
+    'uses'=>'OICController@manageCitizen',
+    'as'=>'manageCitizen'
+]);
+Route::post('/viewBranch',[
+    'uses'=>'OICController@viewBranch',
+    'as'=>'viewBranch'
+]);
+
+
 
 
 Route::get('/viewClosedEntries',[
@@ -138,7 +173,9 @@ Route::get('/viewClosedEntries',[
     'as'=>'ClosedEntries'
 ])->middleware('auth');
 
-//admin
+//admin////////////////////
+
+
 Route::post('removeFormView','AdminController@removeFormView');
 Route::post('/removePoliceOfficer',[
     'uses'=>'AdminController@removePoliceOfficer',
@@ -155,13 +192,10 @@ Route::get('/viewCrimeTypeList',[
     'as'=>'CrimeTypeList'
 ])->middleware('auth');
 
-
 Route::post('/deleteCrimeType',[
     'uses'=>'AdminController@deleteCrimeType',
     'as'=>'deleteCrimeType'
 ])->middleware('auth');
-
-
 
 Route::post('/updateViewCrimeType',[
     'uses'=>'AdminController@updateViewCrimeType',
@@ -183,22 +217,100 @@ Route::post('/updateRankFormView',[
     'as'=>'updateRankFormView'
 ])->middleware('auth');
 
+Route::get('/viewPoliceOfficesList',[
+    'uses'=>'AdminController@viewPoliceOfficesList',
+    'as'=>'viewPoliceOfficesList'
+])->middleware('auth');
+
+Route::post('/deletePoliceOffices',[
+    'uses'=>'AdminController@deletePoliceOffices',
+    'as'=>'deletePoliceOffices'
+])->middleware('auth');
+
+
+Route::post('/updatePoliceOfficesFormView',[
+    'uses'=>'AdminController@updatePoliceOfficesFormView',
+    'as'=>'updatePoliceOfficesFormView'
+])->middleware('auth');
+
+Route::post('/getRemovedUserInfo',[
+    'uses'=>'EntryController@getRemovedUserInfo',
+    'as'=>'getRemovedUserInfo'
+])->middleware('auth');
+
+Route::post('/updatePoliceOffices',[
+    'uses'=>'AdminController@updatePoliceOffices',
+    'as'=>'updatePoliceOffices'
+])->middleware('auth');
+
+Route::get('/viewPoliceOfficersList',[
+    'uses'=>'AdminController@viewPoliceOfficersList',
+    'as'=>'viewPoliceOfficersList'
+])->middleware('auth');
+
+
+Route::post('/updatePoliceOfficerFormView',[
+    'uses'=>'AdminController@updatePoliceOfficerFormView',
+    'as'=>'updatePoliceOfficerFormView'
+])->middleware('auth');
+
+Route::post('/updatePoliceOfficer',[
+    'uses'=>'AdminController@updatePoliceOfficer',
+    'as'=>'updatePoliceOfficer'
+])->middleware('auth');
+
+Route::get('/viewIGPRegisterForm',[
+    'uses'=>'AdminController@viewIGPRegisterForm',
+    'as'=>'viewIGPRegisterForm'
+])->middleware('auth');
+
+Route::get('/viewDORegisterForm',[
+    'uses'=>'AdminController@viewDORegisterForm',
+    'as'=>'viewDORegisterForm'
+])->middleware('auth');
+
+Route::get('/viewPSRegisterForm',[
+    'uses'=>'AdminController@viewPSRegisterForm',
+    'as'=>'viewPSRegisterForm'
+])->middleware('auth');
+
+Route::get('/viewBORegisterForm',[
+    'uses'=>'AdminController@viewBORegisterForm',
+    'as'=>'viewBORegisterForm'
+])->middleware('auth');
+
+Route::get('/viewPoliceOfficesList',[
+    'uses'=>'AdminController@viewPoliceOfficesList',
+    'as'=>'viewPoliceOfficesList'
+])->middleware('auth');
+
+Route::get('/viewAddCrimeTypeForm',[
+    'uses'=>'AdminController@viewAddCrimeTypeForm',
+    'as'=>'viewAddCrimeTypeForm'
+])->middleware('auth');
+
+Route::get('/viewregisterPoliceOfficer',[
+    'uses'=>'AdminController@viewregisterPoliceOfficerForm',
+    'as'=>'viewregisterPoliceOfficer'
+])->middleware('auth');
+
+
+
 //general
 Route::post('/getUserInfo',[
     'uses'=>'EntryController@getUserInfo',
     'as'=>'getUserInfo'
 ])->middleware('auth');
 
-
-
-Route::post('/updateRank',[
-    'uses'=>'AdminController@updateRank',
-    'as'=>'updateRank'
+Route::get('/viewRegisterLTE',[
+    'uses'=>'AdminController@viewRegisterLTE',
+    'as'=>'viewRegisterLTE'
 ])->middleware('auth');
 
 
-Route::get('/viewPoliceOfficesList',[
-    'uses'=>'AdminController@viewPoliceOfficesList',
-    'as'=>'viewPoliceOfficesList'
+Route::get('/tempHome',[
+    'uses'=>'OICController@tempHome',
+    'as'=>'tempHome'
 ])->middleware('auth');
+
 
