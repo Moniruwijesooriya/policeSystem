@@ -148,7 +148,7 @@ public function store(Request $request)
         DB::table('users')
             ->where('nic',$request->nic)
             ->update(['email_verified_at'=>Null,'verified'=>'No','address'=>$request->homeAddress,'policeOffice'=>$request->policeStation,'mobileNumber'=>$request->mobNumber,'landLineNumber'=>$request->landNumber,'email'=>$request->email]);
-        return redirect('/RegisteredCitizen');
+        return redirect('registeredCitizen.registeredCitizenApp');
     }
 
     /**
@@ -193,5 +193,17 @@ public function store(Request $request)
         $crimeCategories = db::table('crime_categories')->where('citizenView',"Yes")->get();
         return view('registeredCitizen.submitCrimeEntryForm',compact('crimeCategories'));
     }
+    public function citizenProfileFormView(){
+        $nic = Auth::User()->nic;
+        $citizenDetails = db::table('users')->where('nic',$nic)->First();
+        return view('registeredCitizen.citizenProfileForm',compact('citizenDetails'));
+    }
+
+    public function changePasswordFormView(){
+        $nic = Auth::User()->nic;
+        $citizenDetails = db::table('users')->where('nic',$nic)->First();
+        return view('registeredCitizen.changePasswordForm',compact('citizenDetails'));
+    }
+
 
 }

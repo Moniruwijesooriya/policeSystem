@@ -133,4 +133,4 @@
 
 </div>
 @endsection
-@yield('content')
+
