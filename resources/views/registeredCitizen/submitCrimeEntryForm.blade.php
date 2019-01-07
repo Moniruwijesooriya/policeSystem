@@ -82,7 +82,7 @@ use Illuminate\Support\Facades\DB;
                                     <textarea class="form-control" name="suspects" rows="2"></textarea>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <a href="RegisteredCitizen"><button type="button" class="btn btn-secondary" >Cancel</button></a>
                                     <input type="submit" class="btn btn-primary" name="submit" value="Submit Entry">
                                 </div>
                                 <input type="hidden" name="_token" value="{{Session::token()}}">

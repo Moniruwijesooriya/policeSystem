@@ -39,40 +39,6 @@ use Illuminate\Support\Facades\DB;
                 </div>
                 <br>
 
-                {{--Alert Messages--}}
-
-                @if(session('updateCitizen'))
-                    <div class="alert alert-success m1200" role="alert">
-                        <button type="button" class="close" data-dismiss="alert">x</button>
-                        {{session('updateCitizen')}}
-                    </div>
-                @endif
-
-                @if(session('CitizenPasswordUpdate'))
-                    <div class="alert alert-success m1200" role="alert">
-                        <button type="button" class="close" data-dismiss="alert">x</button>
-                        {{session('CitizenPasswordUpdate')}}
-                    </div>
-                @endif
-
-
-                @if(session('entrySuccess'))
-                    <div class="alert alert-success m1200" role="alert">
-                        <button type="button" class="close" data-dismiss="alert">x</button>
-                        {{session('entrySuccess')}}
-                    </div>
-                @endif
-
-
-                <script !src="">
-                    window.setTimeout(function() {
-                        $(".alert").fadeTo(500, 0).slideUp(500, function(){
-                            $(this).remove();
-                        });
-                    }, 3000);
-                </script>
-
-
 
 
 

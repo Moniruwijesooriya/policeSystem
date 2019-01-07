@@ -13,7 +13,7 @@ use phpDocumentor\Reflection\Types\Null_;
 use function PHPSTORM_META\elementType;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\citizenRegistrationValidation;
-use Illuminate\Support\Facades\Auth;
+
 
 class CitizenController extends Controller
 {
@@ -48,6 +48,7 @@ class CitizenController extends Controller
         }else{
 
         }
+
         $citizen = new User();
         $citizen->name = $request->name;
         $citizen->nic = $request->nic;
@@ -172,6 +173,12 @@ public function store(Request $request)
      */
 
 
+    public function deactivateCitizenForm(){
+        $nic = Auth::User()->nic;
+        $citizenDetails = db::table('users')->where('nic',$nic)->First();
+        return view('registeredCitizen.deactivateCitizenForm',compact('citizenDetails'));
+    }
+
     public function citizenAccountDeactivate(Request $request)
     {
         $userpassword=$request->password;
@@ -194,7 +201,7 @@ public function store(Request $request)
 
         $citizenDetails = db::table('users')->where('nic',$request->nic)->First();
 
-        Session::flash('CitizenPasswordUpdate','password is updated successfully!');
+            Session::flash('CitizenPasswordUpdate','password is updated successfully!');
 
         if(Hash::check($currentpassword,$citizenDetails->password) && $newpassword == $confirmpassword){
             DB::table('users')
