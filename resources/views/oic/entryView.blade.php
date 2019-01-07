@@ -22,12 +22,12 @@
                         {{--View Entry List--}}
                         <div class="container-fluid">
                             <!-- The Grid -->
-                            <div class="row">
+                            <div class="row w3-grey">
                                 <!-- Left Column -->
-                                <div class="col-md-3">
+                                <div class="col-md-2 w3-light-grey table-col tc-left">
                                     <!-- Accordion -->
                                     <div class="card">
-                                        <div class="bg-white">
+                                        <div class="bg-grey">
                                             <button onclick="myFunction('evidencesList')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Evidences</button>
                                             <div id="evidencesList" class="w3-hide w3-container">
                                                 <div class="form-group row">
@@ -65,18 +65,18 @@
                                 </div>
 
                                 <!-- Middle Column -->
-                                <div class="col-md-5" style="margin-right: 40px;margin-left: 20px;margin-bottom: 10px">
+                                <div class="col-md-6 table-col tc-middle" style="margin-right: 40px;margin-left: 20px;margin-bottom: 10px" >
                                     <div class="row justify-content-center">
                                         <div class="col-md-12">
                                             <div class="card">
                                                 <div class="card-header">{{ __('Entry') }}</div>
 
-                                                <div class="card-body">
+                                                <div class="form-group">
                                                     <form method="post" action="{{ route('entryOICAction') }}" enctype="multipart/form-data">
                                                         @csrf
 
                                                         <div class="form-group row">
-                                                            <label class="col-md-4 col-form-label text-md-right">{{ __('Entry ID') }}</label>
+                                                            <label class="col-md-3 col-form-label text-md-right">{{ __('Entry ID') }}</label>
 
                                                             <div class="col-md-6">
                                                                 <input type="text" class="form-control"value="{{ $entry->entryID }}" readonly>
@@ -86,7 +86,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label class="col-md-4 col-form-label text-md-right">{{ __('Complainant NIC') }}</label>
+                                                            <label class="col-md-3 col-form-label text-md-right">{{ __('Complainant NIC') }}</label>
 
                                                             <div class="col-md-6">
                                                                 <button type="button" value="{{ $entry->complainantID }}" id="nicbutton" class="btn btn-primary nic-button" data-toggle="modal" data-target="#viewPerson">{{ $entry->complainantID }}</button>
@@ -95,7 +95,7 @@
                                                         </div>
 
                                                         <div class="form-group row">
-                                                            <label class="col-md-4 col-form-label text-md-right">{{ __('Date And Time') }}</label>
+                                                            <label class="col-md-3 col-form-label text-md-right">{{ __('Date And Time') }}</label>
 
                                                             <div class="col-md-6">
                                                                 <input type="text" class="form-control"value="{{ $entry->created_at }}" readonly>
@@ -104,7 +104,7 @@
 
 
                                                         <div class="form-group row">
-                                                            <label class="col-md-4 col-form-label text-md-right">{{ __('Complaint Category') }}</label>
+                                                            <label class="col-md-3 col-form-label text-md-right">{{ __('Complaint Category') }}</label>
 
                                                             <div class="col-md-6">
                                                                 <input type="text" class="form-control"value="{{ $entry->complaintCategory }}" readonly>
@@ -113,7 +113,7 @@
 
                                                         <div class="form-group row">
 
-                                                            <label class="col-md-4 col-form-label text-md-right">{{ __('Complaint') }}</label>
+                                                            <label class="col-md-3 col-form-label text-md-right">{{ __('Complaint') }}</label>
 
                                                             <div class="col-md-6">
                                                                 <input type="hidden" value="{{ $entry->complaint }}" name="complaint">
@@ -123,7 +123,7 @@
 
                                                         @if($entry->status=="new")
                                                             <div class="form-group row">
-                                                                <label class="col-md-4 col-form-label text-md-right">{{ __('Branch') }}</label>
+                                                                <label class="col-md-3 col-form-label text-md-right">{{ __('Branch') }}</label>
                                                                 <div class="col-md-6">
                                                                     <select class="form-control" name ="branch" id="exampleFormControlSelect1">
                                                                         <option>Crime Branch</option>
@@ -136,7 +136,7 @@
 
                                                         @if($entry->status=="ongoing")
                                                             <div class="form-group row">
-                                                                <label class="col-md-4 col-form-label text-md-right">{{ __('Current Branch') }}</label>
+                                                                <label class="col-md-3 col-form-label text-md-right">{{ __('Current Branch') }}</label>
 
                                                                 <div class="col-md-6">
                                                                     <input type="text" class="form-control"value="{{ $entry->branch }}" readonly>
@@ -145,20 +145,20 @@
                                                         @endif
 
                                                         <div class="form-group row">
-                                                            <label class="col-md-4 col-form-label text-md-right">{{ __('Evidences') }}</label>
+                                                            <label class="col-md-3 col-form-label text-md-right">{{ __('Evidences') }}</label>
                                                             <div class="col-md-6">
                                                                 <textarea class="form-control" name="evidence" id="exampleFormControlTextarea1" rows="2"></textarea>
                                                             </div>
-                                                            <div class="form-check col-md-2">
+                                                            <div class="form-check col-md-3">
                                                                 <input type="checkbox" class="form-check-input" name="evidenceCitizenView" value="Yes" id="exampleCheck1">
-                                                                <label class="form-check-label" for="exampleCheck1">Citizen View</label>
+                                                                <label class="form-check-label" for="exampleCheck1" style="width:100%">Allow Submitter to View</label>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="profileImage" class="col-md-4 col-form-label text-md-right">{{ __('Profile Image') }}</label>
+                                                            <label for="profileImage" class="col-md-3 col-form-label text-md-right">{{ __('Profile Image') }}</label>
 
                                                             <div class="col-md-6">
-                                                                <input type="file"  class="form-control" name="profileImage">
+                                                                <input type="file"  class="form-control" accept="image/*" name="profileImage" style="height: 100%">
 
                                                                 @if ($errors->has('landNumber'))
                                                                     <span class="invalid-feedback" role="alert">
@@ -169,56 +169,57 @@
                                                         </div>
 
                                                         <div class="form-group row">
-                                                            <label class="col-md-4 col-form-label text-md-right">Suspects</label>
+                                                            <label class="col-md-3 col-form-label text-md-right">Suspects</label>
                                                             <div class="col-md-6">
                                                                 <textarea class="form-control" name="suspects" id="exampleFormControlTextarea1" rows="2"></textarea>
                                                             </div>
-                                                            <div class="form-check col-md-2">
+                                                            <div class="form-check col-md-3">
                                                                 <input type="checkbox" class="form-check-input" name="suspectCitizenView" value="Yes" id="exampleCheck1">
-                                                                <label class="form-check-label" for="exampleCheck1">Citizen View</label>
+                                                                <label class="form-check-label" for="exampleCheck1">Allow Submitter to View</label>
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group row">
-                                                            <label class="col-md-4 col-form-label text-md-right">Progress</label>
+                                                            <label class="col-md-3 col-form-label text-md-right">Progress</label>
                                                             <div class="col-md-6">
                                                                 <textarea class="form-control" name="entryProgress" id="exampleFormControlTextarea1" rows="2"></textarea>
                                                             </div>
-                                                            <div class="form-check col-md-2">
+                                                            <div class="form-check col-md-3">
                                                                 <input type="checkbox" class="form-check-input" name="progressCitizenView" value="Yes" id="exampleCheck1">
-                                                                <label class="form-check-label" for="exampleCheck1">Citizen View</label>
+                                                                <label class="form-check-label" for="exampleCheck1">Allow Submitter to View</label>
                                                             </div>
 
                                                         </div>
 
                                                         <div class="form-group row mb-0">
+                                                            <div class="col-md-3"></div>
                                                             @if($entry->status=="new")
-                                                                <div class="col-md-6 offset-md-6 col-xs-6"  >
-                                                                    <input type="hidden" name="statusType" value="{{$entry->status}}">
-                                                                    <input type="submit" class="btn btn-primary" value="Accept and Forward">
+                                                                <div class="col-md-2 offset-md-3 col-xs-6"  style="width: 18.75%">
+                                                                        <input type="hidden" name="statusType" value="{{$entry->status}}">
+                                                                    <input type="submit" class="btn btn-primary" value="Accept and Forward" style="width: 100%">
                                                                 </div>
                                                             @endif
                                                             @if($entry->status=="ongoing")
-                                                                <div class="col-md-6 offset-md-6 col-xs-6"  >
+                                                                <div class="col-md-2 offset-md-3 col-xs-6"  style="width: 18.75%">
                                                                     <input type="hidden" name="statusType" value="{{$entry->status}}">
-                                                                    <input type="submit" class="btn btn-primary" name="ongoingSubmit" value="Submit">
+                                                                    <input type="submit" class="btn btn-primary" name="ongoingSubmit" value="Submit" style="width: 100%">
                                                                 </div>
-                                                                <div class="col-md-6 offset-md-6 col-xs-6"  >
-                                                                    <input type="submit" class="btn btn-primary" name="ongoingSubmit" value="Close Entry">
+                                                                <div class="col-md-2 offset-md-3 col-xs-6"  style="width: 18.75%">
+                                                                    <input type="submit" class="btn btn-primary" name="ongoingSubmit" value="Close Entry" style="width: 100%">
                                                                 </div>
-                                                                <div class="col-md-6 offset-md-6 col-xs-6"  >
-                                                                    <input type="submit" class="btn btn-primary" name="ongoingSubmit" value="Forward">
+                                                                <div class="col-md-2 offset-md-3 col-xs-6"  style="width: 18.75%">
+                                                                    <input type="submit" class="btn btn-primary" name="ongoingSubmit" value="Forward" style="width: 100%">
                                                                 </div>
                                                             @endif
                                                             @if($entry->status=="closed")
-                                                                <div class="col-md-6 offset-md-6 col-xs-6"  >
-                                                                    <input type="hidden" name="statusType" value="closed">
-                                                                    <input type="submit" class="btn btn-primary"  value="Forward">
+                                                                <div class="col-md-2 offset-md-3 col-xs-6"  style="width: 18.75%">
+                                                                    <input type="hidden" name="statusType" value="closed" style="width: 100%">
+                                                                    <input type="submit" class="btn btn-primary"  value="Forward" style="width: 100%">
                                                                 </div>
                                                             @endif
 
-                                                            <div class="col-md-3 col-xs-6"  >
-                                                                <button  type="reset" class="btn btn-danger" value="cancel">Reset</button>
+                                                            <div class="col-md-2 col-xs-6"  style="width: 18.75%">
+                                                                <button  type="reset" class="btn btn-danger" value="cancel" style="width: 100%">Reset</button>
                                                             </div>
                                                         </div>
                                                     </form>
@@ -231,7 +232,7 @@
                                 </div>
 
                                 <!-- Right Column -->
-                                <div class="col-md-3">
+                                <div class="col-md-5 w3-light-grey table-col tc-right">
                                     <div class="row">
                                         <p><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#createPost">
                                                 Create a Post
@@ -438,6 +439,27 @@
                 });
             });
         });
+        function myFunction(id) {
+        var x = document.getElementById(id);
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+            x.previousElementSibling.className += " w3-theme-d1";
+        } else {
+            x.className = x.className.replace("w3-show", "");
+            x.previousElementSibling.className =
+                x.previousElementSibling.className.replace(" w3-theme-d1", "");
+        }
+    }
+
+    // Used to toggle the menu on smaller screens when clicking on the menu button
+    function openNav() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
     </script>
 @endsection
 
