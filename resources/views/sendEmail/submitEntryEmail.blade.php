@@ -1,0 +1,4 @@
+{{ $heading }}
+{{ $submitNotice }}
+{{$thank}}
+

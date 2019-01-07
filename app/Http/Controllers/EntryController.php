@@ -35,7 +35,7 @@ class EntryController extends Controller
         $crimeEntry->igpNotification="n";
         $crimeEntry->citizenNotification="n";
         $crimeEntry->status="new";
-        $crimeEntry->progress="Entry is submitted to the ".$request->policeStation." Police Station";
+        $crimeEntry->progress="Entry is submitted to the ".$request->policeStation;
         $crimeEntry->suspects=$request->suspects;
         $crimeEntry->evidences=$request->evidences;
 
@@ -48,6 +48,18 @@ class EntryController extends Controller
         $entry=db::table('entries')->where('complainantID',Auth::User()->nic)->latest()->first();
         $evidences=db::table('evidence')->where('entryID',$request->entryID)->where('citizenView',"Yes")->get();
         $suspects=db::table('suspects')->where('entryID',$request->entryID)->where('userRole',"citizen")->get();
+
+        $email=Auth::User()->email;
+        $data = array('heading'=>"Weclome to Crime Reporting System",
+            'submitNotice'=>"Your Complaint is succesfully  submitted to the ".$request->policeStation." Police Station",
+            'thank'=>"Thank You!",
+            );
+
+        Mail::send(['text'=>'sendEmail.submitEntryEmail'], $data, function($message) use($email) {
+            $message->to($email)->subject
+            ('SL Police System Registration');
+            $message->from('slpolicesystem@gmail.com','SL Police');
+        });
         return view('registeredCitizen/citizenEntryView',compact('entry','evidences','suspects'));
 
     }
@@ -306,6 +318,13 @@ class EntryController extends Controller
 
 
 
+    }
+    public function viewHigherAuthorityAttention(Request $request){
+
+        $entry=db::table('entries')->where('entryID',$request->entryIDTemp)->First();
+        $evidences=db::table('evidence')->where('entryID',$request->entryID)->where('citizenView',"Yes")->get();
+        $suspects=db::table('suspects')->where('entryID',$request->entryID)->where('userRole',"citizen")->get();
+        return view('registeredCitizen.viewHigherAuthorityAttentionForm',compact('entry','evidences','suspects'));
     }
 
 }
