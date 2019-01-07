@@ -121,18 +121,18 @@ Route::get('/test','OICController@test');
 
 Route::post('/createPost','PostsController@createPost');
 
-Route::get('/viewNewEntries',[
+Route::get('/viewOICNewEntries',[
     'uses'=>'EntryController@viewOICNewEntries',
     'as'=>'NewEntries'
 ])->middleware('auth');
 
-Route::get('/viewOngoingEntries',[
+Route::get('/viewOICOngoingEntries',[
     'uses'=>'EntryController@viewOICOngoingEntries',
     'as'=>'OngoingEntries'
 ])->middleware('auth');
 
-Route::get('/viewClosedEntries',[
-    'uses'=>'EntryController@viewClosedEntries',
+Route::get('/viewOICClosedEntries',[
+    'uses'=>'EntryController@viewOICClosedEntries',
     'as'=>'ClosedEntries'
 ])->middleware('auth');
 
