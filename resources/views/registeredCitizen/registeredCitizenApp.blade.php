@@ -4,7 +4,7 @@
     use Illuminate\Support\Facades\DB;
     ?>
 <!-- Page Container -->
-<div class="w3-container" style="max-width:90%;background-color: #29292d">
+<div class="w3-container" style="max-width:100%;background-color: #29292d">
     <!-- The Grid -->
     <div class="row" style="margin-top: 5px">
         <!-- Left Column -->

@@ -131,6 +131,10 @@ Route::get('/citizenInfoUpdate',[
     'as'=>'citizenInfoUpdate'
 ]);
 
+Route::post('/viewHigherAuthorityAttention',[
+    'uses'=>'EntryController@viewHigherAuthorityAttention',
+    'as'=>'viewHigherAuthorityAttention'
+]);
 
 //Oic
 Route::get('/test','OICController@test');
