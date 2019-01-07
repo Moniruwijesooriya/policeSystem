@@ -48,12 +48,13 @@ use Illuminate\Support\Facades\DB;
                                     </div>
                                 </div>
 
-                                <div class="form-group row mb-0">
-                                    <div class="col-md-6 offset-md-4">
+
+                                    <div class="modal-footer">
+                                        <a href="RegisteredCitizen"><button type="button" class="btn btn-secondary" >Cancel</button></a>
                                         <button type="submit" class="btn btn-primary">
                                             {{ __('Change Passord') }}
                                         </button>
-                                    </div>
+
                                 </div>
                             </form>
                         </div>

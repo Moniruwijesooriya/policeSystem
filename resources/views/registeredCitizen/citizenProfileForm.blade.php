@@ -135,12 +135,15 @@ use Illuminate\Support\Facades\DB;
                                         <input  onkeyup="validatePassword()" id="confirm_password" type="password" class="form-control" name="confirm_password" required>
                                     </div>
                                 </div>
-                                <div class="form-group row mb-0">
-                                    <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">
-                                            {{ __('Update') }}
-                                        </button>
+                                <div class="modal-footer">
+                                    <div class="col-md-10  col-xs-4">
+                                        <a href="RegisteredCitizen"><button type="button" class="btn btn-secondary" >Cancel</button></a>
                                     </div>
+
+                                    <button type="submit" class="btn btn-primary">
+                                            {{ __('Update') }}
+                                    </button>
+
                                 </div>
                             </form>
                         </div>
