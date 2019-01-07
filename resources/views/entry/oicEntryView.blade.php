@@ -1,4 +1,4 @@
-@extends('oic.oicApp')
+@extends('layouts.app')
 <?php
 use Illuminate\Support\Facades\DB;
 ?>
