@@ -23,8 +23,8 @@ class CreateUsersTable extends Migration
             $table->string('nic')->unique();
             $table->date('dob')->nullable();
             $table->text('address');
-            $table->string('mobileNumber')->unique();
-            $table->string('landLineNumber');
+            $table->string('mobileNumber')->nullable();
+            $table->string('landLineNumber')->nullable();
             $table->string('gender');
             $table->string('civilStatus');
             $table->String('token');
