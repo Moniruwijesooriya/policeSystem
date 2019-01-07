@@ -92,7 +92,7 @@
 
 <!-- Header with full-height image -->
 <header class="bgimg-1 w3-display-container" id="home">
-        <div class="container wrap-login100 w3-display-left w3-light-grey" style="padding:48px">
+        <div class="container wrap-login100 w3-display-left w3-light-grey m3" style="padding:48px">
             <span class="w3-jumbo w3-hide-small" style="line-height: 60px">Crime Reporting System</span><br>
             <span class="w3-xxlarge w3-hide-large w3-hide-medium">Crime Reporting System</span><br>
             <span class="w3-large">24/7 POLICE SYSTEM</span>
@@ -105,7 +105,7 @@
 </header>
 
 <!-- About Section -->
-<div class="w3-container" style="padding:128px 16px" id="about">
+<div class="w3-display-container" style="padding:128px 16px" id="about">
     <h3 class="w3-center">ABOUT THE SYSTEM</h3>
     <p class="w3-center w3-large">Features of System</p>
     <div class="w3-row-padding w3-center" style="margin-top:64px">
@@ -137,7 +137,7 @@
     <div class="w3-row-padding">
         <div class="w3-col m6">
             <h3>Crime Reporting System</h3>
-            <p>This is a online crime reporting system by Sri Lankan police deparment.This is discrease the crime rate of the country.</p>
+            <p>This website has been created to help the citizens and people residing in Sri Lanka with regards to police related activity.This is a online crime reporting system by Sri Lankan police deparment.This is discrease the crime rate of the country.</p>
 
         </div>
         <div class="w3-col m6">
@@ -153,7 +153,7 @@
     <div class="w3-row-padding w3-grayscale" style="margin-top:64px">
         <div class="w3-col l3 m6 w3-margin-bottom">
             <div class="w3-card">
-                <img src="/img/roberry.jpg" alt="John" style="width:100%" "height:60%">
+                <img src="/img/roberry.jpg" alt="John" style="width:100%;height:60%">
                 <div class="w3-container">
                     <h3>Roberry in a Shop</h3>
                     <p class="w3-opacity">Colombo 6 , 3rd September 2018</p>
@@ -164,7 +164,7 @@
         </div>
         <div class="w3-col l3 m6 w3-margin-bottom">
             <div class="w3-card">
-                <img src="/img/murder.jpg" alt="Jane" style="width:100%" "height:40%">
+                <img src="/img/murder.jpg" alt="Jane" style="width:100%;height:40%">
                 <div class="w3-container">
                     <h3>Murder in Road</h3>
                     <p class="w3-opacity">Galle , 21st June 2018</p>
