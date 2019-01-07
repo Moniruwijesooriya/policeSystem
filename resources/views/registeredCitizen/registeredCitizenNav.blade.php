@@ -88,6 +88,11 @@ use Illuminate\Support\Facades\DB;
     <!-- Sidebar toggle button-->
 
     <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+            <li class="nav nav-item ">
+                <a class="nav nav-link" style="margin-left: 10px" href="RegisteredCitizen">{{ __('Home') }}</a>
+            </li>
+        </ul>
         <ul class="nav navbar-nav" style="float: right;">
             <!-- Messages: style can be found in dropdown.less-->
             <li class="dropdown messages-menu">
@@ -294,24 +299,28 @@ use Illuminate\Support\Facades\DB;
             <!-- User Account: style can be found in dropdown.less -->
             <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                    <?php
+                    $nic=Auth::User()->nic;
+                    $citizenDetails = db::table('users')->where('nic',$nic)->First();
+                    ?>
+                    <img src='{{asset('/userProfileImages/'.$citizenDetails->nic.'.jpg')}}' class="user-image" alt="User Image">
                     <span class="hidden-xs">{{Auth::User()->name}}</span>
                 </a>
                 <ul class="dropdown-menu">
                     <!-- User image -->
                     <li class="user-header">
-                        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img src='{{asset('/userProfileImages/'.$citizenDetails->nic.'.jpg')}}' class="img-circle" alt="User Image">
 
-                        <p>
-                            {{Auth::User()->name}}
-                            <small>{{Auth::User()->profession}}</small>
+                        <p style="background-color: #29292d;padding: 5px">
+                            {{$citizenDetails->name}}
+                            <small>{{$citizenDetails->profession}}</small>
                         </p>
                     </li>
                     <!-- Menu Body -->
                     <li class="user-body" style="background-color:lightgrey">
 
                         <div>
-                            <a href="citizenProfileFormView" class="btn btn-default btn-flat" style="width:100%">Profile</a>
+                            <a href="citizenProfileFormView" class="btn btn-default btn-flat" style="width:100%">Update Profile</a>
                         </div>
                             <br>
                         <div>

@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\DB;
                                         @csrf
                                         {{--<button onclick="myFunction('myEntries')" class="w3-button w3-block w3-theme-l1 w3-left-align"></i>{{$entr->entryID}}</button>--}}
                                         <input type="hidden" value="{{$entr->entryID}}" name="entryID">
-                                        <p><input type="submit" class="btn-link" value="Entry ID :{{$entr->entryID}}"></p>
+                                        <p><input type="submit" class="btn btn-primary" style="width: 100%" value="Entry ID :{{$entr->entryID}}"></p>
                                     </form>
                                 @endforeach
                                 {{--</div>--}}

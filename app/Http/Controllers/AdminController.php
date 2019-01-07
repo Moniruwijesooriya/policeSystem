@@ -44,6 +44,18 @@ class AdminController extends Controller
         $policeOfficer->gender = $request->gender;
         $policeOfficer->dob = $request->dob;
         $policeOfficer->civilStatus = $request->civilStatus;
+        if ($request->hasFile('profileImage')){
+
+            $files=$request->file('profileImage');
+//            $fileExtension=$files->getClientOriginalExtension();
+            $filename = $request->nic.".jpg";
+
+            $request->file('profileImage')->move(
+                base_path() . '/public/userProfileImages/',$filename
+            );
+        }else{
+
+        }
 
         if($request->officeNameTemp=="Inspector General of Police Office"){
 

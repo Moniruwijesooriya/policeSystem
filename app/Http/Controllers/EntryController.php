@@ -10,7 +10,9 @@ use App\Suspect;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use Mail;
+
 
 class EntryController extends Controller
 {
@@ -142,65 +144,100 @@ class EntryController extends Controller
                 $type="Ongoing Entries";
                 $oicDetails = db::table('users')->where('nic',$nic)->First();
                 $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
+                }
+
+
+            if($request->evidence!=null){
+                $evidence=new Evidence();
+                $evidence->entryID=$request->entryID;
+                $evidence->witnessId=Auth::User()->nic;
+                $evidence->evidence_txt=$request->evidence;
+                if ($request->evidenceCitizenView=="Yes"){
+                    $evidence->citizenView="Yes";
+                }
+                else{
+                    $evidence->citizenView="No";
+                }
+                $evidence->policeView="Yes";
+                $evidence->save();
+
+            }
+            if ($request->hasFile('evidenceImage')){
+
+                $files=$request->file('evidenceImage');
+                $folderName=$request->entryID;
+
+                $dt = Carbon::now();
+                $newdatez=str_replace(':',"-",$dt);
+                $i=1;
+                foreach($files as $file) {
+                    $fileExtension=$file->getClientOriginalExtension();
+                    $fileNewName=$i.".".$fileExtension;
+                    echo $fileExtension;
+                    echo $fileNewName;
+                    $file->move(
+                        base_path() . "/public/evidences/$folderName/$newdatez",$fileNewName
+                    );
+                    $i += 1;
+                }
+                $evidence=new Evidence();
+                $evidence->entryID=$request->entryID;
+                $evidence->witnessId=Auth::User()->nic;
+                $evidence->evidence_txt="Image Evidence";
+                $evidence->evidence_image_count=$i;
+                if ($request->evidenceImageCitizenView=="Yes"){
+                    $evidence->citizenView="Yes";
+                }
+                else{
+                    $evidence->citizenView="No";
+                }
+                $evidence->policeView="Yes";
+                $evidence->evidence_image=$newdatez;
+                $evidence->save();
+            }else{
+                if($request->suspects!=null){
+                    $suspects=new Suspect();
+                    $suspects->entryID=$request->entryID;
+                    $suspects->name=$request->suspects;
+                    $suspects->userName=$user->name;
+                    $suspects->userNic=$nic;
+                    $suspects->userRole=$user->role;
+                    if ($request->suspectCitizenView=="Yes"){
+                        $suspects->citizenView="Yes";
+                    }
+                    else{
+                        $suspects->citizenView="No";
+                    }
+                    $suspects->policeView="Yes";
+                    $suspects->save();
+                }
+
+                if($request->entryProgress!=null){
+                    $progress=new EntryProgress();
+                    $progress->entryID=$request->entryID;
+                    $progress->progress=$request->entryProgress;
+                    $progress->policeOfficerName=$user->name;
+                    $progress->officerNic=$user->nic;
+                    $progress->rank=$user->profession;
+                    $progress->policeOffice=$user->policeOffice;
+                    $progress->role=$user->role;
+                    if ($request->progressCitizenView=="Yes"){
+                        $progress->citizenView="Yes";
+                    }
+                    else{
+                        $progress->citizenView="No";
+                    }
+                    $progress->policeView="Yes";
+
+                    $progress->save();
+
+                }
 
                 return view('oic.entryList',compact('entries','type','oicDetails','branches'));
             }
         }
 
-        if($request->evidence!=null){
-            $evidence=new Evidence();
-            $evidence->entryID=$request->entryID;
-            $evidence->witnessId=Auth::User()->nic;
-            $evidence->evidence_txt=$request->evidence;
-            if ($request->evidenceCitizenView=="Yes"){
-                $evidence->citizenView="Yes";
-            }
-            else{
-                $evidence->citizenView="No";
-            }
-            $evidence->policeView="Yes";
-            $evidence->save();
 
-        }
-
-
-        if($request->suspects!=null){
-            $suspects=new Suspect();
-            $suspects->entryID=$request->entryID;
-            $suspects->name=$request->suspects;
-            $suspects->userName=$user->name;
-            $suspects->userNic=$nic;
-            $suspects->userRole=$user->role;
-            if ($request->suspectCitizenView=="Yes"){
-                $suspects->citizenView="Yes";
-            }
-            else{
-                $suspects->citizenView="No";
-            }
-            $suspects->policeView="Yes";
-            $suspects->save();
-        }
-
-        if($request->entryProgress!=null){
-            $progress=new EntryProgress();
-            $progress->entryID=$request->entryID;
-            $progress->progress=$request->entryProgress;
-            $progress->policeOfficerName=$user->name;
-            $progress->officerNic=$user->nic;
-            $progress->rank=$user->profession;
-            $progress->policeOffice=$user->policeOffice;
-            $progress->role=$user->role;
-            if ($request->progressCitizenView=="Yes"){
-                $progress->citizenView="Yes";
-            }
-            else{
-                $progress->citizenView="No";
-            }
-            $progress->policeView="Yes";
-
-            $progress->save();
-
-        }
 
 
         $entry=db::table('entries')->where('entryID',$request->entryID)->First();

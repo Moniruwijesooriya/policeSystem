@@ -22,6 +22,9 @@ class CreatePublicPostsTable extends Migration
             $table->string('provinceView');
             $table->string('districtView');
             $table->string('countryView');
+            $table->string('postIdCount')->nullable();
+            $table->string('excolumn1')->nullable();
+            $table->string('excolumn2')->nullable();
             $table->timestamps();
         });
     }
