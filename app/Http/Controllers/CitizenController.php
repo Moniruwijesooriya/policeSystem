@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\Types\Null_;
 use function PHPSTORM_META\elementType;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\citizenRegistrationValidation;
 
 
@@ -84,7 +85,11 @@ class CitizenController extends Controller
 
     public function ViewRequest(Request $request){
         $citizenDetails = db::table('users')->where('nic',$request->nic)->First();
-        return view('oic/reviewRequest',compact('citizenDetails'));
+        $nic=Auth::User()->nic;
+        $oicDetails = db::table('users')->where('nic',$nic)->First();
+        $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
+
+        return view('oic/reviewRequest',compact('citizenDetails','branches','oicDetails'));
     }
     public function AcceptCitizenRequest(Request $request){
 

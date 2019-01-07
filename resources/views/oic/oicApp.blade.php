@@ -22,7 +22,7 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Admin Panel</title>
+    <title>OIC Panel</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -76,12 +76,12 @@
     <header class="main-header">
         <!-- Logo -->
 
-        <a href="admin" class="logo">
+        <a href="OIC" class="logo">
 
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>A</b></span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>ADMIN</b> PANEL</span>
+            <span class="logo-lg"><b>OIC</b> PANEL</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -344,8 +344,6 @@
                         <li><a href="viewNewCitizenRequests"><i class="fa fa-circle-o"></i>New Registration Requests</a></li>
                         <li><a href="viewRegisteredCitizens"><i class="fa fa-circle-o"></i>Registered Citizens</a></li>
                         <li><a href="viewClosedAccounts"><i class="fa fa-circle-o"></i>Closed Accounts</a></li>
-                        <li><a href="viewBORegisterForm"><i class="fa fa-circle-o"></i>Register Branch Office</a></li>
-                        <li><a href="viewPoliceOfficesList"><i class="fa fa-circle-o"></i>View Police Offices</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -361,7 +359,9 @@
                             @foreach($branches as $branch)
                                 <form method="post" action="{{'viewBranch'}}">
                                     @csrf
-                                    <input type="hidden" value="{{ $branch->OfficeName }}" name="branchOfficeName">
+                                    <input type="hidden" value="{{ $branch->id }}" name="branchID">
+                                    <input type="hidden" value="{{ $branch->policeOfficeArea }}" name="branchName">
+                                    <input type="hidden" value="{{ $branch->mainOfficer }}" name="mainOfficer">
                                     <li><i class="fa fa-circle-o"></i><input type="submit" class="btn btn-primary" value="{{ $branch->OfficeName }}"></li>
                                 </form>
                             @endforeach
@@ -618,5 +618,38 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<script>
+    $(document).ready(function () {
+        var url = '{{route('getUserInfo')}}';
+        var token = '{{Session::token()}}';
+        var tempNic="";
+
+        $(".nic-button").click(function () {
+            tempNic= $(this).val();
+            $.ajax({
+                method: 'post',
+                url: url,
+                data:{
+                    _token: token,
+                    id: tempNic
+                },
+                success:function (data) {
+                    $("#nicTempId").val(data.nic);
+                    $("#nameTempId").val(data.name);
+                    $("#fullNameTempId").val(data.fullName);
+                    $("#dobTempId").val(data.dob);
+                    $("#addressTempId").val(data.address);
+                    $("#mobileNumberTempId").val(data.mobileNumber);
+                    $("#landLineNumberTempId").val(data.landLineNumber);
+                    $("#emailTempId").val(data.email);
+                    $("#genderTempId").val(data.gender);
+                    $("#professionTempId").val(data.profession);
+                    $("#policeStationId").val(data.policeOffice);
+                }
+            });
+        });
+
+    });
+</script>
 </body>
 </html>
