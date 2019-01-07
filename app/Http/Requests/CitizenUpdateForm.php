@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Rules\NicValidation;
 
-class citizenRegistrationValidation extends FormRequest
+class CitizenUpdateForm extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +24,9 @@ class citizenRegistrationValidation extends FormRequest
     public function rules()
     {
         return [
-            'email'=>'email|unique:users',
-            //'nic'=>'unique:users,nic',
-               'nic'=>['required','unique:users',new NicValidation],
-            'password'=>'min:6|same:password_confirmation'
+            'email'=>'email|unique:users,email',
+            'nic'=>'unique:users,nic',
+            'password'=>'min:6|same:password_confirmation',
 
 
         ];

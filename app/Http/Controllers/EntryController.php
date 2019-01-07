@@ -42,6 +42,9 @@ class EntryController extends Controller
 
         $crimeEntry->save();
 
+
+        return redirect()->back()->with(['entrySuccess'=>"Successfully Submitted!"]);
+
         $entry=db::table('entries')->where('complainantID',Auth::User()->nic)->latest()->first();
         $evidences=db::table('evidence')->where('entryID',$request->entryID)->where('citizenView',"Yes")->get();
         $suspects=db::table('suspects')->where('entryID',$request->entryID)->where('userRole',"citizen")->get();
@@ -58,6 +61,7 @@ class EntryController extends Controller
             $message->from('slpolicesystem@gmail.com','SL Police');
         });
         return view('registeredCitizen/citizenEntryView',compact('entry','evidences','suspects'));
+
     }
 
     public function entryOICAction(Request $request){
@@ -67,6 +71,11 @@ class EntryController extends Controller
         $statusType=$request->statusType;
         if($statusType=="new"){
             //initial entry progress when submitting the entry
+            $citizenNIC=$request->complainantNIC;
+            $userInfo = db::table('users')->where('nic',$citizenNIC)->First();
+            $email=$userInfo->email;
+
+
             $progress=new EntryProgress();
             $progress->entryID=$request->entryID;
             $progress->progress=$request->initialProgress;
@@ -107,6 +116,21 @@ class EntryController extends Controller
             DB::table('entries')
                 ->where('entryID',$request->entryID)
                 ->update(['oicNotification'=>"n",'boicNotification'=>"y",'status'=>"ongoing",'branch'=>$request->branch]);
+
+            $data = array(
+                'heading'=>"Weclome to Crime Reporting System..",
+                'entryAccept'=>"Your Entry was accepted by the Officer Incharge of ".$user->policeOffice,
+                'entryID'=> "Entry ID : ".$request->entryID,
+                'complaint'=>"Complaint : ".$request->complaint,
+                'messageToCitizen1'=>"Your entry will be investigated by the relevant police branch.",
+                'messageToCitizen2'=>"If you have any evidences and suspects please submit",
+                'thank'=>"Thank You!");
+
+            Mail::send(['text'=>'sendEmail.entryAcceptEmail'], $data, function($message) use($email) {
+                $message->to($email)->subject
+                ('Entry Accepted');
+                $message->from('slpolicesystem@gmail.com','SL Police');
+            });
         }
         else if($statusType=="ongoing"){
             if($request->ongoingSubmit=="Close Entry"){
@@ -121,7 +145,6 @@ class EntryController extends Controller
 
                 return view('oic.entryList',compact('entries','type','oicDetails','branches'));
             }
-
         }
 
         if($request->evidence!=null){

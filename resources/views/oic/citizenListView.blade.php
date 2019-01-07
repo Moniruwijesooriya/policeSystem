@@ -45,6 +45,9 @@
                                     @if($type=="Registered Citizens")
                                     <th scope="col">Remove</th>
                                         @endif
+                                    @if($type=="New Citizen Registration Requests")
+                                        <th scope="col">Remove</th>
+                                    @endif
 
                                 </tr>
                                 </thead>
@@ -75,7 +78,12 @@
                                         <td>{{$citizen->fullName}}</td>
                                         <td>{{$citizen->email}}</td>
                                         <td>{{$citizen->address}}</td>
-                                        <td> @if($type=="Registered Citizens")
+                                        <td> @if($type=="New Citizen Registration Requests")
+                                                <button type="button" value="{{ $citizen->nic }}" id="nicbutton" class="btn btn-primary nic-button" data-toggle="modal" data-target="#viewPerson">
+                                                    Remove
+                                                </button>
+                                        @endif
+                                            @if($type=="Registered Citizens")
                                                 <button type="button" value="{{ $citizen->nic }}" id="nicbutton" class="btn btn-primary nic-button" data-toggle="modal" data-target="#viewPerson">
                                                     Remove
                                                 </button>
