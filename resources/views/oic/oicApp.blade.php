@@ -90,15 +90,16 @@
             -o-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
             -ms-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
         }   
-        .tc-left{
-            min-width: 10%;
-        }
+        /*.tc-left{
+            min-width: 15%;
+        } */
         .tc-middle{
-            min-width: 50%;
+            min-width: 45%;
+            padding-left: 3%;
             
-        }
+        } 
         .tc-right{
-            min-width: 30%;
+            min-width: 40%;
             padding-left: 3%;
         }
     </style>

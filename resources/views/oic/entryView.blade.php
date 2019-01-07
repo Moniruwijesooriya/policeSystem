@@ -231,7 +231,7 @@
                                 </div>
 
                                 <!-- Right Column -->
-                                <div class="col-md-3 w3-light-grey table-col tc-right">
+                                <div class="col-md-5 w3-light-grey table-col tc-right">
                                     <div class="row">
                                         <p><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#createPost">
                                                 Create a Post
