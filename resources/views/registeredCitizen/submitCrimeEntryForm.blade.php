@@ -94,4 +94,4 @@ use Illuminate\Support\Facades\DB;
         </div>
     </div>
 
-    @endsection
+@endsection

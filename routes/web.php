@@ -107,14 +107,30 @@ Route::post('/citizenAccountDeactivate',[
     'as'=>'citizenAccountDeactivate'
 ]);
 
-Route::post('/citizenPasswordChange',[
+Route::get('/citizenPasswordChange',[
     'uses'=>'CitizenController@citizenPasswordChange',
     'as'=>'citizenPasswordChange'
+]);
+
+Route::post('/changePasswordFormView',[
+    'uses'=>'CitizenController@changePasswordFormView',
+    'as'=>'changePasswordFormView'
 ]);
 Route::get('/submitCrimeEntryForm',[
     'uses'=>'CitizenController@submitCrimeEntryForm',
     'as'=>'submitCrimeEntryForm'
 ]);
+
+Route::get('/citizenProfileFormView',[
+    'uses'=>'CitizenController@citizenProfileFormView',
+    'as'=>'citizenProfileFormView'
+]);
+
+Route::get('/citizenInfoUpdate',[
+    'uses'=>'CitizenController@citizenInfoUpdate',
+    'as'=>'citizenInfoUpdate'
+]);
+
 
 //Oic
 Route::get('/test','OICController@test');
