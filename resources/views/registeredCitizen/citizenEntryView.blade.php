@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
         <!-- The Grid -->
         <div class="row">
             <!-- Left Column -->
-            <div class="col-md-3">
+            <div class="col-md-3" style="margin-top: 20px">
                 @if(Auth::User()->role=='citizen')
                     <div class="card">
                         <div class="bg-white">
@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\DB;
 
                                     <form method="post" action="{{'viewCitizenEntry'}}">
                                         @csrf
+                                        {{--<button onclick="myFunction('myEntries')" class="w3-button w3-block w3-theme-l1 w3-left-align"></i>{{$entr->entryID}}</button>--}}
                                         <input type="hidden" value="{{$entr->entryID}}" name="entryID">
                                         <p><input type="submit" class="btn-link" value="Entry ID :{{$entr->entryID}}"></p>
                                     </form>
@@ -30,8 +31,7 @@ use Illuminate\Support\Facades\DB;
                             </div>
                         </div>
                     </div>
-                    <br>
-                    <br>
+
                     <div class="card">
                         <div class="bg-white">
                             <button onclick="myFunction('evidencesList')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Evidences</button>
@@ -73,7 +73,7 @@ use Illuminate\Support\Facades\DB;
                 <div class="row justify-content-center">
                     <div class="col-md-12" style="margin-left: 3px;margin-right: 3px">
                         <div class="card">
-                            <div class="card-header">{{ __('Entry') }}</div>
+                            <div class="page-header" style="text-align: center">{{ __('Entry') }}</div>
                             <div class="card-body">
                                 <form method="post" action="{{ route('updateCitizenEntry') }}" enctype="multipart/form-data">
                                     @csrf
@@ -136,12 +136,15 @@ use Illuminate\Support\Facades\DB;
                                     </div>
 
                                     <div class="form-group row mb-0">
-                                        <div class="col-md-3 offset-md-6 col-xs-6"  >
+
+
+                                        <div class="col-md-3 col-xs-6"  >
                                             <input type="submit" class="btn btn-primary" value="Update">
                                         </div>
-                                        <div class="col-md-3 col-xs-6"  >
+                                        <div class="col-md-3  col-xs-6"  >
                                             <button  type="reset" class="btn btn-danger" value="cancel">Reset</button>
                                         </div>
+                                            <a href="RegisteredCitizen"><button type="button" class="btn btn-outline-secondary" >Cancel</button></a>
                                     </div>
                                 </form>
                             </div>

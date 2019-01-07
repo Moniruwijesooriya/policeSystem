@@ -20,10 +20,29 @@ class PostsController extends Controller
         $publicPost=new PublicPost();
         $publicPost->entryId=$request->entryId;
         $publicPost->title=$request->title;
+        $publicPost->content=$request->postContent;
         $nic=Auth::User()->nic;
         $user=db::table('users')->where('Nic',$nic)->First();
         $publicPost->postedBy=$user->name;
-        $publicPost->content=$request->postContent;
+        if($request->districtView=="Yes"){
+            $publicPost->districtView="Yes";
+        }
+        else{
+            $publicPost->districtView="No";
+        }
+        if ($request->provinceView=="Yes"){
+            $publicPost->provinceView="Yes";
+        }
+        else{
+            $publicPost->provinceView="No";
+        }
+        if ($request->countryView=="Yes"){
+            $publicPost->countryView="Yes";
+        }
+        else{
+            $publicPost->countryView="No";
+        }
+
 
         $publicPost->save();
         return redirect('/OIC');

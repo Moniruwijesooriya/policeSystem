@@ -25,8 +25,8 @@ class NicValidation implements Rule
      */
     public function passes($attribute, $value)
     {
-        $regex1 = '/^[0-9]{2}[5-8]{1}[0-9]{6}[vVxX]$/';
-        $regex2 = '/^[0-9]{4}[5-8]{1}[0-9]{7}$/';
+        $regex1 = '/^[0-9]{9}[vVxX]$/';
+        $regex2 = '/^[0-9]{12}$/';
 
         if(((!empty($value) && strlen($value) == 10 && (preg_match($regex1, $value)))) ||((!empty($value) && strlen($value)==12) && (preg_match($regex2, $value)))){
 
