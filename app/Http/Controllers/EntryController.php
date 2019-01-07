@@ -40,7 +40,8 @@ class EntryController extends Controller
 
 
         $crimeEntry->save();
-        return redirect()->back();
+
+        return redirect()->back()->with(['entrySuccess'=>"Successfully Submitted!"]);
     }
 
     public function entryOICAction(Request $request){
