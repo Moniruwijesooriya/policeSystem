@@ -22,7 +22,7 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Admin Panel</title>
+    <title>OIC Panel</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -35,21 +35,21 @@
     <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
-{{--<link href="{{asset('dist/css/AdminLTE.min.cs')}}">--}}
-{{--<link href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">--}}
-{{--<link href="{{asset('bower_components/font-awesome/css/font-awesome.min.css')}}">--}}
-{{--<link href="{{asset('bower_components/Ionicons/css/ionicons.min.css')}}">--}}
-{{--<link href="{{asset('dist/css/skins/_all-skins.min.css')}}">--}}
-{{--<link href="{{asset('bower_components/morris.js/morris.css')}}">--}}
-{{--<link href="{{asset('bower_components/jvectormap/jquery-jvectormap.css')}}">--}}
-{{--<link href="{{asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">--}}
-{{--<link href="{{asset('bower_components/bootstrap-daterangepicker/daterangepicker.css')}}">--}}
-{{--<link href="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">--}}
-{{--<link href="{{asset('https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js')}}">--}}
-{{--<link href="{{asset('https://oss.maxcdn.com/respond/1.4.2/respond.min.js')}}">--}}
-<link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+    {{--<link href="{{asset('dist/css/AdminLTE.min.cs')}}">--}}
+    {{--<link href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">--}}
+    {{--<link href="{{asset('bower_components/font-awesome/css/font-awesome.min.css')}}">--}}
+    {{--<link href="{{asset('bower_components/Ionicons/css/ionicons.min.css')}}">--}}
+    {{--<link href="{{asset('dist/css/skins/_all-skins.min.css')}}">--}}
+    {{--<link href="{{asset('bower_components/morris.js/morris.css')}}">--}}
+    {{--<link href="{{asset('bower_components/jvectormap/jquery-jvectormap.css')}}">--}}
+    {{--<link href="{{asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">--}}
+    {{--<link href="{{asset('bower_components/bootstrap-daterangepicker/daterangepicker.css')}}">--}}
+    {{--<link href="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">--}}
+    {{--<link href="{{asset('https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js')}}">--}}
+    {{--<link href="{{asset('https://oss.maxcdn.com/respond/1.4.2/respond.min.js')}}">--}}
+    <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
 
-<!-- Morris chart -->
+    <!-- Morris chart -->
     <link rel="stylesheet" href="bower_components/morris.js/morris.css">
     <!-- jvectormap -->
     <link rel="stylesheet" href="bower_components/jvectormap/jquery-jvectormap.css">
@@ -76,12 +76,12 @@
     <header class="main-header">
         <!-- Logo -->
 
-        <a href="admin" class="logo">
+        <a href="OIC" class="logo">
 
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>A</b></span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>ADMIN</b> PANEL</span>
+            <span class="logo-lg"><b>OIC</b> PANEL</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -93,6 +93,9 @@
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     <!-- Messages: style can be found in dropdown.less-->
+                    <?php
+                    $loggedUser=db::table('users')->where('nic',Auth::User()->nic)->first();
+                    ?>
                     <li class="dropdown messages-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-envelope-o"></i>
@@ -171,41 +174,36 @@
                     </li>
                     <!-- Notifications: style can be found in dropdown.less -->
                     <li class="dropdown notifications-menu">
+                        <?php
+                        $count=db::table('users')->where('verified',"No")->where('role',"citizen")->where('policeOffice',$loggedUser->policeOffice)->count();
+                        ?>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-bell-o"></i>
-                            <span class="label label-warning">10</span>
+                            <span class="label label-warning">{{$count}}</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="header">You have 10 notifications</li>
+
+                            <li class="header">You have {{$count}} notifications</li>
                             <li>
                                 <!-- inner menu: contains the actual data -->
+
                                 <ul class="menu">
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                                            page and may cause design problems
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-users text-red"></i> 5 new members joined
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-user text-red"></i> You changed your username
-                                        </a>
-                                    </li>
+
+                                    <?php
+                                    $registerRequestNotification=db::table('users')->where('verified',"No")->where('role',"citizen")->get();
+                                    ?>
+                                    @foreach($registerRequestNotification as $notifi)
+                                        <li>
+                                            <form method="post" action="{{'reviewCitizenRegistrationRequest'}}">
+                                                @csrf
+                                                <input type="hidden" value="{{$notifi->nic}}" name="nic">
+                                                <input type="submit" class="btn-link" value="{{$notifi->nic}} requested a registration request">
+                                            </form>
+                                        </li>
+
+
+                                    @endforeach
+
                                 </ul>
                             </li>
                             <li class="footer"><a href="#">View all</a></li>
@@ -213,75 +211,30 @@
                     </li>
                     <!-- Tasks: style can be found in dropdown.less -->
                     <li class="dropdown tasks-menu">
+                        <?php
+                        $entryCount=db::table('entries')->where('oicNotification',"y")->where('nearestPoliceStation',$loggedUser->policeOffice)->count()
+                        ?>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-flag-o"></i>
-                            <span class="label label-danger">9</span>
+                            <span class="label label-danger">{{$entryCount}}</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="header">You have 9 tasks</li>
+                            <li class="header">You have {{$entryCount}} tasks</li>
                             <li>
                                 <!-- inner menu: contains the actual data -->
                                 <ul class="menu">
-                                    <li><!-- Task item -->
-                                        <a href="#">
-                                            <h3>
-                                                Design some buttons
-                                                <small class="pull-right">20%</small>
-                                            </h3>
-                                            <div class="progress xs">
-                                                <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
-                                                     aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                    <span class="sr-only">20% Complete</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <!-- end task item -->
-                                    <li><!-- Task item -->
-                                        <a href="#">
-                                            <h3>
-                                                Create a nice theme
-                                                <small class="pull-right">40%</small>
-                                            </h3>
-                                            <div class="progress xs">
-                                                <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar"
-                                                     aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                    <span class="sr-only">40% Complete</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <!-- end task item -->
-                                    <li><!-- Task item -->
-                                        <a href="#">
-                                            <h3>
-                                                Some task I need to do
-                                                <small class="pull-right">60%</small>
-                                            </h3>
-                                            <div class="progress xs">
-                                                <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar"
-                                                     aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                    <span class="sr-only">60% Complete</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <!-- end task item -->
-                                    <li><!-- Task item -->
-                                        <a href="#">
-                                            <h3>
-                                                Make beautiful transitions
-                                                <small class="pull-right">80%</small>
-                                            </h3>
-                                            <div class="progress xs">
-                                                <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar"
-                                                     aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                    <span class="sr-only">80% Complete</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <!-- end task item -->
+                                    <?php
+                                    $entryNotification=db::table('entries')->where('oicNotification',"y")->where('nearestPoliceStation',$loggedUser->policeOffice)->get();
+                                    ?>
+                                    @foreach($entryNotification as $notifi)
+                                            <li>
+                                                <form method="post" action="{{'viewOICEntry'}}">
+                                                    @csrf
+                                                    <input type="hidden" value="{{$notifi->entryID}}" name="entryID">
+                                                    <input type="submit" class="btn-link" value="{{$notifi->complainantID}} submitted a crime">
+                                                </form>
+                                            </li>
+                                    @endforeach
                                 </ul>
                             </li>
                             <li class="footer">
@@ -354,57 +307,65 @@
                 </div>
             </div>
             <!-- search form -->
-            {{--<form action="#" method="get" class="sidebar-form">--}}
-                {{--<div class="input-group">--}}
-                    {{--<input type="text" name="q" class="form-control" placeholder="Search...">--}}
-                    {{--<span class="input-group-btn">--}}
-                {{--<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>--}}
-                {{--</button>--}}
-              {{--</span>--}}
-                {{--</div>--}}
-            {{--</form>--}}
-            <!-- /.search form -->
+        {{--<form action="#" method="get" class="sidebar-form">--}}
+        {{--<div class="input-group">--}}
+        {{--<input type="text" name="q" class="form-control" placeholder="Search...">--}}
+        {{--<span class="input-group-btn">--}}
+        {{--<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>--}}
+        {{--</button>--}}
+        {{--</span>--}}
+        {{--</div>--}}
+        {{--</form>--}}
+        <!-- /.search form -->
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-laptop"></i>
-                        <span>Police Officer Management</span>
+                        <span>Entries</span>
                         <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="viewregisterPoliceOfficer"><i class="fa fa-circle-o"></i> Register Police Officer</a></li>
-                        <li><a href="viewPoliceOfficersList"><i class="fa fa-circle-o"></i> View Police Officer</a></li>
+                        <li><a href="viewOICNewEntries"><i class="fa fa-circle-o"></i>New Entries</a></li>
+                        <li><a href="viewOICOngoingEntries"><i class="fa fa-circle-o"></i>Ongoing Entries</a></li>
+                        <li><a href="viewOICClosedEntries"><i class="fa fa-circle-o"></i>Closed Entries</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-edit"></i> <span>Police Office Management</span>
+                        <i class="fa fa-edit"></i> <span>Citizen Management</span>
                         <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="viewIGPRegisterForm"><i class="fa fa-circle-o"></i>Register IGP Office</a></li>
-                        <li><a href="viewDORegisterForm"><i class="fa fa-circle-o"></i>Register Division Office</a></li>
-                        <li><a href="viewPSRegisterForm"><i class="fa fa-circle-o"></i>Register Police Station</a></li>
-                        <li><a href="viewBORegisterForm"><i class="fa fa-circle-o"></i>Register Branch Office</a></li>
-                        <li><a href="viewPoliceOfficesList"><i class="fa fa-circle-o"></i>View Police Offices</a></li>
+                        <li><a href="viewNewCitizenRequests"><i class="fa fa-circle-o"></i>New Registration Requests</a></li>
+                        <li><a href="viewRegisteredCitizens"><i class="fa fa-circle-o"></i>Registered Citizens</a></li>
+                        <li><a href="viewClosedAccounts"><i class="fa fa-circle-o"></i>Closed Accounts</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-laptop"></i>
-                        <span>Crime Type Management</span>
+                        <span>Branches</span>
                         <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="viewAddCrimeTypeForm"><i class="fa fa-circle-o"></i> Add Crime Type</a></li>
-                        <li><a href="viewCrimeTypeList"><i class="fa fa-circle-o"></i> View Crime Type</a></li>
+                        <div id="branchOffice" class="w3-hide w3-container">
+                            @foreach($branches as $branch)
+                                <form method="post" action="{{'viewBranch'}}">
+                                    @csrf
+                                    <input type="hidden" value="{{ $branch->id }}" name="branchID">
+                                    <input type="hidden" value="{{ $branch->policeOfficeArea }}" name="branchName">
+                                    <input type="hidden" value="{{ $branch->mainOfficer }}" name="mainOfficer">
+                                    <li><i class="fa fa-circle-o"></i><input type="submit" class="btn btn-primary" value="{{ $branch->OfficeName }}"></li>
+                                </form>
+                            @endforeach
+                        </div>
                     </ul>
                 </li>
             </ul>
@@ -657,5 +618,38 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<script>
+    $(document).ready(function () {
+        var url = '{{route('getUserInfo')}}';
+        var token = '{{Session::token()}}';
+        var tempNic="";
+
+        $(".nic-button").click(function () {
+            tempNic= $(this).val();
+            $.ajax({
+                method: 'post',
+                url: url,
+                data:{
+                    _token: token,
+                    id: tempNic
+                },
+                success:function (data) {
+                    $("#nicTempId").val(data.nic);
+                    $("#nameTempId").val(data.name);
+                    $("#fullNameTempId").val(data.fullName);
+                    $("#dobTempId").val(data.dob);
+                    $("#addressTempId").val(data.address);
+                    $("#mobileNumberTempId").val(data.mobileNumber);
+                    $("#landLineNumberTempId").val(data.landLineNumber);
+                    $("#emailTempId").val(data.email);
+                    $("#genderTempId").val(data.gender);
+                    $("#professionTempId").val(data.profession);
+                    $("#policeStationId").val(data.policeOffice);
+                }
+            });
+        });
+
+    });
+</script>
 </body>
 </html>

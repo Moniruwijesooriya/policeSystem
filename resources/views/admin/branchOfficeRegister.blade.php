@@ -3,7 +3,7 @@
 
     <div class="content-header">
         <h1>
-            Register Inspector General of Police Office
+            Register Branch Office
         </h1>
     </div>
 
@@ -22,8 +22,19 @@
                         {{--Register IGP office form--}}
                         <form method="POST" action="{{ route('registerPoliceOffice') }}">
                             @csrf
-                            <input type="hidden" name="headPoliceOffice" value="Ministry">
-                            <input type="hidden" name="policeOfficeType" value="Inspector General of Police Office">
+                            <input type="hidden" name="policeOfficeType" value="Branch Police Office">
+
+
+                            <div class="form-group row">
+                                <label for="exampleFormControlSelect1" class="col-md-4 col-form-label text-md-left">Police Station</label>
+                                <div class="col-md-7">
+                                    <select class="form-control" name ="headPoliceOffice" id="policeOfficeType">
+                                        @foreach($policeStationOffices as $policeStationOffice)
+                                            <option>{{$policeStationOffice->OfficeName}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label for="exampleFormControlSelect1" class="col-md-4 col-form-label text-md-left">District</label>
                                 <div class="col-md-7">
@@ -58,14 +69,15 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="policeOfficeArea" class="col-md-4 col-form-label text-md-left">{{ __('Office Area') }}</label>
-
+                                <label class="col-md-4 col-form-label text-md-left">{{ __('Branch Type') }}</label>
                                 <div class="col-md-7">
-                                    <input id="policeOfficeArea" type="text" class="form-control" name="policeOfficeArea" value="Sri Lanka" readonly>
-
+                                    <select class="form-control" name ="policeOfficeArea" id="exampleFormControlSelect1">
+                                        <option>Crime</option>
+                                        <option>Vice Unit</option>
+                                        <option>Miscellaneous Complaints</option>
+                                    </select>
                                 </div>
                             </div>
-
                             <div class="form-group row">
                                 <label for="landNumber" class="col-md-4 col-form-label text-md-left">{{ __('Landline Number') }}</label>
 

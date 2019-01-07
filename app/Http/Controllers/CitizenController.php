@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\Types\Null_;
 use function PHPSTORM_META\elementType;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\citizenRegistrationValidation;
 
 
@@ -34,7 +35,18 @@ class CitizenController extends Controller
 
 //        dd($request->email,$request->password,$request->nic,$request->password_confirmation);
 
+        if ($request->hasFile('profileImage')){
 
+            $files=$request->file('profileImage');
+            $fileExtension=$files->getClientOriginalExtension();
+            $filename = $request->nic.".".$fileExtension;
+
+            $request->file('profileImage')->move(
+                base_path() . '/public/userProfileImages/',$filename
+            );
+        }else{
+
+        }
         $citizen = new User();
         $citizen->name = $request->name;
         $citizen->nic = $request->nic;
@@ -53,13 +65,8 @@ class CitizenController extends Controller
         $citizen->verified = "No";
         $citizen->fullName=$request->fullName;
         $citizen->policeOffice=$request->policeStation;
-
-        if ($request->hasFile('profileImage')){
-
-
-        }
-
         $citizen->save();
+
         $em=$request->email;
         $data = array('heading'=>"Welcome to Crime Reporting System",'fullName'=>"Full Name: ".$request->fullName,'name'=>
             "Name with initials: ".$request->name,'nic'=>"NIC: ".$request->nic,
@@ -78,7 +85,11 @@ class CitizenController extends Controller
 
     public function ViewRequest(Request $request){
         $citizenDetails = db::table('users')->where('nic',$request->nic)->First();
-        return view('oic/reviewRequest',compact('citizenDetails'));
+        $nic=Auth::User()->nic;
+        $oicDetails = db::table('users')->where('nic',$nic)->First();
+        $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
+
+        return view('oic/reviewRequest',compact('citizenDetails','branches','oicDetails'));
     }
     public function AcceptCitizenRequest(Request $request){
 
@@ -137,7 +148,7 @@ public function store(Request $request)
         DB::table('users')
             ->where('nic',$request->nic)
             ->update(['email_verified_at'=>Null,'verified'=>'No','address'=>$request->homeAddress,'policeOffice'=>$request->policeStation,'mobileNumber'=>$request->mobNumber,'landLineNumber'=>$request->landNumber,'email'=>$request->email]);
-        return redirect('/RegisteredCitizen');
+        return redirect('registeredCitizen.registeredCitizenApp');
     }
 
     /**
@@ -178,5 +189,21 @@ public function store(Request $request)
         }
 
     }
+    public function submitCrimeEntryForm(){
+        $crimeCategories = db::table('crime_categories')->where('citizenView',"Yes")->get();
+        return view('registeredCitizen.submitCrimeEntryForm',compact('crimeCategories'));
+    }
+    public function citizenProfileFormView(){
+        $nic = Auth::User()->nic;
+        $citizenDetails = db::table('users')->where('nic',$nic)->First();
+        return view('registeredCitizen.citizenProfileForm',compact('citizenDetails'));
+    }
+
+    public function changePasswordFormView(){
+        $nic = Auth::User()->nic;
+        $citizenDetails = db::table('users')->where('nic',$nic)->First();
+        return view('registeredCitizen.changePasswordForm',compact('citizenDetails'));
+    }
+
 
 }
