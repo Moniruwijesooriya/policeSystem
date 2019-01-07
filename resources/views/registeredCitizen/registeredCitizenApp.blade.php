@@ -4,7 +4,7 @@
     use Illuminate\Support\Facades\DB;
     ?>
 <!-- Page Container -->
-<div class="w3-container" style="max-width:90%;background-color: #29292d">
+<div class="w3-container" style="max-width:100%;background-color: #29292d">
     <!-- The Grid -->
     <div class="row" style="margin-top: 5px">
         <!-- Left Column -->
@@ -70,14 +70,14 @@
             </div>
             <br>
 
-            <!-- Alert Box -->
-            <div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
-        <span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">
-          <i class="fa fa-remove"></i>
-        </span>
-                <p><strong>Hey!</strong></p>
-                <p>People are looking at your profile. Find out who.</p>
-            </div>
+            {{--<!-- Alert Box -->--}}
+            {{--<div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">--}}
+        {{--<span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">--}}
+          {{--<i class="fa fa-remove"></i>--}}
+        {{--</span>--}}
+                {{--<p><strong>Hey!</strong></p>--}}
+                {{--<p>People are looking at your profile. Find out who.</p>--}}
+            {{--</div>--}}
 
             <!-- End Left Column -->
         </div>
@@ -87,6 +87,42 @@
             @yield('content')
         </div>
         <div class="col-md-3">
+
+
+            {{--Alert Messages--}}
+
+            @if(session('updateCitizen'))
+                <div class="alert alert-success m1200" role="alert">
+                    <button type="button" class="close" data-dismiss="alert">x</button>
+                    {{session('updateCitizen')}}
+                </div>
+            @endif
+
+            @if(session('CitizenPasswordUpdate'))
+                <div class="alert alert-success m1200" role="alert">
+                    <button type="button" class="close" data-dismiss="alert">x</button>
+                    {{session('CitizenPasswordUpdate')}}
+                </div>
+            @endif
+
+
+            @if(session('entrySuccess'))
+                <div class="alert alert-success m1200" role="alert">
+                    <button type="button" class="close" data-dismiss="alert">x</button>
+                    {{session('entrySuccess')}}
+                </div>
+            @endif
+
+
+            <script !src="">
+                window.setTimeout(function() {
+                    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                        $(this).remove();
+                    });
+                }, 4000);
+            </script>
+
+
             <div class="w3-card w3-round w3-white w3-center">
                 <div class="w3-container">
                     {{--<p>Upcoming Events:</p>--}}

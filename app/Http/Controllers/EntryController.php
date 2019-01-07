@@ -10,6 +10,7 @@ use App\Suspect;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Mail;
 
 class EntryController extends Controller
 {
@@ -34,17 +35,33 @@ class EntryController extends Controller
         $crimeEntry->igpNotification="n";
         $crimeEntry->citizenNotification="n";
         $crimeEntry->status="new";
-        $crimeEntry->progress="Entry is submitted to the ".$request->policeStation." Police Station";
+        $crimeEntry->progress="Entry is submitted to the ".$request->policeStation;
         $crimeEntry->suspects=$request->suspects;
         $crimeEntry->evidences=$request->evidences;
 
 
         $crimeEntry->save();
 
+
+        return redirect()->back()->with(['entrySuccess'=>"Successfully Submitted!"]);
+
         $entry=db::table('entries')->where('complainantID',Auth::User()->nic)->latest()->first();
         $evidences=db::table('evidence')->where('entryID',$request->entryID)->where('citizenView',"Yes")->get();
         $suspects=db::table('suspects')->where('entryID',$request->entryID)->where('userRole',"citizen")->get();
+
+        $email=Auth::User()->email;
+        $data = array('heading'=>"Weclome to Crime Reporting System",
+            'submitNotice'=>"Your Complaint is succesfully  submitted to the ".$request->policeStation." Police Station",
+            'thank'=>"Thank You!",
+            );
+
+        Mail::send(['text'=>'sendEmail.submitEntryEmail'], $data, function($message) use($email) {
+            $message->to($email)->subject
+            ('SL Police System Registration');
+            $message->from('slpolicesystem@gmail.com','SL Police');
+        });
         return view('registeredCitizen/citizenEntryView',compact('entry','evidences','suspects'));
+
     }
 
     public function entryOICAction(Request $request){
@@ -54,6 +71,11 @@ class EntryController extends Controller
         $statusType=$request->statusType;
         if($statusType=="new"){
             //initial entry progress when submitting the entry
+            $citizenNIC=$request->complainantNIC;
+            $userInfo = db::table('users')->where('nic',$citizenNIC)->First();
+            $email=$userInfo->email;
+
+
             $progress=new EntryProgress();
             $progress->entryID=$request->entryID;
             $progress->progress=$request->initialProgress;
@@ -94,6 +116,21 @@ class EntryController extends Controller
             DB::table('entries')
                 ->where('entryID',$request->entryID)
                 ->update(['oicNotification'=>"n",'boicNotification'=>"y",'status'=>"ongoing",'branch'=>$request->branch]);
+
+            $data = array(
+                'heading'=>"Weclome to Crime Reporting System..",
+                'entryAccept'=>"Your Entry was accepted by the Officer Incharge of ".$user->policeOffice,
+                'entryID'=> "Entry ID : ".$request->entryID,
+                'complaint'=>"Complaint : ".$request->complaint,
+                'messageToCitizen1'=>"Your entry will be investigated by the relevant police branch.",
+                'messageToCitizen2'=>"If you have any evidences and suspects please submit",
+                'thank'=>"Thank You!");
+
+            Mail::send(['text'=>'sendEmail.entryAcceptEmail'], $data, function($message) use($email) {
+                $message->to($email)->subject
+                ('Entry Accepted');
+                $message->from('slpolicesystem@gmail.com','SL Police');
+            });
         }
         else if($statusType=="ongoing"){
             if($request->ongoingSubmit=="Close Entry"){
@@ -108,7 +145,6 @@ class EntryController extends Controller
 
                 return view('oic.entryList',compact('entries','type','oicDetails','branches'));
             }
-
         }
 
         if($request->evidence!=null){
@@ -282,6 +318,13 @@ class EntryController extends Controller
 
 
 
+    }
+    public function viewHigherAuthorityAttention(Request $request){
+
+        $entry=db::table('entries')->where('entryID',$request->entryIDTemp)->First();
+        $evidences=db::table('evidence')->where('entryID',$request->entryID)->where('citizenView',"Yes")->get();
+        $suspects=db::table('suspects')->where('entryID',$request->entryID)->where('userRole',"citizen")->get();
+        return view('registeredCitizen.viewHigherAuthorityAttentionForm',compact('entry','evidences','suspects'));
     }
 
 }

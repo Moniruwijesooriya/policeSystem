@@ -5,4 +5,3 @@
 {{$randomPassword}}
 {{$msg}}
 {{$thank}}
-

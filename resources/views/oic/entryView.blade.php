@@ -116,6 +116,7 @@
                                                             <label class="col-md-3 col-form-label text-md-right">{{ __('Complaint') }}</label>
 
                                                             <div class="col-md-6">
+                                                                <input type="hidden" value="{{ $entry->complaint }}" name="complaint">
                                                                 <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->complaint }}</p>
                                                             </div>
                                                         </div>
@@ -305,6 +306,22 @@
                             </div>
 
                         </div>
+                        <div class="form-group row">
+                            <div class="form-check col-md-4">
+                                <input type="checkbox" class="form-check-input" name="districtView" value="Yes" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">District View</label>
+                            </div>
+                            <div class="form-check col-md-4">
+                                <input type="checkbox" class="form-check-input" name="provinceView" value="Yes" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Province View</label>
+                            </div>
+                            <div class="form-check col-md-4">
+                                <input type="checkbox" class="form-check-input" name="countryView" value="Yes" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Country View</label>
+                            </div>
+                        </div>
+
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

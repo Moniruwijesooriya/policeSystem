@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\DB;
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet"/>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <style>
         html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
     </style>
@@ -33,6 +38,21 @@ use Illuminate\Support\Facades\DB;
                     </div>
                 </div>
                 <br>
+
+
+
+
+                @if(Session::has('entrySuccess'))
+
+                    <div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
+                    <span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">
+                      <i class="fa fa-remove"></i>
+                     </span>
+                        <p><strong>Attention!</strong></p>
+                        <p>{{Session::get('entrySuccess')}}</p>
+                    </div>
+
+                 @endif
 
                 <!-- Accordion -->
                 <div class="w3-card w3-round">
@@ -75,13 +95,7 @@ use Illuminate\Support\Facades\DB;
                 <br>
 
                 <!-- Alert Box -->
-                <div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
-        <span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">
-          <i class="fa fa-remove"></i>
-        </span>
-                    <p><strong>Attention!</strong></p>
-                    <p>There are some cases that require evidences. Maybe you can help out.</p>
-                </div>
+
 
                 <!-- End Left Column -->
             </div>
@@ -265,7 +279,7 @@ use Illuminate\Support\Facades\DB;
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="oicPasswordChange" enctype="multipart/form-data">
+                    <form method="POST" action="citizenInfoUpdate" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Full Name') }}</label>
@@ -352,22 +366,7 @@ use Illuminate\Support\Facades\DB;
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input  onkeyup="validatePassword()" id="confirm_password" type="password" class="form-control" name="confirm_password" required>
-                            </div>
-                        </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
