@@ -93,10 +93,12 @@ Route::post('/updateCitizenEntry',[
     'uses'=>'EntryController@updateCitizenEntry',
     'as'=>'updateCitizenEntry'
 ])->middleware('auth');
-Route::post('/registerCitizen',[
+Route::get('/registerCitizen',[
     'uses'=>'CitizenController@registerCitizen',
     'as'=>'registerCitizen'
 ]);
+
+
 Route::post('/reviewCitizenRegistrationRequest',[
     'uses'=>'CitizenController@ViewRequest',
     'as'=>'reviewCitizenRegistrationRequest'
@@ -107,12 +109,12 @@ Route::post('/citizenAccountDeactivate',[
     'as'=>'citizenAccountDeactivate'
 ]);
 
-Route::get('/citizenPasswordChange',[
+Route::post('/citizenPasswordChange',[
     'uses'=>'CitizenController@citizenPasswordChange',
     'as'=>'citizenPasswordChange'
 ]);
 
-Route::post('/changePasswordFormView',[
+Route::get('/changePasswordFormView',[
     'uses'=>'CitizenController@changePasswordFormView',
     'as'=>'changePasswordFormView'
 ]);
@@ -130,6 +132,14 @@ Route::get('/citizenInfoUpdate',[
     'uses'=>'CitizenController@citizenInfoUpdate',
     'as'=>'citizenInfoUpdate'
 ]);
+
+Route::get('/deactivateCitizenForm',[
+    'uses'=>'CitizenController@deactivateCitizenForm',
+    'as'=>'deactivateCitizenForm'
+]);
+
+Route::get('/RedirectRegisteredCitizen','CitizenLoginController@index');
+
 
 
 //Oic

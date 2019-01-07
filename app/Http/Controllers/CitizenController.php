@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use phpDocumentor\Reflection\Types\Null_;
 use function PHPSTORM_META\elementType;
 use Illuminate\Support\Facades\Auth;
@@ -47,6 +48,7 @@ class CitizenController extends Controller
         }else{
 
         }
+
         $citizen = new User();
         $citizen->name = $request->name;
         $citizen->nic = $request->nic;
@@ -145,10 +147,22 @@ public function store(Request $request)
      */
     public function citizenInfoUpdate(Request $request)
     {
+
         DB::table('users')
             ->where('nic',$request->nic)
-            ->update(['email_verified_at'=>Null,'verified'=>'No','address'=>$request->homeAddress,'policeOffice'=>$request->policeStation,'mobileNumber'=>$request->mobNumber,'landLineNumber'=>$request->landNumber,'email'=>$request->email]);
-        return redirect('registeredCitizen.registeredCitizenApp');
+
+            ->update(['address'=>$request->homeAddress,'policeOffice'=>$request->policeStation,'mobileNumber'=>$request->mobNumber,'profession'=>$request->profession,'landLineNumber'=>$request->landNumber,'email'=>$request->email]);
+
+        Session::flash('updateCitizen','Updated successfully!');//if
+//
+//        Session::flash('msg2','Updated failed!');//else
+        $nic=Auth::User()->nic;
+        $citizenDetails = db::table('users')->where('nic',$nic)->First();
+        $crimeCategories = db::table('crime_categories')->where('citizenView',"Yes")->get();
+
+        return view('registeredCitizen.index',compact('message','citizenDetails','crimeCategories'));
+
+            
     }
 
     /**
@@ -158,6 +172,12 @@ public function store(Request $request)
      * @return \Illuminate\Http\Response
      */
 
+
+    public function deactivateCitizenForm(){
+        $nic = Auth::User()->nic;
+        $citizenDetails = db::table('users')->where('nic',$nic)->First();
+        return view('registeredCitizen.deactivateCitizenForm',compact('citizenDetails'));
+    }
 
     public function citizenAccountDeactivate(Request $request)
     {
@@ -180,6 +200,8 @@ public function store(Request $request)
 
 
         $citizenDetails = db::table('users')->where('nic',$request->nic)->First();
+
+            Session::flash('CitizenPasswordUpdate','password is updated successfully!');
 
         if(Hash::check($currentpassword,$citizenDetails->password) && $newpassword == $confirmpassword){
             DB::table('users')

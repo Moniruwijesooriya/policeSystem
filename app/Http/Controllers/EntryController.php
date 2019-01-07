@@ -42,10 +42,14 @@ class EntryController extends Controller
 
         $crimeEntry->save();
 
+
+        return redirect()->back()->with(['entrySuccess'=>"Successfully Submitted!"]);
+
         $entry=db::table('entries')->where('complainantID',Auth::User()->nic)->latest()->first();
         $evidences=db::table('evidence')->where('entryID',$request->entryID)->where('citizenView',"Yes")->get();
         $suspects=db::table('suspects')->where('entryID',$request->entryID)->where('userRole',"citizen")->get();
         return view('registeredCitizen/citizenEntryView',compact('entry','evidences','suspects'));
+
     }
 
     public function entryOICAction(Request $request){

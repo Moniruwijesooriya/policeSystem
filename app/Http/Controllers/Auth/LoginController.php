@@ -30,7 +30,9 @@ class LoginController extends Controller
 //    protected $redirectTo = '/home'
     protected function authenticated()
     {
+
         if(Auth::User()->isAdmin()){
+
             return redirect('/admin');
 
         }
@@ -55,6 +57,7 @@ class LoginController extends Controller
 
         }
         else{
+            $message="login successfully";
             Auth::logout();
             return view('errors.loginError');
         }
