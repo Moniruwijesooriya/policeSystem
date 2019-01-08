@@ -2,12 +2,43 @@
 <?php
 use Illuminate\Support\Facades\DB;
 ?>
+<style>
+    .table-col {
+        width: auto;
+        height: auto;
+        min-height: 10%;
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 0.5% 0.5% 0.5% 0.5%;
+        padding: 1% 1% 1% 1%;
+        opacity: 1;
+
+        box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+        -moz-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+        -webkit-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+        -o-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+        -ms-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+    }
+    /*.tc-left{
+        min-width: 15%;
+    } */
+    .tc-middle{
+        min-width: 45%;
+        padding-left: 3%;
+
+    }
+    .tc-right{
+        min-width: 40%;
+        padding-left: 3%;
+    }
+</style>
 @section('content1')
     <div class="container-fluid" style="max-width:1400px;background-color:whitesmoke">
         <!-- The Grid -->
         <div class="row">
             <!-- Left Column -->
-            <div class="col-md-3" style="margin-top: 20px">
+            <div class="col-md-3 table-col" style="margin-top: 20px">
                 @if(Auth::User()->role=='citizen')
                     <div class="card">
                         <div class="bg-white">
@@ -50,8 +81,8 @@ use Illuminate\Support\Facades\DB;
                                         ?>
                                         @if($evidence->evidence_txt=="Image Evidence")
                                             <p contenteditable="false" class="w3-border w3-padding" >
-                                                @for($i=1;$i<=$evidence->evidence_image_count;$i++)
-                                                    <img style="width: 100%;height: 150px;margin: 5px" src='{{asset("/evidences/$entry->entryID/$evidence->evidence_image/".$i.'.jpg')}}' style="width:100%" alt="{{$entry->entryID}}">
+                                                @for($i=1;$i<$evidence->evidence_image_count;$i++)
+                                                    <img style="width: 100%;height: 150px;margin: 5px" src='{{asset("/evidences/$entry->entryID/$evidence->evidence_image/".$i.'.jpg')}}' style="width:100%" >
 
                                                 @endfor
                                                 <br>-------------------<br>Submitted by {{$citizenDetails2->role}} {{$citizenDetails2->name}} on {{$evidence->created_at}}
@@ -87,7 +118,7 @@ use Illuminate\Support\Facades\DB;
 
 
             <!-- Middle Column -->
-            <div class="col-md-5"style="margin-top: 10px;margin-right: 40px;margin-left: 20px;margin-bottom: 10px">
+            <div class="col-md-5 table-col"style="margin-top: 10px;margin-right: 40px;margin-left: 20px;margin-bottom: 10px">
                 <div class="row justify-content-center">
                     <div class="col-md-12" style="margin-left: 3px;margin-right: 3px">
                         <div class="card">
@@ -189,8 +220,8 @@ use Illuminate\Support\Facades\DB;
                 <!-- End Middle Column -->
             </div>
             <!-- Right Column -->
-            <div class="col-md-3">
-                <div class="row">
+            <div class="col-md-3 table-col">
+                <div class="">
                     <div style="margin-top: 10px">
                         <form action="viewHigherAuthorityAttention" method="post" >
                             @csrf
@@ -198,7 +229,7 @@ use Illuminate\Support\Facades\DB;
                             <input type="submit" class="btn btn-dark" value="Request Higher Authority Attention" style="background-color:cadetblue">
                         </form>
                     </div>
-                    <div class="row justify-content-center">
+                    <div class=" justify-content-center">
 
                         <div class="card" style="margin-top: 10px">
                             <div class="card-header" >{{ __('Progress') }}</div>
