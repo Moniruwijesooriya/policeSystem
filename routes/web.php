@@ -352,7 +352,32 @@ Route::get('/viewregisterPoliceOfficer',[
     'as'=>'viewregisterPoliceOfficer'
 ])->middleware('auth');
 
+Route::get('/adminProfileFormView',[
+    'uses'=>'AdminController@adminProfileFormView',
+    'as'=>'adminProfileFormView'
+])->middleware('auth');
 
+Route::get('/deactivateAdminFormView',[
+    'uses'=>'AdminController@deactivateAdminFormView',
+    'as'=>'deactivateAdminFormView'
+])->middleware('auth');
+
+Route::post('adminInfoUpdate','AdminController@adminInfoUpdate');
+
+Route::post('/adminAccountDeactivate',[
+    'uses'=>'AdminController@adminAccountDeactivate',
+    'as'=>'adminAccountDeactivate'
+]);
+
+Route::get('/changeAdminPasswordFormView',[
+    'uses'=>'AdminController@changeAdminPasswordFormView',
+    'as'=>'changeAdminPasswordFormView'
+]);
+
+Route::post('/adminPasswordChange',[
+    'uses'=>'AdminController@adminPasswordChange',
+    'as'=>'adminPasswordChange'
+])->middleware('auth');
 
 //general
 Route::post('/getUserInfo',[

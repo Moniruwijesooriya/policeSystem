@@ -9,6 +9,9 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Mail;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+
 
 class AdminController extends Controller
 {
@@ -313,5 +316,71 @@ class AdminController extends Controller
         else{
             return redirect('/admin');
         }
+    }
+
+    public function adminProfileFormView(){
+        $nic = Auth::User()->nic;
+        $citizenDetails = db::table('users')->where('nic',$nic)->First();
+        return view('admin.adminProfileForm',compact('citizenDetails'));
+    }
+
+    public function deactivateAdminFormView(){
+        $nic = Auth::User()->nic;
+        $citizenDetails = db::table('users')->where('nic',$nic)->First();
+        return view('admin.deactivateAdminForm',compact('citizenDetails'));
+    }
+
+    public function adminInfoUpdate(Request $request)
+    {
+
+        DB::table('users')
+            ->where('nic',$request->nic)
+
+            ->update(['address'=>$request->homeAddress,'mobileNumber'=>$request->mobNumber,'landLineNumber'=>$request->landNumber,'email'=>$request->email]);
+
+//        Session::flash('updateCitizen','Updated successfully!');//if
+//
+//        Session::flash('msg2','Updated failed!');//else
+        $nic=Auth::User()->nic;
+        $citizenDetails = db::table('users')->where('nic',$nic)->First();
+        $crimeCategories = db::table('crime_categories')->where('citizenView',"Yes")->get();
+
+        return view('admin.adminProfileForm',compact('message','citizenDetails','crimeCategories'));
+
+
+    }
+    public function adminAccountDeactivate(Request $request)
+    {
+        $userpassword = $request->password;
+        $citizen = db::table('users')->where('nic', $request->nic)->first();
+        if (Hash::check($userpassword, $citizen->password)) {
+            DB::table('users')->where('nic', $request->nic)->delete();
+            return redirect('/');
+        } else {
+            return redirect('/RegisteredCitizen');
+        }
+    }
+    public function changeAdminPasswordFormView(){
+        $nic = Auth::User()->nic;
+        $citizenDetails = db::table('users')->where('nic',$nic)->First();
+        return view('admin.changeAdminPasswordFormView',compact('citizenDetails'));
+    }
+    public function adminPasswordChange(Request $request){
+        $currentpassword=$request->currentpassword;
+        $newpassword=$request->newpassword;
+        $confirmpassword=$request->confirmpassword;
+
+
+        $citizenDetails = db::table('users')->where('nic',$request->nic)->First();
+
+        Session::flash('CitizenPasswordUpdate','password is updated successfully!');
+
+        if(Hash::check($currentpassword,$citizenDetails->password) && $newpassword == $confirmpassword){
+            DB::table('users')
+                ->where('nic',$request->nic)
+                ->update(['password'=>Hash::make($request->newpassword)]);
+            return redirect('/admin');
+        }
+
     }
 }
