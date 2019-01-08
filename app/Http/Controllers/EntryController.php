@@ -667,21 +667,22 @@ class EntryController extends Controller
     public function viewBOICNewEntries(){
         $nic=Auth::User()->nic;
         $user=db::table('users')->where('Nic',$nic)->First();
-
-        $entries=db::table('entries')->where('oicNotification',"y")->where('nearestPoliceStation',$user->policeOffice)->get();
+        $boicPoliceOffice=db::table('police_offices')->where('OfficeName',$user->policeOffice)->first();
         $type="New Entries";
         $oicDetails = db::table('users')->where('nic',$nic)->First();
         $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
-
+        $entries=db::table('entries')->where('boicNotification',"y")->where('status',"new")->where('branch',$boicPoliceOffice->id)->get();
         return view('boic.entryList',compact('entries','type','oicDetails','branches'));
     }
     public function viewBOICOngoingEntries(){
 
         $nic=Auth::User()->nic;
-        $entries=db::table('entries')->where('status',"ongoing")->get();
+        $user=db::table('users')->where('Nic',$nic)->First();
+        $boicPoliceOffice=db::table('police_offices')->where('OfficeName',$user->policeOffice)->first();
         $type="Ongoing Entries";
         $oicDetails = db::table('users')->where('nic',$nic)->First();
         $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
+        $entries=db::table('entries')->where('boicNotification',"y")->where('status',"ongoing")->where('branch',$boicPoliceOffice->id)->get();
 
         return view('boic.entryList',compact('entries','type','oicDetails','branches'));
     }

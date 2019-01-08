@@ -3,7 +3,7 @@
 
     <div class="content-header">
         <h1>
-            Entry
+            Request For Registration
         </h1>
     </div>
 

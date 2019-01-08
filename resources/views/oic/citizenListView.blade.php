@@ -3,7 +3,7 @@
 
     <div class="content-header">
         <h1>
-            Entry Management
+            Citizen Management
         </h1>
     </div>
 
@@ -188,18 +188,18 @@
                                 <div class="col-md-7">
                                     <input id="policeStationId" type="text" class="form-control" name="policeStationTemp"  readonly></div>
                             </div>
-                            <div class="form-group row">
-                                <label class="col-md-4 col-form-label text-md-right">Message</label>
-                                <div class="col-md-6">
-                                    <textarea class="form-control" name="citizenMessage" id="exampleFormControlTextarea1" rows="2"></textarea>
-                                </div>
-                                <div class="col-md-1">
-                                    <button type="submit" class="btn btn-primary" name="submitButton" value="sendMessage">
-                                        {{ __('Send') }}
-                                    </button>
-                                </div>
+                            {{--<div class="form-group row">--}}
+                                {{--<label class="col-md-4 col-form-label text-md-right">Message</label>--}}
+                                {{--<div class="col-md-6">--}}
+                                    {{--<textarea class="form-control" name="citizenMessage" id="exampleFormControlTextarea1" rows="2"></textarea>--}}
+                                {{--</div>--}}
+                                {{--<div class="col-md-1">--}}
+                                    {{--<button type="submit" class="btn btn-primary" name="submitButton" value="sendMessage">--}}
+                                        {{--{{ __('Send') }}--}}
+                                    {{--</button>--}}
+                                {{--</div>--}}
 
-                            </div>
+                            {{--</div>--}}
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary" name="submitButton" value="removeCitizen">
@@ -297,7 +297,7 @@
 
 
 
-///
+
 
 
 
