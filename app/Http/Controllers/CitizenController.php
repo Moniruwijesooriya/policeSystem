@@ -148,7 +148,7 @@ public function store(Request $request)
     public function citizenInfoUpdate(Request $request)
     {
 
-        DB::table('users')
+        $results=DB::table('users')
             ->where('nic',$request->nic)
 
             ->update(['address'=>$request->homeAddress,'policeOffice'=>$request->policeStation,'mobileNumber'=>$request->mobNumber,'profession'=>$request->profession,'landLineNumber'=>$request->landNumber,'email'=>$request->email]);

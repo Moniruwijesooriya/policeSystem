@@ -40,9 +40,9 @@
                                 </form>
                             @endforeach
                             {{--</div>--}}
-                        </div>
-                        <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Following Cases</button>
-                        <div id="Demo2" class="w3-hide w3-container">
+                        {{--</div>--}}
+                        {{--<button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Following Cases</button>--}}
+                        {{--<div id="Demo2" class="w3-hide w3-container">--}}
 
                         </div>
                         <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i>Evidence Submitted</button>
