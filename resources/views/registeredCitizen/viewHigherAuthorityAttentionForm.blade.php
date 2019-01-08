@@ -169,7 +169,7 @@ use Illuminate\Support\Facades\DB;
                                 $progress=db::table('entries')->where('entryID',$entr->entryID)->First();
                                 ?>
                                 <div class="col-md-11">
-                                    <p contenteditable="false" class="w3-border w3-padding" >{{ $progress->progress }}</p>
+                                    <p contenteditable="false" class="w3-border w3-padding" style="background-color:darkgrey">{{ $progress->progress }}</p>
                                 </div>
                             </div>
                         </div>

@@ -23,7 +23,7 @@ class PostsController extends Controller
         $publicPost->content=$request->postContent;
         $nic=Auth::User()->nic;
         $user=db::table('users')->where('Nic',$nic)->First();
-        $publicPost->postedBy=$user->name;
+        $publicPost->postedBy=$user->nic;
         if($request->districtView=="Yes"){
             $publicPost->districtView="Yes";
         }

@@ -38,23 +38,6 @@ Route::post('/registerPoliceOffice',[
 
 
 
-Route::post('/viewOICEntry',[
-    'uses'=>'EntryController@viewOICEntry',
-    'as'=>'viewOICEntry'
-])->middleware('auth');
-
-Route::post('/entryOICAction',[
-    'uses'=>'EntryController@entryOICAction',
-    'as'=>'entryOICAction'
-])->middleware('auth');
-
-Route::post('/viewBOICEntry',[
-    'uses'=>'EntryController@viewBOICEntry',
-    'as'=>'viewBOICEntry'
-])->middleware('auth');
-
-
-
 Route::post('/viewCitizenEntry',[
     'uses'=>'EntryController@viewCitizenEntry',
     'as'=>'viewCitizenEntry'
@@ -93,7 +76,7 @@ Route::post('/updateCitizenEntry',[
     'uses'=>'EntryController@updateCitizenEntry',
     'as'=>'updateCitizenEntry'
 ])->middleware('auth');
-Route::get('/registerCitizen',[
+Route::post('/registerCitizen',[
     'uses'=>'CitizenController@registerCitizen',
     'as'=>'registerCitizen'
 ]);
@@ -182,8 +165,8 @@ Route::get('/viewClosedAccounts',[
     'as'=>'viewClosedAccounts'
 ])->middleware('auth');
 
-Route::post('/oicPasswordChange',[
-    'uses'=>'OICController@oicPasswordChange',
+Route::get('/changeOICPasswordFormView',[
+    'uses'=>'OICController@changeOICPasswordFormView',
     'as'=>'oicPasswordChange'
 ]);
 Route::post('/manageCitizen',[
@@ -194,14 +177,105 @@ Route::post('/viewBranch',[
     'uses'=>'OICController@viewBranch',
     'as'=>'viewBranch'
 ]);
+Route::get('/oicProfileFormView',[
+    'uses'=>'OICController@oicProfileFormView',
+    'as'=>'oicProfileFormView'
+])->middleware('auth');
+
+Route::post('/updateProfile',[
+    'uses'=>'OICController@oicProfileUpdate',
+    'as'=>'updateProfile'
+])->middleware('auth');
+
+
+Route::post('/oicPasswordChange',[
+    'uses'=>'OICController@oicPasswordChange',
+    'as'=>'oicPasswordChange'
+])->middleware('auth');
+
+
+Route::post('/oicAccountDeactivate',[
+    'uses'=>'OICController@oicAccountDeactivate',
+    'as'=>'oicAccountDeactivate'
+])->middleware('auth');
+
+Route::post('/viewOICEntry',[
+    'uses'=>'EntryController@viewOICEntry',
+    'as'=>'viewOICEntry'
+])->middleware('auth');
+
+Route::post('/entryOICAction',[
+    'uses'=>'EntryController@entryOICAction',
+    'as'=>'entryOICAction'
+])->middleware('auth');
+
+//boic
+
+
+Route::get('/viewBOICNewEntries',[
+    'uses'=>'EntryController@viewBOICNewEntries',
+    'as'=>'NewEntries'
+])->middleware('auth');
+
+Route::get('/viewBOICOngoingEntries',[
+    'uses'=>'EntryController@viewBOICOngoingEntries',
+    'as'=>'OngoingEntries'
+])->middleware('auth');
+
+Route::get('/viewBOICClosedEntries',[
+    'uses'=>'EntryController@viewBOICClosedEntries',
+    'as'=>'ClosedEntries'
+])->middleware('auth');
+
+
+Route::get('/changeBOICPasswordFormView',[
+    'uses'=>'BOICController@changeBOICPasswordFormView',
+    'as'=>'boicPasswordChange'
+]);
+
+Route::get('/boicProfileFormView',[
+    'uses'=>'BOICController@boicProfileFormView',
+    'as'=>'oicProfileFormView'
+])->middleware('auth');
+
+Route::post('/oicUpdateProfile',[
+    'uses'=>'OICController@oicProfileUpdate',
+    'as'=>'updateProfile'
+])->middleware('auth');
+
+
+Route::post('/boicPasswordChange',[
+    'uses'=>'BOICController@boicPasswordChange',
+    'as'=>'boicPasswordChange'
+])->middleware('auth');
+
+
+Route::post('/boicAccountDeactivate',[
+    'uses'=>'BOICController@boicAccountDeactivate',
+    'as'=>'boicAccountDeactivate'
+])->middleware('auth');
 
 
 
+Route::post('/viewBOICEntry',[
+    'uses'=>'EntryController@viewBOICEntry',
+    'as'=>'viewBOICEntry'
+])->middleware('auth');
 
+Route::post('/entryBOICAction',[
+    'uses'=>'EntryController@entryBOICAction',
+    'as'=>'entryBOICAction'
+])->middleware('auth');
 Route::get('/viewClosedEntries',[
     'uses'=>'EntryController@viewClosedEntries',
     'as'=>'ClosedEntries'
 ])->middleware('auth');
+
+Route::get('/deactivateBOICFormView',[
+    'uses'=>'BOICController@deactivateBOICFormView',
+    'as'=>'deactivateBOICFormView'
+])->middleware('auth');
+
 
 //admin////////////////////
 

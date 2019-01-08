@@ -40,7 +40,7 @@ class CitizenController extends Controller
 
             $files=$request->file('profileImage');
             $fileExtension=$files->getClientOriginalExtension();
-            $filename = $request->nic.".".$fileExtension;
+            $filename = $request->nic.".jpg";
 
             $request->file('profileImage')->move(
                 base_path() . '/public/userProfileImages/',$filename

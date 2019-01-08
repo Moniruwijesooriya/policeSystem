@@ -98,6 +98,19 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label for="profileImage" class="col-md-4 col-form-label text-md-right">{{ __('Profile Image') }}</label>
+
+                                <div class="col-md-6">
+                                    <input type="file"  accept="image/*" class="form-control" name="profileImage" required autofocus>
+
+                                    @if ($errors->has('landNumber'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('landNumber') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label for="homeAddress" class="col-md-4 col-form-label text-md-right">{{ __('Home Address') }}</label>
 
                                 <div class="col-md-7">
