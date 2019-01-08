@@ -39,8 +39,16 @@ class OICController extends Controller
             DB::table('users')
                 ->where('nic',$request->nic)
                 ->update(['password'=>Hash::make($request->newpassword)]);
-            return redirect('/RegisteredCitizen');
+            $nic=Auth::User()->nic;
+            $oicDetails = db::table('users')->where('nic',$nic)->First();
+            $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
+            return view('oic.oicProfileForm',compact('oicDetails','branches'));
+
         }else{
+            $nic=Auth::User()->nic;
+            $oicDetails = db::table('users')->where('nic',$nic)->First();
+            $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
+            return view('oic.oicProfileForm',compact('oicDetails','branches'));
             
         }
     }

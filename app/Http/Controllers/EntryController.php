@@ -41,15 +41,13 @@ class EntryController extends Controller
         $crimeEntry->suspects=$request->suspects;
         $crimeEntry->evidences=$request->evidences;
 
-
+        $entrySuccess="Successfully Submitted!";
         $crimeEntry->save();
-
-
-        return redirect()->back()->with(['entrySuccess'=>"Successfully Submitted!"]);
 
         $entry=db::table('entries')->where('complainantID',Auth::User()->nic)->latest()->first();
         $evidences=db::table('evidence')->where('entryID',$request->entryID)->where('citizenView',"Yes")->get();
         $suspects=db::table('suspects')->where('entryID',$request->entryID)->where('userRole',"citizen")->get();
+        $entry_progress=db::table('entry_progresses')->where('entryID',$request->entryID)->where('citizenView',"Yes")->get();
 
         $email=Auth::User()->email;
         $data = array('heading'=>"Weclome to Crime Reporting System",
@@ -62,7 +60,7 @@ class EntryController extends Controller
             ('SL Police System Registration');
             $message->from('slpolicesystem@gmail.com','SL Police');
         });
-        return view('registeredCitizen/citizenEntryView',compact('entry','evidences','suspects'));
+        return view('registeredCitizen/citizenEntryView',compact('entry','evidences','suspects','entry_progress','entrySuccess'));
 
     }
 
@@ -110,14 +108,101 @@ class EntryController extends Controller
             $progress->rank=$user->profession;
             $progress->policeOffice=$user->policeOffice;
             $progress->role=$user->role;
-            $progress->progress="Entry is forwarded to the accepted and Forwarded to the relevant section.";
+            $progress->progress="Entry is accepted and Forwarded to the relevant section.";
             $progress->citizenView="Yes";
             $progress->policeView="Yes";
             $progress->save();
 
+            if($request->evidence!=null){
+                $evidence=new Evidence();
+                $evidence->entryID=$request->entryID;
+                $evidence->witnessId=Auth::User()->nic;
+                $evidence->evidence_txt=$request->evidence;
+                if ($request->evidenceCitizenView=="Yes"){
+                    $evidence->citizenView="Yes";
+                }
+                else{
+                    $evidence->citizenView="No";
+                }
+                $evidence->policeView="Yes";
+                $evidence->save();
+
+            }
+            if ($request->hasFile('evidenceImage')){
+
+                $files=$request->file('evidenceImage');
+                $folderName=$request->entryID;
+
+                $dt = Carbon::now();
+                $newdatez=str_replace(':',"-",$dt);
+                $i=1;
+                foreach($files as $file) {
+                    $fileExtension=$file->getClientOriginalExtension();
+                    $fileNewName=$i.".".$fileExtension;
+                    $file->move(
+                        base_path() . "/public/evidences/$folderName/$newdatez",$fileNewName
+                    );
+                    $i += 1;
+                }
+                $evidence=new Evidence();
+                $evidence->entryID=$request->entryID;
+                $evidence->witnessId=Auth::User()->nic;
+                $evidence->evidence_txt="Image Evidence";
+                $evidence->evidence_image_count=$i;
+                if ($request->evidenceImageCitizenView=="Yes"){
+                    $evidence->citizenView="Yes";
+                }
+                else{
+                    $evidence->citizenView="No";
+                }
+                $evidence->policeView="Yes";
+                $evidence->evidence_image=$newdatez;
+                $evidence->save();
+            }else{
+                if($request->suspects!=null){
+                    $suspects=new Suspect();
+                    $suspects->entryID=$request->entryID;
+                    $suspects->name=$request->suspects;
+                    $suspects->userName=$user->name;
+                    $suspects->userNic=$nic;
+                    $suspects->userRole=$user->role;
+                    if ($request->suspectCitizenView=="Yes"){
+                        $suspects->citizenView="Yes";
+                    }
+                    else{
+                        $suspects->citizenView="No";
+                    }
+                    $suspects->policeView="Yes";
+                    $suspects->save();
+                }
+
+                if($request->entryProgress!=null){
+                    $progress=new EntryProgress();
+                    $progress->entryID=$request->entryID;
+                    $progress->progress=$request->entryProgress;
+                    $progress->policeOfficerName=$user->name;
+                    $progress->officerNic=$user->nic;
+                    $progress->rank=$user->profession;
+                    $progress->policeOffice=$user->policeOffice;
+                    $progress->role=$user->role;
+                    if ($request->progressCitizenView=="Yes"){
+                        $progress->citizenView="Yes";
+                    }
+                    else{
+                        $progress->citizenView="No";
+                    }
+                    $progress->policeView="Yes";
+
+                    $progress->save();
+
+                }
+            }
+
+            $branchTemp=db::table('police_offices')->where('policeOfficeType',"Branch Police Office")->where('headPoliceOffice',$request->policeStation)->where('policeOfficeArea',$request->branch)->First();
+
             DB::table('entries')
                 ->where('entryID',$request->entryID)
-                ->update(['oicNotification'=>"n",'boicNotification'=>"y",'status'=>"ongoing",'branch'=>$request->branch]);
+                ->update(['oicNotification'=>"n",'boicNotification'=>"y",'status'=>"ongoing",'branch'=>$branchTemp->id]);
 
             $data = array(
                 'heading'=>"Weclome to Crime Reporting System..",
@@ -141,11 +226,11 @@ class EntryController extends Controller
                     ->update(['status'=>"closed"]);
                 $nic=Auth::User()->nic;
                 $entries=db::table('entries')->where('status',"ongoing")->get();
-                $type="Ongoing Entries";
+                $type="Closed Entries";
                 $oicDetails = db::table('users')->where('nic',$nic)->First();
                 $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
                 }
-
+            $type="Ongoing Entries";
 
             if($request->evidence!=null){
                 $evidence=new Evidence();
@@ -232,8 +317,6 @@ class EntryController extends Controller
                     $progress->save();
 
                 }
-
-                return view('oic.entryList',compact('entries','type','oicDetails','branches'));
             }
         }
 
@@ -244,11 +327,11 @@ class EntryController extends Controller
         $evidences=db::table('evidence')->where('entryId',$request->entryID)->where('policeView',"Yes")->get();
         $suspects=db::table('suspects')->where('entryID',$request->entryID)->where('policeView',"Yes")->get();
         $entryProgresses=db::table('entry_progresses')->where('entryID',$request->entryID)->get();
-
+        $currentBranch=db::table('entries')->where('branch',$entry->branch)->First();
         $nic=Auth::User()->nic;
         $oicDetails = db::table('users')->where('nic',$nic)->First();
         $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
-        return view('oic/entryView',compact('entry','evidences','suspects','entryProgresses','branches','oicDetails'));
+        return view('oic/entryView',compact('entry','evidences','suspects','entryProgresses','branches','oicDetails','currentBranch'));
     }
     public function viewOICEntry(Request $request){
         $nic=Auth::User()->nic;
@@ -260,9 +343,10 @@ class EntryController extends Controller
         $evidences=db::table('evidence')->where('entryId',$request->entryID)->where('policeView',"Yes")->get();
         $suspects=db::table('suspects')->where('entryID',$request->entryID)->where('policeView',"Yes")->get();
         $entryProgresses=db::table('entry_progresses')->where('entryID',$request->entryID)->get();
-
-        return view('oic/entryView',compact('entry','evidences','suspects','entryProgresses','oicDetails','branches'));
+        $currentBranch=db::table('police_offices')->where('id',$entry->branch)->First();
+        return view('oic/entryView',compact('entry','evidences','suspects','entryProgresses','oicDetails','branches','currentBranch'));
     }
+
     public function viewOICNewEntries(){
         $nic=Auth::User()->nic;
         $user=db::table('users')->where('Nic',$nic)->First();
@@ -281,7 +365,6 @@ class EntryController extends Controller
         $type="Ongoing Entries";
         $oicDetails = db::table('users')->where('nic',$nic)->First();
         $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
-
         return view('oic.entryList',compact('entries','type','oicDetails','branches'));
     }
 
@@ -294,6 +377,52 @@ class EntryController extends Controller
 
         return view('oic.entryList',compact('entries','type','oicDetails','branches'));
     }
+
+//    boic
+    public function viewBOICEntry(Request $request){
+        $nic=Auth::User()->nic;
+        $oicDetails = db::table('users')->where('nic',$nic)->First();
+
+        $entry=db::table('entries')->where('entryID',$request->entryID)->First();
+        $evidences=db::table('evidence')->where('entryId',$request->entryID)->where('policeView',"Yes")->get();
+        $suspects=db::table('suspects')->where('entryID',$request->entryID)->where('policeView',"Yes")->get();
+        $entryProgresses=db::table('entry_progresses')->where('entryID',$request->entryID)->get();
+
+        return view('boic/entryView',compact('entry','evidences','suspects','entryProgresses','oicDetails','branches'));
+    }
+
+    public function viewBOICNewEntries(){
+        $nic=Auth::User()->nic;
+        $user=db::table('users')->where('Nic',$nic)->First();
+
+        $entries=db::table('entries')->where('oicNotification',"y")->where('nearestPoliceStation',$user->policeOffice)->get();
+        $type="New Entries";
+        $oicDetails = db::table('users')->where('nic',$nic)->First();
+        $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
+
+        return view('boic.entryList',compact('entries','type','oicDetails','branches'));
+    }
+    public function viewBOICOngoingEntries(){
+
+        $nic=Auth::User()->nic;
+        $entries=db::table('entries')->where('status',"ongoing")->get();
+        $type="Ongoing Entries";
+        $oicDetails = db::table('users')->where('nic',$nic)->First();
+        $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
+
+        return view('boic.entryList',compact('entries','type','oicDetails','branches'));
+    }
+
+    public function viewBOICClosedEntries(){
+        $nic=Auth::User()->nic;
+        $entries=db::table('entries')->where('status',"closed")->get();
+        $type="Closed Entries";
+        $oicDetails = db::table('users')->where('nic',$nic)->First();
+        $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
+
+        return view('boic.entryList',compact('entries','type','oicDetails','branches'));
+    }
+
     public function getUserInfo(Request $request){
         $userInfo=db::table('users')->where('nic',$request->id)->First();
         return response()->json($userInfo);
@@ -312,16 +441,17 @@ class EntryController extends Controller
             ->update(['boicNotification'=>"n",'suspects'=>$request->suspects,'branch'=>$request->branch,'progress'=>$request->progress]);
         return redirect('/BOIC');
     }
-    public function viewBOICEntry(Request $request){
+    public function viexwBOICEntry(Request $request){
         $entry=db::table('entries')->where('entryID',$request->entryID)->First();
         return view('entry/boicEntryView',compact('entry'));
     }
 
     public function viewCitizenEntry(Request $request){
         $entry=db::table('entries')->where('entryID',$request->entryID)->First();
+        $entry_progress=db::table('entry_progresses')->where('entryID',$request->entryID)->where('citizenView',"Yes")->get();
         $evidences=db::table('evidence')->where('entryID',$request->entryID)->where('citizenView',"Yes")->get();
         $suspects=db::table('suspects')->where('entryID',$request->entryID)->where('userRole',"citizen")->get();
-        return view('registeredCitizen/citizenEntryView',compact('entry','evidences','suspects'));
+        return view('registeredCitizen/citizenEntryView',compact('entry','evidences','suspects','entry_progress'));
     }
 
 
