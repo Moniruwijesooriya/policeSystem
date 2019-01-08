@@ -32,16 +32,38 @@
                                             <div id="evidencesList" class="w3-hide w3-container">
                                                 <div class="form-group row">
                                                     <div class="col-md-12">
-                                                        <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->evidences }}<br>Submitted by : <button type="button" value="{{ $entry->complainantID }}" id="nicbutton" class="btn btn-primary nic-button" data-toggle="modal" data-target="#viewPerson">
+                                                        <?php
+                                                        use Illuminate\Support\Facades\DB;
+                                                        $citizenDetails = db::table('users')->where('nic',$entry->complainantID)->First();
+                                                        ?>
+
+                                                        <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->evidences }}<br>-------------------<br>Submitted by Registered {{$citizenDetails->role}} {{$citizenDetails->name}} on {{$entry->created_at}} <button type="button" value="{{ $entry->complainantID }}" id="nicbutton" class="btn btn-primary nic-button" data-toggle="modal" data-target="#viewPerson">
                                                                 {{ $entry->complainantID }}
                                                             </button></p>
                                                         @foreach($evidences as $evidence)
-                                                            <p contenteditable="false" class="w3-border w3-padding" >{{ $evidence->evidence_txt }}<br>Submitted by :
-                                                                {{--<input type="hidden" name="{{ $evidence->witnessId }}" value="{{ $evidence->witnessId }}">--}}
+                                                                <?php
+                                                                $citizenDetails2 = db::table('users')->where('nic',$evidence->witnessId)->First();
+                                                                ?>
+                                                            @if($evidence->evidence_txt=="Image Evidence")
+                                                                        <p contenteditable="false" class="w3-border w3-padding" >
+                                                                    @for($i=1;$i<=$evidence->evidence_image_count;$i++)
+                                                                        <img style="width: 25%;height: 150px;margin: 5px" src='{{asset("/evidences/$entry->entryID/$evidence->evidence_image/".$i.'.jpg')}}' style="width:100%" alt="{{$entry->entryID}}">
+
+                                                                    @endfor
+                                                                        <br>-------------------<br>Submitted by {{$citizenDetails2->role}} {{$citizenDetails2->name}} on {{$evidence->created_at}}
+                                                                        <button type="button" value="{{ $evidence->witnessId }}" id="nicbutton" class="btn btn-primary nic-button" data-toggle="modal" data-target="#viewPerson">
+                                                                            {{ $evidence->witnessId }}
+                                                                        </button>
+                                                                        </p>
+
+                                                                @endif
+                                                                @if($evidence->evidence_txt!="Image Evidence")
+                                                            <p contenteditable="false" class="w3-border w3-padding" >{{ $evidence->evidence_txt }}<br>Submitted by {{$citizenDetails2->role}} {{$citizenDetails2->name}} on {{$evidence->created_at}}
                                                                 <button type="button" value="{{ $evidence->witnessId }}" id="nicbutton" class="btn btn-primary nic-button" data-toggle="modal" data-target="#viewPerson">
                                                                     {{ $evidence->witnessId }}
                                                                 </button>
                                                             </p>
+                                                                    @endif
                                                         @endforeach
                                                     </div>
                                                 </div>
@@ -139,7 +161,7 @@
                                                                 <label class="col-md-3 col-form-label text-md-right">{{ __('Current Branch') }}</label>
 
                                                                 <div class="col-md-6">
-                                                                    <input type="text" class="form-control"value="{{ $entry->branch }}" readonly>
+                                                                    <input type="text" class="form-control"value="{{ $currentBranch->OfficeName }}" readonly>
                                                                 </div>
                                                             </div>
                                                         @endif
@@ -155,16 +177,20 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="profileImage" class="col-md-3 col-form-label text-md-right">{{ __('Profile Image') }}</label>
+                                                            <label for="profileImage" class="col-md-3 col-form-label text-md-right">{{ __('Evidence Images') }}</label>
 
                                                             <div class="col-md-6">
-                                                                <input type="file"  class="form-control" accept="image/*" name="profileImage" style="height: 100%">
+                                                                <input type="file"  class="form-control" accept="image/*" name="evidenceImage[]" style="height: 100%" multiple>
 
                                                                 @if ($errors->has('landNumber'))
                                                                     <span class="invalid-feedback" role="alert">
                                                                     <strong>{{ $errors->first('landNumber') }}</strong>
                                                                     </span>
                                                                 @endif
+                                                            </div>
+                                                            <div class="form-check col-md-3">
+                                                                <input type="checkbox" class="form-check-input" name="evidenceImageCitizenView" value="Yes" id="exampleCheck1">
+                                                                <label class="form-check-label" for="exampleCheck1">Allow Submitter to View</label>
                                                             </div>
                                                         </div>
 
@@ -348,6 +374,16 @@
                 <div class="modal-body">
                     <form method="post" action="removeFormView" enctype="multipart/form-data">
                         @csrf
+                        {{--<div class="form-group row">--}}
+                            {{--<div class="col-md-3">--}}
+                            {{--</div>--}}
+                            {{--<div class="col-md-6" style="align-content: center">--}}
+                                {{--<img src='{{asset('/userProfileImages/'.$citizenDetails->nic.'.jpg')}}' class="user-image" alt="User Image">--}}
+
+                            {{--</div>--}}
+                            {{--<div class="col-md-3"></div>--}}
+                        {{--</div>--}}
+
                         <div class="form-group row">
                             <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('NIC') }}</label>
 
@@ -418,9 +454,9 @@
                         </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Check') }}
-                                </button>
+                                {{--<button type="submit" class="btn btn-primary">--}}
+                                    {{--{{ __('Check') }}--}}
+                                {{--</button>--}}
                             </div>
                         </div>
                     </form>

@@ -24,6 +24,7 @@ class CreateMessagesTable extends Migration
             $table->string('oicNotification');
             $table->string('doigNotification');
             $table->string('igpNotification');
+            $table->string('exColumn1')->nullable();
             $table->timestamps();
         });
     }

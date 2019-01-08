@@ -22,6 +22,7 @@ class CreatePoliceOfficesTable extends Migration
             $table->string('landNumber');
             $table->string('mainOfficer');
             $table->string('headPoliceOffice');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

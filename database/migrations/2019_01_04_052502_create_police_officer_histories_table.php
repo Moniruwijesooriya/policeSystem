@@ -20,7 +20,7 @@ class CreatePoliceOfficerHistoriesTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('nic');
+            $table->string('nic')->unique();
             $table->date('dob')->nullable();
             $table->text('address');
             $table->string('mobileNumber');
@@ -30,7 +30,6 @@ class CreatePoliceOfficerHistoriesTable extends Migration
             $table->String('token');
             $table->string('profession');
             $table->string('policeOffice')->nullable();
-            $table->string('verified');
             $table->timestamps();
         });
     }

@@ -118,6 +118,7 @@
             <span class="logo-mini"><b>OIC</b></span>
             {{-- <!-- logo for regular state and mobile devices --> --}}
             <span class="logo-lg"><b>OIC</b> PANEL</span>
+
         </a>
         {{-- <!-- Header Navbar: style can be found in header.less --> --}}
         <nav class="navbar navbar-static-top">
@@ -130,84 +131,88 @@
                 <ul class="nav navbar-nav">
                     {{-- <!-- Messages: style can be found in dropdown.less--> --}}
                     <?php
+                    $nic=Auth::User()->nic;
+                    $citizenDetails = db::table('users')->where('nic',$nic)->First();
+                    ?>
+                    <?php
                     $loggedUser=db::table('users')->where('nic',Auth::User()->nic)->first();
                     ?>
-                    <li class="dropdown messages-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-envelope-o"></i>
-                            <span class="label label-success">4</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="header">You have 4 messages</li>
-                            <li>
+                    {{--<li class="dropdown messages-menu">--}}
+                        {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown">--}}
+                            {{--<i class="fa fa-envelope-o"></i>--}}
+                            {{--<span class="label label-success">4</span>--}}
+                        {{--</a>--}}
+                        {{--<ul class="dropdown-menu">--}}
+                            {{--<li class="header">You have 4 messages</li>--}}
+                            {{--<li>--}}
                                 {{-- <!-- inner menu: contains the actual data --> --}}
-                                <ul class="menu">
+                                {{--<ul class="menu">--}}
                                     {{-- <li><!-- start message --> --}}
-                                        <a href="#">
-                                            <div class="pull-left">
-                                                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                                            </div>
-                                            <h4>
-                                                Support Team
-                                                <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                                            </h4>
-                                            <p>Why not buy a new awesome theme?</p>
-                                        </a>
-                                    </li>
+                                        {{--<a href="#">--}}
+                                            {{--<div class="pull-left">--}}
+                                                {{--<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">--}}
+                                            {{--</div>--}}
+                                            {{--<h4>--}}
+                                                {{--Support Team--}}
+                                                {{--<small><i class="fa fa-clock-o"></i> 5 mins</small>--}}
+                                            {{--</h4>--}}
+                                            {{--<p>Why not buy a new awesome theme?</p>--}}
+                                        {{--</a>--}}
+                                    {{--</li>--}}
                                     {{-- <!-- end message --> --}}
-                                    <li>
-                                        <a href="#">
-                                            <div class="pull-left">
-                                                <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                                            </div>
-                                            <h4>
-                                                AdminLTE Design Team
-                                                <small><i class="fa fa-clock-o"></i> 2 hours</small>
-                                            </h4>
-                                            <p>Why not buy a new awesome theme?</p>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="pull-left">
-                                                <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                                            </div>
-                                            <h4>
-                                                Developers
-                                                <small><i class="fa fa-clock-o"></i> Today</small>
-                                            </h4>
-                                            <p>Why not buy a new awesome theme?</p>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="pull-left">
-                                                <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                                            </div>
-                                            <h4>
-                                                Sales Department
-                                                <small><i class="fa fa-clock-o"></i> Yesterday</small>
-                                            </h4>
-                                            <p>Why not buy a new awesome theme?</p>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="pull-left">
-                                                <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                                            </div>
-                                            <h4>
-                                                Reviewers
-                                                <small><i class="fa fa-clock-o"></i> 2 days</small>
-                                            </h4>
-                                            <p>Why not buy a new awesome theme?</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="footer"><a href="#">See All Messages</a></li>
-                        </ul>
-                    </li>
+                                    {{--<li>--}}
+                                        {{--<a href="#">--}}
+                                            {{--<div class="pull-left">--}}
+                                                {{--<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">--}}
+                                            {{--</div>--}}
+                                            {{--<h4>--}}
+                                                {{--AdminLTE Design Team--}}
+                                                {{--<small><i class="fa fa-clock-o"></i> 2 hours</small>--}}
+                                            {{--</h4>--}}
+                                            {{--<p>Why not buy a new awesome theme?</p>--}}
+                                        {{--</a>--}}
+                                    {{--</li>--}}
+                                    {{--<li>--}}
+                                        {{--<a href="#">--}}
+                                            {{--<div class="pull-left">--}}
+                                                {{--<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">--}}
+                                            {{--</div>--}}
+                                            {{--<h4>--}}
+                                                {{--Developers--}}
+                                                {{--<small><i class="fa fa-clock-o"></i> Today</small>--}}
+                                            {{--</h4>--}}
+                                            {{--<p>Why not buy a new awesome theme?</p>--}}
+                                        {{--</a>--}}
+                                    {{--</li>--}}
+                                    {{--<li>--}}
+                                        {{--<a href="#">--}}
+                                            {{--<div class="pull-left">--}}
+                                                {{--<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">--}}
+                                            {{--</div>--}}
+                                            {{--<h4>--}}
+                                                {{--Sales Department--}}
+                                                {{--<small><i class="fa fa-clock-o"></i> Yesterday</small>--}}
+                                            {{--</h4>--}}
+                                            {{--<p>Why not buy a new awesome theme?</p>--}}
+                                        {{--</a>--}}
+                                    {{--</li>--}}
+                                    {{--<li>--}}
+                                        {{--<a href="#">--}}
+                                            {{--<div class="pull-left">--}}
+                                                {{--<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">--}}
+                                            {{--</div>--}}
+                                            {{--<h4>--}}
+                                                {{--Reviewers--}}
+                                                {{--<small><i class="fa fa-clock-o"></i> 2 days</small>--}}
+                                            {{--</h4>--}}
+                                            {{--<p>Why not buy a new awesome theme?</p>--}}
+                                        {{--</a>--}}
+                                    {{--</li>--}}
+                                {{--</ul>--}}
+                            {{--</li>--}}
+                            {{--<li class="footer"><a href="#">See All Messages</a></li>--}}
+                        {{--</ul>--}}
+                    {{--</li>--}}
                     {{-- <!-- Notifications: style can be found in dropdown.less --> --}}
                     <li class="dropdown notifications-menu">
                         <?php
@@ -219,7 +224,7 @@
                         </a>
                         <ul class="dropdown-menu">
 
-                            <li class="header">You have {{$count}} notifications</li>
+                            <li class="header">You have {{$count}} Requests</li>
                             <li>
                                 {{-- <!-- inner menu: contains the actual data --> --}}
 
@@ -246,7 +251,6 @@
                         </ul>
                     </li>
                     {{-- <!-- Tasks: style can be found in dropdown.less --> --}}
-                    {{-- herrrrrrrrrrrrrrrreeeeeeeeeeeeeeee --}}
                     <li class="dropdown tasks-menu">
                         <?php
                         $entryCount=db::table('entries')->where('oicNotification',"y")->where('nearestPoliceStation',$loggedUser->policeOffice)->count()
@@ -256,7 +260,7 @@
                             <span class="label label-danger">{{$entryCount}}</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="header">You have {{$entryCount}} tasks</li>
+                            <li class="header">You have {{$entryCount}} Entries</li>
                             <li>
                                 {{-- <!-- inner menu: contains the actual data --> --}}
                                 <ul class="menu">
@@ -282,43 +286,51 @@
                     {{-- <!-- User Account: style can be found in dropdown.less --> --}}
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <img src='{{asset('/userProfileImages/'.$citizenDetails->nic.'.jpg')}}' class="user-image" alt="User Image">
                             <span class="hidden-xs">{{Auth::User()->name}}</span>
                         </a>
                         <ul class="dropdown-menu">
                             {{-- <!-- User image --> --}}
                             <li class="user-header">
-                                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                <img src='{{asset('/userProfileImages/'.$citizenDetails->nic.'.jpg')}}' class="img-circle" alt="User Image">
 
                                 <p>
                                     {{Auth::User()->name}}
                                     <small>{{Auth::User()->profession}}</small>
+                                    <small>{{Auth::User()->policeOffice}}</small>
                                 </p>
                             </li>
                             {{-- <!-- Menu Body --> --}}
-                            <li class="user-body">
-                                <div class="row">
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Followers</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Sales</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Friends</a>
-                                    </div>
+                            <li class="user-body" style="background-color:lightgrey">
+
+                                <div>
+                                    <a href="oicProfileFormView" class="btn btn-default btn-flat" style="width:100%">Profile</a>
                                 </div>
+                                <br>
+                                <div>
+                                    <a href="deactivateOICFormView" class="btn btn-default btn-flat" style="width:100%">Deactivate Account</a>
+                                </div>
+                                <br>
+                                <div>
+                                    <a href="changeOICPasswordFormView" class="btn btn-default btn-flat" style="width:100%">Change Password</a>
+                                </div>
+                                <br>
+                                <div>
+                                    <a href="logout" class="btn btn-default btn-flat" style="width:100%">Sign out</a>
+                                </div>
+                                <!-- /.row -->
+                            </li>
                                 {{-- <!-- /.row --> --}}
                             </li>
                             {{-- <!-- Menu Footer--> --}}
-                            <li class="user-footer">
-                                <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                </div>
-                                <div class="pull-right">
-                                    <a href="logout" class="btn btn-default btn-flat">Sign out</a>
-                                </div>
-                            </li>
+                            {{--<li class="user-footer">--}}
+                                {{--<div class="pull-left">--}}
+                                    {{--<a href="#" class="btn btn-default btn-flat">Profile</a>--}}
+                                {{--</div>--}}
+                                {{--<div class="pull-right">--}}
+                                    {{--<a href="logout" class="btn btn-default btn-flat">Sign out</a>--}}
+                                {{--</div>--}}
+                            {{--</li>--}}
                         </ul>
                     </li>
                     {{-- <!-- Control Sidebar Toggle Button --> --}}
@@ -336,10 +348,11 @@
             {{-- <!-- Sidebar user panel --> --}}
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    <img src='{{asset('/userProfileImages/'.$citizenDetails->nic.'.jpg')}}' class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
                     <p>{{Auth::User()->name}}</p>
+                    {{--<p><small>{{Auth::User()->policeOffice}}</small></p>--}}
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
@@ -419,8 +432,7 @@
         <div class="pull-right hidden-xs">
             <b>Version</b> 1.0
         </div>
-        <strong>Copyright &copy; 2019  Group 26</strong> All rights
-        reserved.
+        <strong>Crime Reporting System  Group 26</strong>
     </footer>
     {{-- <!-- Control Sidebar --> --}}
     <aside class="control-sidebar control-sidebar-dark">
@@ -457,17 +469,17 @@
                             </div>
                         </a>
                     </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+                    {{--<li>--}}
+                        {{--<a href="javascript:void(0)">--}}
+                            {{--<i class="menu-icon fa fa-envelope-o bg-light-blue"></i>--}}
 
-                            <div class="menu-info">
-                                <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+                            {{--<div class="menu-info">--}}
+                                {{--<h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>--}}
 
-                                <p>nora@example.com</p>
-                            </div>
-                        </a>
-                    </li>
+                                {{--<p>nora@example.com</p>--}}
+                            {{--</div>--}}
+                        {{--</a>--}}
+                    {{--</li>--}}
                     <li>
                         <a href="javascript:void(0)">
                             <i class="menu-icon fa fa-file-code-o bg-green"></i>

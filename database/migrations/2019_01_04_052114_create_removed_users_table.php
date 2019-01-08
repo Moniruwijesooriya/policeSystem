@@ -19,7 +19,7 @@ class CreateRemovedUsersTable extends Migration
             $table->string('fullName');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at');
-            $table->string('nic');
+            $table->string('nic')->unique();
             $table->date('dob');
             $table->text('address');
             $table->string('mobileNumber');
