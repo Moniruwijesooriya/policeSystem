@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CrimeCategories;
+use App\Http\Requests\RegistrationValidation;
 use App\PoliceOffice;
 use Illuminate\Http\Request;
 use App\User;
@@ -33,7 +34,7 @@ class AdminController extends Controller
         return view('admin.adminHome',compact('divisionPoliceOffices','policeStationOffices','branchPoliceOffices'));
 
     }
-    public function registerPoliceOfficer(Request $request){
+    public function registerPoliceOfficer(RegistrationValidation $request){
 
         $policeOfficer=new User();
         $policeOfficer->name=$request->name;

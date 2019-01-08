@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Requests;
-
-use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\NicValidation;
 
-class citizenRegistrationValidation extends FormRequest
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class RegistrationValidation extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
