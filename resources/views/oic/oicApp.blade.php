@@ -130,6 +130,10 @@
                 <ul class="nav navbar-nav">
                     {{-- <!-- Messages: style can be found in dropdown.less--> --}}
                     <?php
+                    $nic=Auth::User()->nic;
+                    $citizenDetails = db::table('users')->where('nic',$nic)->First();
+                    ?>
+                    <?php
                     $loggedUser=db::table('users')->where('nic',Auth::User()->nic)->first();
                     ?>
                     <li class="dropdown messages-menu">
@@ -246,7 +250,6 @@
                         </ul>
                     </li>
                     {{-- <!-- Tasks: style can be found in dropdown.less --> --}}
-                    {{-- herrrrrrrrrrrrrrrreeeeeeeeeeeeeeee --}}
                     <li class="dropdown tasks-menu">
                         <?php
                         $entryCount=db::table('entries')->where('oicNotification',"y")->where('nearestPoliceStation',$loggedUser->policeOffice)->count()
@@ -282,13 +285,13 @@
                     {{-- <!-- User Account: style can be found in dropdown.less --> --}}
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <img src='{{asset('/userProfileImages/'.$citizenDetails->nic.'.jpg')}}' class="user-image" alt="User Image">
                             <span class="hidden-xs">{{Auth::User()->name}}</span>
                         </a>
                         <ul class="dropdown-menu">
                             {{-- <!-- User image --> --}}
                             <li class="user-header">
-                                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                <img src='{{asset('/userProfileImages/'.$citizenDetails->nic.'.jpg')}}' class="img-circle" alt="User Image">
 
                                 <p>
                                     {{Auth::User()->name}}
@@ -343,7 +346,7 @@
             {{-- <!-- Sidebar user panel --> --}}
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    <img src='{{asset('/userProfileImages/'.$citizenDetails->nic.'.jpg')}}' class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
                     <p>{{Auth::User()->name}}</p>
