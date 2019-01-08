@@ -39,6 +39,9 @@ class OICController extends Controller
             DB::table('users')
                 ->where('nic',$request->nic)
                 ->update(['password'=>Hash::make($request->newpassword)]);
+            DB::table('users')
+                ->where('nic',$request->nic)
+                ->update(['email_verified_at'=>"2019-01-03 00:00:00"]);
             $nic=Auth::User()->nic;
             $oicDetails = db::table('users')->where('nic',$nic)->First();
             $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
