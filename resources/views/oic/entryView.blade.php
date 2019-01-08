@@ -46,7 +46,7 @@
                                                                 ?>
                                                             @if($evidence->evidence_txt=="Image Evidence")
                                                                         <p contenteditable="false" class="w3-border w3-padding" >
-                                                                    @for($i=1;$i<=$evidence->evidence_image_count;$i++)
+                                                                    @for($i=1;$i<$evidence->evidence_image_count;$i++)
                                                                         <img style="width: 25%;height: 150px;margin: 5px" src='{{asset("/evidences/$entry->entryID/$evidence->evidence_image/".$i.'.jpg')}}' style="width:100%" alt="{{$entry->entryID}}">
 
                                                                     @endfor
