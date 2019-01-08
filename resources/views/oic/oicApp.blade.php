@@ -299,29 +299,36 @@
                                 </p>
                             </li>
                             {{-- <!-- Menu Body --> --}}
-                            <li class="user-body">
-                                <div class="row">
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Followers</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Sales</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Friends</a>
-                                    </div>
+                            <li class="user-body" style="background-color:lightgrey">
+
+                                <div>
+                                    <a href="oicProfileFormView" class="btn btn-default btn-flat" style="width:100%">Profile</a>
                                 </div>
+                                <br>
+                                <div>
+                                    <a href="deactivateOICFormView" class="btn btn-default btn-flat" style="width:100%">Deactivate Account</a>
+                                </div>
+                                <br>
+                                <div>
+                                    <a href="changeOICPasswordFormView" class="btn btn-default btn-flat" style="width:100%">Change Password</a>
+                                </div>
+                                <br>
+                                <div>
+                                    <a href="logout" class="btn btn-default btn-flat" style="width:100%">Sign out</a>
+                                </div>
+                                <!-- /.row -->
+                            </li>
                                 {{-- <!-- /.row --> --}}
                             </li>
                             {{-- <!-- Menu Footer--> --}}
-                            <li class="user-footer">
-                                <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                </div>
-                                <div class="pull-right">
-                                    <a href="logout" class="btn btn-default btn-flat">Sign out</a>
-                                </div>
-                            </li>
+                            {{--<li class="user-footer">--}}
+                                {{--<div class="pull-left">--}}
+                                    {{--<a href="#" class="btn btn-default btn-flat">Profile</a>--}}
+                                {{--</div>--}}
+                                {{--<div class="pull-right">--}}
+                                    {{--<a href="logout" class="btn btn-default btn-flat">Sign out</a>--}}
+                                {{--</div>--}}
+                            {{--</li>--}}
                         </ul>
                     </li>
                     {{-- <!-- Control Sidebar Toggle Button --> --}}

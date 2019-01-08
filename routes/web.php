@@ -182,8 +182,8 @@ Route::get('/viewClosedAccounts',[
     'as'=>'viewClosedAccounts'
 ])->middleware('auth');
 
-Route::post('/oicPasswordChange',[
-    'uses'=>'OICController@oicPasswordChange',
+Route::get('/changeOICPasswordFormView',[
+    'uses'=>'OICController@changeOICPasswordFormView',
     'as'=>'oicPasswordChange'
 ]);
 Route::post('/manageCitizen',[
@@ -194,6 +194,28 @@ Route::post('/viewBranch',[
     'uses'=>'OICController@viewBranch',
     'as'=>'viewBranch'
 ]);
+Route::get('/oicProfileFormView',[
+    'uses'=>'OICController@oicProfileFormView',
+    'as'=>'oicProfileFormView'
+])->middleware('auth');
+
+Route::post('/updateProfile',[
+    'uses'=>'OICController@oicProfileUpdate',
+    'as'=>'updateProfile'
+])->middleware('auth');
+
+
+Route::post('/oicPasswordChange',[
+    'uses'=>'OICController@oicPasswordChange',
+    'as'=>'oicPasswordChange'
+])->middleware('auth');
+
+
+Route::post('/oicAccountDeactivate',[
+    'uses'=>'OICController@oicAccountDeactivate',
+    'as'=>'oicAccountDeactivate'
+])->middleware('auth');
+
 
 
 
@@ -202,6 +224,12 @@ Route::get('/viewClosedEntries',[
     'uses'=>'EntryController@viewClosedEntries',
     'as'=>'ClosedEntries'
 ])->middleware('auth');
+
+Route::get('/deactivateOICFormView',[
+    'uses'=>'OICController@deactivateOICFormView',
+    'as'=>'deactivateOICFormView'
+])->middleware('auth');
+
 
 //admin////////////////////
 

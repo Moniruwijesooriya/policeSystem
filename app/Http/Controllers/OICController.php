@@ -120,4 +120,61 @@ class OICController extends Controller
 
     }
 
+    public function oicProfileFormView(){
+        $nic=Auth::User()->nic;
+        $oicDetails = db::table('users')->where('nic',$nic)->First();
+        $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
+        return view('oic.oicProfileForm',compact('oicDetails','branches'));
+    }
+    public function oicProfileUpdate(Request $request)
+    {
+
+       $result= DB::table('users')
+
+            ->where('nic', $request->nic)
+            ->update(['address' => $request->homeAddress, 'mobileNumber' => $request->mobNumber, 'landLineNumber' => $request->landNumber, 'email' => $request->email]);
+        if($result){
+            $nic=Auth::User()->nic;
+            $oicDetails = db::table('users')->where('nic',$nic)->First();
+            $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
+            return view('oic.oicProfileForm',compact('oicDetails','branches'));
+
+        }
+
+
+    }
+    public function deactivateOICFormView(){
+        $nic=Auth::User()->nic;
+        $OICDetails = db::table('users')->where('nic',$nic)->First();
+        $branches = db::table('police_offices')->where('headPoliceOffice',$OICDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
+        return view('oic.deactivateOICForm',compact('OICDetails','branches'));
+    }
+    public function changeOICPasswordFormView(){
+        $nic=Auth::User()->nic;
+        $oicDetails = db::table('users')->where('nic',$nic)->First();
+        $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
+        return view('oic.changeOICPasswordForm',compact('oicDetails','branches'));
+    }
+    public function oicAccountDeactivate(Request $request)
+    {
+        $userpassword=$request->password;
+        $oic = db::table('users')->where('nic',$request->nic)->first();
+        if (Hash::check($userpassword,$oic->password)){
+            DB::table('users')->where('nic',$request->nic)->delete();
+            return redirect('/');
+        }
+        else{
+            return redirect('/RegisteredCitizen');
+        }
+
+    }
+//        Session::flash('updateCitizen','Updated successfully!');//if
+//
+//        Session::flash('msg2','Updated failed!');//else
+//        $nic=Auth::User()->nic;
+//        $citizenDetails = db::table('users')->where('nic',$nic)->First();
+//        $crimeCategories = db::table('crime_categories')->where('citizenView',"Yes")->get();
+//
+//        return view('registeredCitizen.index',compact('message','citizenDetails','crimeCategories'));
+
 }
