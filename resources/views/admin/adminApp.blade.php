@@ -16,9 +16,12 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Styles -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -432,8 +435,7 @@
         <div class="pull-right hidden-xs">
             <b>Version</b> 1.0
         </div>
-        <strong>Copyright &copy; 2019  Group 26</strong> All rights
-        reserved.
+        <strong>Crime Reporting System  Group 26</strong>
     </footer>
     <!-- Control Sidebar -->
     {{--<aside class="control-sidebar control-sidebar-dark">--}}
@@ -551,76 +553,76 @@
             </div>
             <!-- /.tab-pane -->
             <!-- Stats tab content -->
-            <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+            {{--<div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>--}}
             <!-- /.tab-pane -->
             <!-- Settings tab content -->
-            <div class="tab-pane" id="control-sidebar-settings-tab">
-                <form method="post">
-                    <h3 class="control-sidebar-heading">General Settings</h3>
+            {{--<div class="tab-pane" id="control-sidebar-settings-tab">--}}
+                {{--<form method="post">--}}
+                    {{--<h3 class="control-sidebar-heading">General Settings</h3>--}}
 
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Report panel usage
-                            <input type="checkbox" class="pull-right" checked>
-                        </label>
+                    {{--<div class="form-group">--}}
+                        {{--<label class="control-sidebar-subheading">--}}
+                            {{--Report panel usage--}}
+                            {{--<input type="checkbox" class="pull-right" checked>--}}
+                        {{--</label>--}}
 
-                        <p>
-                            Some information about this general settings option
-                        </p>
-                    </div>
-                    <!-- /.form-group -->
+                        {{--<p>--}}
+                            {{--Some information about this general settings option--}}
+                        {{--</p>--}}
+                    {{--</div>--}}
+                    {{--<!-- /.form-group -->--}}
 
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Allow mail redirect
-                            <input type="checkbox" class="pull-right" checked>
-                        </label>
+                    {{--<div class="form-group">--}}
+                        {{--<label class="control-sidebar-subheading">--}}
+                            {{--Allow mail redirect--}}
+                            {{--<input type="checkbox" class="pull-right" checked>--}}
+                        {{--</label>--}}
 
-                        <p>
-                            Other sets of options are available
-                        </p>
-                    </div>
-                    <!-- /.form-group -->
+                        {{--<p>--}}
+                            {{--Other sets of options are available--}}
+                        {{--</p>--}}
+                    {{--</div>--}}
+                    {{--<!-- /.form-group -->--}}
 
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Expose author name in posts
-                            <input type="checkbox" class="pull-right" checked>
-                        </label>
+                    {{--<div class="form-group">--}}
+                        {{--<label class="control-sidebar-subheading">--}}
+                            {{--Expose author name in posts--}}
+                            {{--<input type="checkbox" class="pull-right" checked>--}}
+                        {{--</label>--}}
 
-                        <p>
-                            Allow the user to show his name in blog posts
-                        </p>
-                    </div>
-                    <!-- /.form-group -->
+                        {{--<p>--}}
+                            {{--Allow the user to show his name in blog posts--}}
+                        {{--</p>--}}
+                    {{--</div>--}}
+                    {{--<!-- /.form-group -->--}}
 
-                    <h3 class="control-sidebar-heading">Chat Settings</h3>
+                    {{--<h3 class="control-sidebar-heading">Chat Settings</h3>--}}
 
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Show me as online
-                            <input type="checkbox" class="pull-right" checked>
-                        </label>
-                    </div>
-                    <!-- /.form-group -->
+                    {{--<div class="form-group">--}}
+                        {{--<label class="control-sidebar-subheading">--}}
+                            {{--Show me as online--}}
+                            {{--<input type="checkbox" class="pull-right" checked>--}}
+                        {{--</label>--}}
+                    {{--</div>--}}
+                    {{--<!-- /.form-group -->--}}
 
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Turn off notifications
-                            <input type="checkbox" class="pull-right">
-                        </label>
-                    </div>
-                    <!-- /.form-group -->
+                    {{--<div class="form-group">--}}
+                        {{--<label class="control-sidebar-subheading">--}}
+                            {{--Turn off notifications--}}
+                            {{--<input type="checkbox" class="pull-right">--}}
+                        {{--</label>--}}
+                    {{--</div>--}}
+                    {{--<!-- /.form-group -->--}}
 
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Delete chat history
-                            <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
-                        </label>
-                    </div>
-                    <!-- /.form-group -->
-                </form>
-            </div>
+                    {{--<div class="form-group">--}}
+                        {{--<label class="control-sidebar-subheading">--}}
+                            {{--Delete chat history--}}
+                            {{--<a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>--}}
+                        {{--</label>--}}
+                    {{--</div>--}}
+                    {{--<!-- /.form-group -->--}}
+                {{--</form>--}}
+            {{--</div>--}}
             <!-- /.tab-pane -->
         </div>
     </aside>

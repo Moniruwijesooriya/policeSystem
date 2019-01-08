@@ -225,7 +225,8 @@
                     {{-- <!-- Tasks: style can be found in dropdown.less --> --}}
                     <li class="dropdown tasks-menu">
                         <?php
-                        $entryCount=db::table('entries')->where('boicNotification',"y")->where('nearestPoliceStation',$loggedUser->policeOffice)->count()
+                        $boicPoliceOffice=db::table('police_offices')->where('OfficeName',$citizenDetails->policeOffice)->first();
+                        $entryCount=db::table('entries')->where('boicNotification',"y")->where('branch',$boicPoliceOffice->id)->count()
                         ?>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-flag-o"></i>
@@ -237,14 +238,15 @@
                                 {{-- <!-- inner menu: contains the actual data --> --}}
                                 <ul class="menu">
                                     <?php
-                                    $entryNotification=db::table('entries')->where('boicNotification',"y")->where('nearestPoliceStation',$loggedUser->policeOffice)->get();
+
+                                    $entryNotification=db::table('entries')->where('boicNotification',"y")->where('branch',$boicPoliceOffice->id)->get();
                                     ?>
                                     @foreach($entryNotification as $notifi)
                                         <li>
                                             <form method="post" action="{{'viewBOICEntry'}}">
                                                 @csrf
                                                 <input type="hidden" value="{{$notifi->entryID}}" name="entryID">
-                                                <input type="submit" class="btn-link" value="{{$notifi->complainantID}} received an entry">
+                                                <input type="submit" class="btn-link" value="Entry ID:{{$notifi->entryID}} is received">
                                             </form>
                                         </li>
                                     @endforeach
