@@ -93,7 +93,7 @@ Route::post('/updateCitizenEntry',[
     'uses'=>'EntryController@updateCitizenEntry',
     'as'=>'updateCitizenEntry'
 ])->middleware('auth');
-Route::get('/registerCitizen',[
+Route::post('/registerCitizen',[
     'uses'=>'CitizenController@registerCitizen',
     'as'=>'registerCitizen'
 ]);

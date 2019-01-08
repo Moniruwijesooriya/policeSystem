@@ -22,7 +22,7 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>OIC Panel</title>
+    <title>Branch Officer Panel</title>
     {{-- <!-- Tell the browser to be responsive to screen width --> --}}
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     {{-- <!-- Bootstrap 3.3.7 --> --}}
@@ -34,7 +34,7 @@
     {{-- <!-- Theme style --> --}}
     <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
     {{-- <!-- AdminLTE Skins. Choose a skin from the css/skins --}}
-         {{-- folder instead of downloading all of them to reduce the load. --> --}}
+    {{-- folder instead of downloading all of them to reduce the load. --> --}}
     {{-- <link href="{{asset('dist/css/AdminLTE.min.cs')}}"> --}}
     {{--<link href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">--}}
     {{--<link href="{{asset('bower_components/font-awesome/css/font-awesome.min.css')}}">--}}
@@ -48,7 +48,7 @@
     {{--<link href="{{asset('https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js')}}">--}}
     {{--<link href="{{asset('https://oss.maxcdn.com/respond/1.4.2/respond.min.js')}}">--}}
     <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
-    
+
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 
@@ -89,15 +89,15 @@
             -webkit-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
             -o-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
             -ms-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
-        }   
+        }
         /*.tc-left{
             min-width: 15%;
         } */
         .tc-middle{
             min-width: 45%;
             padding-left: 3%;
-            
-        } 
+
+        }
         .tc-right{
             min-width: 40%;
             padding-left: 3%;
@@ -112,12 +112,12 @@
     <header class="main-header">
         {{-- <!-- Logo --> --}}
 
-        <a href="OIC" class="logo">
+        <a href="BOIC" class="logo">
 
             {{-- <!-- mini logo for sidebar mini 50x50 pixels --> --}}
-            <span class="logo-mini"><b>OIC</b></span>
+            <span class="logo-mini"><b>BOIC</b></span>
             {{-- <!-- logo for regular state and mobile devices --> --}}
-            <span class="logo-lg"><b>OIC</b> PANEL</span>
+            <span class="logo-lg"><b>BOIC</b> PANEL</span>
         </a>
         {{-- <!-- Header Navbar: style can be found in header.less --> --}}
         <nav class="navbar navbar-static-top">
@@ -142,74 +142,74 @@
                             <span class="label label-success">4</span>
                         </a>
                         {{--<ul class="dropdown-menu">--}}
-                            {{--<li class="header">You have 4 messages</li>--}}
-                            {{--<li>--}}
-                                {{-- <!-- inner menu: contains the actual data --> --}}
-                                {{--<ul class="menu">--}}
-                                    {{-- <li><!-- start message --> --}}
-                                        {{--<a href="#">--}}
-                                            {{--<div class="pull-left">--}}
-                                                {{--<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">--}}
-                                            {{--</div>--}}
-                                            {{--<h4>--}}
-                                                {{--Support Team--}}
-                                                {{--<small><i class="fa fa-clock-o"></i> 5 mins</small>--}}
-                                            {{--</h4>--}}
-                                            {{--<p>Why not buy a new awesome theme?</p>--}}
-                                        {{--</a>--}}
-                                    {{--</li>--}}
-                                    {{-- <!-- end message --> --}}
-                                    {{--<li>--}}
-                                        {{--<a href="#">--}}
-                                            {{--<div class="pull-left">--}}
-                                                {{--<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">--}}
-                                            {{--</div>--}}
-                                            {{--<h4>--}}
-                                                {{--AdminLTE Design Team--}}
-                                                {{--<small><i class="fa fa-clock-o"></i> 2 hours</small>--}}
-                                            {{--</h4>--}}
-                                            {{--<p>Why not buy a new awesome theme?</p>--}}
-                                        {{--</a>--}}
-                                    {{--</li>--}}
-                                    {{--<li>--}}
-                                        {{--<a href="#">--}}
-                                            {{--<div class="pull-left">--}}
-                                                {{--<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">--}}
-                                            {{--</div>--}}
-                                            {{--<h4>--}}
-                                                {{--Developers--}}
-                                                {{--<small><i class="fa fa-clock-o"></i> Today</small>--}}
-                                            {{--</h4>--}}
-                                            {{--<p>Why not buy a new awesome theme?</p>--}}
-                                        {{--</a>--}}
-                                    {{--</li>--}}
-                                    {{--<li>--}}
-                                        {{--<a href="#">--}}
-                                            {{--<div class="pull-left">--}}
-                                                {{--<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">--}}
-                                            {{--</div>--}}
-                                            {{--<h4>--}}
-                                                {{--Sales Department--}}
-                                                {{--<small><i class="fa fa-clock-o"></i> Yesterday</small>--}}
-                                            {{--</h4>--}}
-                                            {{--<p>Why not buy a new awesome theme?</p>--}}
-                                        {{--</a>--}}
-                                    {{--</li>--}}
-                                    {{--<li>--}}
-                                        {{--<a href="#">--}}
-                                            {{--<div class="pull-left">--}}
-                                                {{--<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">--}}
-                                            {{--</div>--}}
-                                            {{--<h4>--}}
-                                                {{--Reviewers--}}
-                                                {{--<small><i class="fa fa-clock-o"></i> 2 days</small>--}}
-                                            {{--</h4>--}}
-                                            {{--<p>Why not buy a new awesome theme?</p>--}}
-                                        {{--</a>--}}
-                                    {{--</li>--}}
-                                {{--</ul>--}}
-                            {{--</li>--}}
-                            {{--<li class="footer"><a href="#">See All Messages</a></li>--}}
+                        {{--<li class="header">You have 4 messages</li>--}}
+                        {{--<li>--}}
+                        {{-- <!-- inner menu: contains the actual data --> --}}
+                        {{--<ul class="menu">--}}
+                        {{-- <li><!-- start message --> --}}
+                        {{--<a href="#">--}}
+                        {{--<div class="pull-left">--}}
+                        {{--<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">--}}
+                        {{--</div>--}}
+                        {{--<h4>--}}
+                        {{--Support Team--}}
+                        {{--<small><i class="fa fa-clock-o"></i> 5 mins</small>--}}
+                        {{--</h4>--}}
+                        {{--<p>Why not buy a new awesome theme?</p>--}}
+                        {{--</a>--}}
+                        {{--</li>--}}
+                        {{-- <!-- end message --> --}}
+                        {{--<li>--}}
+                        {{--<a href="#">--}}
+                        {{--<div class="pull-left">--}}
+                        {{--<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">--}}
+                        {{--</div>--}}
+                        {{--<h4>--}}
+                        {{--AdminLTE Design Team--}}
+                        {{--<small><i class="fa fa-clock-o"></i> 2 hours</small>--}}
+                        {{--</h4>--}}
+                        {{--<p>Why not buy a new awesome theme?</p>--}}
+                        {{--</a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                        {{--<a href="#">--}}
+                        {{--<div class="pull-left">--}}
+                        {{--<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">--}}
+                        {{--</div>--}}
+                        {{--<h4>--}}
+                        {{--Developers--}}
+                        {{--<small><i class="fa fa-clock-o"></i> Today</small>--}}
+                        {{--</h4>--}}
+                        {{--<p>Why not buy a new awesome theme?</p>--}}
+                        {{--</a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                        {{--<a href="#">--}}
+                        {{--<div class="pull-left">--}}
+                        {{--<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">--}}
+                        {{--</div>--}}
+                        {{--<h4>--}}
+                        {{--Sales Department--}}
+                        {{--<small><i class="fa fa-clock-o"></i> Yesterday</small>--}}
+                        {{--</h4>--}}
+                        {{--<p>Why not buy a new awesome theme?</p>--}}
+                        {{--</a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                        {{--<a href="#">--}}
+                        {{--<div class="pull-left">--}}
+                        {{--<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">--}}
+                        {{--</div>--}}
+                        {{--<h4>--}}
+                        {{--Reviewers--}}
+                        {{--<small><i class="fa fa-clock-o"></i> 2 days</small>--}}
+                        {{--</h4>--}}
+                        {{--<p>Why not buy a new awesome theme?</p>--}}
+                        {{--</a>--}}
+                        {{--</li>--}}
+                        {{--</ul>--}}
+                        {{--</li>--}}
+                        {{--<li class="footer"><a href="#">See All Messages</a></li>--}}
                         {{--</ul>--}}
                     </li>
                     {{-- <!-- Notifications: style can be found in dropdown.less --> --}}
@@ -267,13 +267,13 @@
                                     $entryNotification=db::table('entries')->where('oicNotification',"y")->where('nearestPoliceStation',$loggedUser->policeOffice)->get();
                                     ?>
                                     @foreach($entryNotification as $notifi)
-                                            <li>
-                                                <form method="post" action="{{'viewOICEntry'}}">
-                                                    @csrf
-                                                    <input type="hidden" value="{{$notifi->entryID}}" name="entryID">
-                                                    <input type="submit" class="btn-link" value="{{$notifi->complainantID}} submitted a crime">
-                                                </form>
-                                            </li>
+                                        <li>
+                                            <form method="post" action="{{'viewOICEntry'}}">
+                                                @csrf
+                                                <input type="hidden" value="{{$notifi->entryID}}" name="entryID">
+                                                <input type="submit" class="btn-link" value="{{$notifi->complainantID}} submitted a crime">
+                                            </form>
+                                        </li>
                                     @endforeach
                                 </ul>
                             </li>
@@ -318,16 +318,16 @@
                                 </div>
                                 <!-- /.row -->
                             </li>
-                                {{-- <!-- /.row --> --}}
+                            {{-- <!-- /.row --> --}}
                             </li>
                             {{-- <!-- Menu Footer--> --}}
                             {{--<li class="user-footer">--}}
-                                {{--<div class="pull-left">--}}
-                                    {{--<a href="#" class="btn btn-default btn-flat">Profile</a>--}}
-                                {{--</div>--}}
-                                {{--<div class="pull-right">--}}
-                                    {{--<a href="logout" class="btn btn-default btn-flat">Sign out</a>--}}
-                                {{--</div>--}}
+                            {{--<div class="pull-left">--}}
+                            {{--<a href="#" class="btn btn-default btn-flat">Profile</a>--}}
+                            {{--</div>--}}
+                            {{--<div class="pull-right">--}}
+                            {{--<a href="logout" class="btn btn-default btn-flat">Sign out</a>--}}
+                            {{--</div>--}}
                             {{--</li>--}}
                         </ul>
                     </li>
@@ -354,16 +354,16 @@
                 </div>
             </div>
             {{-- <!-- search form --> --}}
-        {{--<form action="#" method="get" class="sidebar-form">--}}
-        {{--<div class="input-group">--}}
-        {{--<input type="text" name="q" class="form-control" placeholder="Search...">--}}
-        {{--<span class="input-group-btn">--}}
-        {{--<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>--}}
-        {{--</button>--}}
-        {{--</span>--}}
-        {{--</div>--}}
-        {{--</form>--}}
-        {{-- <!-- /.search form --> --}}
+            {{--<form action="#" method="get" class="sidebar-form">--}}
+            {{--<div class="input-group">--}}
+            {{--<input type="text" name="q" class="form-control" placeholder="Search...">--}}
+            {{--<span class="input-group-btn">--}}
+            {{--<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>--}}
+            {{--</button>--}}
+            {{--</span>--}}
+            {{--</div>--}}
+            {{--</form>--}}
+            {{-- <!-- /.search form --> --}}
             {{-- <!-- sidebar menu: : style can be found in sidebar.less --> --}}
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="treeview">

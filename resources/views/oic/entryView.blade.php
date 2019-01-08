@@ -374,6 +374,16 @@
                 <div class="modal-body">
                     <form method="post" action="removeFormView" enctype="multipart/form-data">
                         @csrf
+                        {{--<div class="form-group row">--}}
+                            {{--<div class="col-md-3">--}}
+                            {{--</div>--}}
+                            {{--<div class="col-md-6" style="align-content: center">--}}
+                                {{--<img src='{{asset('/userProfileImages/'.$citizenDetails->nic.'.jpg')}}' class="user-image" alt="User Image">--}}
+
+                            {{--</div>--}}
+                            {{--<div class="col-md-3"></div>--}}
+                        {{--</div>--}}
+
                         <div class="form-group row">
                             <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('NIC') }}</label>
 
@@ -444,9 +454,9 @@
                         </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Check') }}
-                                </button>
+                                {{--<button type="submit" class="btn btn-primary">--}}
+                                    {{--{{ __('Check') }}--}}
+                                {{--</button>--}}
                             </div>
                         </div>
                     </form>
