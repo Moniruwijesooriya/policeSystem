@@ -22,7 +22,7 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>OIC Panel</title>
+    <title>Branch Officer Panel</title>
     {{-- <!-- Tell the browser to be responsive to screen width --> --}}
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     {{-- <!-- Bootstrap 3.3.7 --> --}}
@@ -34,7 +34,7 @@
     {{-- <!-- Theme style --> --}}
     <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
     {{-- <!-- AdminLTE Skins. Choose a skin from the css/skins --}}
-         {{-- folder instead of downloading all of them to reduce the load. --> --}}
+    {{-- folder instead of downloading all of them to reduce the load. --> --}}
     {{-- <link href="{{asset('dist/css/AdminLTE.min.cs')}}"> --}}
     {{--<link href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">--}}
     {{--<link href="{{asset('bower_components/font-awesome/css/font-awesome.min.css')}}">--}}
@@ -48,7 +48,7 @@
     {{--<link href="{{asset('https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js')}}">--}}
     {{--<link href="{{asset('https://oss.maxcdn.com/respond/1.4.2/respond.min.js')}}">--}}
     <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
-    
+
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 
@@ -89,15 +89,15 @@
             -webkit-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
             -o-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
             -ms-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
-        }   
+        }
         /*.tc-left{
             min-width: 15%;
         } */
         .tc-middle{
             min-width: 45%;
             padding-left: 3%;
-            
-        } 
+
+        }
         .tc-right{
             min-width: 40%;
             padding-left: 3%;
@@ -112,13 +112,12 @@
     <header class="main-header">
         {{-- <!-- Logo --> --}}
 
-        <a href="OIC" class="logo">
+        <a href="BOIC" class="logo">
 
             {{-- <!-- mini logo for sidebar mini 50x50 pixels --> --}}
-            <span class="logo-mini"><b>OIC</b></span>
+            <span class="logo-mini"><b>BOIC</b></span>
             {{-- <!-- logo for regular state and mobile devices --> --}}
-            <span class="logo-lg"><b>OIC</b> PANEL</span>
-
+            <span class="logo-lg"><b>BOIC</b> PANEL</span>
         </a>
         {{-- <!-- Header Navbar: style can be found in header.less --> --}}
         <nav class="navbar navbar-static-top">
@@ -143,74 +142,74 @@
                             <span class="label label-success">4</span>
                         </a>
                         {{--<ul class="dropdown-menu">--}}
-                            {{--<li class="header">You have 4 messages</li>--}}
-                            {{--<li>--}}
-                                {{-- <!-- inner menu: contains the actual data --> --}}
-                                {{--<ul class="menu">--}}
-                                    {{-- <li><!-- start message --> --}}
-                                        {{--<a href="#">--}}
-                                            {{--<div class="pull-left">--}}
-                                                {{--<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">--}}
-                                            {{--</div>--}}
-                                            {{--<h4>--}}
-                                                {{--Support Team--}}
-                                                {{--<small><i class="fa fa-clock-o"></i> 5 mins</small>--}}
-                                            {{--</h4>--}}
-                                            {{--<p>Why not buy a new awesome theme?</p>--}}
-                                        {{--</a>--}}
-                                    {{--</li>--}}
-                                    {{-- <!-- end message --> --}}
-                                    {{--<li>--}}
-                                        {{--<a href="#">--}}
-                                            {{--<div class="pull-left">--}}
-                                                {{--<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">--}}
-                                            {{--</div>--}}
-                                            {{--<h4>--}}
-                                                {{--AdminLTE Design Team--}}
-                                                {{--<small><i class="fa fa-clock-o"></i> 2 hours</small>--}}
-                                            {{--</h4>--}}
-                                            {{--<p>Why not buy a new awesome theme?</p>--}}
-                                        {{--</a>--}}
-                                    {{--</li>--}}
-                                    {{--<li>--}}
-                                        {{--<a href="#">--}}
-                                            {{--<div class="pull-left">--}}
-                                                {{--<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">--}}
-                                            {{--</div>--}}
-                                            {{--<h4>--}}
-                                                {{--Developers--}}
-                                                {{--<small><i class="fa fa-clock-o"></i> Today</small>--}}
-                                            {{--</h4>--}}
-                                            {{--<p>Why not buy a new awesome theme?</p>--}}
-                                        {{--</a>--}}
-                                    {{--</li>--}}
-                                    {{--<li>--}}
-                                        {{--<a href="#">--}}
-                                            {{--<div class="pull-left">--}}
-                                                {{--<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">--}}
-                                            {{--</div>--}}
-                                            {{--<h4>--}}
-                                                {{--Sales Department--}}
-                                                {{--<small><i class="fa fa-clock-o"></i> Yesterday</small>--}}
-                                            {{--</h4>--}}
-                                            {{--<p>Why not buy a new awesome theme?</p>--}}
-                                        {{--</a>--}}
-                                    {{--</li>--}}
-                                    {{--<li>--}}
-                                        {{--<a href="#">--}}
-                                            {{--<div class="pull-left">--}}
-                                                {{--<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">--}}
-                                            {{--</div>--}}
-                                            {{--<h4>--}}
-                                                {{--Reviewers--}}
-                                                {{--<small><i class="fa fa-clock-o"></i> 2 days</small>--}}
-                                            {{--</h4>--}}
-                                            {{--<p>Why not buy a new awesome theme?</p>--}}
-                                        {{--</a>--}}
-                                    {{--</li>--}}
-                                {{--</ul>--}}
-                            {{--</li>--}}
-                            {{--<li class="footer"><a href="#">See All Messages</a></li>--}}
+                        {{--<li class="header">You have 4 messages</li>--}}
+                        {{--<li>--}}
+                        {{-- <!-- inner menu: contains the actual data --> --}}
+                        {{--<ul class="menu">--}}
+                        {{-- <li><!-- start message --> --}}
+                        {{--<a href="#">--}}
+                        {{--<div class="pull-left">--}}
+                        {{--<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">--}}
+                        {{--</div>--}}
+                        {{--<h4>--}}
+                        {{--Support Team--}}
+                        {{--<small><i class="fa fa-clock-o"></i> 5 mins</small>--}}
+                        {{--</h4>--}}
+                        {{--<p>Why not buy a new awesome theme?</p>--}}
+                        {{--</a>--}}
+                        {{--</li>--}}
+                        {{-- <!-- end message --> --}}
+                        {{--<li>--}}
+                        {{--<a href="#">--}}
+                        {{--<div class="pull-left">--}}
+                        {{--<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">--}}
+                        {{--</div>--}}
+                        {{--<h4>--}}
+                        {{--AdminLTE Design Team--}}
+                        {{--<small><i class="fa fa-clock-o"></i> 2 hours</small>--}}
+                        {{--</h4>--}}
+                        {{--<p>Why not buy a new awesome theme?</p>--}}
+                        {{--</a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                        {{--<a href="#">--}}
+                        {{--<div class="pull-left">--}}
+                        {{--<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">--}}
+                        {{--</div>--}}
+                        {{--<h4>--}}
+                        {{--Developers--}}
+                        {{--<small><i class="fa fa-clock-o"></i> Today</small>--}}
+                        {{--</h4>--}}
+                        {{--<p>Why not buy a new awesome theme?</p>--}}
+                        {{--</a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                        {{--<a href="#">--}}
+                        {{--<div class="pull-left">--}}
+                        {{--<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">--}}
+                        {{--</div>--}}
+                        {{--<h4>--}}
+                        {{--Sales Department--}}
+                        {{--<small><i class="fa fa-clock-o"></i> Yesterday</small>--}}
+                        {{--</h4>--}}
+                        {{--<p>Why not buy a new awesome theme?</p>--}}
+                        {{--</a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                        {{--<a href="#">--}}
+                        {{--<div class="pull-left">--}}
+                        {{--<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">--}}
+                        {{--</div>--}}
+                        {{--<h4>--}}
+                        {{--Reviewers--}}
+                        {{--<small><i class="fa fa-clock-o"></i> 2 days</small>--}}
+                        {{--</h4>--}}
+                        {{--<p>Why not buy a new awesome theme?</p>--}}
+                        {{--</a>--}}
+                        {{--</li>--}}
+                        {{--</ul>--}}
+                        {{--</li>--}}
+                        {{--<li class="footer"><a href="#">See All Messages</a></li>--}}
                         {{--</ul>--}}
                     </li>
                     {{-- <!-- Notifications: style can be found in dropdown.less --> --}}
@@ -222,38 +221,11 @@
                             <i class="fa fa-bell-o"></i>
                             <span class="label label-warning">{{$count}}</span>
                         </a>
-                        <ul class="dropdown-menu">
-
-                            <li class="header">You have {{$count}} Requests</li>
-                            <li>
-                                {{-- <!-- inner menu: contains the actual data --> --}}
-
-                                <ul class="menu">
-
-                                    <?php
-                                    $registerRequestNotification=db::table('users')->where('verified',"No")->where('role',"citizen")->get();
-                                    ?>
-                                    @foreach($registerRequestNotification as $notifi)
-                                        <li>
-                                            <form method="post" action="{{'reviewCitizenRegistrationRequest'}}">
-                                                @csrf
-                                                <input type="hidden" value="{{$notifi->nic}}" name="nic">
-                                                <input type="submit" class="btn-link" value="{{$notifi->nic}} requested a registration request">
-                                            </form>
-                                        </li>
-
-
-                                    @endforeach
-
-                                </ul>
-                            </li>
-                            <li class="footer"><a href="#">View all</a></li>
-                        </ul>
                     </li>
                     {{-- <!-- Tasks: style can be found in dropdown.less --> --}}
                     <li class="dropdown tasks-menu">
                         <?php
-                        $entryCount=db::table('entries')->where('oicNotification',"y")->where('nearestPoliceStation',$loggedUser->policeOffice)->count()
+                        $entryCount=db::table('entries')->where('boicNotification',"y")->where('nearestPoliceStation',$loggedUser->policeOffice)->count()
                         ?>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-flag-o"></i>
@@ -265,16 +237,16 @@
                                 {{-- <!-- inner menu: contains the actual data --> --}}
                                 <ul class="menu">
                                     <?php
-                                    $entryNotification=db::table('entries')->where('oicNotification',"y")->where('nearestPoliceStation',$loggedUser->policeOffice)->get();
+                                    $entryNotification=db::table('entries')->where('boicNotification',"y")->where('nearestPoliceStation',$loggedUser->policeOffice)->get();
                                     ?>
                                     @foreach($entryNotification as $notifi)
-                                            <li>
-                                                <form method="post" action="{{'viewOICEntry'}}">
-                                                    @csrf
-                                                    <input type="hidden" value="{{$notifi->entryID}}" name="entryID">
-                                                    <input type="submit" class="btn-link" value="{{$notifi->complainantID}} submitted a crime">
-                                                </form>
-                                            </li>
+                                        <li>
+                                            <form method="post" action="{{'viewBOICEntry'}}">
+                                                @csrf
+                                                <input type="hidden" value="{{$notifi->entryID}}" name="entryID">
+                                                <input type="submit" class="btn-link" value="{{$notifi->complainantID}} received an entry">
+                                            </form>
+                                        </li>
                                     @endforeach
                                 </ul>
                             </li>
@@ -297,22 +269,21 @@
                                 <p>
                                     {{Auth::User()->name}}
                                     <small>{{Auth::User()->profession}}</small>
-                                    <small>{{Auth::User()->policeOffice}}</small>
                                 </p>
                             </li>
                             {{-- <!-- Menu Body --> --}}
                             <li class="user-body" style="background-color:lightgrey">
 
                                 <div>
-                                    <a href="oicProfileFormView" class="btn btn-default btn-flat" style="width:100%">Profile</a>
+                                    <a href="boicProfileFormView" class="btn btn-default btn-flat" style="width:100%">Profile</a>
                                 </div>
                                 <br>
                                 <div>
-                                    <a href="deactivateOICFormView" class="btn btn-default btn-flat" style="width:100%">Deactivate Account</a>
+                                    <a href="deactivateBOICFormView" class="btn btn-default btn-flat" style="width:100%">Deactivate Account</a>
                                 </div>
                                 <br>
                                 <div>
-                                    <a href="changeOICPasswordFormView" class="btn btn-default btn-flat" style="width:100%">Change Password</a>
+                                    <a href="changeBOICPasswordFormView" class="btn btn-default btn-flat" style="width:100%">Change Password</a>
                                 </div>
                                 <br>
                                 <div>
@@ -320,16 +291,16 @@
                                 </div>
                                 <!-- /.row -->
                             </li>
-                                {{-- <!-- /.row --> --}}
+                            {{-- <!-- /.row --> --}}
                             </li>
                             {{-- <!-- Menu Footer--> --}}
                             {{--<li class="user-footer">--}}
-                                {{--<div class="pull-left">--}}
-                                    {{--<a href="#" class="btn btn-default btn-flat">Profile</a>--}}
-                                {{--</div>--}}
-                                {{--<div class="pull-right">--}}
-                                    {{--<a href="logout" class="btn btn-default btn-flat">Sign out</a>--}}
-                                {{--</div>--}}
+                            {{--<div class="pull-left">--}}
+                            {{--<a href="#" class="btn btn-default btn-flat">Profile</a>--}}
+                            {{--</div>--}}
+                            {{--<div class="pull-right">--}}
+                            {{--<a href="logout" class="btn btn-default btn-flat">Sign out</a>--}}
+                            {{--</div>--}}
                             {{--</li>--}}
                         </ul>
                     </li>
@@ -352,21 +323,20 @@
                 </div>
                 <div class="pull-left info">
                     <p>{{Auth::User()->name}}</p>
-                    <p><small>{{Auth::User()->policeOffice}}</small></p>
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
             {{-- <!-- search form --> --}}
-        {{--<form action="#" method="get" class="sidebar-form">--}}
-        {{--<div class="input-group">--}}
-        {{--<input type="text" name="q" class="form-control" placeholder="Search...">--}}
-        {{--<span class="input-group-btn">--}}
-        {{--<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>--}}
-        {{--</button>--}}
-        {{--</span>--}}
-        {{--</div>--}}
-        {{--</form>--}}
-        {{-- <!-- /.search form --> --}}
+            {{--<form action="#" method="get" class="sidebar-form">--}}
+            {{--<div class="input-group">--}}
+            {{--<input type="text" name="q" class="form-control" placeholder="Search...">--}}
+            {{--<span class="input-group-btn">--}}
+            {{--<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>--}}
+            {{--</button>--}}
+            {{--</span>--}}
+            {{--</div>--}}
+            {{--</form>--}}
+            {{-- <!-- /.search form --> --}}
             {{-- <!-- sidebar menu: : style can be found in sidebar.less --> --}}
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="treeview">
@@ -378,44 +348,9 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="viewOICNewEntries"><i class="fa fa-circle-o"></i>New Entries</a></li>
-                        <li><a href="viewOICOngoingEntries"><i class="fa fa-circle-o"></i>Ongoing Entries</a></li>
-                        <li><a href="viewOICClosedEntries"><i class="fa fa-circle-o"></i>Closed Entries</a></li>
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-edit"></i> <span>Citizen Management</span>
-                        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="viewNewCitizenRequests"><i class="fa fa-circle-o"></i>New Registration Requests</a></li>
-                        <li><a href="viewRegisteredCitizens"><i class="fa fa-circle-o"></i>Registered Citizens</a></li>
-                        <li><a href="viewClosedAccounts"><i class="fa fa-circle-o"></i>Closed Accounts</a></li>
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-laptop"></i>
-                        <span>Branches</span>
-                        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <div id="branchOffice" class="w3-hide w3-container">
-                            @foreach($branches as $branch)
-                                <form method="post" action="{{'viewBranch'}}">
-                                    @csrf
-                                    <input type="hidden" value="{{ $branch->id }}" name="branchID">
-                                    <input type="hidden" value="{{ $branch->policeOfficeArea }}" name="branchName">
-                                    <input type="hidden" value="{{ $branch->mainOfficer }}" name="mainOfficer">
-                                    <li><i class="fa fa-circle-o"></i><input type="submit" class="btn btn-primary" value="{{ $branch->OfficeName }}"></li>
-                                </form>
-                            @endforeach
-                        </div>
+                        <li><a href="viewBOICNewEntries"><i class="fa fa-circle-o"></i>New Entries</a></li>
+                        <li><a href="viewBOICOngoingEntries"><i class="fa fa-circle-o"></i>Ongoing Entries</a></li>
+                        <li><a href="viewBOICClosedEntries"><i class="fa fa-circle-o"></i>Closed Entries</a></li>
                     </ul>
                 </li>
             </ul>
