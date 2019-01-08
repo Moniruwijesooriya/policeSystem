@@ -94,7 +94,7 @@
                                                 <div class="card-header">{{ __('Entry') }}</div>
 
                                                 <div class="form-group">
-                                                    <form method="post" action="{{ route('entryOICAction') }}" enctype="multipart/form-data">
+                                                    <form method="post" action="{{ route('entryBOICAction') }}" enctype="multipart/form-data">
                                                         @csrf
 
                                                         <div class="form-group row">
@@ -161,7 +161,7 @@
                                                                 <label class="col-md-3 col-form-label text-md-right">{{ __('Current Branch') }}</label>
 
                                                                 <div class="col-md-6">
-                                                                    <input type="text" class="form-control"value="{{ $entry->branch }}" readonly>
+                                                                    <input type="text" class="form-control"value="{{ $currentBranch->OfficeName }}" readonly>
                                                                 </div>
                                                             </div>
                                                         @endif
@@ -230,9 +230,9 @@
                                                                     <input type="hidden" name="statusType" value="{{$entry->status}}">
                                                                     <input type="submit" class="btn btn-primary" name="ongoingSubmit" value="Submit" style="width: 100%">
                                                                 </div>
-                                                                <div class="col-md-2 offset-md-3 col-xs-6"  style="width: 18.75%">
-                                                                    <input type="submit" class="btn btn-primary" name="ongoingSubmit" value="Close Entry" style="width: 100%">
-                                                                </div>
+                                                                {{--<div class="col-md-2 offset-md-3 col-xs-6"  style="width: 18.75%">--}}
+                                                                    {{--<input type="submit" class="btn btn-primary" name="ongoingSubmit" value="Close Entry" style="width: 100%">--}}
+                                                                {{--</div>--}}
                                                                 <div class="col-md-2 offset-md-3 col-xs-6"  style="width: 18.75%">
                                                                     <input type="submit" class="btn btn-primary" name="ongoingSubmit" value="Forward" style="width: 100%">
                                                                 </div>
@@ -258,32 +258,32 @@
                                 </div>
 
                                 <!-- Right Column -->
-                                <div class="col-md-5 w3-light-grey table-col tc-right">
-                                    <div class="row">
-                                        <p><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#createPost">
-                                                Create a Post
-                                            </button></p>
-                                        <div class="row justify-content-center">
+                                {{--<div class="col-md-5 w3-light-grey table-col tc-right">--}}
+                                    {{--<div class="row">--}}
+                                        {{--<p><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#createPost">--}}
+                                                {{--Create a Post--}}
+                                            {{--</button></p>--}}
+                                        {{--<div class="row justify-content-center">--}}
 
-                                            <div class="card" style="margin-top: 10px">
-                                                <div class="card-header">{{ __('Progress') }}</div>
-                                                <div class="card-body">
-                                                    <div class="form-group row">
-                                                        <div class="col-md-11">
-                                                            @if($entry->status=="new")
-                                                                <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->progress }}</p>
-                                                            @endif
-                                                            @foreach($entryProgresses as $entryProgress)
-                                                                <p contenteditable="false" class="w3-border w3-padding" >{{ $entryProgress->progress }}</p>
-                                                            @endforeach
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                            {{--<div class="card" style="margin-top: 10px">--}}
+                                                {{--<div class="card-header">{{ __('Progress') }}</div>--}}
+                                                {{--<div class="card-body">--}}
+                                                    {{--<div class="form-group row">--}}
+                                                        {{--<div class="col-md-11">--}}
+                                                            {{--@if($entry->status=="new")--}}
+                                                                {{--<p contenteditable="false" class="w3-border w3-padding" >{{ $entry->progress }}</p>--}}
+                                                            {{--@endif--}}
+                                                            {{--@foreach($entryProgresses as $entryProgress)--}}
+                                                                {{--<p contenteditable="false" class="w3-border w3-padding" >{{ $entryProgress->progress }}</p>--}}
+                                                            {{--@endforeach--}}
+                                                        {{--</div>--}}
+                                                    {{--</div>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
 
-                                    </div>
-                                </div>
+                                    {{--</div>--}}
+                                {{--</div>--}}
 
                                 <!-- End Grid -->
                             </div>
