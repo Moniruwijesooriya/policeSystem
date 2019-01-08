@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
                     <div class="card">
                         <div class="bg-white">
                             <button onclick="myFunction('myEntries')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>Submitted Entries</button>
+                            <br>
                             <div id="myEntries" class="w3-hide w3-container">
                                 {{--<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">--}}
 
@@ -35,15 +36,14 @@ use Illuminate\Support\Facades\DB;
                     <div class="card">
                         <div class="bg-white">
                             <button onclick="myFunction('evidencesList')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Evidences</button>
+                            <br>
                             <div id="evidencesList" class="w3-hide w3-container">
                                 <div class="col-md-12">
                                     <?php
                                     $citizenDetails = db::table('users')->where('nic',$entry->complainantID)->First();
                                     ?>
 
-                                    <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->evidences }}<br>-------------------<br>Submitted by Registered {{$citizenDetails->role}} {{$citizenDetails->name}} on {{$entry->created_at}} <button type="button" value="{{ $entry->complainantID }}" id="nicbutton" class="btn btn-primary nic-button" data-toggle="modal" data-target="#viewPerson">
-                                            {{ $entry->complainantID }}
-                                        </button></p>
+                                    <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->evidences }}<br>-------------------<br>Submitted by Registered {{$citizenDetails->role}} {{$citizenDetails->name}} on {{$entry->created_at}} </p>
                                     @foreach($evidences as $evidence)
                                         <?php
                                         $citizenDetails2 = db::table('users')->where('nic',$evidence->witnessId)->First();
@@ -51,27 +51,22 @@ use Illuminate\Support\Facades\DB;
                                         @if($evidence->evidence_txt=="Image Evidence")
                                             <p contenteditable="false" class="w3-border w3-padding" >
                                                 @for($i=1;$i<=$evidence->evidence_image_count;$i++)
-                                                    <img style="width: 25%;height: 150px;margin: 5px" src='{{asset("/evidences/$entry->entryID/$evidence->evidence_image/".$i.'.jpg')}}' style="width:100%" alt="{{$entry->entryID}}">
+                                                    <img style="width: 100%;height: 150px;margin: 5px" src='{{asset("/evidences/$entry->entryID/$evidence->evidence_image/".$i.'.jpg')}}' style="width:100%" alt="{{$entry->entryID}}">
 
                                                 @endfor
                                                 <br>-------------------<br>Submitted by {{$citizenDetails2->role}} {{$citizenDetails2->name}} on {{$evidence->created_at}}
-                                                <button type="button" value="{{ $evidence->witnessId }}" id="nicbutton" class="btn btn-primary nic-button" data-toggle="modal" data-target="#viewPerson">
-                                                    {{ $evidence->witnessId }}
-                                                </button>
                                             </p>
 
                                         @endif
                                         @if($evidence->evidence_txt!="Image Evidence")
                                             <p contenteditable="false" class="w3-border w3-padding" >{{ $evidence->evidence_txt }}<br>Submitted by {{$citizenDetails2->role}} {{$citizenDetails2->name}} on {{$evidence->created_at}}
-                                                <button type="button" value="{{ $evidence->witnessId }}" id="nicbutton" class="btn btn-primary nic-button" data-toggle="modal" data-target="#viewPerson">
-                                                    {{ $evidence->witnessId }}
-                                                </button>
                                             </p>
                                         @endif
                                     @endforeach
                                 </div>
                             </div>
                             <button onclick="myFunction('suspectList')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i>Suspects</button>
+                            <br>
                             <div id="suspectList" class="w3-hide w3-container">
                                 <div class="form-group row">
                                     <?php
@@ -151,6 +146,21 @@ use Illuminate\Support\Facades\DB;
                                     </div>
 
                                     <div class="form-group row">
+                                        <label for="profileImage" class="col-md-4 col-form-label text-md-right">{{ __('Evidence Images') }}</label>
+
+                                        <div class="col-md-6">
+                                            <input type="file"  class="form-control" accept="image/*" name="evidenceImage[]" style="height: 100%" multiple>
+
+                                            @if ($errors->has('landNumber'))
+                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $errors->first('landNumber') }}</strong>
+                                                                    </span>
+                                            @endif
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group row">
                                         <label class="col-md-4 col-form-label text-md-right">Suspects</label>
                                         <div class="col-md-6">
                                             <textarea class="form-control" name="suspects" id="exampleFormControlTextarea1" rows="2"></textarea>
@@ -191,7 +201,7 @@ use Illuminate\Support\Facades\DB;
                     <div class="row justify-content-center">
 
                         <div class="card" style="margin-top: 10px">
-                            <div class="card-header">{{ __('Progress') }}</div>
+                            <div class="card-header" >{{ __('Progress') }}</div>
                             <div class="card-body">
                                 <div class="form-group row">
                                     <div class="col-md-11">
