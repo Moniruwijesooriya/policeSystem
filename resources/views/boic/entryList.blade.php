@@ -49,7 +49,7 @@
                                 <tbody id="myTable">
                                 @foreach($entries as $entry)
                                     <tr>
-                                        <td><form action="viewOICEntry" method="post">
+                                        <td><form action="viewBOICEntry" method="post">
                                                 @csrf
                                                 <input type="hidden" name="entryID" value="{{$entry->entryID}}">
                                                 <input type="submit" value="{{$entry->entryID}}">
