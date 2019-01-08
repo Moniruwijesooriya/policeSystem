@@ -137,11 +137,11 @@
                     <?php
                     $loggedUser=db::table('users')->where('nic',Auth::User()->nic)->first();
                     ?>
-                    <li class="dropdown messages-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-envelope-o"></i>
-                            <span class="label label-success">4</span>
-                        </a>
+                    {{--<li class="dropdown messages-menu">--}}
+                        {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown">--}}
+                            {{--<i class="fa fa-envelope-o"></i>--}}
+                            {{--<span class="label label-success">4</span>--}}
+                        {{--</a>--}}
                         {{--<ul class="dropdown-menu">--}}
                             {{--<li class="header">You have 4 messages</li>--}}
                             {{--<li>--}}
@@ -212,7 +212,7 @@
                             {{--</li>--}}
                             {{--<li class="footer"><a href="#">See All Messages</a></li>--}}
                         {{--</ul>--}}
-                    </li>
+                    {{--</li>--}}
                     {{-- <!-- Notifications: style can be found in dropdown.less --> --}}
                     <li class="dropdown notifications-menu">
                         <?php
@@ -352,7 +352,7 @@
                 </div>
                 <div class="pull-left info">
                     <p>{{Auth::User()->name}}</p>
-                    <p><small>{{Auth::User()->policeOffice}}</small></p>
+                    {{--<p><small>{{Auth::User()->policeOffice}}</small></p>--}}
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
@@ -432,8 +432,7 @@
         <div class="pull-right hidden-xs">
             <b>Version</b> 1.0
         </div>
-        <strong>Copyright &copy; 2019  Group 26</strong> All rights
-        reserved.
+        <strong>Crime Reporting System  Group 26</strong>
     </footer>
     {{-- <!-- Control Sidebar --> --}}
     <aside class="control-sidebar control-sidebar-dark">
@@ -470,17 +469,17 @@
                             </div>
                         </a>
                     </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+                    {{--<li>--}}
+                        {{--<a href="javascript:void(0)">--}}
+                            {{--<i class="menu-icon fa fa-envelope-o bg-light-blue"></i>--}}
 
-                            <div class="menu-info">
-                                <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+                            {{--<div class="menu-info">--}}
+                                {{--<h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>--}}
 
-                                <p>nora@example.com</p>
-                            </div>
-                        </a>
-                    </li>
+                                {{--<p>nora@example.com</p>--}}
+                            {{--</div>--}}
+                        {{--</a>--}}
+                    {{--</li>--}}
                     <li>
                         <a href="javascript:void(0)">
                             <i class="menu-icon fa fa-file-code-o bg-green"></i>
