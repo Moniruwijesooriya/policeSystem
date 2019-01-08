@@ -1,4 +1,4 @@
-@extends('oic.oicApp')
+@extends('boic.boicApp')
 @section('content')
 
     <div class="content-header">
@@ -161,7 +161,7 @@
                                                                 <label class="col-md-3 col-form-label text-md-right">{{ __('Current Branch') }}</label>
 
                                                                 <div class="col-md-6">
-                                                                    <input type="text" class="form-control"value="{{ $currentBranch->OfficeName }}" readonly>
+                                                                    <input type="text" class="form-control"value="{{ $entry->branch }}" readonly>
                                                                 </div>
                                                             </div>
                                                         @endif

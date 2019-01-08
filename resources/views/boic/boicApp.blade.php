@@ -221,38 +221,11 @@
                             <i class="fa fa-bell-o"></i>
                             <span class="label label-warning">{{$count}}</span>
                         </a>
-                        <ul class="dropdown-menu">
-
-                            <li class="header">You have {{$count}} Requests</li>
-                            <li>
-                                {{-- <!-- inner menu: contains the actual data --> --}}
-
-                                <ul class="menu">
-
-                                    <?php
-                                    $registerRequestNotification=db::table('users')->where('verified',"No")->where('role',"citizen")->get();
-                                    ?>
-                                    @foreach($registerRequestNotification as $notifi)
-                                        <li>
-                                            <form method="post" action="{{'reviewCitizenRegistrationRequest'}}">
-                                                @csrf
-                                                <input type="hidden" value="{{$notifi->nic}}" name="nic">
-                                                <input type="submit" class="btn-link" value="{{$notifi->nic}} requested a registration request">
-                                            </form>
-                                        </li>
-
-
-                                    @endforeach
-
-                                </ul>
-                            </li>
-                            <li class="footer"><a href="#">View all</a></li>
-                        </ul>
                     </li>
                     {{-- <!-- Tasks: style can be found in dropdown.less --> --}}
                     <li class="dropdown tasks-menu">
                         <?php
-                        $entryCount=db::table('entries')->where('oicNotification',"y")->where('nearestPoliceStation',$loggedUser->policeOffice)->count()
+                        $entryCount=db::table('entries')->where('boicNotification',"y")->where('nearestPoliceStation',$loggedUser->policeOffice)->count()
                         ?>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-flag-o"></i>
@@ -264,14 +237,14 @@
                                 {{-- <!-- inner menu: contains the actual data --> --}}
                                 <ul class="menu">
                                     <?php
-                                    $entryNotification=db::table('entries')->where('oicNotification',"y")->where('nearestPoliceStation',$loggedUser->policeOffice)->get();
+                                    $entryNotification=db::table('entries')->where('boicNotification',"y")->where('nearestPoliceStation',$loggedUser->policeOffice)->get();
                                     ?>
                                     @foreach($entryNotification as $notifi)
                                         <li>
-                                            <form method="post" action="{{'viewOICEntry'}}">
+                                            <form method="post" action="{{'viewBOICEntry'}}">
                                                 @csrf
                                                 <input type="hidden" value="{{$notifi->entryID}}" name="entryID">
-                                                <input type="submit" class="btn-link" value="{{$notifi->complainantID}} submitted a crime">
+                                                <input type="submit" class="btn-link" value="{{$notifi->complainantID}} received an entry">
                                             </form>
                                         </li>
                                     @endforeach
@@ -302,15 +275,15 @@
                             <li class="user-body" style="background-color:lightgrey">
 
                                 <div>
-                                    <a href="oicProfileFormView" class="btn btn-default btn-flat" style="width:100%">Profile</a>
+                                    <a href="boicProfileFormView" class="btn btn-default btn-flat" style="width:100%">Profile</a>
                                 </div>
                                 <br>
                                 <div>
-                                    <a href="deactivateOICFormView" class="btn btn-default btn-flat" style="width:100%">Deactivate Account</a>
+                                    <a href="deactivateBOICFormView" class="btn btn-default btn-flat" style="width:100%">Deactivate Account</a>
                                 </div>
                                 <br>
                                 <div>
-                                    <a href="changeOICPasswordFormView" class="btn btn-default btn-flat" style="width:100%">Change Password</a>
+                                    <a href="changeBOICPasswordFormView" class="btn btn-default btn-flat" style="width:100%">Change Password</a>
                                 </div>
                                 <br>
                                 <div>
@@ -375,44 +348,9 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="viewOICNewEntries"><i class="fa fa-circle-o"></i>New Entries</a></li>
-                        <li><a href="viewOICOngoingEntries"><i class="fa fa-circle-o"></i>Ongoing Entries</a></li>
-                        <li><a href="viewOICClosedEntries"><i class="fa fa-circle-o"></i>Closed Entries</a></li>
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-edit"></i> <span>Citizen Management</span>
-                        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="viewNewCitizenRequests"><i class="fa fa-circle-o"></i>New Registration Requests</a></li>
-                        <li><a href="viewRegisteredCitizens"><i class="fa fa-circle-o"></i>Registered Citizens</a></li>
-                        <li><a href="viewClosedAccounts"><i class="fa fa-circle-o"></i>Closed Accounts</a></li>
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-laptop"></i>
-                        <span>Branches</span>
-                        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <div id="branchOffice" class="w3-hide w3-container">
-                            @foreach($branches as $branch)
-                                <form method="post" action="{{'viewBranch'}}">
-                                    @csrf
-                                    <input type="hidden" value="{{ $branch->id }}" name="branchID">
-                                    <input type="hidden" value="{{ $branch->policeOfficeArea }}" name="branchName">
-                                    <input type="hidden" value="{{ $branch->mainOfficer }}" name="mainOfficer">
-                                    <li><i class="fa fa-circle-o"></i><input type="submit" class="btn btn-primary" value="{{ $branch->OfficeName }}"></li>
-                                </form>
-                            @endforeach
-                        </div>
+                        <li><a href="viewBOICNewEntries"><i class="fa fa-circle-o"></i>New Entries</a></li>
+                        <li><a href="viewBOICOngoingEntries"><i class="fa fa-circle-o"></i>Ongoing Entries</a></li>
+                        <li><a href="viewBOICClosedEntries"><i class="fa fa-circle-o"></i>Closed Entries</a></li>
                     </ul>
                 </li>
             </ul>

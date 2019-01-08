@@ -1,4 +1,4 @@
-@extends('oic.oicApp')
+@extends('boic.boicApp')
 @section('content')
 
     <div class="content-header">
@@ -29,7 +29,7 @@
                                 </div>
                             </div>
 
-                            <form method="POST" action="oicUpdateProfile" enctype="multipart/form-data">
+                            <form method="POST" action="updateProfile" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group row">
                                     <label for="profession" class="col-md-4 col-form-label text-md-right">{{ __('Officer Rank') }}</label>

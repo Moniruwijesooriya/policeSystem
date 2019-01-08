@@ -118,6 +118,7 @@
             <span class="logo-mini"><b>OIC</b></span>
             {{-- <!-- logo for regular state and mobile devices --> --}}
             <span class="logo-lg"><b>OIC</b> PANEL</span>
+
         </a>
         {{-- <!-- Header Navbar: style can be found in header.less --> --}}
         <nav class="navbar navbar-static-top">
@@ -296,6 +297,7 @@
                                 <p>
                                     {{Auth::User()->name}}
                                     <small>{{Auth::User()->profession}}</small>
+                                    <small>{{Auth::User()->policeOffice}}</small>
                                 </p>
                             </li>
                             {{-- <!-- Menu Body --> --}}
@@ -350,6 +352,7 @@
                 </div>
                 <div class="pull-left info">
                     <p>{{Auth::User()->name}}</p>
+                    <p><small>{{Auth::User()->policeOffice}}</small></p>
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
