@@ -279,7 +279,7 @@ class EntryController extends Controller
                 $evidence->policeView="Yes";
                 $evidence->evidence_image=$newdatez;
                 $evidence->save();
-            }else{
+            }
                 if($request->suspects!=null){
                     $suspects=new Suspect();
                     $suspects->entryID=$request->entryID;
@@ -315,9 +315,7 @@ class EntryController extends Controller
                     $progress->policeView="Yes";
 
                     $progress->save();
-
                 }
-            }
         }
 
 
@@ -527,10 +525,8 @@ class EntryController extends Controller
                 $newdatez=str_replace(':',"-",$dt);
                 $i=1;
                 foreach($files as $file) {
-                    $fileExtension=$file->getClientOriginalExtension();
-                    $fileNewName=$i.".".$fileExtension;
-                    echo $fileExtension;
-                    echo $fileNewName;
+                    $fileNewName=$i.".jpg";
+
                     $file->move(
                         base_path() . "/public/evidences/$folderName/$newdatez",$fileNewName
                     );
@@ -550,7 +546,8 @@ class EntryController extends Controller
                 $evidence->policeView="Yes";
                 $evidence->evidence_image=$newdatez;
                 $evidence->save();
-            }else{
+            }
+
                 if($request->suspects!=null){
                     $suspects=new Suspect();
                     $suspects->entryID=$request->entryID;
@@ -588,7 +585,7 @@ class EntryController extends Controller
                     $progress->save();
 
                 }
-            }
+
         }
 
 
@@ -729,27 +726,56 @@ class EntryController extends Controller
 
 
     public function updateCitizenEntry(Request $request){
-        $evidence=new Evidence();
-        $evidence->entryId=$request->entryID;
-        $evidence->witnessId=Auth::User()->nic;
-        $evidence->evidence_txt=$request->evidence;
-        $evidence->citizenView="Yes";
-        $evidence->policeView="Yes";
-
-        $evidence->save();
-
-        $suspects=new Suspect();
-        $suspects->entryId=$request->entryID;
-        $suspects->name=$request->suspects;
         $nic=Auth::User()->nic;
         $user=db::table('users')->where('Nic',$nic)->First();
-        $suspects->userName=$user->name;
-        $suspects->userNic=$nic;
-        $suspects->userRole="citizen";
-        $suspects->citizenView="Yes";
-        $suspects->policeView="Yes";
+        if($request->evidence!=null){
+            $evidence=new Evidence();
+            $evidence->entryID=$request->entryID;
+            $evidence->witnessId=Auth::User()->nic;
+            $evidence->evidence_txt=$request->evidence;
+            $evidence->citizenView="Yes";
+            $evidence->policeView="Yes";
+            $evidence->save();
 
-        $suspects->save();
+        }
+        if ($request->hasFile('evidenceImage')){
+
+            $files=$request->file('evidenceImage');
+            $folderName=$request->entryID;
+
+            $dt = Carbon::now();
+            $newdatez=str_replace(':',"-",$dt);
+            $i=1;
+            foreach($files as $file) {
+                $fileNewName=$i.".jpg";
+
+                $file->move(
+                    base_path() . "/public/evidences/$folderName/$newdatez",$fileNewName
+                );
+                $i += 1;
+            }
+            $evidence=new Evidence();
+            $evidence->entryID=$request->entryID;
+            $evidence->witnessId=Auth::User()->nic;
+            $evidence->evidence_txt="Image Evidence";
+            $evidence->evidence_image_count=$i;
+            $evidence->citizenView="Yes";
+            $evidence->policeView="Yes";
+            $evidence->evidence_image=$newdatez;
+            $evidence->save();
+        }
+
+        if($request->suspects!=null){
+            $suspects=new Suspect();
+            $suspects->entryID=$request->entryID;
+            $suspects->name=$request->suspects;
+            $suspects->userName=$user->name;
+            $suspects->userNic=$nic;
+            $suspects->userRole=$user->role;
+            $suspects->citizenView="Yes";
+            $suspects->policeView="Yes";
+            $suspects->save();
+        }
 
         $entry=db::table('entries')->where('entryID',$request->entryID)->First();
         $evidences=db::table('evidence')->where('entryID',$request->entryID)->where('citizenView',"Yes")->get();
