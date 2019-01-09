@@ -22,20 +22,19 @@
                         {{--View Entry List--}}
                         <div class="container-fluid">
                             <!-- The Grid -->
-                            <div class="row">
+                            <div class="row" style="border-radius: 8px;background-color: lightgray">
                                 <!-- Left Column -->
-
                                 <!-- Middle Column -->
-                                <div class="col-md-5" style="margin-right: 40px;margin-left: 20px;margin-bottom: 10px">
-                                    <div class="row justify-content-center">
-                                        <div class="col-md-10">
+                                <div class="col-md-8 card" style="margin-bottom: 10px;margin-left:180px;margin-right:180px;border-radius: 8px;background-color: whitesmoke;margin-top: 30px">
+                                    <div class="row">
+                                        <div class="col-md-12">
                                             <div class="card">
-                                                <div class="card-header">{{ __('Citizen Registrtion Form') }}</div>
+                                                <div class="page-header" style="text-align: center">{{ __('Citizen Registration Form') }}</div>
 
                                                 <div class="card-body">
-                                                    <form method="post" action="{{ route('acceptCitizenRequest') }}" enctype="multipart/form-data">
+                                                    <form method="post" style="margin-left: 70px" action="{{ route('acceptCitizenRequest') }}" enctype="multipart/form-data">
                                                         @csrf
-                                                        <p class="w3-center"><img src='{{asset('/userProfileImages/'.$citizenDetails->nic.'.jpg')}}' class="w3-circle" style="height:500px;width:500px" alt="{{ $citizenDetails->nic }}"></p>
+                                                        <p class="w3-center"><img src='{{asset('/userProfileImages/'.$citizenDetails->nic.'.jpg')}}' class="w3-circle" style="height:200px;width:200px" alt="{{ $citizenDetails->nic }}"></p>
 
                                                         <div class="form-group row">
                                                             <label class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>

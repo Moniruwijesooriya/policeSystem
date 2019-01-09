@@ -142,8 +142,7 @@ use Illuminate\Support\Facades\DB;
                                 <label for="policeOffice" class="col-md-4 col-form-label text-md-right">{{ __('Nearest Police Station') }}</label>
                                 <div class="col-md-6">
 
-                                    <select class="form-control" name="policeStation" id="exampleFormControlSelect1" required autofocus>
-                                        <option>Temp</option>
+                                    <select class="form-control" name="policeStation" id="exampleFormControlSelect1" required autofocus
                                         @foreach($policeOffice as $office)
                                             <option>{{$office->OfficeName}}</option>
                                         @endforeach

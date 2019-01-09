@@ -258,8 +258,6 @@ class EntryController extends Controller
                 foreach($files as $file) {
                     $fileExtension=$file->getClientOriginalExtension();
                     $fileNewName=$i.".".$fileExtension;
-                    echo $fileExtension;
-                    echo $fileNewName;
                     $file->move(
                         base_path() . "/public/evidences/$folderName/$newdatez",$fileNewName
                     );
@@ -721,7 +719,7 @@ class EntryController extends Controller
         $entry=db::table('entries')->where('entryID',$request->entryID)->First();
         $entry_progress=db::table('entry_progresses')->where('entryID',$request->entryID)->where('citizenView',"Yes")->get();
         $evidences=db::table('evidence')->where('entryID',$request->entryID)->where('citizenView',"Yes")->get();
-        $suspects=db::table('suspects')->where('entryID',$request->entryID)->where('userRole',"citizen")->get();
+        $suspects=db::table('suspects')->where('entryID',$request->entryID)->where('citizenView',"Yes")->get();
         return view('registeredCitizen/citizenEntryView',compact('entry','evidences','suspects','entry_progress'));
     }
 

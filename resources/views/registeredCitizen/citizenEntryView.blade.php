@@ -38,7 +38,7 @@ use Illuminate\Support\Facades\DB;
         <!-- The Grid -->
         <div class="row">
             <!-- Left Column -->
-            <div class="col-md-3 table-col" style="margin-top: 20px">
+            <div class="col-md-3 table-col" style="margin-top: 10px">
                 @if(Auth::User()->role=='citizen')
                     <div class="card">
                         <div class="bg-white">
@@ -69,42 +69,45 @@ use Illuminate\Support\Facades\DB;
                             <button onclick="myFunction('evidencesList')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Evidences</button>
                             <br>
                             <div id="evidencesList" class="w3-hide w3-container">
-                                <div class="col-md-12">
-                                    <?php
-                                    $citizenDetails = db::table('users')->where('nic',$entry->complainantID)->First();
-                                    ?>
-
-                                    <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->evidences }}<br>-------------------<br>Submitted by Registered {{$citizenDetails->role}} {{$citizenDetails->name}} on {{$entry->created_at}} </p>
-                                    @foreach($evidences as $evidence)
+                                <div class="form-group row"> <div class="col-md-12">
                                         <?php
-                                        $citizenDetails2 = db::table('users')->where('nic',$evidence->witnessId)->First();
+                                        $citizenDetails = db::table('users')->where('nic',$entry->complainantID)->First();
                                         ?>
-                                        @if($evidence->evidence_txt=="Image Evidence")
-                                            <p contenteditable="false" class="w3-border w3-padding" >
-                                                @for($i=1;$i<$evidence->evidence_image_count;$i++)
-                                                    <img style="width: 100%;height: 150px;margin: 5px" src='{{asset("/evidences/$entry->entryID/$evidence->evidence_image/".$i.'.jpg')}}' style="width:100%" >
-
-                                                @endfor
-                                                <br>-------------------<br>Submitted by {{$citizenDetails2->role}} {{$citizenDetails2->name}} on {{$evidence->created_at}}
-                                            </p>
-
+                                        @if($entry->evidences!=null)
+                                            <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->evidences }}<br>-------------------<br>Submitted by Registered {{$citizenDetails->role}} {{$citizenDetails->name}} on {{$entry->created_at}} </p>
                                         @endif
-                                        @if($evidence->evidence_txt!="Image Evidence")
-                                            <p contenteditable="false" class="w3-border w3-padding" >{{ $evidence->evidence_txt }}<br>Submitted by {{$citizenDetails2->role}} {{$citizenDetails2->name}} on {{$evidence->created_at}}
-                                            </p>
-                                        @endif
-                                    @endforeach
-                                </div>
+
+
+                                        @foreach($evidences as $evidence)
+                                            <?php
+                                            $citizenDetails2 = db::table('users')->where('nic',$evidence->witnessId)->First();
+                                            ?>
+                                            @if($evidence->evidence_txt=="Image Evidence")
+                                                <p contenteditable="false" class="w3-border w3-padding" >
+                                                    @for($i=1;$i<$evidence->evidence_image_count;$i++)
+                                                        <img style="width: 100%;height: 150px;margin: 5px" src='{{asset("/evidences/$entry->entryID/$evidence->evidence_image/".$i.'.jpg')}}' style="width:100%" >
+
+                                                    @endfor
+                                                    <br>-------------------<br>Submitted by {{$citizenDetails2->role}} {{$citizenDetails2->name}} on {{$evidence->created_at}}
+                                                </p>
+
+                                            @endif
+                                            @if($evidence->evidence_txt!="Image Evidence")
+                                                <p contenteditable="false" class="w3-border w3-padding" >{{ $evidence->evidence_txt }}<br>-------------------<br>Submitted by {{$citizenDetails2->role}} {{$citizenDetails2->name}} on {{$evidence->created_at}}
+                                                </p>
+                                            @endif
+                                        @endforeach
+                                    </div></div>
+
                             </div>
                             <button onclick="myFunction('suspectList')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i>Suspects</button>
                             <br>
                             <div id="suspectList" class="w3-hide w3-container">
                                 <div class="form-group row">
-                                    <?php
-                                    $entryInfo=db::table('entries')->where('entryID',$entr->entryID)->First();
-                                    ?>
-                                    <div class="col-md-11">
-                                        <p contenteditable="false" class="w3-border w3-padding" >{{ $entryInfo->suspects }}</p>
+                                    <div class="col-md-12">
+                                            @if($entry->suspects!=null)
+                                                <p contenteditable="false" class="w3-border w3-padding" >{{$entry->suspects}}</p>
+                                            @endif
                                         @foreach($suspects as $suspect)
                                             <p contenteditable="false" class="w3-border w3-padding" >{{ $suspect->name }}</p>
                                         @endforeach
@@ -118,7 +121,7 @@ use Illuminate\Support\Facades\DB;
 
 
             <!-- Middle Column -->
-            <div class="col-md-5 table-col"style="margin-top: 10px;margin-right: 40px;margin-left: 20px;margin-bottom: 10px">
+            <div class="col-md-5 table-col"style="margin-top: 10px;margin-right: 40px;margin-left: 40px;margin-bottom: 10px">
                 <div class="row justify-content-center">
                     <div class="col-md-12" style="margin-left: 3px;margin-right: 3px">
                         <div class="card">
@@ -180,7 +183,7 @@ use Illuminate\Support\Facades\DB;
                                         <label for="profileImage" class="col-md-4 col-form-label text-md-right">{{ __('Evidence Images') }}</label>
 
                                         <div class="col-md-6">
-                                            <input type="file"  class="form-control" accept="image/*" name="evidenceImage[]" style="height: 100%" multiple>
+                                            <input type="file"  class="form-control" accept="image/*" name="evidenceImage[]"  multiple>
 
                                             @if ($errors->has('landNumber'))
                                                 <span class="invalid-feedback" role="alert">
@@ -220,37 +223,39 @@ use Illuminate\Support\Facades\DB;
                 <!-- End Middle Column -->
             </div>
             <!-- Right Column -->
-            <div class="col-md-3 table-col">
-                <div class="">
-                    <div style="margin-top: 10px">
-                        <form action="viewHigherAuthorityAttention" method="post" >
-                            @csrf
-                            <input type="hidden" name="entryIDTemp" value="{{$entry->entryID}}">
-                            <input type="submit" class="btn btn-dark" value="Request Higher Authority Attention" style="background-color:cadetblue">
-                        </form>
-                    </div>
-                    <div class=" justify-content-center">
+            <div class="col-md-3 table-col" style="margin-top: 10px">
+                {{--<div class="">--}}
+                    {{--<div style="margin-top: 10px">--}}
+                        {{--<form action="viewHigherAuthorityAttention" method="post" >--}}
+                            {{--@csrf--}}
+                            {{--<input type="hidden" name="entryIDTemp" value="{{$entry->entryID}}">--}}
+                            {{--<input type="submit" class="btn btn-dark" value="Request Higher Authority Attention" style="background-color:cadetblue">--}}
+                        {{--</form>--}}
+                    {{--</div>--}}
+                    {{--<div class=" justify-content-center">--}}
+                <div class="card">
+                    <div class="bg-white">
+                        <button onclick="myFunction('progress')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-line-chart fa-fw w3-margin-right"></i>Progress</button>
+                        <br>
+                        <div id="progress" class="w3-hide w3-container">
+                            <div class="form-group row">
+                                <div class="col-md-12">
 
-                        <div class="card" style="margin-top: 10px">
-                            <div class="card-header" >{{ __('Progress') }}</div>
-                            <div class="card-body">
-                                <div class="form-group row">
-                                    <div class="col-md-11">
-
-                                        <?php
-                                        $progr=db::table('entries')->where('entryID',$entry->entryID)->first();
-                                        ?>
-                                        @if($progr->branch==null)
-                                                <p contenteditable="false" class="w3-border w3-padding"  style="background-color:darkgrey">{{ $entry->progress }}</p>
-                                            @endif
+                                    <?php
+                                    $progr=db::table('entries')->where('entryID',$entry->entryID)->first();
+                                    ?>
+                                    @if($progr->branch==null)
+                                        <p contenteditable="false" class="w3-border w3-padding"  style="background-color:darkgrey">{{ $entry->progress }}</p>
+                                    @endif
                                     @foreach($entry_progress as $entry_progres)
-                                            <p contenteditable="false" class="w3-border w3-padding"  style="background-color:darkgrey">{{ $entry_progres->progress }}</p>
-                                        @endforeach
-                                    </div>
+                                        <p contenteditable="false" class="w3-border w3-padding"  style="background-color:darkgrey">{{ $entry_progres->progress }}</p>
+                                    @endforeach
                                 </div>
-                            </div>
+
                         </div>
-                    </div>
+                        </div>
+                </div>
+
 
                 </div>
 

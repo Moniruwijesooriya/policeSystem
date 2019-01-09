@@ -1,6 +1,6 @@
 <?php
     use Illuminate\Support\Facades\DB;
-    $policeStationCount=db::table('police_offices')->where('policeOfficeType','Police Station')->count();
+    $newEntries=db::table('entries')->where('policeOfficeType','Police Station')->count();
     $divisionOfficeCount=db::table('police_offices')->where('policeOfficeType','Division Police Office')->count();
     $branchPoliceOfficeCount=db::table('police_offices')->where('policeOfficeType','Branch Police Office')->count();
     $registeredUsersCount=db::table('users')->where('role','citizen')->count();
@@ -26,8 +26,8 @@
                         <!-- small box -->
                         <div class="small-box bg-aqua">
                             <div class="inner">
-                                <h3>{{$policeStationCount}}</h3> 
-                                <p>Police Stations</p>
+                                <h3>{{$newEntries}}</h3>
+                                <p>Police Station Branches</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-home"></i>
