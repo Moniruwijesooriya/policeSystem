@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
                     <div class="card">
                         <h4 class="w3-center">Change Password</h4>
                         <div class="card-body">
-                            <form method="POST" action="oicPasswordChange" >
+                            <form method="POST" action="citizenPasswordChange" >
                                 @csrf
 
                                 <div class="form-group row">

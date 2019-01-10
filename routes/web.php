@@ -21,10 +21,15 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin', 'AdminController@index')->name('admin');
 
+
+/*
+ * SUBMIT CRIME ENTRY ROUTE
+ */
 Route::post('/submitCrimeEntry',[
     'uses'=>'EntryController@submitEntry',
     'as'=>'submitEntry'
 ])->middleware('auth');
+
 
 Route::post('/registerPoliceOfficer',[
     'uses'=>'AdminController@registerPoliceOfficer',
@@ -67,7 +72,16 @@ Route::get('/DOIG','DOIGController@index');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('verify/{token}','verifyController@verifyEmail');
 
-//citizen
+
+
+/*
+ ***********************************
+ ************ CITIZEN **************
+ ***********************************
+ */
+
+
+
 Route::get('/RegisteredCitizen','CitizenLoginController@index')->middleware('verified');
 Route::get('updateFormView','CitizenController@updateFormView');
 Route::post('citizenInfoUpdate','CitizenController@citizenInfoUpdate');
@@ -81,7 +95,6 @@ Route::post('/registerCitizen',[
     'as'=>'registerCitizen'
 ]);
 
-
 Route::post('/reviewCitizenRegistrationRequest',[
     'uses'=>'CitizenController@ViewRequest',
     'as'=>'reviewCitizenRegistrationRequest'
@@ -92,29 +105,15 @@ Route::post('/citizenAccountDeactivate',[
     'as'=>'citizenAccountDeactivate'
 ]);
 
-Route::post('/citizenPasswordChange',[
-    'uses'=>'CitizenController@citizenPasswordChange',
-    'as'=>'citizenPasswordChange'
-]);
 
-Route::get('/changePasswordFormView',[
-    'uses'=>'CitizenController@changePasswordFormView',
-    'as'=>'changePasswordFormView'
-]);
+
+
 Route::get('/submitCrimeEntryForm',[
     'uses'=>'CitizenController@submitCrimeEntryForm',
     'as'=>'submitCrimeEntryForm'
 ]);
 
-Route::get('/citizenProfileFormView',[
-    'uses'=>'CitizenController@citizenProfileFormView',
-    'as'=>'citizenProfileFormView'
-]);
 
-Route::get('/citizenInfoUpdate',[
-    'uses'=>'CitizenController@citizenInfoUpdate',
-    'as'=>'citizenInfoUpdate'
-]);
 
 
 Route::post('/viewHigherAuthorityAttention',[
@@ -128,8 +127,46 @@ Route::get('/deactivateCitizenForm',[
 ]);
 
 Route::get('/RedirectRegisteredCitizen','CitizenLoginController@index');
+/*
+ * CITIZEN ACCOUNT DEACTIVATE ROUTES
+ */
 
-//Oic
+/*
+ * CITIZEN PASSWORD CHANGE ROUTES
+ */
+Route::get('/changePasswordFormView',[
+    'uses'=>'CitizenController@changePasswordFormView',
+    'as'=>'changePasswordFormView'
+]);
+
+Route::post('/citizenPasswordChange',[
+    'uses'=>'CitizenController@citizenPasswordChange',
+    'as'=>'citizenPasswordChange'
+]);
+
+
+/*
+ * CITIZEN PROFILE UPDATE ROUTES
+ */
+Route::get('/citizenProfileFormView',[
+    'uses'=>'CitizenController@citizenProfileFormView',
+    'as'=>'citizenProfileFormView'
+]);
+
+Route::get('/citizenInfoUpdate',[
+    'uses'=>'CitizenController@citizenInfoUpdate',
+    'as'=>'citizenInfoUpdate'
+]);
+
+
+/*
+ ***********************************
+ ************** OIC ****************
+ ***********************************
+ */
+
+
+
 Route::get('/test','OICController@test');
 
 Route::post('/createPost','PostsController@createPost');
@@ -209,7 +246,12 @@ Route::post('/entryOICAction',[
     'as'=>'entryOICAction'
 ])->middleware('auth');
 
-//boic
+/*
+ ***********************************
+ ************** BOIC ***************
+ ***********************************
+ */
+
 
 
 Route::get('/viewBOICNewEntries',[
@@ -277,7 +319,12 @@ Route::get('/deactivateBOICFormView',[
 ])->middleware('auth');
 
 
-//admin////////////////////
+/*
+ ***********************************
+ ************* ADMIN ***************
+ ***********************************
+ */
+
 
 
 Route::post('removeFormView','AdminController@removeFormView');
@@ -425,7 +472,12 @@ Route::post('/adminPasswordChange',[
     'as'=>'adminPasswordChange'
 ])->middleware('auth');
 
-//general
+/*
+ ***********************************
+ ************ GENERAL **************
+ ***********************************
+ */
+
 Route::post('/getUserInfo',[
     'uses'=>'EntryController@getUserInfo',
     'as'=>'getUserInfo'

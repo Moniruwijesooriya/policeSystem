@@ -6,6 +6,14 @@ use App\Rules\NicValidation;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+
+/**
+ ****************************************
+ *********** FORM VALIDATION ************
+ ****************************************
+ */
+
+
 class RegistrationValidation extends FormRequest
 {
     /**

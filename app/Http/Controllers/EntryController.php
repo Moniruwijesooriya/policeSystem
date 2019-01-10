@@ -16,9 +16,11 @@ use Mail;
 
 class EntryController extends Controller
 {
+
     /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     *
+     * SUBMIT CRIME ENTRY FUNCTION
+     *
      */
     public function submitEntry(Request $request){
 
@@ -333,6 +335,8 @@ class EntryController extends Controller
 
         return view('oic/entryView',compact('entry','evidences','suspects','entryProgresses','branches','oicDetails','currentBranch'));
     }
+
+
     public function entryBOICAction(Request $request){
 
         $nic=Auth::User()->nic;
@@ -602,6 +606,8 @@ class EntryController extends Controller
         $currentBranch=db::table('police_offices')->where('id',$entry->branch)->First();
         return view('boic/entryView',compact('entry','evidences','suspects','entryProgresses','branches','oicDetails','currentBranch'));
     }
+
+
     public function viewOICEntry(Request $request){
         $nic=Auth::User()->nic;
         $oicDetails = db::table('users')->where('nic',$nic)->First();
