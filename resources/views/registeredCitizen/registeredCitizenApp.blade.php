@@ -18,9 +18,9 @@
                         <h4 class="w3-center">My Profile</h4>
                         <p class="w3-center"><img src="{{asset('/userProfileImages/'.$citizenDetails->nic.'.jpg')}}" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
                         <hr>
-                        <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>{{$citizenDetails->name}}</p>
-                        <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>{{$citizenDetails->nic}}</p>
-                        <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>{{$citizenDetails->email}}</p>
+                        <p><i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i>{{$citizenDetails->name}}</p>
+                        <p><i class="fa fa-id-badge fa-fw w3-margin-right w3-text-theme"></i>{{$citizenDetails->nic}}</p>
+                        <p><i class="fa fa-envelope fa-fw w3-margin-right w3-text-theme" aria-hidden="true"></i>{{$citizenDetails->email}}</p>
                     </div>
                 </div>
                 <br>
@@ -29,6 +29,7 @@
                 <div class="w3-card w3-round">
                     <div class="w3-white">
                         <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>Submitted Entries</button>
+                        <br>
                         <div id="Demo1" class="w3-hide w3-container">
                             {{--<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">--}}
                             @foreach($entries as $entry)
@@ -40,9 +41,9 @@
                                 </form>
                             @endforeach
                             {{--</div>--}}
-                        </div>
-                        <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Following Cases</button>
-                        <div id="Demo2" class="w3-hide w3-container">
+                        {{--</div>--}}
+                        {{--<button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Following Cases</button>--}}
+                        {{--<div id="Demo2" class="w3-hide w3-container">--}}
 
                         </div>
                         <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i>Evidence Submitted</button>

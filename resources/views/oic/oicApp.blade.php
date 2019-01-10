@@ -34,7 +34,7 @@
     {{-- <!-- Theme style --> --}}
     <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
     {{-- <!-- AdminLTE Skins. Choose a skin from the css/skins --}}
-         {{-- folder instead of downloading all of them to reduce the load. --> --}}
+    {{-- folder instead of downloading all of them to reduce the load. --> --}}
     {{-- <link href="{{asset('dist/css/AdminLTE.min.cs')}}"> --}}
     {{--<link href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">--}}
     {{--<link href="{{asset('bower_components/font-awesome/css/font-awesome.min.css')}}">--}}
@@ -48,7 +48,7 @@
     {{--<link href="{{asset('https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js')}}">--}}
     {{--<link href="{{asset('https://oss.maxcdn.com/respond/1.4.2/respond.min.js')}}">--}}
     <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
-    
+
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 
@@ -89,15 +89,15 @@
             -webkit-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
             -o-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
             -ms-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
-        }   
+        }
         /*.tc-left{
             min-width: 15%;
         } */
         .tc-middle{
             min-width: 45%;
             padding-left: 3%;
-            
-        } 
+
+        }
         .tc-right{
             min-width: 40%;
             padding-left: 3%;
@@ -137,94 +137,101 @@
                     <?php
                     $loggedUser=db::table('users')->where('nic',Auth::User()->nic)->first();
                     ?>
-                    <li class="dropdown messages-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-envelope-o"></i>
-                            <span class="label label-success">4</span>
-                        </a>
-                        {{--<ul class="dropdown-menu">--}}
-                            {{--<li class="header">You have 4 messages</li>--}}
-                            {{--<li>--}}
-                                {{-- <!-- inner menu: contains the actual data --> --}}
-                                {{--<ul class="menu">--}}
-                                    {{-- <li><!-- start message --> --}}
-                                        {{--<a href="#">--}}
-                                            {{--<div class="pull-left">--}}
-                                                {{--<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">--}}
-                                            {{--</div>--}}
-                                            {{--<h4>--}}
-                                                {{--Support Team--}}
-                                                {{--<small><i class="fa fa-clock-o"></i> 5 mins</small>--}}
-                                            {{--</h4>--}}
-                                            {{--<p>Why not buy a new awesome theme?</p>--}}
-                                        {{--</a>--}}
-                                    {{--</li>--}}
-                                    {{-- <!-- end message --> --}}
-                                    {{--<li>--}}
-                                        {{--<a href="#">--}}
-                                            {{--<div class="pull-left">--}}
-                                                {{--<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">--}}
-                                            {{--</div>--}}
-                                            {{--<h4>--}}
-                                                {{--AdminLTE Design Team--}}
-                                                {{--<small><i class="fa fa-clock-o"></i> 2 hours</small>--}}
-                                            {{--</h4>--}}
-                                            {{--<p>Why not buy a new awesome theme?</p>--}}
-                                        {{--</a>--}}
-                                    {{--</li>--}}
-                                    {{--<li>--}}
-                                        {{--<a href="#">--}}
-                                            {{--<div class="pull-left">--}}
-                                                {{--<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">--}}
-                                            {{--</div>--}}
-                                            {{--<h4>--}}
-                                                {{--Developers--}}
-                                                {{--<small><i class="fa fa-clock-o"></i> Today</small>--}}
-                                            {{--</h4>--}}
-                                            {{--<p>Why not buy a new awesome theme?</p>--}}
-                                        {{--</a>--}}
-                                    {{--</li>--}}
-                                    {{--<li>--}}
-                                        {{--<a href="#">--}}
-                                            {{--<div class="pull-left">--}}
-                                                {{--<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">--}}
-                                            {{--</div>--}}
-                                            {{--<h4>--}}
-                                                {{--Sales Department--}}
-                                                {{--<small><i class="fa fa-clock-o"></i> Yesterday</small>--}}
-                                            {{--</h4>--}}
-                                            {{--<p>Why not buy a new awesome theme?</p>--}}
-                                        {{--</a>--}}
-                                    {{--</li>--}}
-                                    {{--<li>--}}
-                                        {{--<a href="#">--}}
-                                            {{--<div class="pull-left">--}}
-                                                {{--<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">--}}
-                                            {{--</div>--}}
-                                            {{--<h4>--}}
-                                                {{--Reviewers--}}
-                                                {{--<small><i class="fa fa-clock-o"></i> 2 days</small>--}}
-                                            {{--</h4>--}}
-                                            {{--<p>Why not buy a new awesome theme?</p>--}}
-                                        {{--</a>--}}
-                                    {{--</li>--}}
-                                {{--</ul>--}}
-                            {{--</li>--}}
-                            {{--<li class="footer"><a href="#">See All Messages</a></li>--}}
-                        {{--</ul>--}}
-                    </li>
+                    {{--<li class="dropdown messages-menu">--}}
+                    {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown">--}}
+                    {{--<i class="fa fa-envelope-o"></i>--}}
+                    {{--<span class="label label-success">4</span>--}}
+                    {{--</a>--}}
+                    {{--<ul class="dropdown-menu">--}}
+                    {{--<li class="header">You have 4 messages</li>--}}
+                    {{--<li>--}}
+                    {{-- <!-- inner menu: contains the actual data --> --}}
+                    {{--<ul class="menu">--}}
+                    {{-- <li><!-- start message --> --}}
+                    {{--<a href="#">--}}
+                    {{--<div class="pull-left">--}}
+                    {{--<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">--}}
+                    {{--</div>--}}
+                    {{--<h4>--}}
+                    {{--Support Team--}}
+                    {{--<small><i class="fa fa-clock-o"></i> 5 mins</small>--}}
+                    {{--</h4>--}}
+                    {{--<p>Why not buy a new awesome theme?</p>--}}
+                    {{--</a>--}}
+                    {{--</li>--}}
+                    {{-- <!-- end message --> --}}
+                    {{--<li>--}}
+                    {{--<a href="#">--}}
+                    {{--<div class="pull-left">--}}
+                    {{--<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">--}}
+                    {{--</div>--}}
+                    {{--<h4>--}}
+                    {{--AdminLTE Design Team--}}
+                    {{--<small><i class="fa fa-clock-o"></i> 2 hours</small>--}}
+                    {{--</h4>--}}
+                    {{--<p>Why not buy a new awesome theme?</p>--}}
+                    {{--</a>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                    {{--<a href="#">--}}
+                    {{--<div class="pull-left">--}}
+                    {{--<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">--}}
+                    {{--</div>--}}
+                    {{--<h4>--}}
+                    {{--Developers--}}
+                    {{--<small><i class="fa fa-clock-o"></i> Today</small>--}}
+                    {{--</h4>--}}
+                    {{--<p>Why not buy a new awesome theme?</p>--}}
+                    {{--</a>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                    {{--<a href="#">--}}
+                    {{--<div class="pull-left">--}}
+                    {{--<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">--}}
+                    {{--</div>--}}
+                    {{--<h4>--}}
+                    {{--Sales Department--}}
+                    {{--<small><i class="fa fa-clock-o"></i> Yesterday</small>--}}
+                    {{--</h4>--}}
+                    {{--<p>Why not buy a new awesome theme?</p>--}}
+                    {{--</a>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                    {{--<a href="#">--}}
+                    {{--<div class="pull-left">--}}
+                    {{--<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">--}}
+                    {{--</div>--}}
+                    {{--<h4>--}}
+                    {{--Reviewers--}}
+                    {{--<small><i class="fa fa-clock-o"></i> 2 days</small>--}}
+                    {{--</h4>--}}
+                    {{--<p>Why not buy a new awesome theme?</p>--}}
+                    {{--</a>--}}
+                    {{--</li>--}}
+                    {{--</ul>--}}
+                    {{--</li>--}}
+                    {{--<li class="footer"><a href="#">See All Messages</a></li>--}}
+                    {{--</ul>--}}
+                    {{--</li>--}}
                     {{-- <!-- Notifications: style can be found in dropdown.less --> --}}
                     <li class="dropdown notifications-menu">
                         <?php
                         $count=db::table('users')->where('verified',"No")->where('role',"citizen")->where('policeOffice',$loggedUser->policeOffice)->count();
                         ?>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-bell-o"></i>
+                            <i class="fa fa-user-plus"></i>
                             <span class="label label-warning">{{$count}}</span>
                         </a>
                         <ul class="dropdown-menu">
+                            @if($count==1)
+                                <li class="header">{{$count}} New Citizen Registration Request</li>
 
-                            <li class="header">You have {{$count}} Requests</li>
+                            @elseif($count>0)
+                                <li class="header">{{$count}} New Citizen Registration Requests</li>
+                            @else
+                                <li class="header">No New Registration Requests</li>
+                            @endif
+
                             <li>
                                 {{-- <!-- inner menu: contains the actual data --> --}}
 
@@ -247,7 +254,7 @@
 
                                 </ul>
                             </li>
-                            <li class="footer"><a href="#">View all</a></li>
+                            <li class="footer"><a href="viewNewCitizenRequests">View all</a></li>
                         </ul>
                     </li>
                     {{-- <!-- Tasks: style can be found in dropdown.less --> --}}
@@ -256,11 +263,19 @@
                         $entryCount=db::table('entries')->where('oicNotification',"y")->where('nearestPoliceStation',$loggedUser->policeOffice)->count()
                         ?>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-flag-o"></i>
+                            <i class="fa fa-window-restore"></i>
+
                             <span class="label label-danger">{{$entryCount}}</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="header">You have {{$entryCount}} Entries</li>
+                            @if($entryCount==1)
+                                <li class="header">{{$entryCount}} New Entry</li>
+
+                            @elseif($entryCount>0)
+                                <li class="header">{{$entryCount}} New Entries</li>
+                            @else
+                                <li class="header">No New Entries</li>
+                            @endif
                             <li>
                                 {{-- <!-- inner menu: contains the actual data --> --}}
                                 <ul class="menu">
@@ -268,18 +283,18 @@
                                     $entryNotification=db::table('entries')->where('oicNotification',"y")->where('nearestPoliceStation',$loggedUser->policeOffice)->get();
                                     ?>
                                     @foreach($entryNotification as $notifi)
-                                            <li>
-                                                <form method="post" action="{{'viewOICEntry'}}">
-                                                    @csrf
-                                                    <input type="hidden" value="{{$notifi->entryID}}" name="entryID">
-                                                    <input type="submit" class="btn-link" value="{{$notifi->complainantID}} submitted a crime">
-                                                </form>
-                                            </li>
+                                        <li>
+                                            <form method="post" action="{{'viewOICEntry'}}">
+                                                @csrf
+                                                <input type="hidden" value="{{$notifi->entryID}}" name="entryID">
+                                                <input type="submit" class="btn-link" value="{{$notifi->complainantID}} submitted a crime">
+                                            </form>
+                                        </li>
                                     @endforeach
                                 </ul>
                             </li>
                             <li class="footer">
-                                <a href="#">View all tasks</a>
+                                <a href="viewOICNewEntries">View all</a>
                             </li>
                         </ul>
                     </li>
@@ -320,23 +335,23 @@
                                 </div>
                                 <!-- /.row -->
                             </li>
-                                {{-- <!-- /.row --> --}}
+                            {{-- <!-- /.row --> --}}
                             </li>
                             {{-- <!-- Menu Footer--> --}}
                             {{--<li class="user-footer">--}}
-                                {{--<div class="pull-left">--}}
-                                    {{--<a href="#" class="btn btn-default btn-flat">Profile</a>--}}
-                                {{--</div>--}}
-                                {{--<div class="pull-right">--}}
-                                    {{--<a href="logout" class="btn btn-default btn-flat">Sign out</a>--}}
-                                {{--</div>--}}
+                            {{--<div class="pull-left">--}}
+                            {{--<a href="#" class="btn btn-default btn-flat">Profile</a>--}}
+                            {{--</div>--}}
+                            {{--<div class="pull-right">--}}
+                            {{--<a href="logout" class="btn btn-default btn-flat">Sign out</a>--}}
+                            {{--</div>--}}
                             {{--</li>--}}
                         </ul>
                     </li>
                     {{-- <!-- Control Sidebar Toggle Button --> --}}
-                    <li>
-                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                    </li>
+                    {{--<li>--}}
+                        {{--<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>--}}
+                    {{--</li>--}}
                 </ul>
             </div>
         </nav>
@@ -352,21 +367,21 @@
                 </div>
                 <div class="pull-left info">
                     <p>{{Auth::User()->name}}</p>
-                    <p><small>{{Auth::User()->policeOffice}}</small></p>
+                    {{--<p><small>{{Auth::User()->policeOffice}}</small></p>--}}
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
             {{-- <!-- search form --> --}}
-        {{--<form action="#" method="get" class="sidebar-form">--}}
-        {{--<div class="input-group">--}}
-        {{--<input type="text" name="q" class="form-control" placeholder="Search...">--}}
-        {{--<span class="input-group-btn">--}}
-        {{--<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>--}}
-        {{--</button>--}}
-        {{--</span>--}}
-        {{--</div>--}}
-        {{--</form>--}}
-        {{-- <!-- /.search form --> --}}
+            {{--<form action="#" method="get" class="sidebar-form">--}}
+            {{--<div class="input-group">--}}
+            {{--<input type="text" name="q" class="form-control" placeholder="Search...">--}}
+            {{--<span class="input-group-btn">--}}
+            {{--<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>--}}
+            {{--</button>--}}
+            {{--</span>--}}
+            {{--</div>--}}
+            {{--</form>--}}
+            {{-- <!-- /.search form --> --}}
             {{-- <!-- sidebar menu: : style can be found in sidebar.less --> --}}
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="treeview">
@@ -385,7 +400,8 @@
                 </li>
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-edit"></i> <span>Citizen Management</span>
+                        <i class="fa fa-edit"></i>
+                        <span>Citizen Management</span>
                         <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -405,17 +421,15 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <div id="branchOffice" class="w3-hide w3-container">
                             @foreach($branches as $branch)
                                 <form method="post" action="{{'viewBranch'}}">
                                     @csrf
                                     <input type="hidden" value="{{ $branch->id }}" name="branchID">
                                     <input type="hidden" value="{{ $branch->policeOfficeArea }}" name="branchName">
                                     <input type="hidden" value="{{ $branch->mainOfficer }}" name="mainOfficer">
-                                    <li><i class="fa fa-circle-o"></i><input type="submit" class="btn btn-primary" value="{{ $branch->OfficeName }}"></li>
+                                    <li><input type="submit" class="btn btn-outline-primary" style="width: 222px;text-wrap: normal;" value="{{ $branch->policeOfficeArea }} Branch"></li>
                                 </form>
                             @endforeach
-                        </div>
                     </ul>
                 </li>
             </ul>
@@ -432,8 +446,7 @@
         <div class="pull-right hidden-xs">
             <b>Version</b> 1.0
         </div>
-        <strong>Copyright &copy; 2019  Group 26</strong> All rights
-        reserved.
+        <strong>Crime Reporting System  Group CS 26</strong>
     </footer>
     {{-- <!-- Control Sidebar --> --}}
     <aside class="control-sidebar control-sidebar-dark">
@@ -470,17 +483,17 @@
                             </div>
                         </a>
                     </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+                    {{--<li>--}}
+                    {{--<a href="javascript:void(0)">--}}
+                    {{--<i class="menu-icon fa fa-envelope-o bg-light-blue"></i>--}}
 
-                            <div class="menu-info">
-                                <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+                    {{--<div class="menu-info">--}}
+                    {{--<h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>--}}
 
-                                <p>nora@example.com</p>
-                            </div>
-                        </a>
-                    </li>
+                    {{--<p>nora@example.com</p>--}}
+                    {{--</div>--}}
+                    {{--</a>--}}
+                    {{--</li>--}}
                     <li>
                         <a href="javascript:void(0)">
                             <i class="menu-icon fa fa-file-code-o bg-green"></i>
@@ -695,6 +708,7 @@
                     $("#genderTempId").val(data.gender);
                     $("#professionTempId").val(data.profession);
                     $("#policeStationId").val(data.policeOffice);
+                    $("#userProfileImage").src="asset('/userProfileImages/'+data.nic+'.jpg')";
                 }
             });
         });

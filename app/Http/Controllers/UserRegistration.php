@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\citizenRegistrationValidation;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserRegistration extends Controller
 {
-    public function registerCitizen(Request $request){
+    public function registerCitizen(citizenRegistrationValidation $request){
         $citizen=new User();
         $citizen->name=$request->name;
         $citizen->nic=$request-> nic;

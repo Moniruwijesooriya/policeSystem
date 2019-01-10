@@ -177,48 +177,7 @@
                         {{--</ul>--}}
                     {{--</li>--}}
                     <!-- Notifications: style can be found in dropdown.less -->
-                    {{--<li class="dropdown notifications-menu">--}}
-                        {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown">--}}
-                            {{--<i class="fa fa-bell-o"></i>--}}
-                            {{--<span class="label label-warning">10</span>--}}
-                        {{--</a>--}}
-                        {{--<ul class="dropdown-menu">--}}
-                            {{--<li class="header">You have 10 notifications</li>--}}
-                            {{--<li>--}}
-                                {{--<!-- inner menu: contains the actual data -->--}}
-                                {{--<ul class="menu">--}}
-                                    {{--<li>--}}
-                                        {{--<a href="#">--}}
-                                            {{--<i class="fa fa-users text-aqua"></i> 5 new members joined today--}}
-                                        {{--</a>--}}
-                                    {{--</li>--}}
-                                    {{--<li>--}}
-                                        {{--<a href="#">--}}
-                                            {{--<i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the--}}
-                                            {{--page and may cause design problems--}}
-                                        {{--</a>--}}
-                                    {{--</li>--}}
-                                    {{--<li>--}}
-                                        {{--<a href="#">--}}
-                                            {{--<i class="fa fa-users text-red"></i> 5 new members joined--}}
-                                        {{--</a>--}}
-                                    {{--</li>--}}
-                                    {{--<li>--}}
-                                        {{--<a href="#">--}}
-                                            {{--<i class="fa fa-shopping-cart text-green"></i> 25 sales made--}}
-                                        {{--</a>--}}
-                                    {{--</li>--}}
-                                    {{--<li>--}}
-                                        {{--<a href="#">--}}
-                                            {{--<i class="fa fa-user text-red"></i> You changed your username--}}
-                                        {{--</a>--}}
-                                    {{--</li>--}}
-                                {{--</ul>--}}
-                            {{--</li>--}}
-                            {{--<li class="footer"><a href="#">View all</a></li>--}}
-                        {{--</ul>--}}
-                    {{--</li>--}}
-                    <!-- Tasks: style can be found in dropdown.less -->
+
                     {{--<li class="dropdown tasks-menu">--}}
                         {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown">--}}
                             {{--<i class="fa fa-flag-o"></i>--}}
@@ -296,7 +255,7 @@
                             {{--</li>--}}
                         {{--</ul>--}}
                     {{--</li>--}}
-                    <!-- User Account: style can be found in dropdown.less -->
+    <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src='{{asset('/userProfileImages/'.$citizenDetails->nic.'.jpg')}}' class="user-image" alt="User Image">
@@ -435,8 +394,7 @@
         <div class="pull-right hidden-xs">
             <b>Version</b> 1.0
         </div>
-        <strong>Copyright &copy; 2019  Group 26</strong> All rights
-        reserved.
+        <strong>Crime Reporting System  Group CS 26</strong>
     </footer>
     <!-- Control Sidebar -->
     {{--<aside class="control-sidebar control-sidebar-dark">--}}
@@ -554,76 +512,76 @@
             </div>
             <!-- /.tab-pane -->
             <!-- Stats tab content -->
-            <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+            {{--<div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>--}}
             <!-- /.tab-pane -->
             <!-- Settings tab content -->
-            <div class="tab-pane" id="control-sidebar-settings-tab">
-                <form method="post">
-                    <h3 class="control-sidebar-heading">General Settings</h3>
+            {{--<div class="tab-pane" id="control-sidebar-settings-tab">--}}
+                {{--<form method="post">--}}
+                    {{--<h3 class="control-sidebar-heading">General Settings</h3>--}}
 
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Report panel usage
-                            <input type="checkbox" class="pull-right" checked>
-                        </label>
+                    {{--<div class="form-group">--}}
+                        {{--<label class="control-sidebar-subheading">--}}
+                            {{--Report panel usage--}}
+                            {{--<input type="checkbox" class="pull-right" checked>--}}
+                        {{--</label>--}}
 
-                        <p>
-                            Some information about this general settings option
-                        </p>
-                    </div>
-                    <!-- /.form-group -->
+                        {{--<p>--}}
+                            {{--Some information about this general settings option--}}
+                        {{--</p>--}}
+                    {{--</div>--}}
+                    {{--<!-- /.form-group -->--}}
 
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Allow mail redirect
-                            <input type="checkbox" class="pull-right" checked>
-                        </label>
+                    {{--<div class="form-group">--}}
+                        {{--<label class="control-sidebar-subheading">--}}
+                            {{--Allow mail redirect--}}
+                            {{--<input type="checkbox" class="pull-right" checked>--}}
+                        {{--</label>--}}
 
-                        <p>
-                            Other sets of options are available
-                        </p>
-                    </div>
-                    <!-- /.form-group -->
+                        {{--<p>--}}
+                            {{--Other sets of options are available--}}
+                        {{--</p>--}}
+                    {{--</div>--}}
+                    {{--<!-- /.form-group -->--}}
 
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Expose author name in posts
-                            <input type="checkbox" class="pull-right" checked>
-                        </label>
+                    {{--<div class="form-group">--}}
+                        {{--<label class="control-sidebar-subheading">--}}
+                            {{--Expose author name in posts--}}
+                            {{--<input type="checkbox" class="pull-right" checked>--}}
+                        {{--</label>--}}
 
-                        <p>
-                            Allow the user to show his name in blog posts
-                        </p>
-                    </div>
-                    <!-- /.form-group -->
+                        {{--<p>--}}
+                            {{--Allow the user to show his name in blog posts--}}
+                        {{--</p>--}}
+                    {{--</div>--}}
+                    {{--<!-- /.form-group -->--}}
 
-                    <h3 class="control-sidebar-heading">Chat Settings</h3>
+                    {{--<h3 class="control-sidebar-heading">Chat Settings</h3>--}}
 
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Show me as online
-                            <input type="checkbox" class="pull-right" checked>
-                        </label>
-                    </div>
-                    <!-- /.form-group -->
+                    {{--<div class="form-group">--}}
+                        {{--<label class="control-sidebar-subheading">--}}
+                            {{--Show me as online--}}
+                            {{--<input type="checkbox" class="pull-right" checked>--}}
+                        {{--</label>--}}
+                    {{--</div>--}}
+                    {{--<!-- /.form-group -->--}}
 
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Turn off notifications
-                            <input type="checkbox" class="pull-right">
-                        </label>
-                    </div>
-                    <!-- /.form-group -->
+                    {{--<div class="form-group">--}}
+                        {{--<label class="control-sidebar-subheading">--}}
+                            {{--Turn off notifications--}}
+                            {{--<input type="checkbox" class="pull-right">--}}
+                        {{--</label>--}}
+                    {{--</div>--}}
+                    {{--<!-- /.form-group -->--}}
 
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Delete chat history
-                            <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
-                        </label>
-                    </div>
-                    <!-- /.form-group -->
-                </form>
-            </div>
+                    {{--<div class="form-group">--}}
+                        {{--<label class="control-sidebar-subheading">--}}
+                            {{--Delete chat history--}}
+                            {{--<a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>--}}
+                        {{--</label>--}}
+                    {{--</div>--}}
+                    {{--<!-- /.form-group -->--}}
+                {{--</form>--}}
+            {{--</div>--}}
             <!-- /.tab-pane -->
         </div>
     </aside>

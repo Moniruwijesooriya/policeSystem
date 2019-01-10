@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Session;
 use phpDocumentor\Reflection\Types\Null_;
 use function PHPSTORM_META\elementType;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\citizenRegistrationValidation;
+use App\Http\Requests\RegistrationValidation;
 
 
 class CitizenController extends Controller
@@ -31,7 +31,7 @@ class CitizenController extends Controller
 //    }
 
 
-    public function registerCitizen(citizenRegistrationValidation $request)
+    public function registerCitizen(RegistrationValidation $request)
     {
 
 //        dd($request->email,$request->password,$request->nic,$request->password_confirmation);
@@ -148,7 +148,7 @@ public function store(Request $request)
     public function citizenInfoUpdate(Request $request)
     {
 
-        DB::table('users')
+        $results=DB::table('users')
             ->where('nic',$request->nic)
 
             ->update(['address'=>$request->homeAddress,'policeOffice'=>$request->policeStation,'mobileNumber'=>$request->mobNumber,'profession'=>$request->profession,'landLineNumber'=>$request->landNumber,'email'=>$request->email]);
