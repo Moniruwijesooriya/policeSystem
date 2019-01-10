@@ -189,3 +189,5 @@ class OICController extends Controller
 //        return view('registeredCitizen.index',compact('message','citizenDetails','crimeCategories'));
 
 }
+
+?>

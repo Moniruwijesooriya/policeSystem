@@ -128,6 +128,8 @@ Route::get('/deactivateCitizenForm',[
 ]);
 
 Route::get('/RedirectRegisteredCitizen','CitizenLoginController@index');
+//Citizen End
+
 
 //Oic
 Route::get('/test','OICController@test');
@@ -158,7 +160,6 @@ Route::get('/viewRegisteredCitizens',[
     'uses'=>'OICController@viewRegisteredCitizens',
     'as'=>'viewRegisteredCitizens'
 ])->middleware('auth');
-
 
 Route::get('/viewClosedAccounts',[
     'uses'=>'OICController@viewClosedAccounts',
@@ -208,10 +209,10 @@ Route::post('/entryOICAction',[
     'uses'=>'EntryController@entryOICAction',
     'as'=>'entryOICAction'
 ])->middleware('auth');
+//OIC end
+
 
 //boic
-
-
 Route::get('/viewBOICNewEntries',[
     'uses'=>'EntryController@viewBOICNewEntries',
     'as'=>'NewEntries'
@@ -442,4 +443,53 @@ Route::get('/tempHome',[
     'as'=>'tempHome'
 ])->middleware('auth');
 
+
+
+//DOIG
+Route::get('/viewDOIGNewEntries',[
+    'uses'=>'EntryController@viewDOIGNewEntries',
+    'as'=>'NewEntries'
+])->middleware('auth');
+
+Route::post('/viewDOIGEntry',[
+    'uses'=>'EntryController@viewDOIGEntry',
+    'as'=>'viewDOIGEntry'
+])->middleware('auth');
+
+Route::post('/entryDOIGAction',[
+    'uses'=>'EntryController@entryDOIGAction',
+    'as'=>'entryDOIGAction'
+])->middleware('auth');
+
+Route::get('/viewDOIGOngoingEntries',[
+    'uses'=>'EntryController@viewDOIGOngoingEntries',
+    'as'=>'OngoingEntries'
+])->middleware('auth');
+
+Route::get('/viewDOIGClosedEntries',[
+    'uses'=>'EntryController@viewDOIGClosedEntries',
+    'as'=>'ClosedEntries'
+])->middleware('auth');
+
+Route::get('/viewNewCitizenRequestsDOIG',[
+    'uses'=>'DOIGController@viewNewCitizenRequests',
+    'as'=>'viewNewCitizenRequests'
+])->middleware('auth');
+
+Route::get('/viewRegisteredCitizensDOIG',[
+    'uses'=>'DOIGController@viewRegisteredCitizens',
+    'as'=>'viewRegisteredCitizens'
+])->middleware('auth');
+
+Route::get('/viewClosedAccountsDOIG',[
+    'uses'=>'DOIGController@viewClosedAccounts',
+    'as'=>'viewClosedAccounts'
+])->middleware('auth');
+
+Route::post('/viewOffice',[
+    'uses'=>'DOIGController@viewOffice',
+    'as'=>'viewOffice'
+]);
+
+//DOIG end
 
