@@ -29,20 +29,20 @@
                                 </div>
                             </div>
 
-                            <form method="POST" action="updateProfile" enctype="multipart/form-data">
+                            <form method="POST" action="boicUpdateProfile" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group row">
                                     <label for="profession" class="col-md-4 col-form-label text-md-right">{{ __('Officer Rank') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="profession" type="text" class="form-control" name="profession" value="{{$oicDetails->profession}}" readonly>
+                                        <input id="profession" type="text" class="form-control" name="profession" value="{{$boicDetails->profession}}" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Full Name') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="fullName" type="text" class="form-control" name="fullName" value="{{$oicDetails->fullName}}" readonly>
+                                        <input id="fullName" type="text" class="form-control" name="fullName" value="{{$boicDetails->fullName}}" readonly>
 
                                     </div>
                                 </div>
@@ -51,7 +51,7 @@
                                     <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name with initials') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="name" type="text" class="form-control" name="name" value="{{$oicDetails->name}}" readonly>
+                                        <input id="name" type="text" class="form-control" name="name" value="{{$boicDetails->name}}" readonly>
                                     </div>
                                 </div>
 
@@ -60,7 +60,7 @@
                                     <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('NIC') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="nic" type="text" pattern=".{10,12}" class="form-control" name="nic" value="{{$oicDetails->nic}}" readonly>
+                                        <input id="nic" type="text" pattern=".{10,12}" class="form-control" name="nic" value="{{$boicDetails->nic}}" readonly>
                                     </div>
                                 </div>
 
@@ -70,7 +70,7 @@
                                     <label for="homeAddress" class="col-md-4 col-form-label text-md-right">{{ __('Police Station') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="homeAddress" type="text" class="form-control" name="homeAddress" value="{{$oicDetails->policeOffice}}" readonly>
+                                        <input id="homeAddress" type="text" class="form-control" name="homeAddress" value="{{$boicDetails->policeOffice}}" readonly>
 
                                     </div>
                                 </div>
@@ -80,7 +80,7 @@
                                     <label for="homeAddress" class="col-md-4 col-form-label text-md-right">{{ __('Home Address') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="homeAddress" type="text" class="form-control" name="homeAddress" value="{{$oicDetails->address}}" required autofocus>
+                                        <input id="homeAddress" type="text" class="form-control" name="homeAddress" value="{{$boicDetails->address}}" required autofocus>
 
                                     </div>
                                 </div>
@@ -88,7 +88,7 @@
                                     <label for="mobNumber" class="col-md-4 col-form-label text-md-right">{{ __('Mobile Number') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="mobNumber" type="text" maxlength="10" class="form-control" name="mobNumber" value="{{$oicDetails->mobileNumber}}" required autofocus>
+                                        <input id="mobNumber" type="text" maxlength="10" class="form-control" name="mobNumber" value="{{$boicDetails->mobileNumber}}" required autofocus>
 
                                     </div>
                                 </div>
@@ -97,7 +97,7 @@
                                     <label for="landNumber" class="col-md-4 col-form-label text-md-right">{{ __('Landline Number') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="landNumber" type="text" maxlength="10" class="form-control" name="landNumber" value="{{$oicDetails->landLineNumber}}" required autofocus>
+                                        <input id="landNumber" type="text" maxlength="10" class="form-control" name="landNumber" value="{{$boicDetails->landLineNumber}}" required autofocus>
 
                                     </div>
                                 </div>
@@ -105,7 +105,7 @@
                                     <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="email" type="email" class="form-control" name="email" value="{{$oicDetails->email}}" required>
+                                        <input id="email" type="email" class="form-control" name="email" value="{{$boicDetails->email}}" required>
                                     </div>
                                 </div>
 

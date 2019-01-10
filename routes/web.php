@@ -183,10 +183,10 @@ Route::get('/oicProfileFormView',[
     'as'=>'oicProfileFormView'
 ])->middleware('auth');
 
-Route::post('/updateProfile',[
-    'uses'=>'OICController@oicProfileUpdate',
-    'as'=>'updateProfile'
-])->middleware('auth');
+//Route::post('/updateProfile',[
+//    'uses'=>'OICController@oicProfileUpdate',
+//    'as'=>'updateProfile'
+//])->middleware('auth');
 
 
 Route::post('/oicPasswordChange',[
@@ -236,7 +236,7 @@ Route::get('/changeBOICPasswordFormView',[
 
 Route::get('/boicProfileFormView',[
     'uses'=>'BOICController@boicProfileFormView',
-    'as'=>'oicProfileFormView'
+    'as'=>'boicProfileFormView'
 ])->middleware('auth');
 
 Route::post('/oicUpdateProfile',[

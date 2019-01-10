@@ -124,10 +124,12 @@ class OICController extends Controller
         $branchDetails=db::table('police_offices')->where('id',$request->branchID)->First();
         $nic=Auth::User()->nic;
         $oicDetails = db::table('users')->where('nic',$nic)->First();
-        $entries = db::table('entries')->where('branch',$request->branchName)->where('nearestPoliceStation',$oicDetails->policeOffice)->get();
+        $newEntries = db::table('entries')->where('branch',$request->branchID)->where('boicNotification',"y")->get();
+        $ongoingEntries = db::table('entries')->where('branch',$request->branchID)->where('boicNotification',"y o")->get();
+        $closedEntries = db::table('entries')->where('branch',$request->branchID)->where('status',"closed")->get();
         $branchOfficerDetails = db::table('users')->where('nic',$request->mainOfficer)->First();
         $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
-        return view('oic.viewBranchOffice',compact('branchDetails','oicDetails','entries','branches','oicDetails','branchOfficerDetails'));
+        return view('oic.viewBranchOffice',compact('branchDetails','oicDetails','newEntries','ongoingEntries','closedEntries','branches','oicDetails','branchOfficerDetails'));
 
     }
 
