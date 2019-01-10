@@ -22,13 +22,14 @@
                         {{--View Entry List--}}
                         <div class="container-fluid">
                             <!-- The Grid -->
-                            <div class="row w3-grey">
+                            <div class="row" style="border-radius: 8px;background-color: lightgray">
                                 <!-- Left Column -->
-                                <div class="col-md-2 w3-light-grey table-col tc-left">
+                                <div class="col-md-2 table-col tc-left" style="background-color: whitesmoke;margin-left:30px;margin-top: 30px">
                                     <!-- Accordion -->
                                     <div class="card">
                                         <div class="bg-grey">
                                             <button onclick="myFunction('evidencesList')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Evidences</button>
+                                            <br>
                                             <div id="evidencesList" class="w3-hide w3-container">
                                                 <div class="form-group row">
                                                     <div class="col-md-12">
@@ -36,45 +37,60 @@
                                                         use Illuminate\Support\Facades\DB;
                                                         $citizenDetails = db::table('users')->where('nic',$entry->complainantID)->First();
                                                         ?>
-
-                                                        <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->evidences }}<br>-------------------<br>Submitted by Registered {{$citizenDetails->role}} {{$citizenDetails->name}} on {{$entry->created_at}} <button type="button" value="{{ $entry->complainantID }}" id="nicbutton" class="btn btn-primary nic-button" data-toggle="modal" data-target="#viewPerson">
-                                                                {{ $entry->complainantID }}
-                                                            </button></p>
+                                                        @if($entry->evidences!=null)
+                                                            <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->evidences }}<br>-------------------<br>Submitted by <strong>Registered {{$citizenDetails->role}}</strong> {{$citizenDetails->name}} on {{$entry->created_at}} <button type="button" value="{{ $entry->complainantID }}" id="nicbutton" class="btn btn-primary nic-button" data-toggle="modal" data-target="#viewPerson">
+                                                                    {{ $entry->complainantID }}
+                                                                </button></p>
+                                                        @endif
                                                         @foreach($evidences as $evidence)
-                                                                <?php
-                                                                $citizenDetails2 = db::table('users')->where('nic',$evidence->witnessId)->First();
-                                                                ?>
+                                                            <?php
+                                                            $citizenDetails2 = db::table('users')->where('nic',$evidence->witnessId)->First();
+                                                            ?>
                                                             @if($evidence->evidence_txt=="Image Evidence")
-                                                                        <p contenteditable="false" class="w3-border w3-padding" >
-                                                                    @for($i=1;$i<=$evidence->evidence_image_count;$i++)
-                                                                        <img style="width: 25%;height: 150px;margin: 5px" src='{{asset("/evidences/$entry->entryID/$evidence->evidence_image/".$i.'.jpg')}}' style="width:100%" alt="{{$entry->entryID}}">
+                                                                <p contenteditable="false" class="w3-border w3-padding" >
+                                                                    @for($i=1;$i<$evidence->evidence_image_count;$i++)
+                                                                        <img style="margin: 5px" src='{{asset("/evidences/$entry->entryID/$evidence->evidence_image/".$i.'.jpg')}}' style="width:100%" alt="{{$entry->entryID}}">
 
-                                                                    @endfor
-                                                                        <br>-------------------<br>Submitted by {{$citizenDetails2->role}} {{$citizenDetails2->name}} on {{$evidence->created_at}}
-                                                                        <button type="button" value="{{ $evidence->witnessId }}" id="nicbutton" class="btn btn-primary nic-button" data-toggle="modal" data-target="#viewPerson">
-                                                                            {{ $evidence->witnessId }}
-                                                                        </button>
-                                                                        </p>
-
-                                                                @endif
-                                                                @if($evidence->evidence_txt!="Image Evidence")
-                                                            <p contenteditable="false" class="w3-border w3-padding" >{{ $evidence->evidence_txt }}<br>Submitted by {{$citizenDetails2->role}} {{$citizenDetails2->name}} on {{$evidence->created_at}}
-                                                                <button type="button" value="{{ $evidence->witnessId }}" id="nicbutton" class="btn btn-primary nic-button" data-toggle="modal" data-target="#viewPerson">
-                                                                    {{ $evidence->witnessId }}
-                                                                </button>
-                                                            </p>
+                                                                    @endfor<br>-------------------<br>Submitted by
+                                                                    @if($citizenDetails2->role=="citizen")
+                                                                        <strong>Registered {{$citizenDetails2->role}}</strong>
                                                                     @endif
+                                                                    @if($citizenDetails2->role!="citizen")
+                                                                        <strong>Registered {{$citizenDetails2->role}}</strong>
+                                                                    @endif
+                                                                    {{$citizenDetails2->name}} on {{$evidence->created_at}}
+                                                                    <button type="button" value="{{ $evidence->witnessId }}" id="nicbutton" class="btn btn-primary nic-button" data-toggle="modal" data-target="#viewPerson">{{ $evidence->witnessId }}
+                                                                    </button>
+                                                                </p>
+
+                                                            @endif
+                                                            @if($evidence->evidence_txt!="Image Evidence")
+                                                                <p contenteditable="false" class="w3-border w3-padding" >{{ $evidence->evidence_txt }}<br>-------------------<br>Submitted by <strong>Registered {{$citizenDetails2->role}}</strong> {{$citizenDetails2->name}} on {{$evidence->created_at}}
+                                                                    <button type="button" value="{{ $evidence->witnessId }}" id="nicbutton" class="btn btn-primary nic-button" data-toggle="modal" data-target="#viewPerson">
+                                                                        {{ $evidence->witnessId }}
+                                                                    </button>
+                                                                </p>
+                                                            @endif
                                                         @endforeach
                                                     </div>
                                                 </div>
                                             </div>
                                             <button onclick="myFunction('suspectList')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i>Suspects</button>
+                                            <br>
                                             <div id="suspectList" class="w3-hide w3-container">
                                                 <div class="form-group row">
                                                     <div class="col-md-11">
-                                                        <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->suspects }}</p>
+                                                        @if($entry->suspects!=null)
+                                                            <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->suspects }}</p>
+                                                        @endif
+
                                                         @foreach($suspects as $suspect)
-                                                            <p contenteditable="false" class="w3-border w3-padding" >{{ $suspect->name }}</p>
+                                                            <?php
+                                                            $citizenDetails3 = db::table('users')->where('nic',$suspect->userNic)->First();
+                                                            ?>
+                                                            <p contenteditable="false" class="w3-border w3-padding" >{{ $suspect->name }}<br>-------------------<br>Submitted by {{$citizenDetails3->role}} {{$citizenDetails3->name}} on {{$suspect->created_at}}<button type="button" value="{{ $suspect->userNic }}" id="nicbutton" class="btn btn-primary nic-button" data-toggle="modal" data-target="#viewPerson">
+                                                                    {{ $evidence->witnessId }}
+                                                                </button></p>
                                                         @endforeach
                                                     </div>
                                                 </div>
@@ -87,11 +103,11 @@
                                 </div>
 
                                 <!-- Middle Column -->
-                                <div class="col-md-6 table-col tc-middle" style="margin-right: 40px;margin-left: 20px;margin-bottom: 10px" >
+                                <div class="col-md-6 card" style="margin-bottom: 10px;margin-left:30px;border-radius: 8px;background-color: whitesmoke;margin-top: 30px" >
                                     <div class="row justify-content-center">
                                         <div class="col-md-12">
                                             <div class="card">
-                                                <div class="card-header">{{ __('Entry') }}</div>
+                                                <div class="page-header" style="text-align: center">{{ __('Entry') }}</div>
 
                                                 <div class="form-group">
                                                     <form method="post" action="{{ route('entryBOICAction') }}" enctype="multipart/form-data">
@@ -111,7 +127,7 @@
                                                             <label class="col-md-3 col-form-label text-md-right">{{ __('Complainant NIC') }}</label>
 
                                                             <div class="col-md-6">
-                                                                <button type="button" value="{{ $entry->complainantID }}" id="nicbutton" class="btn btn-primary nic-button" data-toggle="modal" data-target="#viewPerson">{{ $entry->complainantID }}</button>
+                                                                <button style="width: 100%" type="button" value="{{ $entry->complainantID }}" id="nicbutton" class="btn btn-primary nic-button" data-toggle="modal" data-target="#viewPerson">{{ $entry->complainantID }}</button>
                                                                 <input type="hidden" name="complainantNIC" value="{{ $entry->complainantID }}">
                                                             </div>
                                                         </div>
@@ -143,65 +159,54 @@
                                                             </div>
                                                         </div>
 
-                                                        @if($entry->status=="new")
-                                                            <div class="form-group row">
-                                                                <label class="col-md-3 col-form-label text-md-right">{{ __('Branch') }}</label>
-                                                                <div class="col-md-6">
-                                                                    <select class="form-control" name ="branch" id="exampleFormControlSelect1">
-                                                                        <option>Crime Branch</option>
-                                                                        <option>Vice Unit</option>
-                                                                        <option>Miscellaneous Complaints</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                        @endif
-
-                                                        @if($entry->status=="ongoing")
                                                             <div class="form-group row">
                                                                 <label class="col-md-3 col-form-label text-md-right">{{ __('Current Branch') }}</label>
 
                                                                 <div class="col-md-6">
-                                                                    <input type="text" class="form-control"value="{{ $currentBranch->OfficeName }}" readonly>
+                                                                    <input type="hidden" name="branchID" value="{{$entry->branch }}">
+                                                                    <input type="text" name="branchText" class="form-control"value="{{ $currentBranch->policeOfficeArea }} Branch" readonly>
                                                                 </div>
                                                             </div>
-                                                        @endif
+
 
                                                         <div class="form-group row">
-                                                            <label class="col-md-3 col-form-label text-md-right">{{ __('Evidences') }}</label>
+                                                            <label class="col-md-3 col-form-label text-md-right">{{ __('Text Evidences') }}</label>
                                                             <div class="col-md-6">
                                                                 <textarea class="form-control" name="evidence" id="exampleFormControlTextarea1" rows="2"></textarea>
                                                             </div>
-                                                            <div class="form-check col-md-3">
-                                                                <input type="checkbox" class="form-check-input" name="evidenceCitizenView" value="Yes" id="exampleCheck1">
-                                                                <label class="form-check-label" for="exampleCheck1" style="width:100%">Allow Submitter to View</label>
+                                                            <div class="col-md-2">
+                                                                <label class="form-check-label" for="exampleCheck1" style="width:100%;color: #b91d19;font-size: 13px;margin-top: 4px">Submitter View</label>
                                                             </div>
+                                                            <div class="form-check col-md-1">
+                                                                <input type="checkbox" style="margin-top: 10px" class="form-check-input" name="evidenceCitizenView" value="Yes" id="exampleCheck1">
+
+                                                            </div>
+
                                                         </div>
+
                                                         <div class="form-group row">
                                                             <label for="profileImage" class="col-md-3 col-form-label text-md-right">{{ __('Evidence Images') }}</label>
 
                                                             <div class="col-md-6">
-                                                                <input type="file"  class="form-control" accept="image/*" name="evidenceImage[]" style="height: 100%" multiple>
-
-                                                                @if ($errors->has('landNumber'))
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $errors->first('landNumber') }}</strong>
-                                                                    </span>
-                                                                @endif
+                                                                <input type="file"  class="form-control" accept="image/*" name="evidenceImage[]"  multiple>
                                                             </div>
-                                                            <div class="form-check col-md-3">
-                                                                <input type="checkbox" class="form-check-input" name="evidenceImageCitizenView" value="Yes" id="exampleCheck1">
-                                                                <label class="form-check-label" for="exampleCheck1">Allow Submitter to View</label>
+                                                            <div class="col-md-2">
+                                                                <label class="form-check-label" for="exampleCheck1" style="width:100%;color: #b91d19;font-size: 13px;margin-top: 4px">Submitter View</label>
+                                                            </div>
+                                                            <div class="form-check col-md-1">
+                                                                <input type="checkbox" style="margin-top: 10px" class="form-check-input" name="evidenceImageCitizenView" value="Yes" id="exampleCheck1">
                                                             </div>
                                                         </div>
-
                                                         <div class="form-group row">
                                                             <label class="col-md-3 col-form-label text-md-right">Suspects</label>
                                                             <div class="col-md-6">
                                                                 <textarea class="form-control" name="suspects" id="exampleFormControlTextarea1" rows="2"></textarea>
                                                             </div>
-                                                            <div class="form-check col-md-3">
-                                                                <input type="checkbox" class="form-check-input" name="suspectCitizenView" value="Yes" id="exampleCheck1">
-                                                                <label class="form-check-label" for="exampleCheck1">Allow Submitter to View</label>
+                                                            <div class="col-md-2">
+                                                                <label class="form-check-label" for="exampleCheck1" style="width:100%;color: #b91d19;font-size: 13px;margin-top: 4px">Submitter View</label>
+                                                            </div>
+                                                            <div class="form-check col-md-1">
+                                                                <input type="checkbox" style="margin-top: 10px" class="form-check-input" name="suspectCitizenView" value="Yes" id="exampleCheck1">
                                                             </div>
                                                         </div>
 
@@ -210,42 +215,42 @@
                                                             <div class="col-md-6">
                                                                 <textarea class="form-control" name="entryProgress" id="exampleFormControlTextarea1" rows="2"></textarea>
                                                             </div>
-                                                            <div class="form-check col-md-3">
-                                                                <input type="checkbox" class="form-check-input" name="progressCitizenView" value="Yes" id="exampleCheck1">
-                                                                <label class="form-check-label" for="exampleCheck1">Allow Submitter to View</label>
+                                                            <div class="col-md-2">
+                                                                <label class="form-check-label" for="exampleCheck1" style="width:100%;color: #b91d19;font-size: 13px;margin-top: 4px">Submitter View</label>
                                                             </div>
-
+                                                            <div class="form-check col-md-1">
+                                                                <input type="checkbox" style="margin-top: 10px" class="form-check-input" name="progressCitizenView" value="Yes" id="exampleCheck1">
+                                                            </div>
                                                         </div>
 
                                                         <div class="form-group row mb-0">
-                                                            <div class="col-md-3"></div>
-                                                            @if($entry->status=="new")
-                                                                <div class="col-md-2 offset-md-3 col-xs-6"  style="width: 18.75%">
-                                                                        <input type="hidden" name="statusType" value="{{$entry->status}}">
-                                                                    <input type="submit" class="btn btn-primary" value="Accept and Forward" style="width: 100%">
+                                                            <div class="col-md-2"></div>
+                                                            @if($entry->boicNotification=="y")
+                                                                <div class="col-md-3"></div>
+                                                                <div class="col-md-3  col-xs-6">
+                                                                    <input type="hidden" name="statusType" value="{{$entry->boicNotification}}">
+                                                                    <input type="submit" class="btn btn-primary" value="Accept">
                                                                 </div>
                                                             @endif
-                                                            @if($entry->status=="ongoing")
-                                                                <div class="col-md-2 offset-md-3 col-xs-6"  style="width: 18.75%">
-                                                                    <input type="hidden" name="statusType" value="{{$entry->status}}">
-                                                                    <input type="submit" class="btn btn-primary" name="ongoingSubmit" value="Submit" style="width: 100%">
+                                                            @if($entry->boicNotification=="y o")
+                                                                <div class="col-md-3  col-xs-6" >
+                                                                    <input type="hidden" name="statusType" value="{{$entry->boicNotification}}">
+                                                                    <input type="submit" class="btn btn-yahoo" name="ongoingSubmit" value="Submit" >
                                                                 </div>
-                                                                {{--<div class="col-md-2 offset-md-3 col-xs-6"  style="width: 18.75%">--}}
-                                                                    {{--<input type="submit" class="btn btn-primary" name="ongoingSubmit" value="Close Entry" style="width: 100%">--}}
+                                                                {{--<div class="col-md-3  col-xs-6" >--}}
+                                                                    {{--<input type="submit" class="btn btn-facebook" name="ongoingSubmit" value="Forward To OIC" >--}}
                                                                 {{--</div>--}}
-                                                                <div class="col-md-2 offset-md-3 col-xs-6"  style="width: 18.75%">
-                                                                    <input type="submit" class="btn btn-primary" name="ongoingSubmit" value="Forward" style="width: 100%">
-                                                                </div>
+                                                                <div class="col-md-1"></div>
                                                             @endif
                                                             @if($entry->status=="closed")
-                                                                <div class="col-md-2 offset-md-3 col-xs-6"  style="width: 18.75%">
-                                                                    <input type="hidden" name="statusType" value="closed" style="width: 100%">
-                                                                    <input type="submit" class="btn btn-primary"  value="Forward" style="width: 100%">
+                                                                <div class="col-md-3  col-xs-6">
+                                                                    <input type="hidden" name="statusType" value="closed">
+                                                                    <input type="submit" class="btn btn-primary"  value="Forward">
                                                                 </div>
                                                             @endif
 
-                                                            <div class="col-md-2 col-xs-6"  style="width: 18.75%">
-                                                                <button  type="reset" class="btn btn-danger" value="cancel" style="width: 100%">Reset</button>
+                                                            <div class="col-md-2 col-xs-6">
+                                                                <button  type="reset" class="btn btn-danger" value="cancel">Reset</button>
                                                             </div>
                                                         </div>
                                                     </form>
@@ -258,32 +263,30 @@
                                 </div>
 
                                 <!-- Right Column -->
-                                {{--<div class="col-md-5 w3-light-grey table-col tc-right">--}}
-                                    {{--<div class="row">--}}
-                                        {{--<p><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#createPost">--}}
-                                                {{--Create a Post--}}
-                                            {{--</button></p>--}}
-                                        {{--<div class="row justify-content-center">--}}
+                                <div class="col-md-3"  >
+                                    <div class="row" >
+                                        <div class="card" style="margin-bottom: 10px;margin-left: 60px;border-radius: 8px;background-color: whitesmoke;margin-top: 5px;float: right">
 
-                                            {{--<div class="card" style="margin-top: 10px">--}}
-                                                {{--<div class="card-header">{{ __('Progress') }}</div>--}}
-                                                {{--<div class="card-body">--}}
-                                                    {{--<div class="form-group row">--}}
-                                                        {{--<div class="col-md-11">--}}
-                                                            {{--@if($entry->status=="new")--}}
-                                                                {{--<p contenteditable="false" class="w3-border w3-padding" >{{ $entry->progress }}</p>--}}
-                                                            {{--@endif--}}
-                                                            {{--@foreach($entryProgresses as $entryProgress)--}}
-                                                                {{--<p contenteditable="false" class="w3-border w3-padding" >{{ $entryProgress->progress }}</p>--}}
-                                                            {{--@endforeach--}}
-                                                        {{--</div>--}}
-                                                    {{--</div>--}}
-                                                {{--</div>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
+                                            <div class="card" style="margin-top: 10px">
+                                                <div class="page-header" style="text-align: center;font-size: 15px">{{ __('Progress') }}</div>
+                                                <div class="card-body">
+                                                    <div class="form-group row">
+                                                        <div class="col-md-12" style="align-content: center;">
+                                                            @if($entry->status=="new")
+                                                                <p contenteditable="false" class="w3-border w3-padding" >{{ $entry->progress }}</p>
+                                                            @endif
+                                                            @foreach($entryProgresses as $entryProgress)
+                                                                <p style="margin: 5px;background-color: lightgray;padding: 10px">{{ $entryProgress->progress }}</p>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                    {{--</div>--}}
-                                {{--</div>--}}
+
+                                    </div>
+                                </div>
 
                                 <!-- End Grid -->
                             </div>
@@ -372,16 +375,16 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="removeFormView" enctype="multipart/form-data">
+                    <form >
                         @csrf
                         {{--<div class="form-group row">--}}
-                            {{--<div class="col-md-3">--}}
-                            {{--</div>--}}
-                            {{--<div class="col-md-6" style="align-content: center">--}}
-                                {{--<img src='{{asset('/userProfileImages/'.$citizenDetails->nic.'.jpg')}}' class="user-image" alt="User Image">--}}
+                        {{--<div class="col-md-3">--}}
+                        {{--</div>--}}
+                        {{--<div class="col-md-6" style="align-content: center">--}}
+                        {{--<img id="userProfileImage" src='{{asset('/userProfileImages/'.$citizenDetails->nic.'.jpg')}}' class="user-image" alt="User Image">--}}
 
-                            {{--</div>--}}
-                            {{--<div class="col-md-3"></div>--}}
+                        {{--</div>--}}
+                        {{--<div class="col-md-3"></div>--}}
                         {{--</div>--}}
 
                         <div class="form-group row">
@@ -455,7 +458,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 {{--<button type="submit" class="btn btn-primary">--}}
-                                    {{--{{ __('Check') }}--}}
+                                {{--{{ __('Check') }}--}}
                                 {{--</button>--}}
                             </div>
                         </div>
@@ -476,26 +479,26 @@
             });
         });
         function myFunction(id) {
-        var x = document.getElementById(id);
-        if (x.className.indexOf("w3-show") == -1) {
-            x.className += " w3-show";
-            x.previousElementSibling.className += " w3-theme-d1";
-        } else {
-            x.className = x.className.replace("w3-show", "");
-            x.previousElementSibling.className =
-                x.previousElementSibling.className.replace(" w3-theme-d1", "");
+            var x = document.getElementById(id);
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+                x.previousElementSibling.className += " w3-theme-d1";
+            } else {
+                x.className = x.className.replace("w3-show", "");
+                x.previousElementSibling.className =
+                    x.previousElementSibling.className.replace(" w3-theme-d1", "");
+            }
         }
-    }
 
-    // Used to toggle the menu on smaller screens when clicking on the menu button
-    function openNav() {
-        var x = document.getElementById("navDemo");
-        if (x.className.indexOf("w3-show") == -1) {
-            x.className += " w3-show";
-        } else {
-            x.className = x.className.replace(" w3-show", "");
+        // Used to toggle the menu on smaller screens when clicking on the menu button
+        function openNav() {
+            var x = document.getElementById("navDemo");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
         }
-    }
     </script>
 @endsection
 

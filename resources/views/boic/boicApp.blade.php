@@ -130,110 +130,28 @@
                 <ul class="nav navbar-nav">
                     {{-- <!-- Messages: style can be found in dropdown.less--> --}}
                     <?php
-                    $nic=Auth::User()->nic;
-                    $citizenDetails = db::table('users')->where('nic',$nic)->First();
-                    ?>
-                    <?php
                     $loggedUser=db::table('users')->where('nic',Auth::User()->nic)->first();
                     ?>
-                    <li class="dropdown messages-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-envelope-o"></i>
-                            <span class="label label-success">4</span>
-                        </a>
-                        {{--<ul class="dropdown-menu">--}}
-                        {{--<li class="header">You have 4 messages</li>--}}
-                        {{--<li>--}}
-                        {{-- <!-- inner menu: contains the actual data --> --}}
-                        {{--<ul class="menu">--}}
-                        {{-- <li><!-- start message --> --}}
-                        {{--<a href="#">--}}
-                        {{--<div class="pull-left">--}}
-                        {{--<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">--}}
-                        {{--</div>--}}
-                        {{--<h4>--}}
-                        {{--Support Team--}}
-                        {{--<small><i class="fa fa-clock-o"></i> 5 mins</small>--}}
-                        {{--</h4>--}}
-                        {{--<p>Why not buy a new awesome theme?</p>--}}
-                        {{--</a>--}}
-                        {{--</li>--}}
-                        {{-- <!-- end message --> --}}
-                        {{--<li>--}}
-                        {{--<a href="#">--}}
-                        {{--<div class="pull-left">--}}
-                        {{--<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">--}}
-                        {{--</div>--}}
-                        {{--<h4>--}}
-                        {{--AdminLTE Design Team--}}
-                        {{--<small><i class="fa fa-clock-o"></i> 2 hours</small>--}}
-                        {{--</h4>--}}
-                        {{--<p>Why not buy a new awesome theme?</p>--}}
-                        {{--</a>--}}
-                        {{--</li>--}}
-                        {{--<li>--}}
-                        {{--<a href="#">--}}
-                        {{--<div class="pull-left">--}}
-                        {{--<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">--}}
-                        {{--</div>--}}
-                        {{--<h4>--}}
-                        {{--Developers--}}
-                        {{--<small><i class="fa fa-clock-o"></i> Today</small>--}}
-                        {{--</h4>--}}
-                        {{--<p>Why not buy a new awesome theme?</p>--}}
-                        {{--</a>--}}
-                        {{--</li>--}}
-                        {{--<li>--}}
-                        {{--<a href="#">--}}
-                        {{--<div class="pull-left">--}}
-                        {{--<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">--}}
-                        {{--</div>--}}
-                        {{--<h4>--}}
-                        {{--Sales Department--}}
-                        {{--<small><i class="fa fa-clock-o"></i> Yesterday</small>--}}
-                        {{--</h4>--}}
-                        {{--<p>Why not buy a new awesome theme?</p>--}}
-                        {{--</a>--}}
-                        {{--</li>--}}
-                        {{--<li>--}}
-                        {{--<a href="#">--}}
-                        {{--<div class="pull-left">--}}
-                        {{--<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">--}}
-                        {{--</div>--}}
-                        {{--<h4>--}}
-                        {{--Reviewers--}}
-                        {{--<small><i class="fa fa-clock-o"></i> 2 days</small>--}}
-                        {{--</h4>--}}
-                        {{--<p>Why not buy a new awesome theme?</p>--}}
-                        {{--</a>--}}
-                        {{--</li>--}}
-                        {{--</ul>--}}
-                        {{--</li>--}}
-                        {{--<li class="footer"><a href="#">See All Messages</a></li>--}}
-                        {{--</ul>--}}
-                    </li>
                     {{-- <!-- Notifications: style can be found in dropdown.less --> --}}
-                    <li class="dropdown notifications-menu">
-                        <?php
-                        $count=db::table('users')->where('verified',"No")->where('role',"citizen")->where('policeOffice',$loggedUser->policeOffice)->count();
-                        ?>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-bell-o"></i>
-                            <span class="label label-warning">{{$count}}</span>
-                        </a>
-                    </li>
                     {{-- <!-- Tasks: style can be found in dropdown.less --> --}}
                     <li class="dropdown tasks-menu">
                         <?php
-                        $boicPoliceOffice=db::table('police_offices')->where('OfficeName',$citizenDetails->policeOffice)->first();
+                        $boicPoliceOffice=db::table('police_offices')->where('OfficeName',$boicDetails->policeOffice)->first();
                         $entryCount=db::table('entries')->where('boicNotification',"y")->where('branch',$boicPoliceOffice->id)->count()
                         ?>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-flag-o"></i>
+                            <i class="fa fa-window-restore"></i>
                             <span class="label label-danger">{{$entryCount}}</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="header">You have {{$entryCount}} Entries</li>
+                            @if($entryCount==1)
+                                <li class="header">{{$entryCount}} New Entry</li>
+
+                            @elseif($entryCount>0)
+                                <li class="header">{{$entryCount}} New Entries</li>
+                            @else
+                                <li class="header">No New Entries</li>
+                            @endif
                             <li>
                                 {{-- <!-- inner menu: contains the actual data --> --}}
                                 <ul class="menu">
@@ -253,20 +171,20 @@
                                 </ul>
                             </li>
                             <li class="footer">
-                                <a href="#">View all tasks</a>
+                                <a href="viewBOICNewEntries">View all entries</a>
                             </li>
                         </ul>
                     </li>
                     {{-- <!-- User Account: style can be found in dropdown.less --> --}}
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src='{{asset('/userProfileImages/'.$citizenDetails->nic.'.jpg')}}' class="user-image" alt="User Image">
+                            <img src='{{asset('/userProfileImages/'.$boicDetails->nic.'.jpg')}}' class="user-image" alt="User Image">
                             <span class="hidden-xs">{{Auth::User()->name}}</span>
                         </a>
                         <ul class="dropdown-menu">
                             {{-- <!-- User image --> --}}
                             <li class="user-header">
-                                <img src='{{asset('/userProfileImages/'.$citizenDetails->nic.'.jpg')}}' class="img-circle" alt="User Image">
+                                <img src='{{asset('/userProfileImages/'.$boicDetails->nic.'.jpg')}}' class="img-circle" alt="User Image">
 
                                 <p>
                                     {{Auth::User()->name}}
@@ -321,7 +239,7 @@
             {{-- <!-- Sidebar user panel --> --}}
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src='{{asset('/userProfileImages/'.$citizenDetails->nic.'.jpg')}}' class="img-circle" alt="User Image">
+                    <img src='{{asset('/userProfileImages/'.$boicDetails->nic.'.jpg')}}' class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
                     <p>{{Auth::User()->name}}</p>
