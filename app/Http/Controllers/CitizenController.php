@@ -139,7 +139,7 @@ class CitizenController extends Controller
 
     /**
      *
-     *SUBMIT CRIME ENTRY  FORM
+     * SUBMIT CRIME ENTRY  FORM
      *
      */
     public function submitCrimeEntryForm(){
@@ -154,7 +154,7 @@ class CitizenController extends Controller
 
     /**
      *
-     *UPDATE CITIZEN PROFILE FORM AND FUNCTION
+     * UPDATE CITIZEN PROFILE FORM AND FUNCTION
      *
      */
     public function citizenProfileFormView(){
@@ -194,7 +194,7 @@ class CitizenController extends Controller
 
     /**
      *
-     *CHANGE CITIZEN PASSWORD FORM AND FUNCTION
+     * CHANGE CITIZEN PASSWORD FORM AND FUNCTION
      *
      */
     public function changePasswordFormView(){
@@ -231,7 +231,7 @@ class CitizenController extends Controller
 
     /**
      *
-     *DEACTIVATE CITIZEN PROFILE FORM AND FUNCTION
+     * DEACTIVATE CITIZEN PROFILE FORM AND FUNCTION
      *
      */
     public function deactivateCitizenForm(){

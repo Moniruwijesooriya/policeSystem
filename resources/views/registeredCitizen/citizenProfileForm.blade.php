@@ -99,22 +99,7 @@ use Illuminate\Support\Facades\DB;
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                                    <div class="col-md-6">
-                                        <input id="password" type="password" class="form-control" name="password" required>
-
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                                    <div class="col-md-6">
-                                        <input  onkeyup="validatePassword()" id="confirm_password" type="password" class="form-control" name="confirm_password" required>
-                                    </div>
-                                </div>
                                 <div class="modal-footer">
                                     <div class="col-md-10  col-xs-4">
                                         <a href="RegisteredCitizen"><button type="button" class="btn btn-secondary" >Cancel</button></a>
