@@ -36,8 +36,8 @@
                                     <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('NIC') }}</label>
 
                                     <div class="col-md-6">
-                                        <input type="hidden" name="nic" value="{{$oicDetails->nic}}">
-                                        <input id="nic" type="text" pattern=".{10,12}" name="tmp" class="form-control"  value="{{$oicDetails->nic}}" readonly>
+                                        <input type="hidden" name="nic" value="{{$boicDetails->nic}}">
+                                        <input id="nic" type="text" pattern=".{10,12}" name="tmp" class="form-control"  value="{{$boicDetails->nic}}" readonly>
                                     </div>
                                 </div>
 
