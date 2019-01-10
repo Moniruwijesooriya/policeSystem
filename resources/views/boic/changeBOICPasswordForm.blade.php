@@ -29,7 +29,7 @@
                                 </div>
                             </div>
 
-                            <form method="POST" action="citizenPasswordChange" >
+                            <form method="POST" action="boicPasswordChange" >
                                 @csrf
 
                                 <div class="form-group row">

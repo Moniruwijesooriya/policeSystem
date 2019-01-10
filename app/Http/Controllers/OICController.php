@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class OICController extends Controller
 {
@@ -33,26 +34,27 @@ class OICController extends Controller
         $newpassword=$request->newpassword;
         $confirmpassword=$request->confirmpassword;
 
-        $oic=DB::table('users')->where('nic',$request->nic)->first();
 
-        if(Hash::check($currentpassword,$oic->password) && $newpassword==$confirmpassword ){
+        $citizenDetails = db::table('users')->where('nic',$request->nic)->First();
+
+        Session::flash('CitizenPasswordUpdate','password is updated successfully!');
+
+        if(Hash::check($currentpassword,$citizenDetails->password) && $newpassword == $confirmpassword){
             DB::table('users')
                 ->where('nic',$request->nic)
                 ->update(['password'=>Hash::make($request->newpassword)]);
-            DB::table('users')
-                ->where('nic',$request->nic)
-                ->update(['email_verified_at'=>"2019-01-03 00:00:00"]);
-            $nic=Auth::User()->nic;
-            $oicDetails = db::table('users')->where('nic',$nic)->First();
-            $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
-            return view('oic.oicProfileForm',compact('oicDetails','branches'));
 
-        }else{
             $nic=Auth::User()->nic;
             $oicDetails = db::table('users')->where('nic',$nic)->First();
             $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
-            return view('oic.oicProfileForm',compact('oicDetails','branches'));
-            
+            $passwordUpdateMessage="Successfully Updated!";
+            return view('oic.oicProfileForm',compact('oicDetails','branches'))->with('passwordUpdateMessage','Error Occured!');
+        }
+        else{
+            $nic=Auth::User()->nic;
+            $oicDetails = db::table('users')->where('nic',$nic)->First();
+            $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
+            return view('oic.oicProfileForm',compact('oicDetails','branches'))->with('passwordUpdateMessage','Error Occured!');
         }
     }
 

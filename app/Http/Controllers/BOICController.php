@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class BOICController extends Controller
 {
@@ -24,7 +25,7 @@ class BOICController extends Controller
         $confirmpassword=$request->confirmpassword;
 
         $oic=DB::table('users')->where('nic',$request->nic)->first();
-
+        Session::flash('CitizenPasswordUpdate','password is updated successfully!');
         if(Hash::check($currentpassword,$oic->password) && $newpassword==$confirmpassword ){
             DB::table('users')
                 ->where('nic',$request->nic)
@@ -36,8 +37,8 @@ class BOICController extends Controller
         }else{
             $nic=Auth::User()->nic;
             //alert ekak dannaaaa
-            $oicDetails = db::table('users')->where('nic',$nic)->First();
-            return view('boic.boicProfileForm',compact('oicDetails'));
+            $boicDetails = db::table('users')->where('nic',$nic)->First();
+            return view('boic.boicProfileForm',compact('boicDetails'));
 
         }
     }

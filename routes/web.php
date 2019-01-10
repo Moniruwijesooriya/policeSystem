@@ -276,7 +276,10 @@ Route::get('/deactivateBOICFormView',[
     'as'=>'deactivateBOICFormView'
 ])->middleware('auth');
 
-
+Route::post('/boicPasswordChange',[
+    'uses'=>'BOICController@boicPasswordChange',
+    'as'=>'boicPasswordChange'
+])->middleware('auth');
 //admin////////////////////
 
 

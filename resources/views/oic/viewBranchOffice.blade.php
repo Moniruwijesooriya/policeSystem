@@ -3,7 +3,7 @@
 
     <div class="content-header">
         <h1>
-            Entry
+            Branch
         </h1>
     </div>
 

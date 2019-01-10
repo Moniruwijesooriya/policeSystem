@@ -1,6 +1,16 @@
 @extends('oic.oicApp')
 @section('content')
 
+    <div class="row">
+        <div class="col-md-6">
+            @if(session('passwordUpdateMessage'))
+                <div class="alert alert-success m1200" role="alert">
+                    <button type="button" class="close" data-dismiss="alert">x</button>
+                    {{session('passwordUpdateMessage')}}
+                </div>
+            @endif
+        </div>
+    </div>
     <div class="content-header">
         <h1>
             Update Profile
@@ -22,12 +32,8 @@
                         {{--View Entry List--}}
                         <div class="container-fluid">
                             <!-- The Grid -->
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h2></h2>
-                                    <br>
-                                </div>
-                            </div>
+
+
 
                             <form method="POST" action="oicUpdateProfile" enctype="multipart/form-data">
                                 @csrf
