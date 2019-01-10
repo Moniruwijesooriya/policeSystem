@@ -110,7 +110,7 @@ class EntryController extends Controller
             $progress->role=$user->role;
             $progress->progress="Entry is accepted and Forwarded to the relevant section.";
             $progress->citizenView="Yes";
-            $progress->policeView="Yes";
+            $progress->policeView="No";
             $progress->save();
 
             if($request->evidence!=null){
@@ -194,7 +194,6 @@ class EntryController extends Controller
                     $progress->policeView="Yes";
 
                     $progress->save();
-
                 }
             }
 
@@ -229,7 +228,19 @@ class EntryController extends Controller
                 $type="Closed Entries";
                 $oicDetails = db::table('users')->where('nic',$nic)->First();
                 $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
-                }
+
+                $progress=new EntryProgress();
+                $progress->entryID=$request->entryID;
+                $progress->policeOfficerName=$user->name;
+                $progress->officerNic=$user->nic;
+                $progress->rank=$user->profession;
+                $progress->policeOffice=$user->policeOffice;
+                $progress->role=$user->role;
+                $progress->progress="Investigation is over and the entry is solved.";
+                $progress->citizenView="Yes";
+                $progress->policeView="Yes";
+                $progress->save();
+            }
             $type="Ongoing Entries";
 
             if($request->evidence!=null){
@@ -319,8 +330,7 @@ class EntryController extends Controller
         $entry=db::table('entries')->where('entryID',$request->entryID)->First();
         $evidences=db::table('evidence')->where('entryId',$request->entryID)->where('policeView',"Yes")->get();
         $suspects=db::table('suspects')->where('entryID',$request->entryID)->where('policeView',"Yes")->get();
-        $entryProgresses=db::table('entry_progresses')->where('entryID',$request->entryID)->get();
-        $currentBranch=db::table('entries')->where('branch',$entry->branch)->First();
+        $entryProgresses=db::table('entry_progresses')->where('policeView',"Yes")->where('entryID',$request->entryID)->get();
         $nic=Auth::User()->nic;
         $oicDetails = db::table('users')->where('nic',$nic)->First();
         $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
@@ -571,7 +581,7 @@ class EntryController extends Controller
         $entry=db::table('entries')->where('entryID',$request->entryID)->First();
         $evidences=db::table('evidence')->where('entryId',$request->entryID)->where('policeView',"Yes")->get();
         $suspects=db::table('suspects')->where('entryID',$request->entryID)->where('policeView',"Yes")->get();
-        $entryProgresses=db::table('entry_progresses')->where('entryID',$request->entryID)->get();
+        $entryProgresses=db::table('entry_progresses')->where('entryID',$request->entryID)->where('policeView',"Yes")->get();
         $currentBranch=db::table('police_offices')->where('id',$entry->branch)->First();
         return view('oic/entryView',compact('entry','evidences','suspects','entryProgresses','oicDetails','branches','currentBranch'));
     }
@@ -670,10 +680,7 @@ class EntryController extends Controller
             ->update(['boicNotification'=>"n",'suspects'=>$request->suspects,'branch'=>$request->branch,'progress'=>$request->progress]);
         return redirect('/BOIC');
     }
-    public function viewxBOICEntry(Request $request){
-        $entry=db::table('entries')->where('entryID',$request->entryID)->First();
-        return view('entry/boicEntryView',compact('entry'));
-    }
+
 
     public function viewCitizenEntry(Request $request){
         $entry=db::table('entries')->where('entryID',$request->entryID)->First();

@@ -43,7 +43,6 @@
                                     <th scope="col">Complaint Category</th>
                                     <th scope="col">Complaint</th>
                                     <th scope="col">Date</th>
-
                                 </tr>
                                 </thead>
                                 <tbody id="myTable">
@@ -74,21 +73,8 @@
                 <!-- /.box -->
             </div>
             <!-- /.Left col -->
-            <!-- right col (We are only adding the ID to make the widgets sortable)-->
-
-            <!-- right col -->
         </div>
         <!-- /.row (main row) -->
 
     </div>
-    <script>
-        $(document).ready(function(){
-            $("#myInput").on("keyup", function() {
-                var value = $(this).val().toLowerCase();
-                $("#myTable tr").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-            });
-        });
-    </script>
 @endsection

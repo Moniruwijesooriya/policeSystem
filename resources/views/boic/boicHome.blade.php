@@ -1,13 +1,9 @@
 <?php
 use Illuminate\Support\Facades\DB;
-$newEntries=db::table('entries')->where('nearestPoliceStation',$boicDetails->policeOffice)->where('status','new')->count();
-$ongoingEntries=db::table('entries')->where('nearestPoliceStation',$boicDetails->policeOffice)->where('status','ongoing')->count();
+$newEntries=db::table('entries')->where('nearestPoliceStation',$boicDetails->policeOffice)->where('boicNotification','y')->count();
+$ongoingEntries=db::table('entries')->where('nearestPoliceStation',$boicDetails->policeOffice)->where('boicNotification','y o')->count();
 $closedEntries=db::table('entries')->where('nearestPoliceStation',$boicDetails->policeOffice)->where('status','closed')->count();
-$registeredUsersCount=db::table('users')->where('role','citizen')->where('policeOffice',$boicDetails->policeOffice)->count();
-$allUsersCount=db::table('users')->count();
-$officersCount=$allUsersCount - $registeredUsersCount;
 ?>
-
 @extends('boic.boicApp')
 @section('content')
     <div class="content">
@@ -22,12 +18,11 @@ $officersCount=$allUsersCount - $registeredUsersCount;
         <section class="content">
             <!-- Small boxes (Stat box) -->
             <div class="row">
-                <div class="col-lg-3 col-xs-6">
+                <div class="col-lg-4 col-xs-6">
                     <!-- small box -->
                     <div class="small-box bg-yellow">
                         <div class="inner">
                             <h3>{{$newEntries}}</h3>
-
                             <p>New Entries</p>
                         </div>
                         <div class="icon">
@@ -36,7 +31,7 @@ $officersCount=$allUsersCount - $registeredUsersCount;
                         <a href="viewOICNewEntries" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-xs-6">
+                <div class="col-lg-4 col-xs-6">
                     <!-- small box -->
                     <div class="small-box bg-aqua">
                         <div class="inner">
@@ -50,7 +45,7 @@ $officersCount=$allUsersCount - $registeredUsersCount;
                     </div>
                 </div>
                 <!-- ./col -->
-                <div class="col-lg-3 col-xs-6">
+                <div class="col-lg-4 col-xs-6">
                     <!-- small box -->
                     <div class="small-box bg-green">
                         <div class="inner">
@@ -62,23 +57,6 @@ $officersCount=$allUsersCount - $registeredUsersCount;
                             <i class="ion ion-pie-graph"></i>
                         </div>
                         <a href="viewOICClosedEntries" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-
-                <!-- ./col -->
-                <div class="col-lg-3 col-xs-6">
-                    <!-- small box -->
-                    <div class="small-box bg-red">
-                        <div class="inner">
-                            <h3>{{$registeredUsersCount}}</h3>
-
-                            <p>Registered Citizens</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-person"></i>
-                        </div>
-                        <a href="viewRegisteredCitizens" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -105,24 +83,10 @@ $officersCount=$allUsersCount - $registeredUsersCount;
                             <hr class="w3-clear">
                             <p>{{$post->content}}.</p>
                             <div class="w3-row-padding" style="margin:0 -16px">
-                                <div class="w3-half">
-                                    {{--<img src='' style="width:100%" alt="Northern Lights" class="w3-margin-bottom">--}}
-                                </div>
-                                <div class="w3-half">
-                                    {{--<img src="/w3images/nature.jpg" style="width:100%" alt="Nature" class="w3-margin-bottom">--}}
-                                </div>
                             </div>
                             <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-hand-o-right"></i>  Follow Case</button>
                             <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-file-o"></i>  Submit Evidence</button>
                         </div>
-                        {{--<div class="w3-container w3-card w3-white w3-round w3-margin" style="width: 100%"><br>--}}
-                        {{--<span class="w3-right w3-opacity">{{$post->created_at}}</span>--}}
-                        {{--<h4>{{$post->title}}</h4><br>--}}
-                        {{--<h6>{{$post->content}}</h6><br>--}}
-                        {{--<p></p>--}}
-                        {{--<button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-hand-o-right"></i>  </button>--}}
-                        {{--<button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-file-o"></i>  </button>--}}
-                        {{--</div>--}}
                     @endforeach
 
                 </div>
