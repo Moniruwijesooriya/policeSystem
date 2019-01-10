@@ -284,7 +284,7 @@
                                     <input type="hidden" value="{{ $office->id }}" name="officeID">
                                     <input type="hidden" value="{{ $office->policeOfficeArea }}" name="officeName">
                                     <input type="hidden" value="{{ $office->mainOfficer }}" name="mainOfficer">
-                                    <li><input type="submit" class="btn btn-outline-primary" style="width: 222px;text-wrap: normal;" value="{{ $office->policeOfficeArea }} Office"></li>
+                                    <li><input type="submit" class="btn btn-outline-primary" style="width: 222px;text-wrap: normal;" value="{{ $office->OfficeName }}"></li>
                                 </form>
                             @endforeach
                     </ul>

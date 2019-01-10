@@ -122,13 +122,15 @@ class DOIGController extends Controller
     }
 
     public function viewOffice(Request $request){
-        $branchDetails=db::table('police_offices')->where('id',$request->branchID)->First();
+        $officeDetails=db::table('police_offices')->where('id',$request->officeID)->First();
         $nic=Auth::User()->nic;
-        $doigDetails = db::table('users')->where('nic',$nic)->First();
-        $entries = db::table('entries')->where('branch',$request->branchName)->where('nearestPoliceStation',$doigDetails->policeOffice)->get();
-        $branchOfficerDetails = db::table('users')->where('nic',$request->mainOfficer)->First();
-        $branches = db::table('police_offices')->where('headPoliceOffice',$doigDetails->policeOffice)->where('policeOfficeType','Office Police Office')->get();
-        return view('doig.viewOffice',compact('branchDetails','doigDetails','entries','branches','doigDetails','branchOfficerDetails'));
+        $oicDetails = db::table('users')->where('nic',$nic)->First();
+        $newEntries = db::table('entries')->where('policeDivisionOffice',$request->officeID)->where('boicNotification',"y")->get();
+        $ongoingEntries = db::table('entries')->where('policeDivisionOffice',$request->officeID)->where('boicNotification',"y o")->get();
+        $closedEntries = db::table('entries')->where('policeDivisionOffice',$request->officeID)->where('status',"closed")->get();
+        $officeOfficerDetails = db::table('users')->where('nic',$request->mainOfficer)->First();
+        $offices = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Division Police Office')->get();
+        return view('doig.viewOffice',compact('officeDetails','oicDetails','newEntries','ongoingEntries','closedEntries','offices','oicDetails','officeOfficerDetails'));
 
     }
 
