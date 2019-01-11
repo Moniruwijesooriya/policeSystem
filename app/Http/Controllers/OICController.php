@@ -171,18 +171,23 @@ class OICController extends Controller
 
 
     }
+
+
     public function deactivateOICFormView(){
         $nic=Auth::User()->nic;
         $OICDetails = db::table('users')->where('nic',$nic)->First();
         $branches = db::table('police_offices')->where('headPoliceOffice',$OICDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
         return view('oic.deactivateOICForm',compact('OICDetails','branches'));
     }
+
     public function changeOICPasswordFormView(){
         $nic=Auth::User()->nic;
         $oicDetails = db::table('users')->where('nic',$nic)->First();
         $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
+
         return view('oic.changeOICPasswordForm',compact('oicDetails','branches'));
     }
+
     public function oicAccountDeactivate(Request $request)
     {
         $userpassword=$request->password;
