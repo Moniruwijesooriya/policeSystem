@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class OICController extends Controller
 {
@@ -29,27 +30,40 @@ class OICController extends Controller
 
 
     public function oicPasswordChange(Request $request){
-        $currentpassword=$request->currentpassword;
         $newpassword=$request->newpassword;
         $confirmpassword=$request->confirmpassword;
+        $currentpassword=$request->currentpassword;
 
-        $oic=DB::table('users')->where('nic',$request->nic)->first();
+        $userDetails = db::table('users')->where('nic',$request->nic)->First();
 
-        if(Hash::check($currentpassword,$oic->password) && $newpassword==$confirmpassword ){
-            DB::table('users')
-                ->where('nic',$request->nic)
-                ->update(['password'=>Hash::make($request->newpassword)]);
+        if ($newpassword==$confirmpassword){
+            if (Hash::check($currentpassword,$userDetails->password) && $newpassword == $confirmpassword){
+                DB::table('users')
+                    ->where('nic',$request->nic)
+                    ->update(['password'=>Hash::make($request->newpassword)]);
+                $nic=Auth::User()->nic;
+                $oicDetails = db::table('users')->where('nic',$nic)->First();
+                $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
+                Session::put('passwordUpdateMessage','Password is Successfully Updated');
+                return view('oic.oicProfileForm',compact('oicDetails','branches'));
+
+            }
+            else{
+                $nic=Auth::User()->nic;
+                $oicDetails = db::table('users')->where('nic',$nic)->First();
+                $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
+                Session::put('passwordUpdateMessage','Your current password is wrong!!');
+                return view('oic.oicProfileForm',compact('oicDetails','branches'));
+            }
+
+
+        }
+        else{
             $nic=Auth::User()->nic;
             $oicDetails = db::table('users')->where('nic',$nic)->First();
             $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
+            Session::put('passwordUpdateMessage','Error in password Update!!');
             return view('oic.oicProfileForm',compact('oicDetails','branches'));
-
-        }else{
-            $nic=Auth::User()->nic;
-            $oicDetails = db::table('users')->where('nic',$nic)->First();
-            $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
-            return view('oic.oicProfileForm',compact('oicDetails','branches'));
-            
         }
     }
 
@@ -74,8 +88,12 @@ class OICController extends Controller
             $citizen->policeOffice=$user->policeOffice;
             $citizen->save();
 
-            $res = db::table('users')->where('nic', $request->nicTemp)->delete();
-            if ($res) {
+            $result=$result= DB::table('users')
+
+                ->where('nic', $request->nicTemp)
+                ->update(['blackListStatus' => "Yes"]);
+
+            if ($result) {
                 return redirect('/OIC');
             }
 
@@ -98,7 +116,7 @@ class OICController extends Controller
         $nic=Auth::User()->nic;
         $user=db::table('users')->where('Nic',$nic)->First();
 
-        $citizens=db::table('users')->where('role',"citizen")->where('verified',"Yes")->where('policeOffice',$user->policeOffice)->get();
+        $citizens=db::table('users')->where('role',"citizen")->where('blackListStatus',null)->where('verified',"Yes")->where('policeOffice',$user->policeOffice)->get();
         $type="Registered Citizens";
         $oicDetails = db::table('users')->where('nic',$nic)->First();
         $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
@@ -121,10 +139,12 @@ class OICController extends Controller
         $branchDetails=db::table('police_offices')->where('id',$request->branchID)->First();
         $nic=Auth::User()->nic;
         $oicDetails = db::table('users')->where('nic',$nic)->First();
-        $entries = db::table('entries')->where('branch',$request->branchName)->where('nearestPoliceStation',$oicDetails->policeOffice)->get();
+        $newEntries = db::table('entries')->where('branch',$request->branchID)->where('boicNotification',"y")->get();
+        $ongoingEntries = db::table('entries')->where('branch',$request->branchID)->where('boicNotification',"y o")->get();
+        $closedEntries = db::table('entries')->where('branch',$request->branchID)->where('status',"closed")->get();
         $branchOfficerDetails = db::table('users')->where('nic',$request->mainOfficer)->First();
         $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
-        return view('oic.viewBranchOffice',compact('branchDetails','oicDetails','entries','branches','oicDetails','branchOfficerDetails'));
+        return view('oic.viewBranchOffice',compact('branchDetails','oicDetails','newEntries','ongoingEntries','closedEntries','branches','oicDetails','branchOfficerDetails'));
 
     }
 
@@ -174,10 +194,10 @@ class OICController extends Controller
         $oic = db::table('users')->where('nic',$request->nic)->first();
         if (Hash::check($userpassword,$oic->password)){
             DB::table('users')->where('nic',$request->nic)->delete();
-            return redirect('/');
+            return redirect('/logout');
         }
         else{
-            return redirect('/RegisteredCitizen');
+            return redirect('/OIC');
         }
 
     }

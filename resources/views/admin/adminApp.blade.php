@@ -394,7 +394,7 @@
         <div class="pull-right hidden-xs">
             <b>Version</b> 1.0
         </div>
-        <strong>Crime Reporting System  Group 26</strong>
+        <strong>Crime Reporting System  Group CS 26</strong>
     </footer>
     <!-- Control Sidebar -->
     {{--<aside class="control-sidebar control-sidebar-dark">--}}

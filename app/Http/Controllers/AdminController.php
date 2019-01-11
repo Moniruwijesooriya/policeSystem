@@ -94,7 +94,7 @@ class AdminController extends Controller
 
         $policeOfficer->remember_token=str_random(60);
         $randomPassword="123123";
-//        $randomPassword=str_random(10);
+        $randomPasswords=str_random(10);
         $policeOfficer->password=Hash::make($randomPassword);
         $policeOfficer->verified="Yes";
         $policeOfficer->token=str_random(25);
@@ -109,7 +109,7 @@ class AdminController extends Controller
         $data = array('heading'=>"Weclome to Crime Reporting System",'fullName'=>"Full Name: ".$request->fullName,'name'=>
             "Name with initials: ".$request->name,'thank'=>"Thank You!",
             'nic'=>"NIC : ".$request->nic,
-            'msg'=>"Your account is successfully created. A random password is provided and please change it.",'randomPassword'=>"Your random password: ".$randomPassword);
+            'msg'=>"Your account is successfully created. A random password is provided and please change it.",'randomPassword'=>"Your random password: ".$randomPasswords);
 
         Mail::send(['text'=>'sendEmail.policeOfficerRegisterEmail'], $data, function($message) use($email) {
             $message->to($email)->subject

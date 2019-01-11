@@ -29,7 +29,7 @@
                                 </div>
                             </div>
 
-                            <form method="POST" action="citizenPasswordChange" >
+                            <form method="POST" action="oicPasswordChange" >
                                 @csrf
 
                                 <div class="form-group row">
@@ -41,39 +41,32 @@
                                     </div>
                                 </div>
 
-
                                 <div class="form-group row">
                                     <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Current Password') }}</label>
-
                                     <div class="col-md-6">
                                         <input id="password" type="password" class="form-control" name="currentpassword" required>
-
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('New Password') }}</label>
-
                                     <div class="col-md-6">
                                         <input id="password" type="password" class="form-control" name="newpassword" required>
-
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
                                     <div class="col-md-6">
                                         <input id="password" type="password" class="form-control" name="confirmpassword" required>
-
                                     </div>
                                 </div>
-
 
                                 <div class="modal-footer">
                                     <a href="\OIC"><button type="button" class="btn btn-secondary" >Cancel</button></a>
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Change Passord') }}
                                     </button>
-
                                 </div>
                             </form>
 
@@ -94,16 +87,6 @@
         <!-- /.row (main row) -->
 
     </div>
-    {{--<script>--}}
-    {{--$(document).ready(function(){--}}
-    {{--$("#myInput").on("keyup", function() {--}}
-    {{--var value = $(this).val().toLowerCase();--}}
-    {{--$("#myTable tr").filter(function() {--}}
-    {{--$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)--}}
-    {{--});--}}
-    {{--});--}}
-    {{--});--}}
-    {{--</script>--}}
 @endsection
 
 

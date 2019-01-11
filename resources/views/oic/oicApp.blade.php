@@ -33,22 +33,9 @@
     <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
     {{-- <!-- Theme style --> --}}
     <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
-    {{-- <!-- AdminLTE Skins. Choose a skin from the css/skins --}}
-         {{-- folder instead of downloading all of them to reduce the load. --> --}}
-    {{-- <link href="{{asset('dist/css/AdminLTE.min.cs')}}"> --}}
-    {{--<link href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">--}}
-    {{--<link href="{{asset('bower_components/font-awesome/css/font-awesome.min.css')}}">--}}
-    {{--<link href="{{asset('bower_components/Ionicons/css/ionicons.min.css')}}">--}}
-    {{--<link href="{{asset('dist/css/skins/_all-skins.min.css')}}">--}}
-    {{--<link href="{{asset('bower_components/morris.js/morris.css')}}">--}}
-    {{--<link href="{{asset('bower_components/jvectormap/jquery-jvectormap.css')}}">--}}
-    {{--<link href="{{asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">--}}
-    {{--<link href="{{asset('bower_components/bootstrap-daterangepicker/daterangepicker.css')}}">--}}
-    {{--<link href="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">--}}
-    {{--<link href="{{asset('https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js')}}">--}}
-    {{--<link href="{{asset('https://oss.maxcdn.com/respond/1.4.2/respond.min.js')}}">--}}
+
     <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
-    
+
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 
@@ -89,15 +76,15 @@
             -webkit-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
             -o-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
             -ms-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
-        }   
+        }
         /*.tc-left{
             min-width: 15%;
         } */
         .tc-middle{
             min-width: 45%;
             padding-left: 3%;
-            
-        } 
+
+        }
         .tc-right{
             min-width: 40%;
             padding-left: 3%;
@@ -130,106 +117,35 @@
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     {{-- <!-- Messages: style can be found in dropdown.less--> --}}
-                    <?php
-                    $nic=Auth::User()->nic;
-                    $citizenDetails = db::table('users')->where('nic',$nic)->First();
-                    ?>
+                    {{--To Take user details to load some information of the user--}}
                     <?php
                     $loggedUser=db::table('users')->where('nic',Auth::User()->nic)->first();
                     ?>
-                    {{--<li class="dropdown messages-menu">--}}
-                        {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown">--}}
-                            {{--<i class="fa fa-envelope-o"></i>--}}
-                            {{--<span class="label label-success">4</span>--}}
-                        {{--</a>--}}
-                        {{--<ul class="dropdown-menu">--}}
-                            {{--<li class="header">You have 4 messages</li>--}}
-                            {{--<li>--}}
-                                {{-- <!-- inner menu: contains the actual data --> --}}
-                                {{--<ul class="menu">--}}
-                                    {{-- <li><!-- start message --> --}}
-                                        {{--<a href="#">--}}
-                                            {{--<div class="pull-left">--}}
-                                                {{--<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">--}}
-                                            {{--</div>--}}
-                                            {{--<h4>--}}
-                                                {{--Support Team--}}
-                                                {{--<small><i class="fa fa-clock-o"></i> 5 mins</small>--}}
-                                            {{--</h4>--}}
-                                            {{--<p>Why not buy a new awesome theme?</p>--}}
-                                        {{--</a>--}}
-                                    {{--</li>--}}
-                                    {{-- <!-- end message --> --}}
-                                    {{--<li>--}}
-                                        {{--<a href="#">--}}
-                                            {{--<div class="pull-left">--}}
-                                                {{--<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">--}}
-                                            {{--</div>--}}
-                                            {{--<h4>--}}
-                                                {{--AdminLTE Design Team--}}
-                                                {{--<small><i class="fa fa-clock-o"></i> 2 hours</small>--}}
-                                            {{--</h4>--}}
-                                            {{--<p>Why not buy a new awesome theme?</p>--}}
-                                        {{--</a>--}}
-                                    {{--</li>--}}
-                                    {{--<li>--}}
-                                        {{--<a href="#">--}}
-                                            {{--<div class="pull-left">--}}
-                                                {{--<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">--}}
-                                            {{--</div>--}}
-                                            {{--<h4>--}}
-                                                {{--Developers--}}
-                                                {{--<small><i class="fa fa-clock-o"></i> Today</small>--}}
-                                            {{--</h4>--}}
-                                            {{--<p>Why not buy a new awesome theme?</p>--}}
-                                        {{--</a>--}}
-                                    {{--</li>--}}
-                                    {{--<li>--}}
-                                        {{--<a href="#">--}}
-                                            {{--<div class="pull-left">--}}
-                                                {{--<img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">--}}
-                                            {{--</div>--}}
-                                            {{--<h4>--}}
-                                                {{--Sales Department--}}
-                                                {{--<small><i class="fa fa-clock-o"></i> Yesterday</small>--}}
-                                            {{--</h4>--}}
-                                            {{--<p>Why not buy a new awesome theme?</p>--}}
-                                        {{--</a>--}}
-                                    {{--</li>--}}
-                                    {{--<li>--}}
-                                        {{--<a href="#">--}}
-                                            {{--<div class="pull-left">--}}
-                                                {{--<img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">--}}
-                                            {{--</div>--}}
-                                            {{--<h4>--}}
-                                                {{--Reviewers--}}
-                                                {{--<small><i class="fa fa-clock-o"></i> 2 days</small>--}}
-                                            {{--</h4>--}}
-                                            {{--<p>Why not buy a new awesome theme?</p>--}}
-                                        {{--</a>--}}
-                                    {{--</li>--}}
-                                {{--</ul>--}}
-                            {{--</li>--}}
-                            {{--<li class="footer"><a href="#">See All Messages</a></li>--}}
-                        {{--</ul>--}}
-                    {{--</li>--}}
                     {{-- <!-- Notifications: style can be found in dropdown.less --> --}}
                     <li class="dropdown notifications-menu">
+                        {{--No. of new registration requests--}}
                         <?php
                         $count=db::table('users')->where('verified',"No")->where('role',"citizen")->where('policeOffice',$loggedUser->policeOffice)->count();
                         ?>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-bell-o"></i>
+                            <i class="fa fa-user-plus"></i>
                             <span class="label label-warning">{{$count}}</span>
                         </a>
                         <ul class="dropdown-menu">
+                            @if($count==1)
+                                <li class="header">{{$count}} New Citizen Registration Request</li>
 
-                            <li class="header">You have {{$count}} Requests</li>
+                            @elseif($count>0)
+                                <li class="header">{{$count}} New Citizen Registration Requests</li>
+                            @else
+                                <li class="header">No New Registration Requests</li>
+                            @endif
+
                             <li>
                                 {{-- <!-- inner menu: contains the actual data --> --}}
 
                                 <ul class="menu">
-
+                                    {{--List of registration requests--}}
                                     <?php
                                     $registerRequestNotification=db::table('users')->where('verified',"No")->where('role',"citizen")->get();
                                     ?>
@@ -247,52 +163,62 @@
 
                                 </ul>
                             </li>
-                            <li class="footer"><a href="#">View all</a></li>
+                            <li class="footer"><a href="viewNewCitizenRequests">View all</a></li>
                         </ul>
                     </li>
                     {{-- <!-- Tasks: style can be found in dropdown.less --> --}}
                     <li class="dropdown tasks-menu">
+                        {{--No of new entries submitted by registered citizens--}}
                         <?php
                         $entryCount=db::table('entries')->where('oicNotification',"y")->where('nearestPoliceStation',$loggedUser->policeOffice)->count()
                         ?>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-flag-o"></i>
+                            <i class="fa fa-window-restore"></i>
+
                             <span class="label label-danger">{{$entryCount}}</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="header">You have {{$entryCount}} Entries</li>
+                            @if($entryCount==1)
+                                <li class="header">{{$entryCount}} New Entry</li>
+
+                            @elseif($entryCount>0)
+                                <li class="header">{{$entryCount}} New Entries</li>
+                            @else
+                                <li class="header">No New Entries</li>
+                            @endif
                             <li>
                                 {{-- <!-- inner menu: contains the actual data --> --}}
                                 <ul class="menu">
+                                    {{--List of new entries--}}
                                     <?php
                                     $entryNotification=db::table('entries')->where('oicNotification',"y")->where('nearestPoliceStation',$loggedUser->policeOffice)->get();
                                     ?>
                                     @foreach($entryNotification as $notifi)
-                                            <li>
-                                                <form method="post" action="{{'viewOICEntry'}}">
-                                                    @csrf
-                                                    <input type="hidden" value="{{$notifi->entryID}}" name="entryID">
-                                                    <input type="submit" class="btn-link" value="{{$notifi->complainantID}} submitted a crime">
-                                                </form>
-                                            </li>
+                                        <li>
+                                            <form method="post" action="{{'viewOICEntry'}}">
+                                                @csrf
+                                                <input type="hidden" value="{{$notifi->entryID}}" name="entryID">
+                                                <input type="submit" class="btn-link" value="{{$notifi->complainantID}} submitted a crime">
+                                            </form>
+                                        </li>
                                     @endforeach
                                 </ul>
                             </li>
                             <li class="footer">
-                                <a href="#">View all tasks</a>
+                                <a href="viewOICNewEntries">View all</a>
                             </li>
                         </ul>
                     </li>
                     {{-- <!-- User Account: style can be found in dropdown.less --> --}}
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src='{{asset('/userProfileImages/'.$citizenDetails->nic.'.jpg')}}' class="user-image" alt="User Image">
+                            <img src='{{asset('/userProfileImages/'.$loggedUser->nic.'.jpg')}}' class="user-image" alt="User Image">
                             <span class="hidden-xs">{{Auth::User()->name}}</span>
                         </a>
                         <ul class="dropdown-menu">
                             {{-- <!-- User image --> --}}
                             <li class="user-header">
-                                <img src='{{asset('/userProfileImages/'.$citizenDetails->nic.'.jpg')}}' class="img-circle" alt="User Image">
+                                <img src='{{asset('/userProfileImages/'.$loggedUser->nic.'.jpg')}}' class="img-circle" alt="User Image">
 
                                 <p>
                                     {{Auth::User()->name}}
@@ -320,22 +246,8 @@
                                 </div>
                                 <!-- /.row -->
                             </li>
-                                {{-- <!-- /.row --> --}}
-                            </li>
-                            {{-- <!-- Menu Footer--> --}}
-                            {{--<li class="user-footer">--}}
-                                {{--<div class="pull-left">--}}
-                                    {{--<a href="#" class="btn btn-default btn-flat">Profile</a>--}}
-                                {{--</div>--}}
-                                {{--<div class="pull-right">--}}
-                                    {{--<a href="logout" class="btn btn-default btn-flat">Sign out</a>--}}
-                                {{--</div>--}}
-                            {{--</li>--}}
+                            {{-- <!-- /.row --> --}}
                         </ul>
-                    </li>
-                    {{-- <!-- Control Sidebar Toggle Button --> --}}
-                    <li>
-                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
                     </li>
                 </ul>
             </div>
@@ -348,34 +260,21 @@
             {{-- <!-- Sidebar user panel --> --}}
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src='{{asset('/userProfileImages/'.$citizenDetails->nic.'.jpg')}}' class="img-circle" alt="User Image">
+                    <img src='{{asset('/userProfileImages/'.$loggedUser->nic.'.jpg')}}' class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
                     <p>{{Auth::User()->name}}</p>
-                    {{--<p><small>{{Auth::User()->policeOffice}}</small></p>--}}
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
-            {{-- <!-- search form --> --}}
-        {{--<form action="#" method="get" class="sidebar-form">--}}
-        {{--<div class="input-group">--}}
-        {{--<input type="text" name="q" class="form-control" placeholder="Search...">--}}
-        {{--<span class="input-group-btn">--}}
-        {{--<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>--}}
-        {{--</button>--}}
-        {{--</span>--}}
-        {{--</div>--}}
-        {{--</form>--}}
-        {{-- <!-- /.search form --> --}}
-            {{-- <!-- sidebar menu: : style can be found in sidebar.less --> --}}
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-laptop"></i>
                         <span>Entries</span>
                         <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="viewOICNewEntries"><i class="fa fa-circle-o"></i>New Entries</a></li>
@@ -385,7 +284,8 @@
                 </li>
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-edit"></i> <span>Citizen Management</span>
+                        <i class="fa fa-edit"></i>
+                        <span>Citizen Management</span>
                         <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -405,17 +305,15 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <div id="branchOffice" class="w3-hide w3-container">
-                            @foreach($branches as $branch)
-                                <form method="post" action="{{'viewBranch'}}">
-                                    @csrf
-                                    <input type="hidden" value="{{ $branch->id }}" name="branchID">
-                                    <input type="hidden" value="{{ $branch->policeOfficeArea }}" name="branchName">
-                                    <input type="hidden" value="{{ $branch->mainOfficer }}" name="mainOfficer">
-                                    <li><i class="fa fa-circle-o"></i><input type="submit" class="btn btn-primary" value="{{ $branch->OfficeName }}"></li>
-                                </form>
-                            @endforeach
-                        </div>
+                        @foreach($branches as $branch)
+                            <form method="post" action="{{'viewBranch'}}">
+                                @csrf
+                                <input type="hidden" value="{{ $branch->id }}" name="branchID">
+                                <input type="hidden" value="{{ $branch->policeOfficeArea }}" name="branchName">
+                                <input type="hidden" value="{{ $branch->mainOfficer }}" name="mainOfficer">
+                                <li><input type="submit" class="btn btn-outline-primary" style="width: 222px;text-wrap: normal;" value="{{ $branch->policeOfficeArea }} Branch"></li>
+                            </form>
+                        @endforeach
                     </ul>
                 </li>
             </ul>
@@ -430,203 +328,97 @@
     {{-- <!-- /.content-wrapper --> --}}
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-            <b>Version</b> 1.0
+            Group<b> CS 26</b>
         </div>
-        <strong>Crime Reporting System  Group 26</strong>
+        <strong>Crime Reporting System</strong>
     </footer>
-    {{-- <!-- Control Sidebar --> --}}
-    <aside class="control-sidebar control-sidebar-dark">
-        {{-- <!-- Create the tabs --> --}}
-        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-            <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-            <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-        </ul>
-        {{-- <!-- Tab panes --> --}}
-        <div class="tab-content">
-            {{-- <!-- Home tab content --> --}}
-            <div class="tab-pane" id="control-sidebar-home-tab">
-                <h3 class="control-sidebar-heading">Recent Activity</h3>
-                <ul class="control-sidebar-menu">
-                    <li>
-                        <a href="javascript:void(0)">
-                            <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+    {{--viewUserProfile--}}
+    <div class="modal fade" id="viewPerson" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div  class="modal-dialog modal-dialog-centered" role="document">
+            <div  class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerPoliceOfficer">Profile</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form >
+                        @csrf
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('NIC') }}</label>
 
-                            <div class="menu-info">
-                                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-                                <p>Will be 23 on April 24th</p>
+                            <div class="col-md-7">
+                                <input id="nicTempId" type="text" class="form-control" name="nicTemp" readonly>
                             </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <i class="menu-icon fa fa-user bg-yellow"></i>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
-                            <div class="menu-info">
-                                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+                            <div class="col-md-7">
+                                <input id="nameTempId" type="text" class="form-control" name="nameTemp"  readonly></div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Full Name') }}</label>
 
-                                <p>New phone +1(800)555-1234</p>
-                            </div>
-                        </a>
-                    </li>
-                    {{--<li>--}}
-                        {{--<a href="javascript:void(0)">--}}
-                            {{--<i class="menu-icon fa fa-envelope-o bg-light-blue"></i>--}}
+                            <div class="col-md-7">
+                                <input id="fullNameTempId" type="text" class="form-control" name="fullNameTemp"  readonly></div>
+                        </div>
 
-                            {{--<div class="menu-info">--}}
-                                {{--<h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>--}}
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Date of Birth') }}</label>
 
-                                {{--<p>nora@example.com</p>--}}
-                            {{--</div>--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
-                    <li>
-                        <a href="javascript:void(0)">
-                            <i class="menu-icon fa fa-file-code-o bg-green"></i>
+                            <div class="col-md-7">
+                                <input id="dobTempId" type="text" class="form-control" name="dobTemp"  readonly></div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
 
-                            <div class="menu-info">
-                                <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+                            <div class="col-md-7">
+                                <input id="addressTempId" type="text" class="form-control" name="addressTemp"  readonly></div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Mobile Number') }}</label>
 
-                                <p>Execution time 5 seconds</p>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-                {{-- <!-- /.control-sidebar-menu --> --}}
+                            <div class="col-md-7">
+                                <input id="mobileNumberTempId" type="text" class="form-control" name="mobileNumberTemp"  readonly></div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Land Line Number') }}</label>
 
-                <h3 class="control-sidebar-heading">Tasks Progress</h3>
-                <ul class="control-sidebar-menu">
-                    <li>
-                        <a href="javascript:void(0)">
-                            <h4 class="control-sidebar-subheading">
-                                Custom Template Design
-                                <span class="label label-danger pull-right">70%</span>
-                            </h4>
+                            <div class="col-md-7">
+                                <input id="landLineNumberTempId" type="text" class="form-control" name="landLineNumberTemp"  readonly></div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
 
-                            <div class="progress progress-xxs">
-                                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <h4 class="control-sidebar-subheading">
-                                Update Resume
-                                <span class="label label-success pull-right">95%</span>
-                            </h4>
+                            <div class="col-md-7">
+                                <input id="emailTempId" type="text" class="form-control" name="emailTemp"  readonly></div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
 
-                            <div class="progress progress-xxs">
-                                <div class="progress-bar progress-bar-success" style="width: 95%"></div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <h4 class="control-sidebar-subheading">
-                                Laravel Integration
-                                <span class="label label-warning pull-right">50%</span>
-                            </h4>
+                            <div class="col-md-7">
+                                <input id="genderTempId" type="text" class="form-control" name="genderTemp"  readonly></div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Profession') }}</label>
 
-                            <div class="progress progress-xxs">
-                                <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <h4 class="control-sidebar-subheading">
-                                Back End Framework
-                                <span class="label label-primary pull-right">68%</span>
-                            </h4>
+                            <div class="col-md-7">
+                                <input id="professionTempId" type="text" class="form-control" name="professionTemp"  readonly></div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Relevant Police Station') }}</label>
 
-                            <div class="progress progress-xxs">
-                                <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-                {{-- <!-- /.control-sidebar-menu --> --}}
-
+                            <div class="col-md-7">
+                                <input id="policeStationId" type="text" class="form-control" name="policeStationTemp"  readonly></div>
+                        </div>
+                    </form>
+                </div>
             </div>
-            {{-- <!-- /.tab-pane -->
-            <!-- Stats tab content --> --}}
-            <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-            {{-- <!-- /.tab-pane -->
-            <!-- Settings tab content --> --}}
-            <div class="tab-pane" id="control-sidebar-settings-tab">
-                <form method="post">
-                    <h3 class="control-sidebar-heading">General Settings</h3>
-
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Report panel usage
-                            <input type="checkbox" class="pull-right" checked>
-                        </label>
-
-                        <p>
-                            Some information about this general settings option
-                        </p>
-                    </div>
-                    {{-- <!-- /.form-group --> --}}
-
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Allow mail redirect
-                            <input type="checkbox" class="pull-right" checked>
-                        </label>
-
-                        <p>
-                            Other sets of options are available
-                        </p>
-                    </div>
-                    {{-- <!-- /.form-group --> --}}
-
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Expose author name in posts
-                            <input type="checkbox" class="pull-right" checked>
-                        </label>
-
-                        <p>
-                            Allow the user to show his name in blog posts
-                        </p>
-                    </div>
-                    {{-- <!-- /.form-group --> --}}
-
-                    <h3 class="control-sidebar-heading">Chat Settings</h3>
-
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Show me as online
-                            <input type="checkbox" class="pull-right" checked>
-                        </label>
-                    </div>
-                    {{-- <!-- /.form-group --> --}}
-
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Turn off notifications
-                            <input type="checkbox" class="pull-right">
-                        </label>
-                    </div>
-                    {{-- <!-- /.form-group --> --}}
-
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Delete chat history
-                            <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
-                        </label>
-                    </div>
-                    {{-- <!-- /.form-group --> --}}
-                </form>
-            </div>
-            {{-- <!-- /.tab-pane --> --}}
         </div>
-    </aside>
-    {{-- <!-- /.control-sidebar --> --}}
-    {{-- <!-- Add the sidebar's background. This div must be placed
-         immediately after the control sidebar --> --}}
-    <div class="control-sidebar-bg"></div>
+    </div>
+
 </div>
 {{-- <!-- ./wrapper --> --}}
 
@@ -668,6 +460,16 @@
 {{-- <!-- AdminLTE for demo purposes --> --}}
 <script src="dist/js/demo.js"></script>
 <script>
+    // Javascript function for searching the items in the table
+    $(document).ready(function(){
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+    //Javascript function to load the information of an user relevant to the NIC number
     $(document).ready(function () {
         var url = '{{route('getUserInfo')}}';
         var token = '{{Session::token()}}';
@@ -697,8 +499,51 @@
                 }
             });
         });
+    });
+    //Javascript function to load the information of an user relevant to the NIC number and which is a closed user account
+    $(document).ready(function () {
+        var url = '{{route('getRemovedUserInfo')}}';
+        var token = '{{Session::token()}}';
+        var tempNic="";
+
+        $(".nic-button-closed").click(function () {
+            tempNic= $(this).val();
+            $.ajax({
+                method: 'post',
+                url: url,
+                data:{
+                    _token: token,
+                    id: tempNic
+                },
+                success:function (data) {
+                    $("#nicTempId").val(data.nic);
+                    $("#nameTempId").val(data.name);
+                    $("#fullNameTempId").val(data.fullName);
+                    $("#dobTempId").val(data.dob);
+                    $("#addressTempId").val(data.address);
+                    $("#mobileNumberTempId").val(data.mobileNumber);
+                    $("#landLineNumberTempId").val(data.landLineNumber);
+                    $("#emailTempId").val(data.email);
+                    $("#genderTempId").val(data.gender);
+                    $("#professionTempId").val(data.profession);
+                    $("#policeStationId").val(data.policeOffice);
+                }
+            });
+        });
 
     });
+    // Accordion
+    function myFunction(id) {
+        var x = document.getElementById(id);
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+            x.previousElementSibling.className += " w3-theme-d1";
+        } else {
+            x.className = x.className.replace("w3-show", "");
+            x.previousElementSibling.className =
+                x.previousElementSibling.className.replace(" w3-theme-d1", "");
+        }
+    }
 </script>
 </body>
 </html>
