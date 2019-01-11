@@ -1,20 +1,20 @@
 <?php
 use Illuminate\Support\Facades\DB;
-$newEntries=db::table('entries')->where('policeDivisionOffice',$doigDetails->policeOffice)->where('status','new')->count();
-$ongoingEntries=db::table('entries')->where('nearestPoliceStation',$doigDetails->policeOffice)->where('status','ongoing')->count();
-$closedEntries=db::table('entries')->where('nearestPoliceStation',$doigDetails->policeOffice)->where('status','closed')->count();
-$registeredUsersCount=db::table('users')->where('role','citizen')->where('policeOffice',$doigDetails->policeOffice)->count();
+$newEntries=db::table('entries')->where('status','new')->count();
+$ongoingEntries=db::table('entries')->where('status','ongoing')->count();
+$closedEntries=db::table('entries')->where('status','closed')->count();
+$registeredUsersCount=db::table('users')->where('role','citizen')->count();
 $allUsersCount=db::table('users')->count();
 $officersCount=$allUsersCount - $registeredUsersCount;
 ?>
 
-@extends('doig.doigApp')
+@extends('igp.igpApp')
 @section('content')
     <div class="content">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                DOIG Dashboard
+                IGP Dashboard
             </h1>
         </section>
 
@@ -33,7 +33,7 @@ $officersCount=$allUsersCount - $registeredUsersCount;
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
                         </div>
-                        <a href="viewDOIGNewEntries" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="viewIGPNewEntries" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-xs-6">
@@ -46,7 +46,7 @@ $officersCount=$allUsersCount - $registeredUsersCount;
                         <div class="icon">
                             <i class="ion ion-home"></i>
                         </div>
-                        <a href="viewDOIGOngoingEntries" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="viewIGPOngoingEntries" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -61,7 +61,7 @@ $officersCount=$allUsersCount - $registeredUsersCount;
                         <div class="icon">
                             <i class="ion ion-pie-graph"></i>
                         </div>
-                        <a href="viewDOIGClosedEntries" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="viewIGPClosedEntries" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -118,7 +118,7 @@ $officersCount=$allUsersCount - $registeredUsersCount;
                     @endforeach
 
                 </div>
-                
+               
             </div>
             <!-- /.row (main row) -->
 

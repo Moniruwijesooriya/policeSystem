@@ -1,9 +1,9 @@
-@extends('doig.doigApp')
+@extends('igp.igpApp')
 @section('content')
 
     <div class="content-header">
         <h1>
-            Change Password
+            Deactivate Account
         </h1>
     </div>
 
@@ -29,49 +29,36 @@
                                 </div>
                             </div>
 
-                            <form method="POST" action="citizenPasswordChange" >
+                            <form method="POST" action="igpAccountDeactivate" >
                                 @csrf
 
                                 <div class="form-group row">
                                     <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('NIC') }}</label>
 
                                     <div class="col-md-6">
-                                        <input type="hidden" name="nic" value="{{$doigDetails->nic}}">
-                                        <input id="nic" type="text" pattern=".{10,12}" name="tmp" class="form-control"  value="{{$doigDetails->nic}}" readonly>
+                                        <input type="hidden" name="nic" value="{{$IGPDetails->nic}}">
+                                        <input id="nic" type="text" pattern=".{10,12}" name="tmp" class="form-control"  value="{{$IGPDetails->nic}}" readonly>
                                     </div>
                                 </div>
 
 
                                 <div class="form-group row">
-                                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Current Password') }}</label>
+                                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                                    <div class="col-md-6">
-                                        <input id="password" type="password" class="form-control" name="currentpassword" required>
-
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('New Password') }}</label>
-
-                                    <div class="col-md-6">
-                                        <input id="password" type="password" class="form-control" name="newpassword" required>
-
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                                    <div class="col-md-6">
-                                        <input id="password" type="password" class="form-control" name="confirmpassword" required>
+                                    <div class="col-md-6 ">
+                                        <input id="password" type="password" class="form-control" name="password" required>
 
                                     </div>
                                 </div>
 
 
                                 <div class="modal-footer">
-                                    <a href="\DOIG"><button type="button" class="btn btn-secondary" >Cancel</button></a>
+                                    <div class="col-md-8 col-xs-4">
+                                        <a href="\IGP"><button type="button" class="btn btn-secondary" >Cancel</button></a>
+                                    </div>
+
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Change Passord') }}
+                                        {{ __('Deactivate Account') }}
                                     </button>
 
                                 </div>
@@ -87,12 +74,23 @@
                 <!-- /.box -->
             </div>
             <!-- /.Left col -->
+            <!-- right col (We are only adding the ID to make the widgets sortable)-->
 
             <!-- right col -->
         </div>
         <!-- /.row (main row) -->
 
     </div>
+    {{--<script>--}}
+    {{--$(document).ready(function(){--}}
+    {{--$("#myInput").on("keyup", function() {--}}
+    {{--var value = $(this).val().toLowerCase();--}}
+    {{--$("#myTable tr").filter(function() {--}}
+    {{--$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)--}}
+    {{--});--}}
+    {{--});--}}
+    {{--});--}}
+    {{--</script>--}}
 @endsection
 
 

@@ -1,4 +1,4 @@
-@extends('oic.oicApp')
+@extends('igp.igpApp')
 @section('content')
 
     <div class="content-header">
@@ -19,7 +19,7 @@
                 <div class="box box-primary">
                     <!-- /.box-header -->
                     <div class="box-body">
-                        {{--View Branch List--}}
+                        {{--View Office List--}}
                         <div class="container-fluid">
                             <!-- The Grid -->
                             <div class="row" style="border-radius: 8px;background-color: lightgray">
@@ -89,35 +89,35 @@
                                     <div class="row justify-content-center">
                                         <div class="col-md-12">
                                             <div class="card">
-                                                <div class="page-header" style="text-align: center">{{ __('Branch') }}</div>
+                                                <div class="page-header" style="text-align: center">{{ __('Office') }}</div>
 
                                                 <div class="form-group">
                                                     <form>
                                                         @csrf
 
                                                         <div class="form-group row">
-                                                            <label class="col-md-4 col-form-label text-md-right" style="margin-left: 10px">{{ __('Branch Name') }}</label>
+                                                            <label class="col-md-4 col-form-label text-md-right" style="margin-left: 10px">{{ __('Office Name') }}</label>
 
                                                             <div class="col-md-6">
-                                                                <input type="text" class="form-control" value="{{ $branchDetails->policeOfficeArea }}" readonly>
+                                                                <input type="text" class="form-control" value="{{ $officeDetails->policeOfficeArea }}" readonly>
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group row">
 
-                                                            <label class="col-md-4 col-form-label text-md-right" style="margin-left: 10px">{{ __('Branch Officer Incharge') }}</label>
+                                                            <label class="col-md-4 col-form-label text-md-right" style="margin-left: 10px">{{ __('Office Officer Incharge') }}</label>
 
                                                             <div class="col-md-6">
-                                                                <input type="text" class="form-control" value="{{ $branchOfficerDetails->name }}"readonly>
+                                                                <input type="text" class="form-control" value="{{ $officeOfficerDetails->name }}"readonly>
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group row">
 
-                                                            <label class="col-md-4 col-form-label text-md-right" style="margin-left: 10px;margin-top: 5px">{{ __('Branch Officer NIC') }}</label>
+                                                            <label class="col-md-4 col-form-label text-md-right" style="margin-left: 10px;margin-top: 5px">{{ __('Office Officer NIC') }}</label>
 
                                                             <div class="col-md-6">
-                                                                <button style="width: 100%" type="button" value="{{ $branchOfficerDetails->nic }}" id="nicbutton" class="btn btn-primary nic-button" data-toggle="modal" data-target="#viewPerson">{{ $branchOfficerDetails->nic }}</button>
+                                                                <button style="width: 100%" type="button" value="{{ $officeOfficerDetails->nic }}" id="nicbutton" class="btn btn-primary nic-button" data-toggle="modal" data-target="#viewPerson">{{ $officeOfficerDetails->nic }}</button>
                                                             </div>
                                                         </div>
 
@@ -166,6 +166,15 @@
                 <div class="modal-body">
                     <form >
                         @csrf
+                        {{--<div class="form-group row">--}}
+                        {{--<div class="col-md-3">--}}
+                        {{--</div>--}}
+                        {{--<div class="col-md-6" style="align-content: center">--}}
+                        {{--<img id="userProfileImage" src='{{asset('/userProfileImages/'.$citizenDetails->nic.'.jpg')}}' class="user-image" alt="User Image">--}}
+
+                        {{--</div>--}}
+                        {{--<div class="col-md-3"></div>--}}
+                        {{--</div>--}}
 
                         <div class="form-group row">
                             <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('NIC') }}</label>

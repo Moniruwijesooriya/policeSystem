@@ -29,12 +29,6 @@ use Illuminate\Support\Facades\DB;
     </style>
     <!-- Navbar -->
     <!-- Navbar on small screens -->
-    {{--<div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">--}}
-        {{--<a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>--}}
-        {{--<a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>--}}
-        {{--<a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>--}}
-        {{--<a href="#" class="w3-bar-item w3-button w3-padding-large">My Profile</a>--}}
-    {{--</div>--}}
 
     <!-- Page Container -->
     <div class="container-fluid" style="max-width:1400px;margin-top:8px;background-color: lightblue">
@@ -124,17 +118,6 @@ use Illuminate\Support\Facades\DB;
                         </div>
                     </div>
                 </div>
-
-                <br>
-
-                {{--<div class="w3-card w3-round w3-white w3-padding-16 w3-center">--}}
-                {{--<p>ADS</p>--}}
-                {{--</div>--}}
-                <br>
-
-            {{--<div class="w3-card w3-round w3-white w3-padding-32 w3-center">--}}
-            {{--<p><i class="fa fa-bug w3-xxlarge"></i></p>--}}
-            {{--</div>--}}
 
             <!-- End Right Column -->
             </div>

@@ -486,10 +486,63 @@ Route::get('/viewClosedAccountsDOIG',[
     'as'=>'viewClosedAccounts'
 ])->middleware('auth');
 
-Route::post('/viewOffice',[
-    'uses'=>'DOIGController@viewOffice',
-    'as'=>'viewOffice'
+Route::post('/viewOfficeDOIG',[
+    'uses'=>'DOIGController@viewOfficeDOIG',
+    'as'=>'viewOfficeDOIG'
 ]);
 
 //DOIG end
+
+//IGP
+Route::get('/viewIGPNewEntries',[
+    'uses'=>'EntryController@viewIGPNewEntries',
+    'as'=>'NewEntries'
+])->middleware('auth');
+
+Route::post('/viewIGPEntry',[
+    'uses'=>'EntryController@viewIGPEntry',
+    'as'=>'viewIGPEntry'
+])->middleware('auth');
+
+Route::post('/entryIGPAction',[
+    'uses'=>'EntryController@entryIGPAction',
+    'as'=>'entryIGPAction'
+])->middleware('auth');
+
+Route::get('/viewIGPOngoingEntries',[
+    'uses'=>'EntryController@viewIGPOngoingEntries',
+    'as'=>'OngoingEntries'
+])->middleware('auth');
+
+Route::get('/viewIGPClosedEntries',[
+    'uses'=>'EntryController@viewIGPClosedEntries',
+    'as'=>'ClosedEntries'
+])->middleware('auth');
+
+Route::get('/viewNewCitizenRequestsIGP',[
+    'uses'=>'IGPController@viewNewCitizenRequests',
+    'as'=>'viewNewCitizenRequests'
+])->middleware('auth');
+
+Route::get('/viewRegisteredCitizensIGP',[
+    'uses'=>'IGPController@viewRegisteredCitizens',
+    'as'=>'viewRegisteredCitizens'
+])->middleware('auth');
+
+Route::get('/viewClosedAccountsIGP',[
+    'uses'=>'IGPController@viewClosedAccounts',
+    'as'=>'viewClosedAccounts'
+])->middleware('auth');
+
+Route::post('/viewOfficeIGP',[
+    'uses'=>'IGPController@viewOfficeIGP',
+    'as'=>'viewOfficeIGP'
+]);
+
+Route::post('/viewBranchIGP',[
+    'uses'=>'IGPController@viewBranchIGP',
+    'as'=>'viewBranchIGP'
+]);
+
+//IGP end
 

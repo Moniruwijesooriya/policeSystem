@@ -93,21 +93,21 @@ class DOIGController extends Controller
         $user=db::table('users')->where('Nic',$nic)->First();
         $doigDetails = db::table('users')->where('nic',$nic)->First();
         $branches = db::table('police_offices')->where('headPoliceOffice',$doigDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
-
+        $offices = db::table('police_offices')->where('headPoliceOffice',$doigDetails->policeOffice)->get();
         $citizens=db::table('users')->where('role',"citizen")->where('verified',"No")->where('policeOffice',$user->policeOffice)->get();
         $type="New Citizen Registration Requests";
-        return view('doig.citizenListView',compact('citizens','type','branches','doigDetails'));
+        return view('doig.citizenListView',compact('citizens','type','branches','doigDetails','offices'));
     }
     public function viewRegisteredCitizens(){
         $nic=Auth::User()->nic;
         $user=db::table('users')->where('Nic',$nic)->First();
-
+        
         $citizens=db::table('users')->where('role',"citizen")->where('verified',"Yes")->where('policeOffice',$user->policeOffice)->get();
         $type="Registered Citizens";
         $doigDetails = db::table('users')->where('nic',$nic)->First();
         $branches = db::table('police_offices')->where('headPoliceOffice',$doigDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
-
-        return view('doig.citizenListView',compact('citizens','type','doigDetails','branches'));
+        $offices = db::table('police_offices')->where('headPoliceOffice',$doigDetails->policeOffice)->get();
+        return view('doig.citizenListView',compact('citizens','type','doigDetails','branches','offices'));
     }
     public function viewClosedAccounts(){
         $nic=Auth::User()->nic;
@@ -117,20 +117,20 @@ class DOIGController extends Controller
         $type="Closed Accounts";
         $doigDetails = db::table('users')->where('nic',$nic)->First();
         $branches = db::table('police_offices')->where('headPoliceOffice',$doigDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
-
-        return view('doig.citizenListView',compact('citizens','type','branches','doigDetails'));
+        $offices = db::table('police_offices')->where('headPoliceOffice',$doigDetails->policeOffice)->get();
+        return view('doig.citizenListView',compact('citizens','type','branches','doigDetails','offices'));
     }
 
-    public function viewOffice(Request $request){
+    public function viewOfficeDOIG(Request $request){
         $officeDetails=db::table('police_offices')->where('id',$request->officeID)->First();
         $nic=Auth::User()->nic;
-        $oicDetails = db::table('users')->where('nic',$nic)->First();
+        $doigDetails = db::table('users')->where('nic',$nic)->First();
         $newEntries = db::table('entries')->where('policeDivisionOffice',$request->officeID)->where('boicNotification',"y")->get();
         $ongoingEntries = db::table('entries')->where('policeDivisionOffice',$request->officeID)->where('boicNotification',"y o")->get();
         $closedEntries = db::table('entries')->where('policeDivisionOffice',$request->officeID)->where('status',"closed")->get();
         $officeOfficerDetails = db::table('users')->where('nic',$request->mainOfficer)->First();
-        $offices = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Division Police Office')->get();
-        return view('doig.viewOffice',compact('officeDetails','oicDetails','newEntries','ongoingEntries','closedEntries','offices','oicDetails','officeOfficerDetails'));
+        $offices = db::table('police_offices')->where('headPoliceOffice',$doigDetails->policeOffice)->where('policeOfficeType','Division Police Office')->get();
+        return view('doig.viewOffice',compact('officeDetails','doigDetails','newEntries','ongoingEntries','closedEntries','offices','doigDetails','officeOfficerDetails'));
 
     }
 
@@ -138,7 +138,8 @@ class DOIGController extends Controller
         $nic=Auth::User()->nic;
         $doigDetails = db::table('users')->where('nic',$nic)->First();
         $branches = db::table('police_offices')->where('headPoliceOffice',$doigDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
-        return view('doig.doigProfileForm',compact('doigDetails','branches'));
+        $offices = db::table('police_offices')->where('headPoliceOffice',$doigDetails->policeOffice)->get();
+        return view('doig.doigProfileForm',compact('doigDetails','branches','offices'));
     }
     public function doigProfileUpdate(Request $request)
     {
@@ -151,7 +152,8 @@ class DOIGController extends Controller
             $nic=Auth::User()->nic;
             $doigDetails = db::table('users')->where('nic',$nic)->First();
             $branches = db::table('police_offices')->where('headPoliceOffice',$doigDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
-            return view('doig.doigProfileForm',compact('doigDetails','branches'));
+            $offices = db::table('police_offices')->where('headPoliceOffice',$doigDetails->policeOffice)->get();
+            return view('doig.doigProfileForm',compact('doigDetails','branches','offices'));
 
         }
 
@@ -161,13 +163,15 @@ class DOIGController extends Controller
         $nic=Auth::User()->nic;
         $doigDetails = db::table('users')->where('nic',$nic)->First();
         $branches = db::table('police_offices')->where('headPoliceOffice',$doigDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
-        return view('doig.deactivatedoigForm',compact('doigDetails','branches'));
+        $offices = db::table('police_offices')->where('headPoliceOffice',$doigDetails->policeOffice)->get();
+        return view('doig.deactivatedoigForm',compact('doigDetails','branches','offices'));
     }
     public function changedoigPasswordFormView(){
         $nic=Auth::User()->nic;
         $doigDetails = db::table('users')->where('nic',$nic)->First();
         $branches = db::table('police_offices')->where('headPoliceOffice',$doigDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
-        return view('doig.changedoigPasswordForm',compact('doigDetails','branches'));
+        $offices = db::table('police_offices')->where('headPoliceOffice',$doigDetails->policeOffice)->get();
+        return view('doig.changedoigPasswordForm',compact('doigDetails','branches','offices'));
     }
     public function doigAccountDeactivate(Request $request)
     {

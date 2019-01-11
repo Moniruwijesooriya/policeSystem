@@ -1,4 +1,4 @@
-@extends('doig.doigApp')
+@extends('igp.igpApp')
 @section('content')
 
     <div class="content-header">
@@ -383,6 +383,15 @@
                 <div class="modal-body">
                     <form >
                         @csrf
+                        {{--<div class="form-group row">--}}
+                            {{--<div class="col-md-3">--}}
+                            {{--</div>--}}
+                            {{--<div class="col-md-6" style="align-content: center">--}}
+                                {{--<img id="userProfileImage" src='{{asset('/userProfileImages/'.$citizenDetails->nic.'.jpg')}}' class="user-image" alt="User Image">--}}
+
+                            {{--</div>--}}
+                            {{--<div class="col-md-3"></div>--}}
+                        {{--</div>--}}
 
                         <div class="form-group row">
                             <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('NIC') }}</label>

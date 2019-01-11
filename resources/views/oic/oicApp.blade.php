@@ -407,17 +407,6 @@
                             </div>
                         </a>
                     </li>
-                    {{--<li>--}}
-                    {{--<a href="javascript:void(0)">--}}
-                    {{--<i class="menu-icon fa fa-envelope-o bg-light-blue"></i>--}}
-
-                    {{--<div class="menu-info">--}}
-                    {{--<h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>--}}
-
-                    {{--<p>nora@example.com</p>--}}
-                    {{--</div>--}}
-                    {{--</a>--}}
-                    {{--</li>--}}
                     <li>
                         <a href="javascript:void(0)">
                             <i class="menu-icon fa fa-file-code-o bg-green"></i>
