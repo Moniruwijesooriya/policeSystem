@@ -130,6 +130,19 @@
                                                                 <input type="hidden" name="complainantNIC" value="{{ $entry->complainantID }}">
                                                             </div>
                                                         </div>
+                                                        <?php
+                                                        $blackListedUser = db::table('users')->where('nic',$entry->complainantID)->First();
+                                                        ?>
+                                                        <div class="form-group row">
+                                                            <div class="col-md-4"></div>
+                                                            <div class="col-md-4">
+                                                                @if($blackListedUser->blackListStatus=="Yes")
+                                                                    <p style="color: red">{{ __('Blacklisted Citizen') }}</p>
+                                                                @endif
+                                                            </div>
+
+                                                        </div>
+
 
                                                         <div class="form-group row">
                                                             <label class="col-md-3 col-form-label text-md-right">{{ __('Date And Time') }}</label>
@@ -237,11 +250,14 @@
                                                             </div>
                                                         @endif
                                                         <div class="form-group row mb-0">
-                                                            <div class="col-md-2"></div>
                                                             @if($entry->status=="new")
                                                                 <div class="col-md-5 col-xs-6">
                                                                     <input type="hidden" name="statusType" value="{{$entry->status}}">
                                                                     <input type="submit" class="btn btn-primary" value="Accept and Forward" style="width: 100%">
+                                                                </div>
+                                                                <div class="col-md-3 col-xs-6">
+                                                                    <input type="hidden" name="statusType" value="reject">
+                                                                    <input type="submit" class="btn btn-primary" value="Reject" style="width: 100%">
                                                                 </div>
                                                                 <div class="col-md-2 col-xs-6"  style="width: 18.75%">
                                                                     <button  type="reset" class="btn btn-danger" value="cancel">Reset</button>

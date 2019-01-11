@@ -24,9 +24,8 @@ class CitizenUpdateForm extends FormRequest
     public function rules()
     {
         return [
-            'email'=>'email|unique:users,email',
-            'nic'=>'unique:users,nic',
-            'password'=>'min:6|same:password_confirmation',
+
+            'landNumber'=>'regex:/(0)[0-9]{9}/'
 
 
         ];
@@ -35,11 +34,8 @@ class CitizenUpdateForm extends FormRequest
     public function messages()
     {
         return[
-            'email.email'=>'Invalid Email address',
-            'email.unique'=>'This email address is already existed',
-            'nic.unique'=>'This nic is already existed',
-            'password.min'=>'Use 6 characters or more for your password',
-            'password.same'=>'passwords did not match'
+            'mobNumber.regex'=>'invalid mobile number',
+            'landNumber.regex'=>'invalid land number',
         ];
     }
 }

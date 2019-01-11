@@ -3,7 +3,7 @@ use Illuminate\Support\Facades\DB;
 $newEntries=db::table('entries')->where('nearestPoliceStation',$oicDetails->policeOffice)->where('status','new')->count();
 $ongoingEntries=db::table('entries')->where('nearestPoliceStation',$oicDetails->policeOffice)->where('status','ongoing')->count();
 $closedEntries=db::table('entries')->where('nearestPoliceStation',$oicDetails->policeOffice)->where('status','closed')->count();
-$registeredUsersCount=db::table('users')->where('role','citizen')->where('policeOffice',$oicDetails->policeOffice)->count();
+$registeredUsersCount=db::table('users')->where('role','citizen')->where('verified','Yes')->where('policeOffice',$oicDetails->policeOffice)->count();
 $allUsersCount=db::table('users')->count();
 $officersCount=$allUsersCount - $registeredUsersCount;
 ?>

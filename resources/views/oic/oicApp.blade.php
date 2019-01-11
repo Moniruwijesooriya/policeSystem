@@ -418,47 +418,6 @@
             </div>
         </div>
     </div>
-    {{--Create Post--}}
-    <div class="modal fade" id="submitEvidence" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div  class="modal-dialog modal-dialog-centered" role="document">
-            <div  class="modal-content">
-
-                <div class="modal-header">
-                    <h5 class="modal-title" id="registerPoliceOfficer">Create Post</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <div class="modal-body">
-                    <form method="post" action="submitEvidence" enctype="multipart/form-data">
-                        @csrf
-                        <div class="form-group row">
-                            <label for="nic" class="col-md-4 col-form-label text-md-right">{{ __('Title') }}</label>
-                            <div class="col-md-8">
-                                <input id="title" type="text" class="form-control" name="title" placeholder="Title of the Post" required autofocus>
-                                <input type="hidden" name="entryId" value="{{$entry->entryID}}">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">Content</label>
-                            <div class="col-md-8">
-                                <textarea id="postContent" class="form-control" name="postContent" rows="3"></textarea>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Post') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 
 </div>
 {{-- <!-- ./wrapper --> --}}

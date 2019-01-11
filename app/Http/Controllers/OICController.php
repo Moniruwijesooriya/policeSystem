@@ -32,12 +32,12 @@ class OICController extends Controller
     public function oicPasswordChange(Request $request){
         $newpassword=$request->newpassword;
         $confirmpassword=$request->confirmpassword;
+        $currentpassword=$request->currentpassword;
 
-
-        $citizenDetails = db::table('users')->where('nic',$request->nic)->First();
+        $userDetails = db::table('users')->where('nic',$request->nic)->First();
 
         if ($newpassword==$confirmpassword){
-            if (Hash::check($newpassword,$citizenDetails->password)){
+            if (Hash::check($currentpassword,$userDetails->password) && $newpassword == $confirmpassword){
                 DB::table('users')
                     ->where('nic',$request->nic)
                     ->update(['password'=>Hash::make($request->newpassword)]);
@@ -88,8 +88,12 @@ class OICController extends Controller
             $citizen->policeOffice=$user->policeOffice;
             $citizen->save();
 
-            $res = db::table('users')->where('nic', $request->nicTemp)->delete();
-            if ($res) {
+            $result=$result= DB::table('users')
+
+                ->where('nic', $request->nicTemp)
+                ->update(['blackListStatus' => "Yes"]);
+
+            if ($result) {
                 return redirect('/OIC');
             }
 
@@ -112,7 +116,7 @@ class OICController extends Controller
         $nic=Auth::User()->nic;
         $user=db::table('users')->where('Nic',$nic)->First();
 
-        $citizens=db::table('users')->where('role',"citizen")->where('verified',"Yes")->where('policeOffice',$user->policeOffice)->get();
+        $citizens=db::table('users')->where('role',"citizen")->where('blackListStatus',null)->where('verified',"Yes")->where('policeOffice',$user->policeOffice)->get();
         $type="Registered Citizens";
         $oicDetails = db::table('users')->where('nic',$nic)->First();
         $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
@@ -185,10 +189,10 @@ class OICController extends Controller
         $oic = db::table('users')->where('nic',$request->nic)->first();
         if (Hash::check($userpassword,$oic->password)){
             DB::table('users')->where('nic',$request->nic)->delete();
-            return redirect('/');
+            return redirect('/logout');
         }
         else{
-            return redirect('/RegisteredCitizen');
+            return redirect('/OIC');
         }
 
     }

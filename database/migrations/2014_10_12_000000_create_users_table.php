@@ -33,6 +33,9 @@ class CreateUsersTable extends Migration
             $table->string('verified');
             $table->rememberToken();
             $table->timestamps();
+            $table->string('role');
+            $table->string('blackListStatus');
+
         });
     }
 

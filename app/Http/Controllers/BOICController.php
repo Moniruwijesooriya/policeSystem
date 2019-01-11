@@ -26,7 +26,7 @@ class BOICController extends Controller
 
         $oic=DB::table('users')->where('nic',$request->nic)->first();
         Session::flash('CitizenPasswordUpdate','password is updated successfully!');
-        if(Hash::check($currentpassword,$oic->password) && $newpassword==$confirmpassword ){
+        if (Hash::check($currentpassword,$oic->password) && $newpassword == $confirmpassword){
             DB::table('users')
                 ->where('nic',$request->nic)
                 ->update(['password'=>Hash::make($request->newpassword)]);
@@ -57,9 +57,9 @@ class BOICController extends Controller
             ->update(['address' => $request->homeAddress, 'mobileNumber' => $request->mobNumber, 'landLineNumber' => $request->landNumber, 'email' => $request->email]);
         if($result){
             $nic=Auth::User()->nic;
-            $oicDetails = db::table('users')->where('nic',$nic)->First();
-            $branches = db::table('police_offices')->where('headPoliceOffice',$oicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
-            return view('boic.boicProfileForm',compact('oicDetails','branches'));
+            $boicDetails = db::table('users')->where('nic',$nic)->First();
+            $branches = db::table('police_offices')->where('headPoliceOffice',$boicDetails->policeOffice)->where('policeOfficeType','Branch Police Office')->get();
+            return view('boic.boicProfileForm',compact('boicDetails','branches'));
 
         }
     }
